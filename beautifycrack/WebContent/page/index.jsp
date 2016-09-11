@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="Keywords" content="美缝"  />
-<meta name="description" content="全国最好的美缝网站 ” 。">
+<meta name="Keywords" content="美缝剂施工,瓷砖美缝剂,瓷砖美缝"  />
+<meta name="description" content="美缝剂施工,瓷砖美缝,、提供最详实可信的美缝剂、美缝行业信  息,瓷砖美缝效果图,美缝选材等服务！">
 <link href="${contextPath}/style/css/master.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/base.css" type="text/css" rel="stylesheet" />
 
@@ -46,8 +46,8 @@
     
 	</div>
 
-<!--幻灯片-->
-<div class="fullSlide">
+	<!--幻灯片-->
+	<div class="fullSlide">
 		<div class="bd">
 			<ul>
 			<li style="background:url(${contextPath}/style/images/banner.jpg) #FFF center 0 no-repeat;"><a target="_blank" href="#"></a></li>
@@ -62,110 +62,143 @@
 	</div>  
 
 
-<!--首页主体-->
-	<div class="xc_pic ofHidden clearfix">
-    <div class="block clearfix ofHidden">
-        <b></b>
-        <ul>
-        	<li><a href=""><img src="${contextPath}/style/images/dianzi.png"></a></li>
-            <li><a href=""><img src="${contextPath}/style/images/team.png"></a></li>
-            <li><a href=""><img src="${contextPath}/style/images/case.png"></a></li>
-            <li><a href=""><img src="${contextPath}/style/images/kefu.png"></a></li>
-        </ul>
-    </div>    
-	</div>
-    
-    <div class="clearfix ofHidden block yh pt20">
-    	<div class="index_left fleft">
-        	<div class="t1">装修效果图</div>
-            
-            <!--九宫格-->
-            <div class="ge ofHidden">
-            	<div class="w345 fleft h245 ofHidden"><a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="345" height="245"><p class="f16">小户型也有大智慧</p><b class="h45"></b></a></div>
-                <div class="w345 fright h120 ofHidden"><a href="" class="h120"><img src="${contextPath}/style/images/2.jpg" width="345" height="120"><p class="f14">小户型也有大智慧</p><b class="h30"></b></a></div>
-                <div class="w345 fright mt10">
-                	<span class="w170 fleft h115 ofHidden"><a href="" class="h115"><img src="${contextPath}/style/images/3.jpg" width="170" height="115"><p class="f14">小户型也有大智慧</p><b class="h30"></b></a></span>
-                    <span class="w170 fright h115 ofHidden"><a href="" class="h115"><img src="${contextPath}/style/images/4.jpg" width="170" height="115"><p class="f14">小户型也有大智慧</p><b class="h30"></b></a></span>
-                </div>
-            </div>
-            
-            <div class="index_pic1"><img src="${contextPath}/style/images/index_1.jpg"></div>
-            <ul class="round clearfix ofHidden">
-                <li><a href=""><img src="${contextPath}/style/images/round1.jpg"><p>客厅</p></a></li>
-                <li><a href=""><img src="${contextPath}/style/images/round2.jpg"><p>卧室</p></a></li>
-                <li><a href=""><img src="${contextPath}/style/images/round3.jpg"><p>餐厅</p></a></li>
-                <li><a href=""><img src="${contextPath}/style/images/round4.jpg"><p>厨房</p></a></li>
-                <li><a href=""><img src="${contextPath}/style/images/round5.jpg"><p>卫生间</p></a></li>
-                <li><a href=""><img src="${contextPath}/style/images/round6.jpg"><p>阳台</p></a></li>
-                <li><a href=""><img src="${contextPath}/style/images/round7.jpg"><p>背景墙</p></a></li>
-                <li><a href=""><img src="${contextPath}/style/images/round8.jpg"><p>吊顶</p></a></li>
-            </ul>
-        </div>
-        
-        
-        <!---->
-    	<div class="index_right fright">
-        	<div class="t1">案例展示 <span class="f14 c_666">Display case</span></div>
-            <ul class="alzs clearfix ofHidden">
-            	<li><a href="">厂房装修</a></li>
-                <li><a href="">厂房装修</a></li>
-                <li><a href="">厂房装修</a></li>
-                <li><a href="">厂房装修</a></li>
-                <li><a href="">厂房装修</a></li>
-                <li><a href="">厂房装修</a></li>
-                <li><a href="">厂房装修</a></li>
-                <li><a href="">厂房装修</a></li>
-            </ul>
-            
-            <div class="t1 mt20">联系我们 <span class="f14 c_666">Contact us</span></div>
-            <div class="lx_nr noyh">
-            	<p>电话：0517-0000000</p>
-                <p>邮箱：0000000@000.com</p>
-                <p>公司官网：www.tairui.cn</p>
-                <p>地址：淮安市XXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-            </div>
-            
-            <div class="t1 mt20">企业宣传片 <span class="f14 c_666">Trailer</span></div>
-            <p class="mt20"><img src="${contextPath}/style/images/xc_video.jpg" width="270"></p>
-        </div>
-    </div>
-    
-<div class="team clearfix yh mt20">
-
-<div class="block">
-<div class="t1"><a href="" class="fright f12">Talk预约设计</a>精英团队</div>			
-			<div class="bd">
-				<ul class="picList">
-					<li>
-						<div class="pic"><a href="#" target="_blank"><img src="${contextPath}/style/images/pic7.jpg" /></a></div>
-						<div class="title"><a href="#" target="_blank">效果图1</a></div>
-					</li>
-					<li>
-						<div class="pic"><a href="#" target="_blank"><img src="${contextPath}/style/images/pic8.jpg" /></a></div>
-						<div class="title"><a href="#" target="_blank">效果图2</a></div>
-					</li>
-					<li>
-						<div class="pic"><a href="#" target="_blank"><img src="${contextPath}/style/images/pic3.jpg" /></a></div>
-						<div class="title"><a href="#" target="_blank">效果图3</a></div>
-					</li>
-					<li>
-						<div class="pic"><a href="#" target="_blank"><img src="${contextPath}/style/images/pic4.jpg" /></a></div>
-						<div class="title"><a href="#" target="_blank">效果图4</a></div>
-					</li>
-					<li>
-						<div class="pic"><a href="#" target="_blank"><img src="${contextPath}/style/images/pic5.jpg" /></a></div>
-						<div class="title"><a href="#" target="_blank">效果图5</a></div>
-					</li>
-					<li>
-						<div class="pic"><a href="#" target="_blank"><img src="${contextPath}/style/images/pic6.jpg" /></a></div>
-						<div class="title"><a href="#" target="_blank">效果图6</a></div>
-					</li>
-				</ul>
+	<!--美缝材料-->
+	<div class="clearfix ofHidden block yh pt20">
+		<div class="t1">
+			<a href="" class="fright f12">更多>></a>
+			美缝材料
+		</div>
+		<div class="index-image clearfix pt10 ">
+			<div class="w310 fleft h245 ofHidden mb30">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden mr35 ml35 mb30">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden mb30">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden mr35 ml35">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
 			</div>
 		</div>
-</div>
-        
-        
+	</div>
+	
+	<!--美缝工具-->
+	<div class="clearfix ofHidden block yh pt20">
+		<div class="t1">
+			<a href="" class="fright f12">更多>></a>
+			美缝工具
+		</div>
+		<div class="index-image clearfix pt10 ">
+			<div class="w310 fleft h245 ofHidden mb30">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden mr35 ml35 mb30">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden mb30">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden mr35 ml35">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+			<div class="w310 fleft h245 ofHidden">
+				<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="310" height="245">
+					<p class="f16">小户型也有大智慧</p>
+					<b class="h45"></b>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+    <div class="clearfix ofHidden block yh pt20">
+    	<div class="index_left fleft">			
+			<div class="t1">美缝公司</div>
+			<div class="fleft">
+				<div class="fleft">
+					<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="90" height="100"></a>
+				</div>
+				<div class="fleft">12</div>
+			</div>
+			<div class="fleft">
+				<div class="fleft">
+					<a href="" class="h245"><img src="${contextPath}/style/images/1.jpg" width="90" height="100"></a>
+				</div>
+				<div class="fleft">12</div>
+			</div>
+			<div class="clearfix"></div>
+			
+			<div class="t1">施工人员</div>
+ 
+        </div>
+	        
+        <!---->
+    	<div class="index_right fright">
+        	<div class="t1">新闻动态<a href="" class="fright f12">更多>></a></div>
+            <ul class="alzs clearfix ofHidden">
+            	<li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
+            </ul>
+        </div>
+    </div>
+            
 <div class="foot clearfix">
 	<div class="block">
         <div class="fleft">
