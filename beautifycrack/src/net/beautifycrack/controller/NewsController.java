@@ -9,31 +9,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 首页控制器
+ * 新闻动态
  * 
- * IndexController.java
+ * NewsController.java
  * 
  * @Description: <br>
  * <br>
  * @Company: chinasofti
- * @Created on 2016年9月12日 下午4:14:37
+ * @Created on 2016年9月12日 下午4:14:05
  * @author liulong
  */
-
 @Scope("prototype")
 @Controller
-@RequestMapping("/index")
-public class IndexController
+@RequestMapping("/news")
+public class NewsController
 {
+
     /**
      * 跳转到首页
      */
-    @RequestMapping(value = "/home")
-    public ModelAndView indexPage(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping(value = "/list")
+    public ModelAndView newsList(HttpServletRequest request, HttpServletResponse response)
     {
         ModelAndView mv = new ModelAndView();
         mv.getModelMap().put("contextPath", request.getContextPath());
-        mv.setViewName("index");
+        mv.setViewName("news/newsList");
         return mv;
     }
 }
