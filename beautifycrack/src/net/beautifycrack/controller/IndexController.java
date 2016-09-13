@@ -1,7 +1,10 @@
 package net.beautifycrack.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.beautifycrack.service.AdvertisementService;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/index")
 public class IndexController
 {
+    /**
+     * 广告接口
+     */
+    @Resource
+    private AdvertisementService adService;
+
     /**
      * 跳转到首页
      */
