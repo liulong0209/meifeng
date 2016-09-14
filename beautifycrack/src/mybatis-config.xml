@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>				
 		<typeAlias alias="ad" type="net.beautifycrack.module.Advertisement"/>
+		<typeAlias alias="news" type="net.beautifycrack.module.News"/>
 	</typeAliases>
 	<mappers>			
 		<mapper resource="net/beautifycrack/dao/impl/AdvertisementMapper.xml" />
+		<mapper resource="net/beautifycrack/dao/impl/NewsMapper.xml" />
 	</mappers>
 </configuration> 
