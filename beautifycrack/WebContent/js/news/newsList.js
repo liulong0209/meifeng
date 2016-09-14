@@ -37,7 +37,7 @@ $(function(){
 			$newli+=		"<a href=\"\">"+news.title+"</a>";
 			$newli+=	"</div>";
 			$newli+=	"<div class=\"fright\">";
-			$newli+=		"<span class=\"time\">"+news.publishTime+"</span>";
+			$newli+=		"<span class=\"time\">"+$.formatDate("yyyy-MM-dd hh:mm:ss",new Date(news.publishTime))+"</span>";
 			$newli+=	"</div>";
 			$newli+="</li>";
 		})

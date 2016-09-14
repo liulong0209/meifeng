@@ -24,6 +24,7 @@
 	<%@include file="../common/footer.jsp" %>  	
 </body>
 <script type="text/javascript" src="${contextPath}/js/3th/jquery.min.js"></script>
+<script type="text/javascript" src="${contextPath}/js/jquery.date.js"></script>
 <script type="text/javascript" src="${contextPath}/js/news/newsList.js"></script>
 <script type="text/javascript">
 	var contextPath = "${contextPath}";
