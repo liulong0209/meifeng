@@ -4,7 +4,7 @@
   
 <mapper namespace="net.beautifycrack.dao.NewsMapper">
 	<!-- 查询新闻列表 -->
-	<select id="pageList" resultType="news">
+	<select id="pagerList" resultType="news" parameterType="Map">
 		select 
 		 id as id,
 		 title as title,
@@ -12,11 +12,17 @@
 		from tbl_news
 		where publish_state=1
 		order by publish_time desc
+		LIMIT #{startRow}, #{pageSize}
 	</select>
 	
 	<!-- 查询一条详细信息 -->
-	<select id="showNews" resultType="news">
-		select * from tbl_news
+	<select id="showNews" parameterType="Integer" resultType="news">
+		select 
+		id as id,
+		title as title,
+		content as content,
+		publish_time as publishTime 
+		from tbl_news where id=#{id}
 	</select>
 	
 	<!-- 查询总数 -->

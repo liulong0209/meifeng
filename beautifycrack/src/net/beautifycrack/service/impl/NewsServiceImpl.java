@@ -1,6 +1,8 @@
 package net.beautifycrack.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,6 +10,7 @@ import net.beautifycrack.dao.NewsMapper;
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.News;
 import net.beautifycrack.service.NewsService;
+import net.beautifycrack.util.PagerUtil;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -34,15 +37,18 @@ public class NewsServiceImpl implements NewsService
     private NewsMapper newsMapper;
 
     @Override
-    public List<News> pageList() throws BusinessException
+    public List<News> pagerList(PagerUtil pager) throws BusinessException
     {
-        return newsMapper.pageList();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+        map.put("pageSize", pager.getPageSize());
+        return newsMapper.pagerList(map);
     }
 
     @Override
     public News showNews(Integer id) throws BusinessException
     {
-        return null;
+        return newsMapper.showNews(id);
     }
 
     @Override

@@ -51,4 +51,38 @@
     });
   };
   
+  //加载中模态框扩展方法
+  jQuery.extend({
+		//显示加载中
+		showLoadding:function(options){
+			var settings = {
+		            loadText: "加载中，请稍候..."
+		        };
+		    $.extend(settings, options);
+			$("#loadding").remove();
+			var laddingDiv="<div id='loadding' style='position: fixed;width: 200px;background-color: #000;opacity: 0.4;top: 240px;left: 40%;'>"
+				laddingDiv+=  "<div style='position: relative;top: 115px;color: #fff;text-align: center;'>"+settings.loadText+"</div>";
+				laddingDiv+=  "<div class='sk-fading-circle'>";
+			    laddingDiv+=    "<div class='sk-circle1 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle2 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle3 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle4 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle5 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle6 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle7 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle8 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle9 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle10 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle11 sk-circle'></div>";
+			    laddingDiv+=    "<div class='sk-circle12 sk-circle'></div>";
+			    laddingDiv+=  "</div>";
+			    laddingDiv+="</div>";
+			$("body").prepend(laddingDiv)
+		},
+		//隐藏加载中
+		hideLoadding:function(){
+			$("#loadding").remove();
+		}
+	});
+  
 })(jQuery);

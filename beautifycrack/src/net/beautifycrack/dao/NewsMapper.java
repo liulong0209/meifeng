@@ -1,6 +1,7 @@
 package net.beautifycrack.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.News;
@@ -24,7 +25,7 @@ public interface NewsMapper
      * @return
      * @throws BusinessException
      */
-    List<News> pageList() throws BusinessException;
+    List<News> pagerList(Map<String, Object> map) throws BusinessException;
 
     /**
      * 显示单条详细信息

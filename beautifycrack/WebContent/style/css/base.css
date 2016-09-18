@@ -121,6 +121,13 @@ from {-webkit-transform: rotateZ(0deg); -moz-transform: rotateZ(0deg);transform:
 to {-webkit-transform: rotateZ(360deg); -moz-transform: rotateZ(360deg);transform: rotateZ(360deg);}   
 }
 
+.relative{
+	position: relative;
+}
+
+.display-block{
+	display:block;
+}
 
 
 

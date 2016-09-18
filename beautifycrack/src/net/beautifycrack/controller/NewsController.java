@@ -14,6 +14,7 @@ import net.beautifycrack.util.PagerUtil;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,7 +63,7 @@ public class NewsController
     {
         Map<String, Object> dataMaps = new HashMap<String, Object>();
         // 查询数据
-        List<News> newList = newsService.pageList();
+        List<News> newList = newsService.pagerList(pu);
 
         dataMaps.put("dataList", newList);
         // 查询数据总数
@@ -71,5 +72,24 @@ public class NewsController
         pu.setTotalPage(pu.getTotalPage());
         dataMaps.put("pager", pu);
         return dataMaps;
+    }
+
+    /**
+     * 展示新闻详情
+     * 
+     * @param request
+     * @param response
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
+    public ModelAndView showDetail(HttpServletRequest request, HttpServletResponse response, @PathVariable Integer id)
+    {
+        ModelAndView mv = new ModelAndView();
+        News news = newsService.showNews(id);
+        mv.getModelMap().put("news", news);
+        mv.getModelMap().put("contextPath", request.getContextPath());
+        mv.setViewName("news/newsDetail");
+        return mv;
     }
 }

@@ -7,7 +7,7 @@ window.Common = (function($, module) {
 	 * totalPage:总数
 	 * totalRecords:总记录数
 	 */
-	function loadPager(pageNo,totalPage,totalRecords){
+	function loadPager(pageNo,totalPage,totalRecords,queryMethodName){
 		//生成分页
 		//有些参数是可选的，比如lang，若不传有默认值
 		kkpager.generPageHtml({
@@ -18,12 +18,13 @@ window.Common = (function($, module) {
 			totalRecords : totalRecords,
 			mode : 'click',//默认值是link，可选link或者click
 			click : function(n){
-				// do something
+				//执行查询方法
+				eval(queryMethodName(n)); 
 				//手动选中按钮
 				this.selectPage(n);
 				return false;
 			},
-			isGoPage:true
+			isGoPage:false
 		},true);
 	}
 	

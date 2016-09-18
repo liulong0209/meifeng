@@ -17,7 +17,7 @@ public class PagerUtil
     /**
      * 每页显示数量
      */
-    private Integer pageSize = 30;
+    private Integer pageSize = 20;
 
     /**
      * 页面
@@ -66,8 +66,9 @@ public class PagerUtil
 
     public Integer getTotalPage()
     {
-        return this.totalRecords % this.pageSize == 0 ? this.totalRecords / this.pageSize : this.totalRecords
+        totalPage = this.totalRecords % this.pageSize == 0 ? this.totalRecords / this.pageSize : this.totalRecords
                 / this.pageSize + 1;
+        return totalPage;
     }
 
     public void setTotalPage(Integer totalPage)
