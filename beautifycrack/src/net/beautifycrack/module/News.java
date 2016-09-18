@@ -1,7 +1,7 @@
 package net.beautifycrack.module;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 新闻实体

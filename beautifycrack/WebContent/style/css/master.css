@@ -98,14 +98,6 @@
 .foot .fright p.p2{ background:url(../images/yx.png) no-repeat left center;}
 
 
-/* 页码 */
-.page { font-size: 16px; text-align: center;height: 35px; line-height: 35px; overflow: hidden; padding: 30px 0;}
-.page a { border: 1px solid lightGrey; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; padding: 8px 15px; margin: 0 3px; cursor: pointer; color: #919191; font-size: 16px; box-shadow: 0 1px 0 white inset, 0 1px 0px #DFDFDF; -webkit-box-shadow: 0 1px 0 white inset, 0 1px 0px #DFDFDF; -moz-box-shadow: 0 1px 0 #fff inset, 0 1px 0px #dfdfdf; text-decoration: none; background-color: #F2F2F2; }
-.page a:hover { background: #00ada7; background: -moz-linear-gradient(top, #f6f6f6 0%, #e8e8e8 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(100%, #e8e8e8)); background: -webkit-linear-gradient(top, #f6f6f6 0%, #e8e8e8 100%); background: -o-linear-gradient(top, #f6f6f6 0%, #e8e8e8 100%); background: -ms-linear-gradient(top, #f6f6f6 0%, #e8e8e8 100%); background: linear-gradient(top, #f6f6f6 0%, #e8e8e8 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#e8e8e8', GradientType=0 );
-border: 1px solid #757575; text-decoration:none }
-.page a.on { -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; padding: 8px 15px; background: #00ada7; color: #FFF; border:none }
-
-
 /*文字列表页 侧边栏*/
 .newsbox { margin-bottom:20px; }
 .navmenu { width:100%; line-height:45px; border-bottom:2px solid #00ada7; font-size:15px; color:#00ada7; text-indent:10px; font-weight:bold; }

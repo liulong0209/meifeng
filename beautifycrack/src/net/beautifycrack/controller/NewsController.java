@@ -1,6 +1,8 @@
 package net.beautifycrack.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.beautifycrack.module.News;
 import net.beautifycrack.service.NewsService;
+import net.beautifycrack.util.PagerUtil;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -55,10 +58,18 @@ public class NewsController
      * 跳转到首页
      */
     @RequestMapping(value = "/pageList", method = RequestMethod.POST)
-    public @ResponseBody Object pageList()
+    public @ResponseBody Object pageList(PagerUtil pu)
     {
+        Map<String, Object> dataMaps = new HashMap<String, Object>();
+        // 查询数据
         List<News> newList = newsService.pageList();
+
+        dataMaps.put("dataList", newList);
+        // 查询数据总数
         Integer total = newsService.queryTotal();
-        return newList;
+        pu.setTotalRecords(total);
+        pu.setTotalPage(pu.getTotalPage());
+        dataMaps.put("pager", pu);
+        return dataMaps;
     }
 }
