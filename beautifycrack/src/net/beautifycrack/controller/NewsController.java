@@ -12,6 +12,7 @@ import net.beautifycrack.module.News;
 import net.beautifycrack.service.NewsService;
 import net.beautifycrack.util.PagerUtil;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,6 +89,7 @@ public class NewsController
         ModelAndView mv = new ModelAndView();
         News news = newsService.showNews(id);
         mv.getModelMap().put("news", news);
+        mv.getModelMap().put("publishTime", DateFormatUtils.format(news.getPublishTime(), "yyyy-MM-dd H:m:s"));
         mv.getModelMap().put("contextPath", request.getContextPath());
         mv.setViewName("news/newsDetail");
         return mv;
