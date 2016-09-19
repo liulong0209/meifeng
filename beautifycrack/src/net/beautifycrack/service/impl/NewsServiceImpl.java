@@ -57,4 +57,10 @@ public class NewsServiceImpl implements NewsService
         return newsMapper.queryTotal();
     }
 
+    @Override
+    public List<News> newsListIndex() throws BusinessException
+    {
+        return newsMapper.newsListIndex();
+    }
+
 }

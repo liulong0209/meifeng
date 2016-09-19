@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.beautifycrack.service.AdvertisementService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/index")
 public class IndexController
 {
+    private static Logger logger = LoggerFactory.getLogger(IndexController.class);
     /**
      * 广告接口
      */
@@ -42,6 +45,7 @@ public class IndexController
     {
         ModelAndView mv = new ModelAndView();
         mv.getModelMap().put("contextPath", request.getContextPath());
+        logger.debug("IndexController->indexPage:contextPath:{}", request.getContextPath());
         mv.setViewName("index");
         return mv;
     }

@@ -45,7 +45,7 @@ public class NewsController
     private NewsService newsService;
 
     /**
-     * 跳转到首页
+     * 跳转到新闻列表页面
      */
     @RequestMapping(value = "/list")
     public ModelAndView newsList(HttpServletRequest request, HttpServletResponse response)
@@ -57,7 +57,7 @@ public class NewsController
     }
 
     /**
-     * 跳转到首页
+     * 加载新闻数据，前台通多ajax调用
      */
     @RequestMapping(value = "/pageList", method = RequestMethod.POST)
     public @ResponseBody Object pageList(PagerUtil pu)
@@ -89,9 +89,21 @@ public class NewsController
         ModelAndView mv = new ModelAndView();
         News news = newsService.showNews(id);
         mv.getModelMap().put("news", news);
-        mv.getModelMap().put("publishTime", DateFormatUtils.format(news.getPublishTime(), "yyyy-MM-dd H:m:s"));
+        mv.getModelMap().put("publishTime", DateFormatUtils.format(news.getPublishTime(), "yyyy-MM-dd"));
         mv.getModelMap().put("contextPath", request.getContextPath());
         mv.setViewName("news/newsDetail");
         return mv;
+    }
+
+    /**
+     * 首页显示的新闻列表，显示最新的15条
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/index/newsList", method = RequestMethod.POST)
+    public @ResponseBody Object newsListIndex()
+    {
+        // 查询数据
+        return newsService.newsListIndex();
     }
 }

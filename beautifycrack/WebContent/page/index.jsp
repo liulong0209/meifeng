@@ -9,9 +9,6 @@
 <meta name="description" content="美缝剂施工,瓷砖美缝,、提供最详实可信的美缝剂、美缝行业信  息,瓷砖美缝效果图,美缝选材等服务！">
 <link href="${contextPath}/style/css/master.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/base.css" type="text/css" rel="stylesheet" />
-
-<script type="text/javascript" src="${contextPath}/js/3th/jquery.min.js"></script>
-<script type="text/javascript" src="${contextPath}/js/3th/jquery.SuperSlide.2.1.1.js"></script>
 <title>美缝</title>
 </head>
 <body>
@@ -204,34 +201,24 @@
  
         </div>
 	        
-        <!---->
+        <!--新闻动态-->
     	<div class="index_right fright">
-        	<div class="t1">新闻动态<a href="${contextPath}/news/list"" class="fright f12">更多>></a></div>
-            <ul class="alzs clearfix ofHidden">
-            	<li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-                <li><a href="">【装修直播】开一贴记...<span class="fright">2016-09-06</span></a></li>
-            </ul>
+        	<div class="t1">新闻动态<a href="${contextPath}/news/list" class="fright f12">更多>></a></div>
+            <ul id="newsli" class="alzs clearfix ofHidden"></ul>
         </div>
     </div>
             
 <%@include file="common/footer.jsp" %>     	
 </body>
+<script type="text/javascript" src="${contextPath}/js/3th/jquery.min.js"></script>
+<script type="text/javascript" src="${contextPath}/js/jquery.custom.js"></script>
+<script type="text/javascript" src="${contextPath}/js/3th/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="${contextPath}/js/index.js"></script>
 <script type="text/javascript">
-//幻灯片
-jQuery(".fullSlide").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click" });
+var contextPath = "${contextPath}";
+$(function(){
+	//幻灯片
+	jQuery(".fullSlide").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click" });
+})
 </script>
 </html>

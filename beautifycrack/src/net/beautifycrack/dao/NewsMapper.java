@@ -43,4 +43,12 @@ public interface NewsMapper
      * @throws BusinessException
      */
     Integer queryTotal() throws BusinessException;
+
+    /**
+     * 首页显示的新闻列表，显示最新的15条
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    List<News> newsListIndex() throws BusinessException;
 }

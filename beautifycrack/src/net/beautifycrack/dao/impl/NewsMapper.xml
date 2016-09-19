@@ -29,6 +29,21 @@
 	<select id="queryTotal" resultType="Integer">
 		select count(*) from tbl_news where publish_state=1
 	</select>
+	
+	<select id="newsListIndex" resultType="news">
+		select
+		id,
+     	case when LENGTH(title)>15 then
+		   concat(left(title,15),'...') 
+     	else
+     		title
+     	end as title,
+		 publish_time as publishTime
+		from tbl_news
+		where publish_state=1
+		order by publish_time desc
+		LIMIT 0,15
+	</select>
 </mapper>
 
 
