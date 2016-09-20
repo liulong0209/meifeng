@@ -6,9 +6,11 @@
 	<typeAliases>				
 		<typeAlias alias="ad" type="net.beautifycrack.module.Advertisement"/>
 		<typeAlias alias="news" type="net.beautifycrack.module.News"/>
+		<typeAlias alias="fileInfo" type="net.beautifycrack.module.FileInfo"/>
 	</typeAliases>
 	<mappers>			
 		<mapper resource="net/beautifycrack/dao/impl/AdvertisementMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/NewsMapper.xml" />
+		<mapper resource="net/beautifycrack/dao/impl/FileInfoMapper.xml" />
 	</mappers>
 </configuration> 

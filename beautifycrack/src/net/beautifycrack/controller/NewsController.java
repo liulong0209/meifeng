@@ -47,7 +47,7 @@ public class NewsController
     /**
      * 跳转到新闻列表页面
      */
-    @RequestMapping(value = "/list")
+    @RequestMapping(value = "")
     public ModelAndView newsList(HttpServletRequest request, HttpServletResponse response)
     {
         ModelAndView mv = new ModelAndView();

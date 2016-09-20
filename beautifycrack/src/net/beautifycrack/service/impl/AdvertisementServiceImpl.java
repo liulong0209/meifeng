@@ -33,9 +33,9 @@ public class AdvertisementServiceImpl implements AdvertisementService
     private AdvertisementMapper adMapper;
 
     @Override
-    public List<Advertisement> get()
+    public List<Advertisement> getSlideImg()
     {
-        return adMapper.get();
+        return adMapper.getSlideImg();
     }
 
 }

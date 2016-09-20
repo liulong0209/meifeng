@@ -9,8 +9,8 @@
 		   	<div class="nav fleft ofHidden">
 		       <ul>
 		           <li><a href="${contextPath}">首页</a></li>
-		           <li><a href="${contextPath}/news/list">新闻动态</a></li>
-		           <li><a href="xwzx.html">美缝公司</a></li>
+		           <li><a href="${contextPath}/news">新闻动态</a></li>
+		           <li><a href="${contextPath}/company">美缝公司</a></li>
 		           <li><a href="cpzs.html">施工工人</a></li>
 		           <li><a href="">美缝材料</a></li>
 		           <li><a href="zxly.htmll">美缝工具</a></li>

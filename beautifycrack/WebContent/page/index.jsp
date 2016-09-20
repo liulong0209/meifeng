@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +18,11 @@
 	<div class="fullSlide">
 		<div class="bd">
 			<ul>
-			<li style="background:url(${contextPath}/style/images/banner.jpg) #FFF center 0 no-repeat;"><a target="_blank" href="#"></a></li>
-			<li style="background:url(${contextPath}/style/images/banner2.jpg) #FFF center 0 no-repeat;"><a target="_blank" href="#"></a></li>
-			<li style="background:url(${contextPath}/style/images/banner.jpg) #FFF center 0 no-repeat;"><a target="_blank" href="#"></a></li>
-			<li style="background:url(${contextPath}/style/images/banner2.jpg) #FFF center 0 no-repeat;"><a target="_blank" href="#"></a></li>
-			<li style="background:url(${contextPath}/style/images/banner.jpg) #FFF center 0 no-repeat;"><a target="_blank" href="#"></a></li>
+				<c:forEach var="slide" items="${slideList}">
+					<li>
+						<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="1423px"></a>
+					</li>
+				</c:forEach>			
 			</ul>
 		</div>
 

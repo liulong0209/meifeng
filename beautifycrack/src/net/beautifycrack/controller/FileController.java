@@ -5,10 +5,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.beautifycrack.exception.BusinessException;
+import net.beautifycrack.module.FileInfo;
+import net.beautifycrack.service.FileInfoService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +39,12 @@ public class FileController
     private static Logger logger = LoggerFactory.getLogger(FileController.class);
 
     /**
+     * 文件接口
+     */
+    @Resource
+    private FileInfoService fileInfoService;
+
+    /**
      * 根据图像的id 获取图像
      * 
      * @param request
@@ -49,12 +58,14 @@ public class FileController
     {
         logger.debug("FileController->getImage:imageId:{}", imageId);
         FileInputStream fis = null;
+        FileInfo fileInfo = null;
         response.setContentType("image/gif");
         try
         {
-            String imagePath = "";
+            // 查询文件，获得文件路径
+            fileInfo = fileInfoService.findFileById(imageId);
             OutputStream out = response.getOutputStream();
-            File file = new File(imagePath);
+            File file = new File(fileInfo.getFilePath());
             fis = new FileInputStream(file);
             byte[] b = new byte[fis.available()];
             fis.read(b);

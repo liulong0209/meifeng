@@ -38,7 +38,7 @@
 	<root> 
 		<priority value="debug" /> 
 		<appender-ref ref="CONSOLE" /> 
-		<!-- appender-ref ref="myFile" --/> 
+		<!-- appender-ref ref="myFile" --> 
 	</root> 
 	<!-- 通过<category></category>的定义可以将各个包中的类日志输出到不同的日志文件中 -->
 	<category name="org.springframework">

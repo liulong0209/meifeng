@@ -1,9 +1,12 @@
 package net.beautifycrack.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.beautifycrack.module.Advertisement;
 import net.beautifycrack.service.AdvertisementService;
 
 import org.slf4j.Logger;
@@ -43,9 +46,11 @@ public class IndexController
     @RequestMapping(value = "/home")
     public ModelAndView indexPage(HttpServletRequest request, HttpServletResponse response)
     {
+        // ²éÑ¯ÂÖ²¥¹ã¸æ
+        List<Advertisement> slideList = adService.getSlideImg();
+
         ModelAndView mv = new ModelAndView();
-        mv.getModelMap().put("contextPath", request.getContextPath());
-        logger.debug("IndexController->indexPage:contextPath:{}", request.getContextPath());
+        mv.getModelMap().put("slideList", slideList);
         mv.setViewName("index");
         return mv;
     }

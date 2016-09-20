@@ -17,5 +17,10 @@ import net.beautifycrack.module.Advertisement;
  */
 public interface AdvertisementService
 {
-    List<Advertisement> get();
+    /**
+     * 获取首页的轮播幻灯片
+     * 
+     * @return
+     */
+    List<Advertisement> getSlideImg();
 }
