@@ -49,6 +49,8 @@ public class IndexController
         // ²éÑ¯ÂÖ²¥¹ã¸æ
         List<Advertisement> slideList = adService.getSlideImg();
 
+        logger.debug("IndexController->indexPage->slideList size:{}", slideList.size());
+
         ModelAndView mv = new ModelAndView();
         mv.getModelMap().put("slideList", slideList);
         mv.setViewName("index");

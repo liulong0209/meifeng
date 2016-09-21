@@ -7,10 +7,12 @@
 		<typeAlias alias="ad" type="net.beautifycrack.module.Advertisement"/>
 		<typeAlias alias="news" type="net.beautifycrack.module.News"/>
 		<typeAlias alias="fileInfo" type="net.beautifycrack.module.FileInfo"/>
+		<typeAlias alias="providers" type="net.beautifycrack.module.Providers"/>
 	</typeAliases>
 	<mappers>			
 		<mapper resource="net/beautifycrack/dao/impl/AdvertisementMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/NewsMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/FileInfoMapper.xml" />
+		<mapper resource="net/beautifycrack/dao/impl/ProvidersMapper.xml" />
 	</mappers>
 </configuration> 

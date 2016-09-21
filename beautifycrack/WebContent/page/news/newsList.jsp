@@ -14,7 +14,7 @@
 </head>
 <body>
 	<%@include file="../common/header.jsp" %>  
-	<!--文字列表页主体-->
+	<!--新闻列表页主体-->
 	<div class="container yh">
     	<div class="block relative">
     		<div class="navmenu">新闻动态</div>

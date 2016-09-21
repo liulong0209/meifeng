@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.beautifycrack.dao.ProvidersMapper">
+	<!-- 分页查询数据 -->
+	<select id="pagerList" resultType="providers" parameterType="Map">
+		select 
+			providers_id as providersId,
+			provider_name as providerName,
+			profile as profile,
+			phone_no as phoneNo,
+			address as address,
+			logo as address,
+			type as type,
+			head as head,
+			city as city
+		from tbl_providers_info 
+		where sts=0 and type in (#{type})
+		order by order_no
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 查询一条详细信息 -->
+	<select id="showProviders" parameterType="Integer" resultType="providers">
+		select 
+		providers_id as providersId,
+		provider_name as providerName,
+		profile as profile,
+		phone_no as phoneNo,
+		address as address,
+		logo as address,
+		head as head,
+		city as city
+		from tbl_providers_info 
+		where sts=0 and providers_id =#{providersId}
+	</select>
+	
+	<!-- 查询总数 -->
+	<select id="queryTotal" resultType="Integer">
+		select count(*) from tbl_providers_info where sts=0
+	</select>
+	
+	<!-- 首页显示数据 -->
+	<select id="providersListIndex" parameterType="Integer" resultType="providers">		
+		select 
+			providers_id as providersId,
+			provider_name as providerName,
+			profile as profile,
+			phone_no as phoneNo,
+			address as address,
+			logo as address,
+			type as type,
+			head as head,
+			city as city
+		from tbl_providers_info 
+		where sts=0 and type in (#{type})
+		order by order_no
+		LIMIT 0,4
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 package net.beautifycrack.module;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,8 +14,13 @@ import java.util.Date;
  * @Created on 2016年9月13日 下午5:33:21
  * @author liulong
  */
-public class Advertisement
+public class Advertisement implements Serializable
 {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1074838515174650977L;
+
     /**
      * 主键id
      */
