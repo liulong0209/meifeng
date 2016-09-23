@@ -69,10 +69,10 @@ public class ProvidersController
     }
 
     /**
-     * 加载新闻数据，前台通多ajax调用
+     * 加载数据，前台通多ajax调用
      */
     @RequestMapping(value = "/providers/pageList", method = RequestMethod.POST)
-    public @ResponseBody Object pageList(PagerUtil pu, Integer type)
+    public @ResponseBody Object pageList(PagerUtil pu, String type)
     {
         logger.info("ProvidersController->pageList:type{}", type);
         Map<String, Object> dataMaps = new HashMap<String, Object>();

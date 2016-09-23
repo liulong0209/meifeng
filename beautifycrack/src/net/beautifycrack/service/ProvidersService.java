@@ -25,7 +25,7 @@ public interface ProvidersService
      * @return
      * @throws BusinessException
      */
-    List<Providers> pagerList(PagerUtil pager, Integer type) throws BusinessException;
+    List<Providers> pagerList(PagerUtil pager, String type) throws BusinessException;
 
     /**
      * 显示单条详细信息

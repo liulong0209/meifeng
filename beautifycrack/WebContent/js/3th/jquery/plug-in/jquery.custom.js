@@ -1,3 +1,12 @@
+(function( factory ) {
+	if ( typeof define === "function" && define.amd ) {
+		define( ["jquery"], factory );
+	} else if (typeof module === "object" && module.exports) {
+		module.exports = factory( require( "jquery" ) );
+	} else {
+		factory( jQuery );
+	}
+}
 (function($){
   $.formatDate = function(pattern,date){
     //如果不设置，默认为当前时间
@@ -85,4 +94,4 @@
 		}
 	});
   
-})(jQuery);
+}));

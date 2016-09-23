@@ -26,13 +26,8 @@
     	</div>
     </div>	
 	<%@include file="../common/footer.jsp" %>  	
-</body>
-<script type="text/javascript" src="${contextPath}/js/3th/jquery.min.js"></script>
-<script type="text/javascript" src="${contextPath}/js/jquery.custom.js"></script>
-<script type="text/javascript" src="${contextPath}/js/3th/kkpager.min.js"></script>
-<script type="text/javascript" src="${contextPath}/js/company/companyList.js"></script>
-<script type="text/javascript" src="${contextPath}/js/common.js"></script>
-<script type="text/javascript">
-	var contextPath = "${contextPath}";
-</script>
+		<script type="text/javascript">
+		//加载入口模块
+		seajs.use("sea-modules/company",function(module){module.init();});
+	</script> 
 </html>

@@ -11,7 +11,7 @@
 			profile as profile,
 			phone_no as phoneNo,
 			address as address,
-			logo as address,
+			logo as logo,
 			type as type,
 			head as head,
 			city as city

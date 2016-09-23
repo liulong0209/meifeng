@@ -37,7 +37,7 @@ public class ProvidersServiceImpl implements ProvidersService
     private ProvidersMapper providersMapper;
 
     @Override
-    public List<Providers> pagerList(PagerUtil pager, Integer type) throws BusinessException
+    public List<Providers> pagerList(PagerUtil pager, String type) throws BusinessException
     {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("type", type);

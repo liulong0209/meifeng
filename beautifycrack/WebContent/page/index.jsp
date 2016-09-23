@@ -15,20 +15,15 @@
 <body>
 	<%@include file="common/header.jsp" %>  
 	<!--幻灯片-->
-	<div class="fullSlide">
-		<div class="bd">
-			<ul>
-				<c:forEach var="slide" items="${slideList}">
-					<li>
-						<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="1423px"></a>
-					</li>
-				</c:forEach>			
-			</ul>
-		</div>
-
-		<div class="hd"><ul></ul></div>
-	</div>  
-
+	<div class="banner" id="banner">
+		<ul>
+			<c:forEach var="slide" items="${slideList}">
+				<li>
+					<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="1423px"></a>
+				</li>
+			</c:forEach>			
+		</ul>
+	</div> 
 
 	<!--美缝材料-->
 	<div class="clearfix ofHidden block yh pt20">
@@ -208,18 +203,10 @@
             <ul id="newsli" class="alzs clearfix ofHidden"></ul>
         </div>
     </div>
-            
-<%@include file="common/footer.jsp" %>     	
-</body>
-<script type="text/javascript" src="${contextPath}/js/3th/jquery.min.js"></script>
-<script type="text/javascript" src="${contextPath}/js/jquery.custom.js"></script>
-<script type="text/javascript" src="${contextPath}/js/3th/jquery.SuperSlide.2.1.1.js"></script>
-<script type="text/javascript" src="${contextPath}/js/index.js"></script>
-<script type="text/javascript">
-var contextPath = "${contextPath}";
-$(function(){
-	//幻灯片
-	jQuery(".fullSlide").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click" });
-})
-</script>
+    
+<%@include file="common/footer.jsp" %>
+	<script type="text/javascript">
+		//加载入口模块
+		seajs.use("sea-modules/index",function(module){module.init();});
+	</script>    	
 </html>

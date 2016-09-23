@@ -14,3 +14,20 @@
         </div>
     </div>
 </div> 
+</body>
+<script type="text/javascript" src="${contextPath}/js/3th/sea/sea.js"></script>
+<script type="text/javascript">
+	var contextPath = "${contextPath}";
+ 	//seajs的配置
+	seajs.config({
+		  base: "${contextPath}/js/",//基本路径
+		  alias: {
+		    "jquery": "3th/jquery/jquery-3.1.0.min.js",
+		    "unSlide": "3th/jquery/plug-in/jquery.unslider.min.js", //jquery 滑动门插件
+		    "custom": "3th/jquery/plug-in/jquery.custom.js", //自定义的jquery插件
+		    "kkpager":"3th/kkpager.js" //分页组件
+		  }
+		})
+	//同步菜单样式
+	seajs.use("sea-modules/common",function(module){module.syncMenuClass()})
+</script>
