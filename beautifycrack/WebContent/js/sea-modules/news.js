@@ -37,7 +37,14 @@ define(function(require, exports, module){
 	
 	//渲染数据
 	function render(data,pageNo)
-	{	var $newli="";
+	{	
+		if(data.dataList.length==0)
+		{
+			$("#newsList").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
+			return;
+		}
+		
+		var $newli="";
 		$.each(data.dataList,function(i,news){
 			$newli+="<li class=\"clearfix\">";
 			$newli+=	"<div class=\"fleft\">";

@@ -36,7 +36,12 @@ define(function(require,exports,module){
 	}
 	
 	//渲染数据
-	function render(data,pageNo){	
+	function render(data,pageNo){
+		if(data.dataList.length==0)
+		{
+			$("#companyList").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
+			return;
+		}
 		var $companyli="";
 		$.each(data.dataList,function(i,company){
 			$companyli+="<li class=\"clearfix\">";

@@ -42,14 +42,14 @@
 	</select>
 	
 	<!-- 首页显示数据 -->
-	<select id="providersListIndex" parameterType="Integer" resultType="providers">		
+	<select id="providersListIndex" parameterType="String" resultType="providers">		
 		select 
 			providers_id as providersId,
 			provider_name as providerName,
 			profile as profile,
 			phone_no as phoneNo,
 			address as address,
-			logo as address,
+			logo as logo,
 			type as type,
 			head as head,
 			city as city

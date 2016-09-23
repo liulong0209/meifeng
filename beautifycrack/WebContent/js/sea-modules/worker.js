@@ -36,22 +36,27 @@ define(function(require,exports,module){
 	}
 	
 	//渲染数据
-	function render(data,pageNo){	
-		var $companyli="";
-		$.each(data.dataList,function(i,company){
-			$companyli+="<li class=\"clearfix\">";
-			$companyli+=	"<div class=\"fleft\">";
-			$companyli+=		"<img src=\""+contextPath+"/file/image/get/"+company.logo+"\" width=\"160\" height=\"110\">";
-			$companyli+=	"</div>";
-			$companyli+=	"<div class=\"fleft pl30\">";
-			$companyli+=		"<p class=\"bold tleft h30\"><a href=\"xwnr.html\">"+company.providerName+"</a></p>"
-			$companyli+=		"<p class=\"f12 tleft h25\"><i class=\"fnormal c333\">公司简介：</i>"+company.profile+"</p>"
-			$companyli+=		"<p class=\"f12 tleft h25\"><i class=\"fnormal c333\">公司地址：</i>"+company.address+"<i class=\"fnormal c333 pl20\">联系方式：</i>"+company.phoneNo+"</p>";
-			$companyli+=	"</div>";
-			$companyli+=	"<div class=\"fright pt30 pr30\">";
-			$companyli+=		"<a href=\"/zxzb/\" target=\"_blank\">点击进入</a>"
-			$companyli+=	"</div>";
-			$companyli+="</li>";
+	function render(data,pageNo){
+		if(data.dataList.length==0)
+		{
+			$("#companyList").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
+			return;
+		}
+		var $workerli="";
+		$.each(data.dataList,function(i,worker){
+			$workerli+="<li class=\"clearfix\">";
+			$workerli+=	"<div class=\"fleft\">";
+			$workerli+=		"<img src=\""+contextPath+"/file/image/get/"+worker.logo+"\" width=\"160\" height=\"110\">";
+			$workerli+=	"</div>";
+			$workerli+=	"<div class=\"fleft pl30\">";
+			$workerli+=		"<p class=\"bold tleft h30\"><a href=\"xwnr.html\">"+worker.providerName+"</a></p>"
+			$workerli+=		"<p class=\"f12 tleft h25\"><i class=\"fnormal c333\">公司简介：</i>"+worker.profile+"</p>"
+			$workerli+=		"<p class=\"f12 tleft h25\"><i class=\"fnormal c333\">公司地址：</i>"+worker.address+"<i class=\"fnormal c333 pl20\">联系方式：</i>"+worker.phoneNo+"</p>";
+			$workerli+=	"</div>";
+			$workerli+=	"<div class=\"fright pt30 pr30\">";
+			$workerli+=		"<a href=\"/zxzb/\" target=\"_blank\">点击进入</a>"
+			$workerli+=	"</div>";
+			$workerli+="</li>";
 		})
 		
 		//渲染新闻列表

@@ -50,5 +50,5 @@ public interface ProvidersMapper
      * @return
      * @throws BusinessException
      */
-    List<Providers> providersListIndex(Integer type) throws BusinessException;
+    List<Providers> providersListIndex(String type) throws BusinessException;
 }

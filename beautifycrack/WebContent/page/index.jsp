@@ -95,103 +95,13 @@
 	
     <div class="clearfix ofHidden block yh pt20">
     	<div class="index_left fleft">			
-			<div class="t1">美缝公司<a href="" class="fright f12 pr30">更多>></a></div>
-			<ul id="company" class="pt10">
-				<li>
-					<div class="fleft w150">
-						<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="150" height="150"></a>
-					</div>
-					<div class="fleft pl15 w235">
-						<div class="f16">卓高美缝剂公司</div>
-						<div class="pt5">电话：13277778888</div>
-						<div class="pt5">地址：陕西 西安</div>
-					</div>
-					<div class="clearfix"></div>
-				</li>
-				<li>
-					<div class="fleft w150">
-						<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="150" height="150"></a>
-					</div>
-					<div class="fleft pl15 w235">
-						<div class="f16">卓高美缝剂公司</div>
-						<div class="pt5">电话：13277778888</div>
-						<div class="pt5">地址：陕西 西安</div>
-					</div>
-					<div class="clearfix"></div>
-				</li>
-				<li>
-					<div class="fleft w150">
-						<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="150" height="150"></a>
-					</div>
-					<div class="fleft pl15 w235">
-						<div class="f16">卓高美缝剂公司</div>
-						<div class="pt5">电话：13277778888</div>
-						<div class="pt5">地址：陕西 西安</div>
-					</div>
-					<div class="clearfix"></div>
-				</li>
-				<li>
-					<div class="fleft w150">
-						<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="150" height="150"></a>
-					</div>
-					<div class="fleft pl15 w235">
-						<div class="f16">卓高美缝剂公司</div>
-						<div class="pt5">电话：13277778888</div>
-						<div class="pt5">地址：陕西 西安</div>
-					</div>
-					<div class="clearfix"></div>
-				</li>
-			</ul>
+			<div class="t1">美缝公司<a href="${contextPath}/company" class="fright f12 pr30">更多>></a></div>
+			<ul id="company" class="pt10"></ul>
 			
 			<div class="clearfix"></div>
 			
-			<div class="t1">施工人员<a href="" class="fright f12 pr30">更多>></a></div>
-			<ul id="builder" class="pt10">
-				<li>
-					<div class="fleft w150">
-						<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="150" height="150"></a>
-					</div>
-					<div class="fleft pl15 w235">
-						<div class="f16">张三</div>
-						<div class="pt5">电话：13277778888</div>
-						<div class="pt5">地址：陕西 西安</div>
-					</div>
-					<div class="clearfix"></div>
-				</li>
-				<li>
-					<div class="fleft w150">
-						<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="150" height="150"></a>
-					</div>
-					<div class="fleft pl15 w235">
-						<div class="f16">李四</div>
-						<div class="pt5">电话：13277778888</div>
-						<div class="pt5">地址：陕西 西安</div>
-					</div>
-					<div class="clearfix"></div>
-				</li>
-				<li>
-					<div class="fleft w150">
-						<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="150" height="150"></a>
-					</div>
-					<div class="fleft pl15 w235">
-						<div class="f16">王五</div>
-						<div class="pt5">电话：13277778888</div>
-						<div class="pt5">地址：陕西 西安</div>
-					</div>
-					<div class="clearfix"></div>
-				</li>
-				<li>
-					<div class="fleft w150">
-						<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="150" height="150"></a>
-					</div>
-					<div class="fleft pl15 w235">
-						<div class="f16">赵六</div>
-						<div class="pt5">电话：13277778888</div>
-						<div class="pt5">地址：陕西 西安</div>
-					</div>
-					<div class="clearfix"></div>
-				</li>
-			</ul>
+			<div class="t1">施工人员<a href="${contextPath}/worker" class="fright f12 pr30">更多>></a></div>
+			<ul id="worker" class="pt10"></ul>
 			
 			<div class="clearfix"></div>
  

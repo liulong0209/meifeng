@@ -59,7 +59,7 @@ public class ProvidersServiceImpl implements ProvidersService
     }
 
     @Override
-    public List<Providers> providersListIndex(Integer type) throws BusinessException
+    public List<Providers> providersListIndex(String type) throws BusinessException
     {
         return providersMapper.providersListIndex(type);
     }

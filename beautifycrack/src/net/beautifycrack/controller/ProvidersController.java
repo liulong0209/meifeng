@@ -94,7 +94,7 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/index/providersList", method = RequestMethod.POST)
-    public @ResponseBody Object newsListIndex(Integer type)
+    public @ResponseBody Object newsListIndex(String type)
     {
         // ²éÑ¯Êý¾Ý
         return providersService.providersListIndex(type);
