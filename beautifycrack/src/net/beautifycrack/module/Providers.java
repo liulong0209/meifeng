@@ -16,7 +16,7 @@ public class Providers
     /**
      * 提供商id
      */
-    private Integer providerId;
+    private Integer providersId;
 
     /**
      * 提供商名称
@@ -73,14 +73,14 @@ public class Providers
      */
     private Integer city;
 
-    public Integer getProviderId()
+    public Integer getProvidersId()
     {
-        return providerId;
+        return providersId;
     }
 
-    public void setProviderId(Integer providerId)
+    public void setProvidersId(Integer providersId)
     {
-        this.providerId = providerId;
+        this.providersId = providersId;
     }
 
     public String getProviderName()

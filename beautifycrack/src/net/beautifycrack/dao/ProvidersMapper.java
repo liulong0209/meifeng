@@ -42,7 +42,7 @@ public interface ProvidersMapper
      * @return
      * @throws BusinessException
      */
-    Integer queryTotal() throws BusinessException;
+    Integer queryTotal(List<Integer> list) throws BusinessException;
 
     /**
      * 首页显示的数据，显示4条
@@ -50,5 +50,5 @@ public interface ProvidersMapper
      * @return
      * @throws BusinessException
      */
-    List<Providers> providersListIndex(String type) throws BusinessException;
+    List<Providers> providersListIndex(List<Integer> list) throws BusinessException;
 }

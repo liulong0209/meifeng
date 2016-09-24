@@ -39,7 +39,7 @@ define(function(require, exports, module) {
 			$companyli+=		"<a href=\"\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+company.logo+"\" width=\"150\" height=\"150\"></a>";
 			$companyli+=	"</div>";
 			$companyli+=	"<div class=\"fleft pl15 w235\">";
-			$companyli+=		"<div class=\"f16 bold \">"+company.providerName+"</div>";
+			$companyli+=		"<div class=\"f16 bold ellipsis w235\" title=\""+company.providerName+"\">"+company.providerName+"</div>";
 			$companyli+=		"<div class=\"pt5\">地址："+company.address+"</div>";
 			$companyli+=		"<div class=\"pt5\">电话："+company.phoneNo+"</div>";
 			$companyli+=	"</div>"
@@ -68,7 +68,7 @@ define(function(require, exports, module) {
 			$workerli+=	"</div>";
 			$workerli+=	"<div class=\"fleft pl15 w235\">";
 			$workerli+=		"<div class=\"f16 bold \">"+worker.providerName+"</div>";
-			$workerli+=		"<div class=\"pt5\">地址："+worker.address+"</div>";
+			$workerli+=		"<div class=\"pt5\">服务区域："+worker.address+"</div>";
 			$workerli+=		"<div class=\"pt5\">电话："+worker.phoneNo+"</div>";
 			$workerli+=	"</div>"
 			$workerli+=	"<div class=\"clearfix\"></div>";

@@ -25,7 +25,7 @@ public interface ProvidersService
      * @return
      * @throws BusinessException
      */
-    List<Providers> pagerList(PagerUtil pager, String type) throws BusinessException;
+    List<Providers> pagerList(PagerUtil pager, List<Integer> list) throws BusinessException;
 
     /**
      * 显示单条详细信息
@@ -38,11 +38,11 @@ public interface ProvidersService
 
     /**
      * 查询总数
-     * 
+     * @param list 类型 0公司  1团队 2 个人
      * @return
      * @throws BusinessException
      */
-    Integer queryTotal() throws BusinessException;
+    Integer queryTotal(List<Integer> list) throws BusinessException;
 
     /**
      * 首页显示的数据，显示4条
@@ -50,5 +50,5 @@ public interface ProvidersService
      * @return
      * @throws BusinessException
      */
-    List<Providers> providersListIndex(String type) throws BusinessException;
+    List<Providers> providersListIndex(List<Integer> list) throws BusinessException;
 }

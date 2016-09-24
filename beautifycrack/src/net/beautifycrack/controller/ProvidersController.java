@@ -1,5 +1,6 @@
 package net.beautifycrack.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,6 +57,22 @@ public class ProvidersController
         mv.setViewName("company/companyList");
         return mv;
     }
+    
+    /**
+     * 跳转到公司详情页面
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/company/showDetail/{id}")
+    public ModelAndView showCompany(@PathVariable Integer id)
+    {
+    	ModelAndView mv = new ModelAndView();
+    	Providers providers = providersService.showProviders(id);
+    	mv.getModel().put("providers", providers);
+    	mv.setViewName("company/companyDetail");
+        return mv;
+    }
 
     /**
      * 跳转到施工工人页面
@@ -76,12 +94,20 @@ public class ProvidersController
     {
         logger.info("ProvidersController->pageList:type{}", type);
         Map<String, Object> dataMaps = new HashMap<String, Object>();
+        //类型以list传入
+        List<Integer> list = new ArrayList<Integer>();
+    	String[] array = type.split(",");
+    	for(String s:array)
+    	{
+    		list.add(Integer.valueOf(s));
+    	}
+    	
         // 查询数据
-        List<Providers> providersList = providersService.pagerList(pu, type);
+        List<Providers> providersList = providersService.pagerList(pu, list);
 
         dataMaps.put("dataList", providersList);
         // 查询数据总数
-        Integer total = providersService.queryTotal();
+        Integer total = providersService.queryTotal(list);
         pu.setTotalRecords(total);
         pu.setTotalPage(pu.getTotalPage());
         dataMaps.put("pager", pu);
@@ -96,8 +122,14 @@ public class ProvidersController
     @RequestMapping(value = "/index/providersList", method = RequestMethod.POST)
     public @ResponseBody Object newsListIndex(String type)
     {
+    	List<Integer> list = new ArrayList<Integer>();
+    	String[] array = type.split(",");
+    	for(String s:array)
+    	{
+    		list.add(Integer.valueOf(s));
+    	}
         // 查询数据
-        return providersService.providersListIndex(type);
+        return providersService.providersListIndex(list);
     }
 
 }

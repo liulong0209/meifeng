@@ -19,7 +19,7 @@
 		<ul>
 			<c:forEach var="slide" items="${slideList}">
 				<li>
-					<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="1423px"></a>
+					<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="100%"></a>
 				</li>
 			</c:forEach>			
 		</ul>
@@ -101,14 +101,14 @@
 			<div class="clearfix"></div>
 			
 			<div class="t1">施工人员<a href="${contextPath}/worker" class="fright f12 pr30">更多>></a></div>
-			<ul id="worker" class="pt10"></ul>
+			<ul id="worker" class="pt10 pb20"></ul>
 			
 			<div class="clearfix"></div>
  
         </div>
 	        
         <!--新闻动态-->
-    	<div class="index_right fright">
+    	<div class="index_right fright pb20">
         	<div class="t1">新闻动态<a href="${contextPath}/news/list" class="fright f12">更多>></a></div>
             <ul id="newsli" class="alzs clearfix ofHidden"></ul>
         </div>

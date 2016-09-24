@@ -19,7 +19,7 @@
     	<div class="block relative">
     		<div class="navmenu">施工工人</div>
 			<div class="text-list yh">
-				<ul id="companyList"></ul>
+				<ul id="workerList"></ul>
     		</div>
 			<!-- 分页页码 -->
     		<div id="kkpager"></div>

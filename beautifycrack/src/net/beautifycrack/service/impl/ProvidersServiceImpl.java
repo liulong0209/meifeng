@@ -37,10 +37,10 @@ public class ProvidersServiceImpl implements ProvidersService
     private ProvidersMapper providersMapper;
 
     @Override
-    public List<Providers> pagerList(PagerUtil pager, String type) throws BusinessException
+    public List<Providers> pagerList(PagerUtil pager, List<Integer> list) throws BusinessException
     {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("type", type);
+        map.put("list", list);
         map.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
         map.put("pageSize", pager.getPageSize());
         return providersMapper.pagerList(map);
@@ -53,15 +53,15 @@ public class ProvidersServiceImpl implements ProvidersService
     }
 
     @Override
-    public Integer queryTotal() throws BusinessException
+    public Integer queryTotal(List<Integer> list) throws BusinessException
     {
-        return providersMapper.queryTotal();
+        return providersMapper.queryTotal(list);
     }
 
     @Override
-    public List<Providers> providersListIndex(String type) throws BusinessException
+    public List<Providers> providersListIndex(List<Integer> list) throws BusinessException
     {
-        return providersMapper.providersListIndex(type);
+        return providersMapper.providersListIndex(list);
     }
 
 }

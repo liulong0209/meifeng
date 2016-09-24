@@ -46,7 +46,7 @@ public class IndexController
     @RequestMapping(value = "/home")
     public ModelAndView indexPage(HttpServletRequest request, HttpServletResponse response)
     {
-        // 查询轮播广告
+    	// 查询轮播广告
         List<Advertisement> slideList = adService.getSlideImg();
 
         logger.debug("IndexController->indexPage->slideList size:{}", slideList.size());

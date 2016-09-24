@@ -74,7 +74,7 @@ public class FileController
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+        	logger.error("»ñÈ¡¸½¼þÊ§°Ü",e);
         }
         finally
         {

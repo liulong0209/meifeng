@@ -16,7 +16,11 @@
 			head as head,
 			city as city
 		from tbl_providers_info 
-		where sts=0 and type in (#{type})
+		where sts=0 and type in
+				<foreach item="item" index="index" collection="list" 
+                         open="(" separator="," close=")">
+                        #{item}
+                </foreach>
 		order by order_no
 		LIMIT #{startRow}, #{pageSize}
 	</select>
@@ -37,12 +41,21 @@
 	</select>
 	
 	<!-- 查询总数 -->
-	<select id="queryTotal" resultType="Integer">
-		select count(*) from tbl_providers_info where sts=0
+	<select id="queryTotal" resultType="Integer" parameterType="List">
+		select 
+			count(*) 
+		from tbl_providers_info 
+		where 
+			sts=0
+			and type in
+			<foreach item="item" index="index" collection="list" 
+                         open="(" separator="," close=")">
+                        #{item}
+             </foreach>
 	</select>
 	
 	<!-- 首页显示数据 -->
-	<select id="providersListIndex" parameterType="String" resultType="providers">		
+	<select id="providersListIndex" parameterType="List" resultType="providers">		
 		select 
 			providers_id as providersId,
 			provider_name as providerName,
@@ -54,7 +67,11 @@
 			head as head,
 			city as city
 		from tbl_providers_info 
-		where sts=0 and type in (#{type})
+		where sts=0 and type in
+			<foreach item="item" index="index" collection="list" 
+                         open="(" separator="," close=")">
+                        #{item}
+             </foreach>
 		order by order_no
 		LIMIT 0,4
 	</select>

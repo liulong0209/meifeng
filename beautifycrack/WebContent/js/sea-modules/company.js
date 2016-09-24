@@ -13,7 +13,7 @@ define(function(require,exports,module){
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{"pageNo":pageNo,"type":"0"},
+				data:{"pageNo":pageNo,"type":0},
 				beforeSend: function () {
 					$.showLoadding();
 				},
@@ -46,12 +46,12 @@ define(function(require,exports,module){
 		$.each(data.dataList,function(i,company){
 			$companyli+="<li class=\"clearfix\">";
 			$companyli+=	"<div class=\"fleft\">";
-			$companyli+=		"<img src=\""+contextPath+"/file/image/get/"+company.logo+"\" width=\"160\" height=\"110\">";
+			$companyli+=		"<a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\"><img src=\""+contextPath+"/file/image/get/"+company.logo+"\" width=\"160\" height=\"110\"></a>";
 			$companyli+=	"</div>";
 			$companyli+=	"<div class=\"fleft pl30\">";
-			$companyli+=		"<p class=\"bold tleft h30\"><a href=\"xwnr.html\">"+company.providerName+"</a></p>"
-			$companyli+=		"<p class=\"f12 tleft h25\"><i class=\"fnormal c333\">公司简介：</i>"+company.profile+"</p>"
-			$companyli+=		"<p class=\"f12 tleft h25\"><i class=\"fnormal c333\">公司地址：</i>"+company.address+"<i class=\"fnormal c333 pl20\">联系方式：</i>"+company.phoneNo+"</p>";
+			$companyli+=		"<p class=\"bold tleft h30 pb5\"><a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\">"+company.providerName+"</a></p>"
+			$companyli+=		"<p class=\"f12 tleft w800 pb5\"><i class=\"fnormal c333\">公司简介：</i>"+company.profile+"</p>"
+			$companyli+=		"<p class=\"f12 tleft w800 pb5\"><i class=\"fnormal c333\">公司地址：</i>"+company.address+"<i class=\"fnormal c333 pl20\">联系方式：</i>"+company.phoneNo+"</p>";
 			$companyli+=	"</div>";
 			$companyli+=	"<div class=\"fright pt30 pr30\">";
 			$companyli+=		"<a href=\"/zxzb/\" target=\"_blank\">点击进入</a>"

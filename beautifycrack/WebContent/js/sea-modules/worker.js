@@ -39,32 +39,41 @@ define(function(require,exports,module){
 	function render(data,pageNo){
 		if(data.dataList.length==0)
 		{
-			$("#companyList").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
+			$("#workerList").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
 			return;
 		}
 		var $workerli="";
 		$.each(data.dataList,function(i,worker){
-			$workerli+="<li class=\"clearfix\">";
+			$workerli+="<li class=\"fleft wper50\">";
 			$workerli+=	"<div class=\"fleft\">";
 			$workerli+=		"<img src=\""+contextPath+"/file/image/get/"+worker.logo+"\" width=\"160\" height=\"110\">";
 			$workerli+=	"</div>";
 			$workerli+=	"<div class=\"fleft pl30\">";
-			$workerli+=		"<p class=\"bold tleft h30\"><a href=\"xwnr.html\">"+worker.providerName+"</a></p>"
-			$workerli+=		"<p class=\"f12 tleft h25\"><i class=\"fnormal c333\">公司简介：</i>"+worker.profile+"</p>"
-			$workerli+=		"<p class=\"f12 tleft h25\"><i class=\"fnormal c333\">公司地址：</i>"+worker.address+"<i class=\"fnormal c333 pl20\">联系方式：</i>"+worker.phoneNo+"</p>";
-			$workerli+=	"</div>";
-			$workerli+=	"<div class=\"fright pt30 pr30\">";
-			$workerli+=		"<a href=\"/zxzb/\" target=\"_blank\">点击进入</a>"
+			$workerli+=		"<p class=\"bold tleft h30 pb5\"><a href=\"xwnr.html\">"+worker.providerName+"("+judge(worker.type)+")</a></p>"
+			$workerli+=		"<p class=\"f12 tleft w400 pb5\"><i class=\"fnormal c333\">"+judge(worker.type)+"简介：</i>"+worker.profile+"</p>"
+			$workerli+=		"<p class=\"f12 tleft w400 pb5\"><i class=\"fnormal c333\">服务区域：</i>"+worker.address+"<i class=\"fnormal c333 pl20\">联系方式：</i>"+worker.phoneNo+"</p>";
 			$workerli+=	"</div>";
 			$workerli+="</li>";
 		})
 		
 		//渲染新闻列表
-		$("#companyList").empty().append($companyli)
+		$("#workerList").empty().append($workerli)
 		
 		//渲染分页
 		var pager = require("sea-modules/common");
 		pager.loadPager(pageNo,data.pager.totalPage,data.pager.totalRecords,initData);
+	}
+	
+	//判断团队还是个人，返回文字
+	function judge(type){
+		if(type==1)
+		{
+			return "团队";
+		}
+		else if(type==2)
+		{
+			return "个人";
+		}
 	}
 	
 	//初始化
