@@ -19,7 +19,7 @@
     	<div class="block relative">
     		<div class="navmenu">美缝公司</div>
 			<div class="text-list yh">
-				<ul id="companyList"></ul>
+				
     		</div>
 			<!-- 分页页码 -->
     		<div id="kkpager"></div>

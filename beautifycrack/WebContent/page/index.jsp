@@ -31,7 +31,7 @@
 			<a href="" class="fright f12">更多>></a>
 			美缝材料
 		</div>
-		<div class="index-image clearfix pt10 ">
+		<div class="index-image clearfix pt15 ">
 			<div class="w275 fleft h165 ofHidden">
 				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
 					<p class="f16">小户型也有大智慧</p>
@@ -65,7 +65,7 @@
 			<a href="" class="fright f12">更多>></a>
 			美缝工具
 		</div>
-		<div class="index-image clearfix pt10 ">
+		<div class="index-image clearfix pt15 ">
 			<div class="w275 fleft h165 ofHidden">
 				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
 					<p class="f16">小户型也有大智慧</p>
@@ -96,12 +96,12 @@
     <div class="clearfix ofHidden block yh pt20">
     	<div class="index_left fleft">			
 			<div class="t1">美缝公司<a href="${contextPath}/company" class="fright f12 pr30">更多>></a></div>
-			<ul id="company" class="pt10"></ul>
+			<ul id="company" class="pt15"></ul>
 			
 			<div class="clearfix"></div>
 			
 			<div class="t1">施工人员<a href="${contextPath}/worker" class="fright f12 pr30">更多>></a></div>
-			<ul id="worker" class="pt10 pb20"></ul>
+			<ul id="worker" class="pt15 pb20"></ul>
 			
 			<div class="clearfix"></div>
  
