@@ -28,14 +28,15 @@
 	<!-- 查询一条详细信息 -->
 	<select id="showProviders" parameterType="Integer" resultType="providers">
 		select 
-		providers_id as providersId,
-		provider_name as providerName,
-		profile as profile,
-		phone_no as phoneNo,
-		address as address,
-		logo as address,
-		head as head,
-		city as city
+			providers_id as providersId,
+			provider_name as providerName,
+			profile as profile,
+			phone_no as phoneNo,
+			address as address,
+			logo as logo,
+			type as type,
+			head as head,
+			city as city
 		from tbl_providers_info 
 		where sts=0 and providers_id =#{providersId}
 	</select>
@@ -75,6 +76,27 @@
 		order by order_no
 		LIMIT 0,4
 	</select>
+	
+	<!-- 查找施工工人信息,显示3条 -->
+	<select id="findProviderWorker" parameterType="Integer" resultType="user">
+	
+	</select>
+	
+	<!-- 查找施工案例信息 -->
+	<select id="findConstructionCase" parameterType="Integer" resultType="constructionCase">
+	
+	</select>
+	
+	<!-- 查找预约小区信息 -->
+	<select id="findBookingCommunity" parameterType="Integer" resultType="bookingCommunity">
+	
+	</select>
+	
+	<!-- 查找公司资质信息 -->
+	<select id="findQualification" parameterType="Integer" resultType="qualification">
+	
+	</select>
+	
 </mapper>
 
 

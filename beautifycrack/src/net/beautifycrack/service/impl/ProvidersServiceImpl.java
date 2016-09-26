@@ -8,7 +8,11 @@ import javax.annotation.Resource;
 
 import net.beautifycrack.dao.ProvidersMapper;
 import net.beautifycrack.exception.BusinessException;
+import net.beautifycrack.module.BookingCommunity;
+import net.beautifycrack.module.ConstructionCase;
 import net.beautifycrack.module.Providers;
+import net.beautifycrack.module.Qualification;
+import net.beautifycrack.module.UserInfo;
 import net.beautifycrack.service.ProvidersService;
 import net.beautifycrack.util.PagerUtil;
 
@@ -62,6 +66,30 @@ public class ProvidersServiceImpl implements ProvidersService
     public List<Providers> providersListIndex(List<Integer> list) throws BusinessException
     {
         return providersMapper.providersListIndex(list);
+    }
+
+    @Override
+    public List<UserInfo> findProviderWorker(Integer providerId) throws BusinessException
+    {
+        return providersMapper.findProviderWorker(providerId);
+    }
+
+    @Override
+    public List<ConstructionCase> findConstructionCase(Integer providerId) throws BusinessException
+    {
+        return providersMapper.findConstructionCase(providerId);
+    }
+
+    @Override
+    public List<BookingCommunity> findBookingCommunity(Integer providerId) throws BusinessException
+    {
+        return providersMapper.findBookingCommunity(providerId);
+    }
+
+    @Override
+    public List<Qualification> findQualification(Integer company) throws BusinessException
+    {
+        return providersMapper.findQualification(company);
     }
 
 }

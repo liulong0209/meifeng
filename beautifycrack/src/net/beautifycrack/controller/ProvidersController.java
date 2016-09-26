@@ -57,21 +57,69 @@ public class ProvidersController
         mv.setViewName("company/companyList");
         return mv;
     }
-    
+
     /**
      * 跳转到公司详情页面
-     * @param request
-     * @param response
+     * 
+     * @param id
      * @return
      */
     @RequestMapping(value = "/company/showDetail/{id}")
     public ModelAndView showCompany(@PathVariable Integer id)
     {
-    	ModelAndView mv = new ModelAndView();
-    	Providers providers = providersService.showProviders(id);
-    	mv.getModel().put("providers", providers);
-    	mv.setViewName("company/companyDetail");
+        ModelAndView mv = new ModelAndView();
+        Providers company = providersService.showProviders(id);
+        mv.getModel().put("company", company);
+        mv.setViewName("company/companyDetail");
         return mv;
+    }
+
+    /**
+     * 展示公司详情的施工工人信息
+     * 
+     * @param companyId
+     * @return
+     */
+    @RequestMapping(value = "/company/showWorker/{companyId}")
+    public @ResponseBody Object showCompanyWorker(@PathVariable Integer companyId)
+    {
+        return providersService.findProviderWorker(companyId);
+    }
+
+    /**
+     * 展示公司施工案例信息
+     * 
+     * @param companyId
+     * @return
+     */
+    @RequestMapping(value = "/company/showCase/{companyId}")
+    public @ResponseBody Object showCase(@PathVariable Integer companyId)
+    {
+        return providersService.findConstructionCase(companyId);
+    }
+
+    /**
+     * 展示公司预约小区信息
+     * 
+     * @param companyId
+     * @return
+     */
+    @RequestMapping(value = "/company/showBookingCommunity/{companyId}")
+    public @ResponseBody Object showBookingCommunity(@PathVariable Integer companyId)
+    {
+        return providersService.findBookingCommunity(companyId);
+    }
+
+    /**
+     * 展示公司资质信息
+     * 
+     * @param companyId
+     * @return
+     */
+    @RequestMapping(value = "/company/showQualification/{companyId}")
+    public @ResponseBody Object showQualification(@PathVariable Integer companyId)
+    {
+        return providersService.findQualification(companyId);
     }
 
     /**
@@ -94,14 +142,14 @@ public class ProvidersController
     {
         logger.info("ProvidersController->pageList:type{}", type);
         Map<String, Object> dataMaps = new HashMap<String, Object>();
-        //类型以list传入
+        // 类型以list传入
         List<Integer> list = new ArrayList<Integer>();
-    	String[] array = type.split(",");
-    	for(String s:array)
-    	{
-    		list.add(Integer.valueOf(s));
-    	}
-    	
+        String[] array = type.split(",");
+        for (String s : array)
+        {
+            list.add(Integer.valueOf(s));
+        }
+
         // 查询数据
         List<Providers> providersList = providersService.pagerList(pu, list);
 
@@ -122,12 +170,12 @@ public class ProvidersController
     @RequestMapping(value = "/index/providersList", method = RequestMethod.POST)
     public @ResponseBody Object newsListIndex(String type)
     {
-    	List<Integer> list = new ArrayList<Integer>();
-    	String[] array = type.split(",");
-    	for(String s:array)
-    	{
-    		list.add(Integer.valueOf(s));
-    	}
+        List<Integer> list = new ArrayList<Integer>();
+        String[] array = type.split(",");
+        for (String s : array)
+        {
+            list.add(Integer.valueOf(s));
+        }
         // 查询数据
         return providersService.providersListIndex(list);
     }

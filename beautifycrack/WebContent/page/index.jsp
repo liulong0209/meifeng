@@ -16,13 +16,13 @@
 	<%@include file="common/header.jsp" %>  
 	<!--幻灯片-->
 	<div class="banner" id="banner">
-		<ul>
-			<c:forEach var="slide" items="${slideList}">
-				<li>
-					<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="100%"></a>
-				</li>
-			</c:forEach>			
-		</ul>
+			<ul style="overflow: hidden">
+				<c:forEach var="slide" items="${slideList}">
+					<li>
+						<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="100%"></a>
+					</li>
+				</c:forEach>			
+			</ul>
 	</div> 
 
 	<!--美缝材料-->

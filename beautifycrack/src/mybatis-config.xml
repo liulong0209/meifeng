@@ -8,11 +8,17 @@
 		<typeAlias alias="news" type="net.beautifycrack.module.News"/>
 		<typeAlias alias="fileInfo" type="net.beautifycrack.module.FileInfo"/>
 		<typeAlias alias="providers" type="net.beautifycrack.module.Providers"/>
+		<typeAlias alias="user" type="net.beautifycrack.module.UserInfo"/>
+		<typeAlias alias="constructionCase" type="net.beautifycrack.module.ConstructionCase"/>
+		<typeAlias alias="bookingCommunity" type="net.beautifycrack.module.BookingCommunity"/>
+		<typeAlias alias="qualification" type="net.beautifycrack.module.Qualification"/>
+		<typeAlias alias="evaluation" type="net.beautifycrack.module.Evaluation"/>
 	</typeAliases>
 	<mappers>			
 		<mapper resource="net/beautifycrack/dao/impl/AdvertisementMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/NewsMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/FileInfoMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/ProvidersMapper.xml" />
+		<mapper resource="net/beautifycrack/dao/impl/EvaluationMapper.xml" />
 	</mappers>
 </configuration> 
