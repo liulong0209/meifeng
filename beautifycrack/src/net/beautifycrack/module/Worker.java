@@ -3,23 +3,22 @@ package net.beautifycrack.module;
 import java.io.Serializable;
 
 /**
- * 施工案例
+ * 施工工人实体
  * 
- * ConstructionCase.java
+ * Worker.java
  * 
  * @Description: <br>
  * <br>
  * @Company: chinasofti
- * @Created on 2016年9月26日 下午6:58:20
+ * @Created on 2016年9月27日 下午6:48:46
  * @author liulong
  */
-public class ConstructionCase implements Serializable
+public class Worker implements Serializable
 {
-
     /**
      * 
      */
-    private static final long serialVersionUID = -3887766226235918877L;
+    private static final long serialVersionUID = 2689798164405721840L;
 
     /**
      * id
@@ -27,17 +26,17 @@ public class ConstructionCase implements Serializable
     private Integer id;
 
     /**
-     * 小区名称
+     * 姓名
      */
-    private String communityName;
+    private String name;
 
     /**
-     * image id
+     * 头像id
      */
-    private Integer imageId;
+    private Integer avatar;
 
     /**
-     * 公司 团队 id
+     * 公司或团队id
      */
     private Integer providerId;
 
@@ -51,24 +50,24 @@ public class ConstructionCase implements Serializable
         this.id = id;
     }
 
-    public String getCommunityName()
+    public String getName()
     {
-        return communityName;
+        return name;
     }
 
-    public void setCommunityName(String communityName)
+    public void setName(String name)
     {
-        this.communityName = communityName;
+        this.name = name;
     }
 
-    public Integer getImageId()
+    public Integer getAvatar()
     {
-        return imageId;
+        return avatar;
     }
 
-    public void setImageId(Integer imageId)
+    public void setAvatar(Integer avatar)
     {
-        this.imageId = imageId;
+        this.avatar = avatar;
     }
 
     public Integer getProviderId()

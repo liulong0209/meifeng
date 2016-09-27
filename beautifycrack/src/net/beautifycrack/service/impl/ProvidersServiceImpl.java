@@ -12,7 +12,7 @@ import net.beautifycrack.module.BookingCommunity;
 import net.beautifycrack.module.ConstructionCase;
 import net.beautifycrack.module.Providers;
 import net.beautifycrack.module.Qualification;
-import net.beautifycrack.module.UserInfo;
+import net.beautifycrack.module.Worker;
 import net.beautifycrack.service.ProvidersService;
 import net.beautifycrack.util.PagerUtil;
 
@@ -69,7 +69,7 @@ public class ProvidersServiceImpl implements ProvidersService
     }
 
     @Override
-    public List<UserInfo> findProviderWorker(Integer providerId) throws BusinessException
+    public List<Worker> findProviderWorker(Integer providerId) throws BusinessException
     {
         return providersMapper.findProviderWorker(providerId);
     }

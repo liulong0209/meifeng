@@ -35,16 +35,16 @@
 				</div>
 				
 				<div class="t1">施工工人信息</div>
-				<div id="workerInfo" class="pb30"></div>
+				<div id="workerInfo" class="pt10 pb30 minh256"></div>
 				
 				<div class="t1">施工案例</div>
-				<div id="caseInfo" class="pb30"></div>
+				<div id="caseInfo" class="pt10 pb30 minh256 index-image"></div>
 				
 				<div class="t1">预约小区</div>
-				<div id="bookingInfo" class="pb30"></div>
+				<div id="bookingInfo" class="pt10 pb30 minh256"></div>
 				
 				<div class="t1">公司资质</div>
-				<div id="qualificationInfo" class="pb30"></div>
+				<div id="qualificationInfo" class="pt10 pb30 minh256"></div>
 				
 				<div class="t1">客户评价</div>
 				<div id="rateInfo" class="pb30"></div>

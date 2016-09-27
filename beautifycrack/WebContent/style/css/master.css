@@ -69,6 +69,7 @@
 .h45{ height:45px; line-height:45px;}
 .h30{ height:30px; line-height:30px;}
 .h25{ height:25px; line-height:25px;}
+.minh256{min-height: 256px;}
 .index_left .ge{ padding:10px 0; height:245px;}
 .index-image a, .index_left .ge a{ display:block; position:relative;}
 .index_left .ge span{ display:block; }

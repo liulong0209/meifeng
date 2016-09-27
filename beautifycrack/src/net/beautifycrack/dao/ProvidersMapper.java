@@ -8,7 +8,7 @@ import net.beautifycrack.module.BookingCommunity;
 import net.beautifycrack.module.ConstructionCase;
 import net.beautifycrack.module.Providers;
 import net.beautifycrack.module.Qualification;
-import net.beautifycrack.module.UserInfo;
+import net.beautifycrack.module.Worker;
 
 /**
  * 公司dao
@@ -63,7 +63,7 @@ public interface ProvidersMapper
      * @return
      * @throws BusinessException
      */
-    List<UserInfo> findProviderWorker(Integer providerId) throws BusinessException;
+    List<Worker> findProviderWorker(Integer providerId) throws BusinessException;
 
     /**
      * 查找施工案例信息

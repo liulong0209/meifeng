@@ -78,23 +78,48 @@
 	</select>
 	
 	<!-- 查找施工工人信息,显示3条 -->
-	<select id="findProviderWorker" parameterType="Integer" resultType="user">
-	
+	<select id="findProviderWorker" parameterType="Integer" resultType="worker">
+		select 
+			worker_id as id,
+			name as name,
+			avatar as avatar,
+			provider_id as providerId
+		from tbl_worker
+		where provider_id = #{providerId}
+		LIMIT 0,3
 	</select>
 	
 	<!-- 查找施工案例信息 -->
 	<select id="findConstructionCase" parameterType="Integer" resultType="constructionCase">
-	
+		select 
+			case_id as id,
+			title as communityName,
+			img_id as imageId,
+			provider_id as providerId
+		from tbl_work_case
+		where provider_id = #{providerId}
 	</select>
 	
 	<!-- 查找预约小区信息 -->
 	<select id="findBookingCommunity" parameterType="Integer" resultType="bookingCommunity">
-	
+		select 
+			region_id as id,
+			title as communityName,
+			img_id as imageId,
+			provider_id as providerId
+		from tbl_book_region
+		where provider_id = #{providerId}
 	</select>
 	
 	<!-- 查找公司资质信息 -->
 	<select id="findQualification" parameterType="Integer" resultType="qualification">
-	
+		select 
+			com_rank_id as id,
+			title as title,
+			img_id as imageId,
+			provider_id as providerId
+		from tbl_company_rank
+		where provider_id = #{providerId}
 	</select>
 	
 </mapper>
