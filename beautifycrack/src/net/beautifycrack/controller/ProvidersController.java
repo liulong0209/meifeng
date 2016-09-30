@@ -47,7 +47,7 @@ public class ProvidersController
     ProvidersService providersService;
 
     /**
-     * 跳转到公司页面
+     * 跳转到公司列表页面
      */
     @RequestMapping(value = "/company")
     public ModelAndView company(HttpServletRequest request, HttpServletResponse response)
@@ -55,6 +55,18 @@ public class ProvidersController
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("company/companyList");
+        return mv;
+    }
+
+    /**
+     * 跳转到施工工人列表页面
+     */
+    @RequestMapping(value = "/worker")
+    public ModelAndView worker(HttpServletRequest request, HttpServletResponse response)
+    {
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("worker/workerList");
         return mv;
     }
 
@@ -75,25 +87,41 @@ public class ProvidersController
     }
 
     /**
-     * 展示公司详情的施工工人信息
+     * 跳转到施工工人详情页面
+     * 
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/worker/showDetail/{id}")
+    public ModelAndView showWorker(@PathVariable Integer id)
+    {
+        ModelAndView mv = new ModelAndView();
+        Providers worker = providersService.showProviders(id);
+        mv.getModel().put("worker", worker);
+        mv.setViewName("worker/workerDetail");
+        return mv;
+    }
+
+    /**
+     * 展示施工工人信息(公司、团队的)
      * 
      * @param companyId
      * @return
      */
-    @RequestMapping(value = "/company/showWorker/{companyId}")
-    public @ResponseBody Object showCompanyWorker(@PathVariable Integer companyId)
+    @RequestMapping(value = "/providers/showWorker/{companyId}")
+    public @ResponseBody Object showWorkerData(@PathVariable Integer companyId)
     {
         return providersService.findProviderWorker(companyId);
     }
 
     /**
-     * 展示公司施工案例信息
+     * 展示施工案例信息(三种类型都有)
      * 
      * @param companyId
      * @return
      */
-    @RequestMapping(value = "/company/showCase/{companyId}")
-    public @ResponseBody Object showCase(@PathVariable Integer companyId)
+    @RequestMapping(value = "/providers/showCase/{companyId}")
+    public @ResponseBody Object showCaseData(@PathVariable Integer companyId)
     {
         return providersService.findConstructionCase(companyId);
     }
@@ -105,7 +133,7 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/company/showBookingCommunity/{companyId}")
-    public @ResponseBody Object showBookingCommunity(@PathVariable Integer companyId)
+    public @ResponseBody Object showBookingCommunityData(@PathVariable Integer companyId)
     {
         return providersService.findBookingCommunity(companyId);
     }
@@ -117,25 +145,13 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/company/showQualification/{companyId}")
-    public @ResponseBody Object showQualification(@PathVariable Integer companyId)
+    public @ResponseBody Object showQualificationData(@PathVariable Integer companyId)
     {
         return providersService.findQualification(companyId);
     }
 
     /**
-     * 跳转到施工工人页面
-     */
-    @RequestMapping(value = "/worker")
-    public ModelAndView worker(HttpServletRequest request, HttpServletResponse response)
-    {
-
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("worker/workerList");
-        return mv;
-    }
-
-    /**
-     * 加载数据，前台通多ajax调用
+     * 加载公司、团队、个人列表数据，前台通多ajax调用
      */
     @RequestMapping(value = "/providers/pageList", method = RequestMethod.POST)
     public @ResponseBody Object pageList(PagerUtil pu, String type)

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.Evaluation;
-import net.beautifycrack.module.News;
 
 /**
  * 评价dao
@@ -26,7 +25,7 @@ public interface EvaluationMapper
      * @return
      * @throws BusinessException
      */
-    List<News> pagerList(Map<String, Object> map) throws BusinessException;
+    List<Evaluation> pagerList(Map<String, Object> map) throws BusinessException;
 
     /**
      * 查询总数

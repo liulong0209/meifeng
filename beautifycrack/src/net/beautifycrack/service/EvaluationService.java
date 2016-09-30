@@ -1,11 +1,10 @@
 package net.beautifycrack.service;
 
 import java.util.List;
-import java.util.Map;
 
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.Evaluation;
-import net.beautifycrack.module.News;
+import net.beautifycrack.util.PagerUtil;
 
 /**
  * 评价接口
@@ -26,7 +25,7 @@ public interface EvaluationService
      * @return
      * @throws BusinessException
      */
-    List<News> pagerList(Map<String, Object> map) throws BusinessException;
+    List<Evaluation> pagerList(PagerUtil pu, Integer gainer) throws BusinessException;
 
     /**
      * 查询总数

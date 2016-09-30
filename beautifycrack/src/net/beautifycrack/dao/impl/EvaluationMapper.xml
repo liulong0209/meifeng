@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="net.beautifycrack.dao.EvaluationMapper">
-	<!-- 查询新闻列表 -->
+	<!-- 查询评价列表 -->
 	<select id="pagerList" resultType="evaluation" parameterType="Map">
 		select 
 		 evaluation_id as id,

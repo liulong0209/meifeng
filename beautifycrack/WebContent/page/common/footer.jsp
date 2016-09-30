@@ -25,7 +25,8 @@
 		    "jquery": "3th/jquery/jquery-3.1.0.min.js",
 		    "unSlide": "3th/jquery/plug-in/jquery.unslider.min.js", //jquery 滑动门插件
 		    "custom": "3th/jquery/plug-in/jquery.custom.js", //自定义的jquery插件
-		    "kkpager":"3th/kkpager.js" //分页组件
+		    "kkpager":"3th/kkpager.js", //分页组件
+		    "zoomify": "3th/jquery/plug-in/jquery.zoomify.js"
 		  }
 		})
 	//同步菜单样式

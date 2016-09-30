@@ -28,6 +28,6 @@
 	<%@include file="../common/footer.jsp" %>  	
 		<script type="text/javascript">
 		//加载入口模块
-		seajs.use("sea-modules/worker",function(module){module.init();});
+		seajs.use("sea-modules/worker/worker",function(module){module.init();});
 	</script> 
 </html>

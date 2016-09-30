@@ -1,5 +1,6 @@
 package net.beautifycrack.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,8 +9,8 @@ import javax.annotation.Resource;
 import net.beautifycrack.dao.EvaluationMapper;
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.Evaluation;
-import net.beautifycrack.module.News;
 import net.beautifycrack.service.EvaluationService;
+import net.beautifycrack.util.PagerUtil;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -36,9 +37,13 @@ public class EvaluationServiceImpl implements EvaluationService
     private EvaluationMapper evaluationMapper;
 
     @Override
-    public List<News> pagerList(Map<String, Object> map) throws BusinessException
+    public List<Evaluation> pagerList(PagerUtil pager, Integer gainer) throws BusinessException
     {
-        return evaluationMapper.pagerList(map);
+        Map<String, Object> parameter = new HashMap<String, Object>();
+        parameter.put("providersId", gainer);
+        parameter.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+        parameter.put("pageSize", pager.getPageSize());
+        return evaluationMapper.pagerList(parameter);
     }
 
     @Override

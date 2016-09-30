@@ -54,6 +54,7 @@
 
 .index_left{ width:850px;}
 .wper50{width:50%;}
+.w955{ width:955px;}
 .w800{ width:800px;}
 .w400{ width:400px;}
 .w310{ width:310px;}
@@ -115,7 +116,7 @@
 	padding-bottom: 10px;
 }
 
-.container{ padding:60px 0 0 0;margin-bottom:20px; min-height: 507px;}
+.container{ padding:60px 0 0 0;margin: 0 auto 20px auto; min-height: 507px;width: 1190px;}
 
 /*分页*/
 #kkpager {
@@ -144,7 +145,7 @@
 .navmenu span { float:right; margin-right:10px; font-size:12px; font-weight:normal; color:#5f5f5f; }
 
 /*新闻列表*/
-#newsList li{
+#newsList li,#evaluationInfo li{
 	border-bottom: 1px dotted #CCC;
 	font-size:14px;
 }
@@ -258,7 +259,10 @@ overflow:hidden; }
 .sk-fading-circle .sk-circle11:before{-webkit-animation-delay:-.2s;animation-delay:-.2s}
 .sk-fading-circle .sk-circle12:before{-webkit-animation-delay:-.1s;animation-delay:-.1s}@-webkit-keyframes sk-circleFadeDelay{0%,39%,to{opacity:0}40%{opacity:1}}@keyframes sk-circleFadeDelay{0%,39%,to{opacity:0}40%{opacity:1}}
 
-
+.phone_icon{background: url("../images/telphone.png");width:36px;height: 36px;display: inline-block;}
+.address_icon{background: url("../images/address.png") no-repeat;width:36px;height: 26px;display: inline-block;top: -4px;position: relative;}
+.l_phone {font: 700 18px/32px arial,'\5FAE\8F6F\96C5\9ED1';color: #e50;position: relative;padding-right: 19px;z-index: 2;}
+.focus:hover{box-shadow: 0 0 15px #cccccc;-webkit-box-shadow: 0 0 15px #cccccc;-moz-box-shadow: 0 0 15px #cccccc;}
 
 
 

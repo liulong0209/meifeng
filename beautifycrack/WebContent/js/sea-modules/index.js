@@ -29,7 +29,7 @@ define(function(require, exports, module) {
 	//渲染公司数据
 	function renderCompany(data){
 		if(data.length==0){
-			$("#company").empty().append("<li>暂无数据</li>");
+			$("#company").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
 			return;
 		}
 		var $companyli="";
@@ -57,7 +57,7 @@ define(function(require, exports, module) {
 	//渲染施工工人数据
 	function rederWorker(data){
 		if(data.length==0){
-			$("#worker").empty().append("<li>暂无数据</li>");
+			$("#worker").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
 			return;
 		}
 		var $workerli="";
@@ -85,7 +85,7 @@ define(function(require, exports, module) {
 	//渲染新闻数据
 	function renderNews(data){
 		if(data.length==0){
-			$("#newsli").empty().append("<li>暂无数据</li>");
+			$("#newsli").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
 			return;
 		}
 		require.async('custom',function(){

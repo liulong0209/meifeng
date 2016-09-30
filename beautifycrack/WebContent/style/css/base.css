@@ -40,6 +40,7 @@ text-shadow: #000 0 1px 0;
 .f18 { font-size: 18px; }
 .f19 { font-size: 19px; }
 .f20 { font-size: 20px; }
+.f24 { font-size: 24px; }
 .yh {font-family: 微软雅黑; }
 .noyh {font-family:Verdana, Helvetica, sans-serif; }
 .noBold { font-weight: normal; }
@@ -47,6 +48,7 @@ text-shadow: #000 0 1px 0;
 .ofHidden { overflow: hidden; }
 .ml1 { margin-left: 1px; }
 .ml0 { margin-left: 0; }
+.mb0 { margin-bottom: 0; }
 .mt5 { margin-top: 5px; }
 .p10 { padding: 10px; }
 .p20 { padding: 20px; }
@@ -74,6 +76,7 @@ text-shadow: #000 0 1px 0;
 .pr15 { padding-right: 15px; }
 .pr20 { padding-right: 20px; }
 .pr30 { padding-right: 30px; }
+.pr75 { padding-right: 75px; }
 .ml5 { margin-left: 5px; }
 .ml10 { margin-left: 10px; }
 .ml15 { margin-left: 15px; }
@@ -88,6 +91,7 @@ text-shadow: #000 0 1px 0;
 .mr25 { margin-right: 25px; }
 .mr30 { margin-right: 30px; }
 .mr35 { margin-right: 35px; }
+.mr80 { margin-right: 80px; }
 .mt5 { margin-top: 5px; }
 .mt10 { margin-top: 10px; }
 .mt15 { margin-top: 15px; }
@@ -109,6 +113,7 @@ text-shadow: #000 0 1px 0;
 .pd30{ padding:30px;}
 .fnormal{ font-style: normal;}
 .c333{color:#333}
+.c999{color:#999}
 .border_ccc{ border:1px solid #CCC;}
 .border_f3{ border:1px solid #f3f3f3;}
 .box-shadow{box-shadow: 0 0 15px #cccccc;-webkit-box-shadow: 0 0 15px #cccccc;-moz-box-shadow: 0 0 15px #cccccc;}
