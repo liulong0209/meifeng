@@ -4,9 +4,10 @@
 define(function(require,exports,module){
 	//引入jquery
 	require('jquery');
+	var workerId;
 	
 	//初始化施工工人数据
-	function initWorkerData(workerId){
+	function initWorkerData(){
 		execute(contextPath+'/providers/showWorker/'+workerId,renderWorkerData);
 	}
 
@@ -30,7 +31,7 @@ define(function(require,exports,module){
 	}
 	
 	//初始化施工案例数据
-	function initCaseData(workerId){
+	function initCaseData(){
 		execute(contextPath+'/providers/showCase/'+workerId,renderCaseData);
 	}
 	
@@ -60,13 +61,51 @@ define(function(require,exports,module){
 		$("#caseInfo").empty().append($case)
 	}
 	
+	//初始化评价信息
+	function initEvaluationData(pageNo)
+	{
+		execute(contextPath+'/evaluation/pageList',renderEvaluationData,{"pageNo":pageNo,"gainer":workerId});
+	}
+	//渲染评价信息
+	function renderEvaluationData(data)
+	{
+		if(data.dataList.length==0)
+		{
+			$("#evaluationInfo").empty().append("<li class=\"clearfix tcenter\">暂时没有人评价</li>");
+			return;
+		}
+		require.async('custom',function(){
+			var $evaluation="";
+			$.each(data.dataList,function(i,evaluation){
+				$evaluation +="<div class=\"pt20 pb20 clearfix border_bottom_f3\">";
+				$evaluation +=	"<div class=\"ofHidden\">";
+				$evaluation +=		"<div class=\"fleft\">";
+				$evaluation +=			"<img src=\""+contextPath+"/file/image/get/"+evaluation.reviewer+"\" width=\"50\" height=\"50\" class=\"radius30\"/>"
+				$evaluation +=		"</div>";
+				$evaluation +=		"<div class=\"fleft pl30\">";
+				$evaluation +=			"<div class=\"f14 c666\"><span class=\"pr30 bold\">"+evaluation.reviewer+"</span></span>"+$.formatDate("yyyy-MM-dd hh:mm:ss",new Date(evaluation.reviewTime))+"</span></div>";
+				$evaluation +=			"<div class=\"pt10 f14 c666\">"+evaluation.content+"</div>";
+				$evaluation +=		"</div>";
+				$evaluation +=	"</div>";
+				$evaluation +="</div>";
+			})
+			$("#evaluationInfo").empty().append($evaluation);
+		})
+		
+		//渲染分页
+		var pager = require("sea-modules/common");
+		pager.loadPager(data.pager.pageNo,data.pager.totalPage,data.pager.totalRecords,initEvaluationData,"evaluationCell");
+	}
+	
+	
 	//ajax获取数据共方法
-	function execute(url,callback){
+	function execute(url,callback,postData){
 		$.ajax({    
 			url: url,       
 			type:'post',    
 			cache:false,  			
 			dataType:'json', 
+			data:postData,
 			beforeSend: function () {
 				//$.showLoadding();
 			},
@@ -88,13 +127,16 @@ define(function(require,exports,module){
 	}
 	
 	//初始化
-	function init(workerId,workerType){
+	function init(id,workerType){
+		workerId = id
 		//如果是团队才展示施工工人信息
 		if(workerType=="1")
 		{
-			initWorkerData(workerId);
+			initWorkerData();
 		}
-		initCaseData(workerId);
+		initCaseData();
+		
+		initEvaluationData(1);
 	}
 	
 	//对外输出接口

@@ -4,9 +4,9 @@
 define(function(require,exports,module){
 	//引入jquery
 	require('jquery');
-	
+	var companyId;
 	//初始化施工工人数据
-	function initWorkerData(companyId){
+	function initWorkerData(){
 		execute(contextPath+'/providers/showWorker/'+companyId,renderWorkerData);
 	}
 
@@ -30,7 +30,7 @@ define(function(require,exports,module){
 	}
 	
 	//初始化施工案例数据
-	function initCaseData(companyId){
+	function initCaseData(){
 		execute(contextPath+'/providers/showCase/'+companyId,renderCaseData);
 	}
 	
@@ -61,7 +61,7 @@ define(function(require,exports,module){
 	}
 	
 	//初始化预约小区数据
-	function initBookingData(companyId){
+	function initBookingData(){
 		execute(contextPath+'/company/showBookingCommunity/'+companyId,renderBookingData);
 	}
 	
@@ -92,7 +92,7 @@ define(function(require,exports,module){
 	}
 	
 	//初始化公司资质数据
-	function initQualificationData(companyId){
+	function initQualificationData(){
 		execute(contextPath+'/company/showQualification/'+companyId,renderQualificationData);
 	}
 	
@@ -115,34 +115,12 @@ define(function(require,exports,module){
 	}
 	
 	//初始化评价信息
-	function initEvaluationData(companyId,pageNo){
-		$.ajax({    
-			url: contextPath+'/evaluation/pageList',       
-			type:'post',    
-			cache:false,  			
-			dataType:'json', 
-			data:{"pageNo":pageNo,"gainer":companyId},
-			beforeSend: function () {
-				//$.showLoadding();
-			},
-			success: function (data) {
-				if(data)
-				{
-					renderEvaluationData(data,pageNo);
-				}	
-			},
-			complete: function () {
-				//$.hideLoadding();
-			},
-			error: function (data) {
-				//$.hideLoadding();
-				console.info("error: " + data.responseText);
-			}
-			
-		});
+	function initEvaluationData(pageNo)
+	{
+		execute(contextPath+'/evaluation/pageList',renderEvaluationData,{"pageNo":pageNo,"gainer":companyId});
 	}
 	//渲染评价信息
-	function renderEvaluationData(data,pageNo)
+	function renderEvaluationData(data)
 	{
 		if(data.dataList.length==0)
 		{
@@ -150,20 +128,26 @@ define(function(require,exports,module){
 			return;
 		}
 		require.async('custom',function(){
-			var $evaluation="<ul>";
+			var $evaluation="";
 			$.each(data.dataList,function(i,evaluation){
-				$evaluation +="<li>";
-				$evaluation +="<div class=\"\">"+evaluation.reviewer+$.formatDate("yyyy-MM-dd hh:mm:ss",new Date(evaluation.reviewTime))+"</div>";
-				$evaluation +="<div class=\"\">"+evaluation.content+"</div>";
-				$evaluation +="</li>";
+				$evaluation +="<div class=\"pt20 pb20 clearfix border_bottom_f3\">";
+				$evaluation +=	"<div class=\"ofHidden\">";
+				$evaluation +=		"<div class=\"fleft\">";
+				$evaluation +=			"<img src=\""+contextPath+"/file/image/get/"+evaluation.reviewer+"\" width=\"50\" height=\"50\" class=\"radius30\"/>"
+				$evaluation +=		"</div>";
+				$evaluation +=		"<div class=\"fleft pl30\">";
+				$evaluation +=			"<div class=\"f14 c666\"><span class=\"pr30 bold\">"+evaluation.reviewer+"</span></span>"+$.formatDate("yyyy-MM-dd hh:mm:ss",new Date(evaluation.reviewTime))+"</span></div>";
+				$evaluation +=			"<div class=\"pt10 f14 c666\">"+evaluation.content+"</div>";
+				$evaluation +=		"</div>";
+				$evaluation +=	"</div>";
+				$evaluation +="</div>";
 			})
-			$evaluation+="</ul>";
 			$("#evaluationInfo").empty().append($evaluation);
 		})
 		
 		//渲染分页
 		var pager = require("sea-modules/common");
-		pager.loadPager(pageNo,data.pager.totalPage,data.pager.totalRecords,initEvaluationData);
+		pager.loadPager(data.pager.pageNo,data.pager.totalPage,data.pager.totalRecords,initEvaluationData,"evaluationCell");
 	}
 
 	//ajax获取数据共方法
@@ -194,18 +178,18 @@ define(function(require,exports,module){
 		});
 	}
 	
-	require.async('zoomify',function(){
+	//初始化
+	function init(id){
+		companyId = id;
+		initWorkerData();
+		initCaseData();
+		initBookingData();
+		initQualificationData();
+		initEvaluationData(1);
+		
+		require.async('zoomify',function(){
 		$("#caseInfo img,#bookingInfo img,#qualificationInfo img").zoomify()
 	});
-	
-	
-	//初始化
-	function init(companyId){
-		initWorkerData(companyId);
-		initCaseData(companyId);
-		initBookingData(companyId);
-		initQualificationData(companyId);
-		initEvaluationData(companyId,1);
 	}
 	
 	//对外输出接口

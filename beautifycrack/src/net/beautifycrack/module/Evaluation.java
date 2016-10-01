@@ -41,6 +41,11 @@ public class Evaluation implements Serializable
      * 评价者id
      */
     private Integer reviewer;
+    
+    /**
+     * 评价者名字
+     */
+    private String reviewerName;
 
     /**
      * 级别 0好 1中 2差
@@ -112,4 +117,12 @@ public class Evaluation implements Serializable
         this.reviewTime = reviewTime;
     }
 
+	public String getReviewerName() {
+		return reviewerName;
+	}
+
+	public void setReviewerName(String reviewerName) {
+		this.reviewerName = reviewerName;
+	}
+    
 }

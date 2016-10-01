@@ -7,7 +7,7 @@ define(function(require, exports, module){
 	 * totalPage:总数
 	 * totalRecords:总记录数
 	 */
-	function loadPager(pageNo,totalPage,totalRecords,queryMethodName){
+	function loadPager(pageNo,totalPage,totalRecords,queryMethodName,href){
 		//引入分页组件模块
 		var kkpager = require("kkpager").kkpager
 		//生成分页
@@ -26,6 +26,14 @@ define(function(require, exports, module){
 				this.selectPage(n);
 				return false;
 			},
+			//getHref是在click模式下链接算法
+			getHref : function(n){
+				if(!href)
+				{
+					return '#';
+				}
+		        return '#'+href;
+		    },
 			isGoPage:false
 		},true);
 	}

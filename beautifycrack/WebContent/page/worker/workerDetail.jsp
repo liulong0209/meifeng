@@ -41,12 +41,15 @@
 			<div class="t1">施工案例</div>
 			<div id="caseInfo" class="index-image pt10"></div>
 		</div>		
-		<div class="block clearfix">
+		<div id="evaluationCell" class="block clearfix">
 			<div class="t1">客户评价</div>
-			<div id="rateInfo" class="pb30"></div>
+			<div id="evaluationInfo" class="pb30"></div>
 			<!-- 分页页码 -->
     		<div id="kkpager"></div>
-			<textarea class="form-control" rows="3" placeholder="请输入评价内容"></textarea>
+			<textarea class="form-control" rows="3" placeholder="我来说两句...."></textarea>
+			<div class="tright pt10">
+				<button type="button" class="btn btn-success" id="commit">发表评论</button>
+			</div>
 		</div>		
     </div>
 	<%@include file="../common/footer.jsp" %>

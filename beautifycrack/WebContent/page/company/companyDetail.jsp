@@ -48,12 +48,17 @@
 			<div class="t1">公司资质</div>
 			<div id="qualificationInfo" class="index-image pt10"></div>
 		</div>
-		<div class="block clearfix">
+		<div id="evaluationCell" class="block clearfix">
 			<div class="t1">客户评价</div>
 			<div id="evaluationInfo"></div>
 			<!-- 分页页码 -->
     		<div id="kkpager"></div>
-			<textarea class="form-control" rows="3" placeholder="请输入评价内容"></textarea>
+    		<div class="pt30">
+    			<div>
+    				
+    			</div>
+				<textarea class="form-control" rows="3" placeholder="我来说两句...."></textarea>
+			</div>
 		</div>		
     </div>
 	<%@include file="../common/footer.jsp" %>

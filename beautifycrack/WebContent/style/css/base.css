@@ -113,11 +113,14 @@ text-shadow: #000 0 1px 0;
 .pd30{ padding:30px;}
 .fnormal{ font-style: normal;}
 .c333{color:#333}
+.c666{color:#666}
 .c999{color:#999}
 .border_ccc{ border:1px solid #CCC;}
 .border_f3{ border:1px solid #f3f3f3;}
+.border_bottom_f3{ border-bottom:1px solid #f3f3f3;}
 .box-shadow{box-shadow: 0 0 15px #cccccc;-webkit-box-shadow: 0 0 15px #cccccc;-moz-box-shadow: 0 0 15px #cccccc;}
 .radius4{-moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+.radius30{-moz-border-radius:30px; -webkit-border-radius:30px; border-radius:30px;}
 .block {width:1190px; clear:both; margin:0 auto;}
 .c_666{ color:#666}
 
