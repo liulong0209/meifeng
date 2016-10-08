@@ -33,11 +33,11 @@
 	       	</ul>
        	</div>
        	<div class="fleft">
-       		<div style="width:940px;">
+       		<div class="w940 pb30">
        			<ul id="materialList" class="clearfix"></ul>
+	       		<!-- 分页页码 -->
+	    		<div id="kkpager"></div>
        		</div>
-       		<!-- 分页页码 -->
-    		<div id="kkpager"></div>
        	</div>
     </div>	
 	<%@include file="../common/footer.jsp" %>  	

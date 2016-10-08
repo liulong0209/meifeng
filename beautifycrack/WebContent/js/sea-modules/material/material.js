@@ -45,9 +45,9 @@ define(function(require,exports,module){
 		var $companyli="";
 		$.each(data.dataList,function(i,material){
 			$companyli+="<li class=\"fleft\">";
-			$companyli+=    "<div class=\"w275 box-shadow\">"	
+			$companyli+=    "<div class=\"w275 box-shadow ml30 mt20 mb20\">"	
 			$companyli+=		"<img src=\""+contextPath+"/file/image/get/"+material.imgId+"\" width=\"275\" height=\"220\">";
-			$companyli+=		"<div class=\"tcenter pt5 f14\">"+material.productName+"</div>";
+			$companyli+=		"<div class=\"tcenter pt10 pb10 f14\">"+material.productName+"</div>";
 			$companyli+=	"</div>";
 			$companyli+="</li>";
 		})
