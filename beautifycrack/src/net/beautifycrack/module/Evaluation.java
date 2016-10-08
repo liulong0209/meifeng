@@ -25,12 +25,12 @@ public class Evaluation implements Serializable
     /**
      * id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 获得者id
      */
-    private Integer gainer;
+    private Long gainer;
 
     /**
      * 评价内容
@@ -40,8 +40,8 @@ public class Evaluation implements Serializable
     /**
      * 评价者id
      */
-    private Integer reviewer;
-    
+    private Long reviewer;
+
     /**
      * 评价者名字
      */
@@ -50,29 +50,29 @@ public class Evaluation implements Serializable
     /**
      * 级别 0好 1中 2差
      */
-    private Integer level;
+    private String level;
 
     /**
      * 评价时间
      */
     private Date reviewTime;
 
-    public Integer getId()
+    public Long getId()
     {
         return id;
     }
 
-    public void setId(Integer id)
+    public void setId(Long id)
     {
         this.id = id;
     }
 
-    public Integer getGainer()
+    public Long getGainer()
     {
         return gainer;
     }
 
-    public void setGainer(Integer gainer)
+    public void setGainer(Long gainer)
     {
         this.gainer = gainer;
     }
@@ -87,22 +87,22 @@ public class Evaluation implements Serializable
         this.content = content;
     }
 
-    public Integer getReviewer()
+    public Long getReviewer()
     {
         return reviewer;
     }
 
-    public void setReviewer(Integer reviewer)
+    public void setReviewer(Long reviewer)
     {
         this.reviewer = reviewer;
     }
 
-    public Integer getLevel()
+    public String getLevel()
     {
         return level;
     }
 
-    public void setLevel(Integer level)
+    public void setLevel(String level)
     {
         this.level = level;
     }
@@ -117,12 +117,14 @@ public class Evaluation implements Serializable
         this.reviewTime = reviewTime;
     }
 
-	public String getReviewerName() {
-		return reviewerName;
-	}
+    public String getReviewerName()
+    {
+        return reviewerName;
+    }
 
-	public void setReviewerName(String reviewerName) {
-		this.reviewerName = reviewerName;
-	}
-    
+    public void setReviewerName(String reviewerName)
+    {
+        this.reviewerName = reviewerName;
+    }
+
 }

@@ -18,7 +18,7 @@ public class FileInfo
     /**
      * 文件id
      */
-    private Integer fileId;
+    private Long fileId;
 
     /**
      * 文件原始名
@@ -45,12 +45,12 @@ public class FileInfo
      */
     private Date createTime;
 
-    public Integer getFileId()
+    public Long getFileId()
     {
         return fileId;
     }
 
-    public void setFileId(Integer fileId)
+    public void setFileId(Long fileId)
     {
         this.fileId = fileId;
     }

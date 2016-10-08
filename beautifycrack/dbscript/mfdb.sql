@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.25)
-# Date: 2016-09-30 19:45:00
+# Date: 2016-10-08 20:31:57
 # Generator: MySQL-Front 5.3  (Build 4.13)
 
 /*!40101 SET NAMES utf8 */;
@@ -741,9 +741,9 @@ CREATE TABLE `sys_user` (
 #
 
 CREATE TABLE `tbl_ads` (
-  `ads_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ads_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT '' COMMENT '标题',
-  `img_id` int(11) NOT NULL DEFAULT '0' COMMENT '图片地址id',
+  `img_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '图片地址id',
   `order_no` int(11) DEFAULT NULL COMMENT '排序号',
   `state` int(1) NOT NULL DEFAULT '0' COMMENT '发布状态 0、草稿 1、已发布 2、停用',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -761,12 +761,12 @@ INSERT INTO `tbl_ads` VALUES (1,'图片1',1,1,1,NULL),(2,'图片2',2,2,1,NULL),(
 #
 
 CREATE TABLE `tbl_book_region` (
-  `region_id` bigint(20) NOT NULL,
+  `region_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(64) DEFAULT NULL COMMENT '标题(配合图片显示)',
   `img_id` bigint(20) DEFAULT NULL COMMENT '图片id',
-  `provider_id` bigint(20) DEFAULT NULL COMMENT '公司或团队id',
+  `providers_id` bigint(20) DEFAULT NULL COMMENT '公司或团队id',
   PRIMARY KEY (`region_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='预约小区表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='预约小区表';
 
 #
 # Data for table "tbl_book_region"
@@ -779,12 +779,12 @@ INSERT INTO `tbl_book_region` VALUES (1,'铭城',1,1),(2,'玫瑰公馆',2,1),(3,
 #
 
 CREATE TABLE `tbl_company_rank` (
-  `com_rank_id` bigint(20) NOT NULL,
+  `com_rank_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(64) DEFAULT NULL COMMENT '标题(配合图片显示)',
   `img_id` bigint(20) DEFAULT NULL COMMENT '图片id',
-  `provider_id` bigint(20) DEFAULT NULL COMMENT '公司或团队id',
+  `providers_id` bigint(20) DEFAULT NULL COMMENT '公司或团队id',
   PRIMARY KEY (`com_rank_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='公司资质表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='公司资质表';
 
 #
 # Data for table "tbl_company_rank"
@@ -804,7 +804,7 @@ CREATE TABLE `tbl_evaluation` (
   `level` char(1) DEFAULT NULL COMMENT '0 差 1 中 2 好',
   `review_time` datetime NOT NULL,
   PRIMARY KEY (`evaluation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='评价表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评价表';
 
 #
 # Data for table "tbl_evaluation"
@@ -817,7 +817,7 @@ INSERT INTO `tbl_evaluation` VALUES (1,1,'做工精细，认真负责',1,'2','00
 #
 
 CREATE TABLE `tbl_file_info` (
-  `file_id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `orgin_name` varchar(255) DEFAULT NULL COMMENT '原始名称',
   `file_name` varchar(255) DEFAULT NULL COMMENT '存储名称',
   `file_path` varchar(255) DEFAULT NULL COMMENT '存储路径',
@@ -837,14 +837,14 @@ INSERT INTO `tbl_file_info` VALUES (1,'banner.jpg','banner.jpg','d:\\temp\\banne
 #
 
 CREATE TABLE `tbl_news` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL COMMENT '新闻标题',
   `content` text COMMENT '新闻内容',
   `publish_state` int(1) DEFAULT '0' COMMENT '发布状态 0、草稿 1、已发布 2、过期不显示',
   `publish_time` datetime DEFAULT NULL COMMENT '发布时间',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
-  PRIMARY KEY (`Id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='新闻表';
 
 #
@@ -858,14 +858,15 @@ INSERT INTO `tbl_news` VALUES (1,'家具是我们家居生活中最为重要的�
 #
 
 CREATE TABLE `tbl_product` (
-  `prod_id` bigint(20) NOT NULL,
-  `name` varchar(32) NOT NULL COMMENT '产品名称',
-  `product_intro` varchar(512) NOT NULL COMMENT '产品介绍',
-  `product_pic` varchar(128) DEFAULT NULL COMMENT '产品图片',
+  `prod_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(32) NOT NULL DEFAULT '' COMMENT '产品名称',
+  `product_intro` text NOT NULL COMMENT '产品介绍',
+  `product_pic` bigint(20) DEFAULT NULL COMMENT '产品图片id',
   `product_type` bigint(20) NOT NULL COMMENT '产品类别(外联tbl_product_class)',
   `file` varchar(128) DEFAULT NULL COMMENT '资料地址',
   `REMARKS` varchar(512) DEFAULT NULL COMMENT '备注',
-  `provider_id` bigint(20) DEFAULT NULL COMMENT '提供商(公司)id',
+  `providers_id` bigint(20) DEFAULT NULL COMMENT '提供商(公司)id',
+  `order_no` int(11) DEFAULT NULL COMMENT '排序号',
   `STS` char(1) NOT NULL,
   `CREATE_DATE` datetime NOT NULL,
   PRIMARY KEY (`prod_id`)
@@ -875,13 +876,14 @@ CREATE TABLE `tbl_product` (
 # Data for table "tbl_product"
 #
 
+INSERT INTO `tbl_product` VALUES (1,'林大美缝剂','',1,1,NULL,NULL,6,1,'1','0000-00-00 00:00:00'),(2,'林大美缝剂','',1,1,NULL,NULL,6,1,'1','0000-00-00 00:00:00'),(3,'林大美缝剂','',1,1,NULL,NULL,6,1,'1','0000-00-00 00:00:00'),(4,'林大美缝剂','',2,1,NULL,NULL,6,1,'1','0000-00-00 00:00:00');
 
 #
 # Source for table "tbl_product_anti_fake"
 #
 
 CREATE TABLE `tbl_product_anti_fake` (
-  `prod_anti_id` bigint(20) NOT NULL,
+  `prod_anti_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `describe` varchar(512) DEFAULT NULL COMMENT '描述',
   `file_id` bigint(20) DEFAULT NULL COMMENT '图片id',
   `prod_id` bigint(20) DEFAULT NULL COMMENT '产品id',
@@ -898,28 +900,29 @@ CREATE TABLE `tbl_product_anti_fake` (
 #
 
 CREATE TABLE `tbl_product_class` (
-  `product_type_id` bigint(20) NOT NULL,
+  `product_type_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL COMMENT '分类名称',
-  `type` bigint(20) NOT NULL COMMENT '产品类别(外联tbl_product_class)',
+  `type` int(1) NOT NULL DEFAULT '0' COMMENT '类别类型 0工具 1材料',
   `REMARKS` varchar(512) DEFAULT NULL COMMENT '备注',
   `CREATE_DATE` datetime NOT NULL,
   PRIMARY KEY (`product_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='产品分类表';
 
 #
 # Data for table "tbl_product_class"
 #
 
+INSERT INTO `tbl_product_class` VALUES (1,'美缝剂',1,NULL,'0000-00-00 00:00:00'),(2,'真瓷胶',1,NULL,'0000-00-00 00:00:00'),(3,'胶枪',0,NULL,'0000-00-00 00:00:00'),(4,'美纹纸',0,NULL,'0000-00-00 00:00:00'),(5,'美工刀',0,NULL,'0000-00-00 00:00:00'),(6,'毛刷',0,NULL,'0000-00-00 00:00:00'),(7,'刮板',0,NULL,'0000-00-00 00:00:00');
 
 #
 # Source for table "tbl_providers_extend"
 #
 
 CREATE TABLE `tbl_providers_extend` (
-  `providers_extend_id` bigint(20) NOT NULL,
-  `provider_id` bigint(20) DEFAULT NULL,
-  `extend_id` varchar(32) DEFAULT NULL,
-  `provider_tpye` varchar(128) NOT NULL COMMENT '扩展信息类型 0施工人员 1施工案例 2预约小区 3公司资质',
+  `providers_extend_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `providers_id` bigint(20) DEFAULT NULL,
+  `extend_id` bigint(20) DEFAULT NULL,
+  `providers_tpye` int(2) NOT NULL DEFAULT '0' COMMENT '扩展信息类型 0施工人员 1施工案例 2预约小区 3公司资质',
   `REMARKS` varchar(512) DEFAULT NULL COMMENT '备注',
   `STS` char(1) NOT NULL,
   `CREATE_DATE` datetime NOT NULL,
@@ -936,18 +939,19 @@ CREATE TABLE `tbl_providers_extend` (
 #
 
 CREATE TABLE `tbl_providers_info` (
-  `providers_id` int(11) NOT NULL AUTO_INCREMENT,
+  `providers_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `provider_name` varchar(50) DEFAULT NULL COMMENT '提供商名称',
   `profile` varchar(1000) DEFAULT NULL COMMENT '简介',
   `phone_no` varchar(50) DEFAULT NULL COMMENT '电话号码',
   `address` varchar(100) DEFAULT NULL COMMENT '地址(公司是地址  团队或个人就是服务区域)',
-  `logo` int(11) DEFAULT NULL COMMENT 'logo或者头像id',
-  `sts` int(11) DEFAULT NULL COMMENT '状态0 正常 1删除',
+  `logo` bigint(20) DEFAULT NULL COMMENT 'logo或者头像id',
+  `sts` int(1) DEFAULT NULL COMMENT '状态0 正常 1删除',
   `sts_date` datetime DEFAULT NULL COMMENT '状态修改时间',
   `order_no` int(11) DEFAULT NULL COMMENT '排序号',
   `type` int(1) DEFAULT NULL COMMENT '类型 0公司 1团队 2个人',
   `head` int(11) DEFAULT NULL COMMENT '负责人id',
   `city` int(11) DEFAULT NULL COMMENT '所属城市',
+  `serviceType` int(1) DEFAULT NULL COMMENT '提供服务类型 0 提供施工 1提供产品',
   PRIMARY KEY (`providers_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='提供商信息表（公司 团队 个人）';
 
@@ -955,19 +959,19 @@ CREATE TABLE `tbl_providers_info` (
 # Data for table "tbl_providers_info"
 #
 
-INSERT INTO `tbl_providers_info` VALUES (1,'西安城市人家装修公司','陕西城市人家装饰（集团）有限公司是由国内大型房地产公司及金融投资机构投资的大型家居装饰企业。公司秉承集团总公司倡导的为客户营造“健康家居，健康生活”的服务宗旨，致力于环保、健康家装，并取得了丰硕成果，得到古城百姓的广泛信赖，被称为“健康家居使者”。','400-800-0011转12403','陕西省西安市雁塔区南三环朱雀路交叉口西北角',1,0,NULL,1,0,1,1),(2,'西安业之峰装饰公司','西安业之峰装饰公司咨询电话：17791881949 联系我时请说是在装一网上看到的，谢谢！ 业之','400-800-0011转12404','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',2,0,NULL,2,0,2,1),(3,'广州潺智信息科技有限公司','政府开发多年开发经验，可人员驻场开发','400-800-0011转12403','陕西省西安市雁塔区南三环朱雀路交叉口西北角',1,0,NULL,3,0,1,1),(4,'卓越团队','政府开发多年开发经验，可人员驻场开发','400-800-0011转12404','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',2,0,NULL,1,1,NULL,1),(5,'李泽','从事美缝多年，经验丰富','13211111111','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',9,0,NULL,1,2,NULL,1);
+INSERT INTO `tbl_providers_info` VALUES (1,'西安城市人家装修公司','陕西城市人家装饰（集团）有限公司是由国内大型房地产公司及金融投资机构投资的大型家居装饰企业。公司秉承集团总公司倡导的为客户营造“健康家居，健康生活”的服务宗旨，致力于环保、健康家装，并取得了丰硕成果，得到古城百姓的广泛信赖，被称为“健康家居使者”。','400-800-0011转12403','陕西省西安市雁塔区南三环朱雀路交叉口西北角',1,0,NULL,1,0,1,1,0),(2,'西安业之峰装饰公司','西安业之峰装饰公司咨询电话：17791881949 联系我时请说是在装一网上看到的，谢谢！ 业之','400-800-0011转12404','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',2,0,NULL,2,0,2,1,0),(3,'广州潺智信息科技有限公司','政府开发多年开发经验，可人员驻场开发','400-800-0011转12403','陕西省西安市雁塔区南三环朱雀路交叉口西北角',1,0,NULL,3,0,1,1,0),(4,'卓越团队','政府开发多年开发经验，可人员驻场开发','400-800-0011转12404','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',2,0,NULL,1,1,NULL,1,0),(5,'李泽','从事美缝多年，经验丰富','13211111111','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',9,0,NULL,1,2,NULL,1,0),(6,'林大公司',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1);
 
 #
 # Source for table "tbl_work_case"
 #
 
 CREATE TABLE `tbl_work_case` (
-  `case_id` bigint(20) NOT NULL,
+  `case_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(64) DEFAULT NULL COMMENT '标题(配合图片显示)',
   `img_id` bigint(20) DEFAULT NULL COMMENT '图片id',
-  `provider_id` bigint(20) DEFAULT NULL COMMENT '公司或团队id',
+  `providers_id` bigint(20) DEFAULT NULL COMMENT '公司或团队id',
   PRIMARY KEY (`case_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='施工案例表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='施工案例表';
 
 #
 # Data for table "tbl_work_case"
@@ -980,12 +984,12 @@ INSERT INTO `tbl_work_case` VALUES (1,'赛高悦府',1,1),(2,'中华世纪城',2
 #
 
 CREATE TABLE `tbl_worker` (
-  `worker_id` bigint(20) NOT NULL,
+  `worker_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL COMMENT '存储名称',
   `avatar` bigint(20) DEFAULT NULL COMMENT '头像id',
-  `provider_id` bigint(20) DEFAULT NULL COMMENT '公司或团队id',
+  `providers_id` bigint(20) DEFAULT NULL COMMENT '公司或团队id',
   PRIMARY KEY (`worker_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='施工工人表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='施工工人表';
 
 #
 # Data for table "tbl_worker"

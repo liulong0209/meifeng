@@ -16,7 +16,7 @@
 			head as head,
 			city as city
 		from tbl_providers_info 
-		where sts=0 and type in
+		where sts=0 and serviceType=0 and type in
 				<foreach item="item" index="index" collection="list" 
                          open="(" separator="," close=")">
                         #{item}
@@ -47,7 +47,7 @@
 			count(*) 
 		from tbl_providers_info 
 		where 
-			sts=0
+			sts=0 and serviceType=0
 			and type in
 			<foreach item="item" index="index" collection="list" 
                          open="(" separator="," close=")">
@@ -68,7 +68,7 @@
 			head as head,
 			city as city
 		from tbl_providers_info 
-		where sts=0 and type in
+		where sts=0 and serviceType=0 and type in
 			<foreach item="item" index="index" collection="list" 
                          open="(" separator="," close=")">
                         #{item}
@@ -83,9 +83,9 @@
 			worker_id as id,
 			name as name,
 			avatar as avatar,
-			provider_id as providerId
+			providers_id as providerId
 		from tbl_worker
-		where provider_id = #{providerId}
+		where providers_id = #{providerId}
 		LIMIT 0,3
 	</select>
 	
@@ -95,9 +95,9 @@
 			case_id as id,
 			title as communityName,
 			img_id as imageId,
-			provider_id as providerId
+			providers_id as providerId
 		from tbl_work_case
-		where provider_id = #{providerId}
+		where providers_id = #{providerId}
 	</select>
 	
 	<!-- 查找预约小区信息 -->
@@ -106,9 +106,9 @@
 			region_id as id,
 			title as communityName,
 			img_id as imageId,
-			provider_id as providerId
+			providers_id as providerId
 		from tbl_book_region
-		where provider_id = #{providerId}
+		where providers_id = #{providerId}
 	</select>
 	
 	<!-- 查找公司资质信息 -->
@@ -117,9 +117,9 @@
 			com_rank_id as id,
 			title as title,
 			img_id as imageId,
-			provider_id as providerId
+			providers_id as providerId
 		from tbl_company_rank
-		where provider_id = #{providerId}
+		where providers_id = #{providerId}
 	</select>
 	
 </mapper>

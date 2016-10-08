@@ -24,7 +24,7 @@ public class ConstructionCase implements Serializable
     /**
      * id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 小区名称
@@ -34,19 +34,19 @@ public class ConstructionCase implements Serializable
     /**
      * image id
      */
-    private Integer imageId;
+    private Long imageId;
 
     /**
      * 公司 团队 id
      */
-    private Integer providerId;
+    private Long providerId;
 
-    public Integer getId()
+    public Long getId()
     {
         return id;
     }
 
-    public void setId(Integer id)
+    public void setId(Long id)
     {
         this.id = id;
     }
@@ -61,22 +61,22 @@ public class ConstructionCase implements Serializable
         this.communityName = communityName;
     }
 
-    public Integer getImageId()
+    public Long getImageId()
     {
         return imageId;
     }
 
-    public void setImageId(Integer imageId)
+    public void setImageId(Long imageId)
     {
         this.imageId = imageId;
     }
 
-    public Integer getProviderId()
+    public Long getProviderId()
     {
         return providerId;
     }
 
-    public void setProviderId(Integer providerId)
+    public void setProviderId(Long providerId)
     {
         this.providerId = providerId;
     }

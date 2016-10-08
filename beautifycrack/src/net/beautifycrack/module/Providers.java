@@ -16,7 +16,7 @@ public class Providers
     /**
      * 提供商id
      */
-    private Integer providersId;
+    private Long providersId;
 
     /**
      * 提供商名称
@@ -41,7 +41,7 @@ public class Providers
     /**
      * 公司logo或者人员的头像
      */
-    private Integer logo;
+    private Long logo;
 
     /**
      * 状态0 正常 1删除
@@ -73,12 +73,12 @@ public class Providers
      */
     private Integer city;
 
-    public Integer getProvidersId()
+    public Long getProvidersId()
     {
         return providersId;
     }
 
-    public void setProvidersId(Integer providersId)
+    public void setProvidersId(Long providersId)
     {
         this.providersId = providersId;
     }
@@ -123,12 +123,12 @@ public class Providers
         this.address = address;
     }
 
-    public Integer getLogo()
+    public Long getLogo()
     {
         return logo;
     }
 
-    public void setLogo(Integer logo)
+    public void setLogo(Long logo)
     {
         this.logo = logo;
     }

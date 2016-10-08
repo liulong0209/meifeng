@@ -24,7 +24,7 @@ public class News implements Serializable
     /**
      * id
      */
-    private int id;
+    private Long id;
 
     /**
      * БъЬт
@@ -51,12 +51,12 @@ public class News implements Serializable
      */
     private Date createTime;
 
-    public int getId()
+    public Long getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(Long id)
     {
         this.id = id;
     }

@@ -64,7 +64,7 @@ define(function(require, exports, module) {
 		$.each(data,function(i,worker){
 			$workerli+="<li>"
 			$workerli+=	"<div class=\"fleft w150\">";
-			$workerli+=		"<a href=\"\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+worker.logo+"\" width=\"150\" height=\"150\"></a>";
+			$workerli+=		"<a href=\""+contextPath+"/worker/showDetail/"+worker.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+worker.logo+"\" width=\"150\" height=\"150\"></a>";
 			$workerli+=	"</div>";
 			$workerli+=	"<div class=\"fleft pl15 w235\">";
 			$workerli+=		"<div class=\"f16 bold \">"+worker.providerName+"</div>";

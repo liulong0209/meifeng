@@ -3,6 +3,7 @@ package net.beautifycrack.controller;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 工具控制器
@@ -20,5 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/tools")
 public class ToolsController
 {
+    /**
+     * 跳转到美缝工具页面
+     * 
+     * @return
+     */
+    @RequestMapping(value = "")
+    public Object toolsIndex()
+    {
+        ModelAndView mv = new ModelAndView();
 
+        mv.setViewName("tools/toolsList");
+        return mv;
+    }
 }

@@ -24,7 +24,7 @@ public class Advertisement implements Serializable
     /**
      * Ö÷¼üid
      */
-    private Integer id;
+    private Long id;
 
     /**
      * ±êÌâ
@@ -34,7 +34,7 @@ public class Advertisement implements Serializable
     /**
      * Í¼Æ¬id
      */
-    private Integer imgId;
+    private Long imgId;
 
     /**
      * ÅÅÐòºÅ
@@ -51,12 +51,12 @@ public class Advertisement implements Serializable
      */
     private Date createTime;
 
-    public Integer getId()
+    public Long getId()
     {
         return id;
     }
 
-    public void setId(Integer id)
+    public void setId(Long id)
     {
         this.id = id;
     }
@@ -71,12 +71,12 @@ public class Advertisement implements Serializable
         this.title = title;
     }
 
-    public Integer getImgId()
+    public Long getImgId()
     {
         return imgId;
     }
 
-    public void setImgId(Integer imgId)
+    public void setImgId(Long imgId)
     {
         this.imgId = imgId;
     }

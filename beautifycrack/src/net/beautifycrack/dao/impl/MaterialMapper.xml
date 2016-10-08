@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.beautifycrack.dao.MaterialMapper">
+	<!-- 获取材料分类条目 -->
+	<select id="getMaterialCategory" resultType="productCategory">
+		select 
+		 product_type_id as id,
+		 name as name
+		from tbl_product_class
+		where type=1
+	</select>
+	
+	<!-- 分页查询数据 -->
+	<select id="queryMaterial" parameterType="Map" resultType="product">
+		select 
+			pro.prod_id as id,
+			pro.product_name as productName,
+			pro.product_intro as profile,
+			pro.product_pic as imgId,
+			pro.product_type as category,
+			pro.providers_id as providersId,
+			pi.provider_name as providersName
+		from tbl_product pro
+		left join tbl_product_class pc on pro.product_type=pc.product_type_id
+		left join tbl_providers_info pi on pro.providers_id = pi.providers_id
+		where pro.sts = 1
+		and  pi.serviceType=1
+		and product_type = #{categoryId}
+		order by pro.order_no
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<select id="queryTotal" parameterType="Long" resultType="Integer">
+		select 
+			count(pro.prod_id) 
+		from tbl_product pro, tbl_product_class pc,tbl_providers_info pi
+		where pro.sts = 1
+		and  pi.serviceType=1
+		and pro.product_type=pc.product_type_id
+		and pro.providers_id = pi.providers_id
+		and product_type = #{categoryId}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
