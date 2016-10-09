@@ -23,6 +23,6 @@
 		<mapper resource="net/beautifycrack/dao/impl/FileInfoMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/ProvidersMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/EvaluationMapper.xml" />
-		<mapper resource="net/beautifycrack/dao/impl/MaterialMapper.xml" />
+		<mapper resource="net/beautifycrack/dao/impl/ProductMapper.xml" />
 	</mappers>
 </configuration> 

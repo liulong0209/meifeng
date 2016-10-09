@@ -6,18 +6,21 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import net.beautifycrack.dao.MaterialMapper;
+import net.beautifycrack.constant.Common;
+import net.beautifycrack.dao.ProductMapper;
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.Product;
 import net.beautifycrack.module.ProductCategory;
-import net.beautifycrack.service.MaterialService;
+import net.beautifycrack.service.ProductService;
 import net.beautifycrack.util.PagerUtil;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 /**
- * 美缝材料接口实现 MaterialServiceImpl.java
+ * 产品接口实现
+ * 
+ * ProductServiceImpl.java
  * 
  * @Description: <br>
  * <br>
@@ -26,35 +29,47 @@ import org.springframework.stereotype.Service;
  * @author liulong
  */
 @Scope("prototype")
-@Service("materialService")
-public class MaterialServiceImpl implements MaterialService
+@Service("productService")
+public class ProductServiceImpl implements ProductService
 {
     /**
      * 注入美缝材料dao
      */
     @Resource
-    private MaterialMapper materialMapper;
+    private ProductMapper productMapper;
 
     @Override
     public List<ProductCategory> getMaterialCategory() throws BusinessException
     {
-        return materialMapper.getMaterialCategory();
+        return productMapper.getProductCategory(Common.PRODUCT_MATERIAL);
     }
 
     @Override
-    public List<Product> queryMaterial(PagerUtil pager, Long categoryId) throws BusinessException
+    public List<ProductCategory> getToolsCategory() throws BusinessException
+    {
+        return productMapper.getProductCategory(Common.PRODUCT_TOOLS);
+    }
+
+    @Override
+    public List<Product> queryProduct(PagerUtil pager, Long categoryId) throws BusinessException
     {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("categoryId", categoryId);
         map.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
         map.put("pageSize", pager.getPageSize());
-        return materialMapper.queryMaterial(map);
+        return productMapper.queryProduct(map);
     }
 
     @Override
     public Integer queryTotal(Long categoryId) throws BusinessException
     {
-        return materialMapper.queryTotal(categoryId);
+        return productMapper.queryTotal(categoryId);
+    }
+
+    @Override
+    public List<Product> indexShow(Integer type) throws BusinessException
+    {
+        return productMapper.indexShow(type);
     }
 
 }

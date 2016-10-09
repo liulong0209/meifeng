@@ -184,7 +184,7 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/index/providersList", method = RequestMethod.POST)
-    public @ResponseBody Object newsListIndex(String type)
+    public @ResponseBody Object providersListIndex(String type)
     {
         List<Integer> list = new ArrayList<Integer>();
         String[] array = type.split(",");

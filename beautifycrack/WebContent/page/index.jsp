@@ -28,69 +28,19 @@
 	<!--美缝材料-->
 	<div class="clearfix ofHidden block yh pt20">
 		<div class="t1">
-			<a href="" class="fright f12">更多>></a>
+			<a href="${contextPath}/material" class="fright f12">更多>></a>
 			美缝材料
 		</div>
-		<div class="index-image clearfix pt15 ">
-			<div class="w275 fleft h165 ofHidden">
-				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
-					<p class="f16">小户型也有大智慧</p>
-					<b class="h45"></b>
-				</a>
-			</div>
-			<div class="w275 fleft h165 ofHidden ml30">
-				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
-					<p class="f16">小户型也有大智慧</p>
-					<b class="h45"></b>
-				</a>
-			</div>
-			<div class="w275 fleft h165 ofHidden ml30">
-				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
-					<p class="f16">小户型也有大智慧</p>
-					<b class="h45"></b>
-				</a>
-			</div>
-			<div class="w275 fleft h165 ofHidden ml30">
-				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
-					<p class="f16">小户型也有大智慧</p>
-					<b class="h45"></b>
-				</a>
-			</div>
-		</div>
+		<div id="materialList" class="index-image clearfix pt15 "></div>
 	</div>
 	
 	<!--美缝工具-->
 	<div class="clearfix ofHidden block yh pt20">
 		<div class="t1">
-			<a href="" class="fright f12">更多>></a>
+			<a href="${contextPath}/tools" class="fright f12">更多>></a>
 			美缝工具
 		</div>
-		<div class="index-image clearfix pt15 ">
-			<div class="w275 fleft h165 ofHidden">
-				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
-					<p class="f16">小户型也有大智慧</p>
-					<b class="h45"></b>
-				</a>
-			</div>
-			<div class="w275 fleft h165 ofHidden ml30">
-				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
-					<p class="f16">小户型也有大智慧</p>
-					<b class="h45"></b>
-				</a>
-			</div>
-			<div class="w275 fleft h165 ofHidden ml30">
-				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
-					<p class="f16">小户型也有大智慧</p>
-					<b class="h45"></b>
-				</a>
-			</div>
-			<div class="w275 fleft h165 ofHidden ml30">
-				<a href="" class="h165"><img src="${contextPath}/style/images/1.jpg" width="275" height="165">
-					<p class="f16">小户型也有大智慧</p>
-					<b class="h45"></b>
-				</a>
-			</div>
-		</div>
+		<div id="toolsList" class="index-image clearfix pt15 "></div>
 	</div>
 	
     <div class="clearfix ofHidden block yh pt20">

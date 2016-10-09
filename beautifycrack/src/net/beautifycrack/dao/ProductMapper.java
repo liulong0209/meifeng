@@ -18,24 +18,24 @@ import net.beautifycrack.module.ProductCategory;
  * @Created on 2016年9月14日 下午3:50:31
  * @author liulong
  */
-public interface MaterialMapper
+public interface ProductMapper
 {
     /**
-     * 获取材料分类条目
+     * 获取产品分类条目
      * 
      * @return
      * @throws BusinessException
      */
-    List<ProductCategory> getMaterialCategory() throws BusinessException;
+    List<ProductCategory> getProductCategory(Integer type) throws BusinessException;
 
     /**
-     * 分页查询材料列表
+     * 分页查询产品列表
      * 
      * @param categoryId
      * @return
      * @throws BusinessException
      */
-    List<Product> queryMaterial(Map<String, Object> map) throws BusinessException;
+    List<Product> queryProduct(Map<String, Object> map) throws BusinessException;
 
     /**
      * 查询总数
@@ -45,4 +45,12 @@ public interface MaterialMapper
      * @throws BusinessException
      */
     Integer queryTotal(Long categoryId) throws BusinessException;
+
+    /**
+     * 首页显示的产品数据
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    List<Product> indexShow(Integer type) throws BusinessException;
 }

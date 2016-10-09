@@ -9,7 +9,7 @@ define(function(require,exports,module){
 	function initData(pageNo,categoryId){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/material/pageList',       
+				url: contextPath+'/product/pageList',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
@@ -39,30 +39,42 @@ define(function(require,exports,module){
 	function render(data,pageNo){
 		if(data.dataList.length==0)
 		{
-			$("#materialList").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
+			$("#productList").empty().append("<li class=\"clearfix tcenter mt20\">此分类暂无产品</li>");
+			$("#kkpager").empty();
 			return;
 		}
-		var $companyli="";
-		$.each(data.dataList,function(i,material){
-			$companyli+="<li class=\"fleft\">";
-			$companyli+=    "<div class=\"w275 box-shadow ml30 mt20 mb20\">"	
-			$companyli+=		"<img src=\""+contextPath+"/file/image/get/"+material.imgId+"\" width=\"275\" height=\"220\">";
-			$companyli+=		"<div class=\"tcenter pt10 pb10 f14\">"+material.productName+"</div>";
-			$companyli+=	"</div>";
-			$companyli+="</li>";
+		var $productli="";
+		$.each(data.dataList,function(i,product){
+			$productli+="<li class=\"fleft\">";
+			$productli+=    "<div class=\"w275 border_f3 ml30 mt20 mb20 pointer\">"	
+			$productli+=		"<a href=\""+contextPath+"/material/showDetail/"+product.providersId+"\" target=\"_blank\"><img src=\""+contextPath+"/file/image/get/"+product.imgId+"\" width=\"275\" height=\"220\"/></a>";
+			$productli+=		"<div class=\"tcenter pt10 pb10 f14 c666 bold\">"+product.productName+"</div>";
+			$productli+=	"</div>";
+			$productli+="</li>";
 		})
 		
 		//渲染列表
-		$("#materialList").empty().append($companyli)
+		$("#productList").empty().append($productli)
 		
 		//渲染分页
 		var pager = require("sea-modules/common");
 		pager.loadPager(pageNo,data.pager.totalPage,data.pager.totalRecords,initData);
 	}
 	
+	//事件绑定
+	function bindEvent(){
+		//导航事件绑定
+		$("#nav a").click(function(){
+			$("#nav a").removeClass("select");
+			$(this).addClass("select");
+			initData(1,$(this).attr("categoryId"));
+		});
+	}
+	
 	//初始化
 	function init(categoryId){
 		initData(1,categoryId);
+		bindEvent();
 	}
 	
 	//对外输出接口

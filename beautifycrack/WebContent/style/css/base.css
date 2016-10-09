@@ -122,7 +122,6 @@ text-shadow: #000 0 1px 0;
 .radius4{-moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
 .radius30{-moz-border-radius:30px; -webkit-border-radius:30px; border-radius:30px;}
 .block {width:1190px; clear:both; margin:0 auto;}
-.c_666{ color:#666}
 
 @-webkit-keyframes xuanzhuan {
 from {-webkit-transform: rotateZ(0deg); -moz-transform: rotateZ(0deg);transform: rotateZ(0deg);}    
@@ -136,7 +135,7 @@ to {-webkit-transform: rotateZ(360deg); -moz-transform: rotateZ(360deg);transfor
 .display-block{display:block;}
 .text-indent28{text-indent: 28px;}
 .margin-auto{margin:0 auto;}
-
+.pointer{cursor: pointer;}
 
 
 

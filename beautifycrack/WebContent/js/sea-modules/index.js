@@ -14,12 +14,56 @@ define(function(require, exports, module) {
 	
 	//初始化美缝材料数据
 	function initMaterial(){
+		execute(contextPath+'/product/indexShow/1',renderMaterial);
+	}
+	//渲染材料
+	function renderMaterial(data){
+		if(data.length==0){
+			$("#materialList").empty().append("<li class=\"clearfix tcenter\">暂无材料</li>");
+			return;
+		}
+		var $materiadiv="";
+		$.each(data,function(i,material){
+			if(i!=0){
+				$materiadiv+="<div class=\"w275 fleft h165 ofHidden ml30\">";
+			}else{
+				$materiadiv+="<div class=\"w275 fleft h165 ofHidden\">";
+			}
+			$materiadiv+=	"<a href=\""+contextPath+"/material/showDetail/"+material.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+material.imgId+"\" width=\"275\" height=\"165\">";
+			$materiadiv+=		"<p class=\"f16\">"+material.productName+"</p>";
+			$materiadiv+=		"<b class=\"h45\"></b>";
+			$materiadiv+=	"</a>";
+			$materiadiv+="</div>"
+		});
 		
+		$("#materialList").empty().append($materiadiv);
 	}
 	
 	//初始化美缝工具数据
 	function initTools(){
+		execute(contextPath+'/product/indexShow/0',rendertools);
+	}
+	//渲染工具
+	function rendertools(data){
+		if(data.length==0){
+			$("#toolsList").empty().append("<li class=\"clearfix tcenter\">暂无工具</li>");
+			return;
+		}
+		var $toolsdiv="";
+		$.each(data,function(i,tools){
+			if(i!=0){
+				$toolsdiv+="<div class=\"w275 fleft h165 ofHidden ml30\">";
+			}else{
+				$toolsdiv+="<div class=\"w275 fleft h165 ofHidden\">";
+			}
+			$toolsdiv+=	"<a href=\""+contextPath+"/material/showDetail/"+tools.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+tools.imgId+"\" width=\"275\" height=\"165\">";
+			$toolsdiv+=		"<p class=\"f16\">"+tools.productName+"</p>";
+			$toolsdiv+=		"<b class=\"h45\"></b>";
+			$toolsdiv+=	"</a>";
+			$toolsdiv+="</div>"
+		});
 		
+		$("#toolsList").empty().append($toolsdiv);
 	}
 	
 	//初始化美缝公司数据

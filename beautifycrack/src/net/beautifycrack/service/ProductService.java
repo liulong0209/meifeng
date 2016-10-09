@@ -9,15 +9,15 @@ import net.beautifycrack.util.PagerUtil;
 
 /**
  * 
- * MaterialService.java
+ * ProductService.java
  * 
- * @Description: 美缝材料接口
+ * @Description: 产品接口
  * 
  * @Company: chinasofti
  * @Created on 2016年10月8日 下午2:02:39
  * @author liulong
  */
-public interface MaterialService
+public interface ProductService
 {
     /**
      * 获取材料分类条目
@@ -29,13 +29,22 @@ public interface MaterialService
     List<ProductCategory> getMaterialCategory() throws BusinessException;
 
     /**
-     * 分页查询材料列表
+     * 获取工具分类条目
+     * 
+     * @param typeId
+     * @return
+     * @throws BusinessException
+     */
+    List<ProductCategory> getToolsCategory() throws BusinessException;
+
+    /**
+     * 分页查询产品列表
      * 
      * @param categoryId
      * @return
      * @throws BusinessException
      */
-    List<Product> queryMaterial(PagerUtil pu, Long categoryId) throws BusinessException;
+    List<Product> queryProduct(PagerUtil pu, Long categoryId) throws BusinessException;
 
     /**
      * 查询总数
@@ -45,4 +54,12 @@ public interface MaterialService
      * @throws BusinessException
      */
     Integer queryTotal(Long categoryId) throws BusinessException;
+
+    /**
+     * 首页显示的产品数据
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    List<Product> indexShow(Integer type) throws BusinessException;
 }
