@@ -265,4 +265,16 @@ overflow:hidden; }
 .l_phone {font: 700 18px/32px arial,'\5FAE\8F6F\96C5\9ED1';color: #e50;position: relative;padding-right: 19px;z-index: 2;}
 .focus:hover{box-shadow: 0 0 15px #cccccc;-webkit-box-shadow: 0 0 15px #cccccc;-moz-box-shadow: 0 0 15px #cccccc;}
 
+.login_icon_account_b{
+	background: url("../images/login_icon_account_b.png");
+}
 
+.login_icon_password_b{
+	background: url("../images/login_icon_password_b.png");
+}
+
+.login_icon_account_b, .login_icon_password_b{
+	width:33px;
+	height: 34px;
+	display: inline-block;
+}

@@ -39,7 +39,7 @@ define(function(require,exports,module){
 	function renderCaseData(data){
 		if(data.length==0)
 		{
-			$("#caseInfo").empty().append("<li class=\"tcenter f14\">该公司还没有上传任何施工案例</li>");
+			$("#caseInfo").empty().append("<li class=\"tcenter f14\">还没有上传任何施工案例</li>");
 			return;
 		}
 		var $case="";

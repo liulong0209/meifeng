@@ -33,4 +33,5 @@
 		})
 	//同步菜单样式
 	seajs.use("sea-modules/common",function(module){module.syncMenuClass()})
+	seajs.use("sea-modules/login",function(module){module.init()})
 </script>
