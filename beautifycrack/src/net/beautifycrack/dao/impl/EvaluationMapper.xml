@@ -30,8 +30,7 @@
 			content,
 			reviewer,
 			level,
-			review_time,
-			
+			review_time
 		)
 		value
 		(

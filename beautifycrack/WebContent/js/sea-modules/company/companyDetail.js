@@ -178,6 +178,75 @@ define(function(require,exports,module){
 		});
 	}
 	
+	//发表评论
+	function commitComment(){
+		//判断是否登录
+		if(!userInfo){
+//			require.async('bootstrap',function(){
+//				$('#tipsModule').find(".modal-body").empty().append("登录后才可以进行评价，请先登录!");
+//				$('#tipsModule').modal("show");
+//			})
+//			return;
+		}
+		
+		var level = $('input[name="optionsRadios"]:checked').val();
+		if(!level){
+			require.async('bootstrap',function(){
+				$('#tipsModule').find(".modal-body").empty().append("请选择评价类型");
+				$('#tipsModule').modal("show");
+			})
+			return;
+		}
+		//判断内容是否为空
+		var content = $("textarea").val();
+		if(content==""){
+			require.async('bootstrap',function(){
+				$('#tipsModule').find(".modal-body").empty().append("请输入评价内容");
+				$('#tipsModule').modal("show");
+			})
+			return;
+		}
+		//异步提交
+		execute(contextPath+'/evaluation/evaluate',
+			function(data){
+				if(data.result=='0')
+				{
+					require.async('bootstrap',function(){
+						$('#tipsModule').find(".modal-body").empty().append("登录后才可以进行评价，请先登录!");
+						$('#tipsModule').modal("show");
+					})
+				}
+				else if(data.result=='1')
+				{
+					require.async('bootstrap',function(){
+						$('#tipsModule').find(".modal-body").empty().append("评价成功！");
+						$('#tipsModule').modal("show");
+						//清空表单
+						$('input[name="optionsRadios"]:checked').attr('checked',false);
+						$("textarea").val("");
+						//重新加载评价内容
+						initEvaluationData(1);
+					})
+				}
+				else if(data.result=='2')
+				{
+					require.async('bootstrap',function(){
+						$('#tipsModule').find(".modal-body").empty().append("评价成功！");
+						$('#tipsModule').modal("show");
+					})
+				}
+			}
+		,{"gainer":companyId,"content":content,"level":level});
+	}
+		
+	//按钮绑定事件
+	function buttonBindEvent(){
+		//发表评论按钮事件
+		$("#commit").click(function(){
+			commitComment();
+		})
+	}
+	
 	//初始化
 	function init(id){
 		companyId = id;
@@ -186,6 +255,7 @@ define(function(require,exports,module){
 		initBookingData();
 		initQualificationData();
 		initEvaluationData(1);
+		buttonBindEvent();
 		
 		require.async('zoomify',function(){
 		$("#caseInfo img,#bookingInfo img,#qualificationInfo img").zoomify()

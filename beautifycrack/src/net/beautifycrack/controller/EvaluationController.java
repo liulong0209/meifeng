@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import net.beautifycrack.module.Evaluation;
+import net.beautifycrack.module.UserInfo;
 import net.beautifycrack.service.EvaluationService;
 import net.beautifycrack.util.PagerUtil;
 
@@ -68,11 +71,32 @@ public class EvaluationController
      * @return
      */
     @RequestMapping(value = "/evaluate", method = RequestMethod.POST)
-    public @ResponseBody Object addEvaluation(Evaluation evaluation)
+    public @ResponseBody Object addEvaluation(HttpServletRequest request, HttpServletResponse response,
+            Evaluation evaluation)
     {
-        evaluationService.addEvaluation(evaluation);
         Map<String, Object> dataMaps = new HashMap<String, Object>();
-        return dataMaps;
+        try
+        {
+            // 获取当前用户对象
+            UserInfo user = (UserInfo) request.getSession(true).getAttribute("userInfo");
+            // 用户没有登录，不能进行评
+            if (user == null)
+            {
+                // dataMaps.put("result", "0");
+                // return dataMaps;
+
+            }
+            // evaluation.setReviewer(user.getId());
+            evaluationService.addEvaluation(evaluation);
+            dataMaps.put("result", "1");
+            return dataMaps;
+        }
+        catch (Exception e)
+        {
+            dataMaps.put("result", "2");
+            return dataMaps;
+        }
+
     }
 
 }

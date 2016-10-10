@@ -77,12 +77,13 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/company/showDetail/{id}")
-    public ModelAndView showCompany(@PathVariable Integer id)
+    public ModelAndView showCompany(HttpServletRequest request, HttpServletResponse response, @PathVariable Integer id)
     {
         ModelAndView mv = new ModelAndView();
         Providers company = providersService.showProviders(id);
         mv.getModel().put("company", company);
         mv.setViewName("company/companyDetail");
+        // request.getSession(true).setAttribute("user", "user");
         return mv;
     }
 
