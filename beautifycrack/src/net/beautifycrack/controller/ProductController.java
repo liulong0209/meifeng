@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 产品控制器
+ * 产品控制器(材料和工具)
  * 
  * ProductController.java
  * 
@@ -57,6 +57,8 @@ public class ProductController
         ModelAndView mv = new ModelAndView();
         mv.getModelMap().put("firstCategory", materialCategory.get(0).getId());
         mv.getModelMap().put("productCategory", materialCategory);
+        // 表明点击的时候材料
+        mv.getModelMap().put("type", Common.PRODUCT_MATERIAL);
         mv.setViewName("product/productList");
         return mv;
     }
@@ -74,6 +76,8 @@ public class ProductController
         ModelAndView mv = new ModelAndView();
         mv.getModelMap().put("firstCategory", toolsCategory.get(0).getId());
         mv.getModelMap().put("productCategory", toolsCategory);
+        // 表明点击的时候工具
+        mv.getModelMap().put("type", Common.PRODUCT_TOOLS);
         mv.setViewName("product/productList");
         return mv;
     }
@@ -101,20 +105,6 @@ public class ProductController
         pu.setTotalPage(pu.getTotalPage());
         dataMaps.put("pager", pu);
         return dataMaps;
-    }
-
-    /**
-     * 跳转到产品详情页面(展示产品所属公司信息)
-     * 
-     * @param providerId
-     * @return
-     */
-    @RequestMapping(value = "/product/showDetail/{showDetail}")
-    public Object showMaterialDetail(@PathVariable Long providerId)
-    {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("product/productCompany");
-        return mv;
     }
 
     /**

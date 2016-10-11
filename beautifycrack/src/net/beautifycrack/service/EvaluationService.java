@@ -25,7 +25,7 @@ public interface EvaluationService
      * @return
      * @throws BusinessException
      */
-    List<Evaluation> pagerList(PagerUtil pu, Integer gainer) throws BusinessException;
+    List<Evaluation> pagerList(PagerUtil pu, Long gainer) throws BusinessException;
 
     /**
      * 查询总数
@@ -33,7 +33,7 @@ public interface EvaluationService
      * @return
      * @throws BusinessException
      */
-    Integer queryTotal(Integer providersId) throws BusinessException;
+    Integer queryTotal(Long providersId) throws BusinessException;
 
     /**
      * 增加评价记录

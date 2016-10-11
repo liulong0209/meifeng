@@ -23,5 +23,5 @@ public interface FileInfoMapper
      * @return
      * @throws BusinessException
      */
-    FileInfo findFileById(Integer fileId) throws BusinessException;
+    FileInfo findFileById(Long fileId) throws BusinessException;
 }

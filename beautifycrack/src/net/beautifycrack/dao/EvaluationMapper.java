@@ -33,7 +33,7 @@ public interface EvaluationMapper
      * @return
      * @throws BusinessException
      */
-    Integer queryTotal(Integer providersId) throws BusinessException;
+    Integer queryTotal(Long providersId) throws BusinessException;
 
     /**
      * 增加评价记录

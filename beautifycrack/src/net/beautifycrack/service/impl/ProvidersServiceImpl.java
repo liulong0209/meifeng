@@ -8,8 +8,10 @@ import javax.annotation.Resource;
 
 import net.beautifycrack.dao.ProvidersMapper;
 import net.beautifycrack.exception.BusinessException;
+import net.beautifycrack.module.AntiFake;
 import net.beautifycrack.module.BookingCommunity;
 import net.beautifycrack.module.ConstructionCase;
+import net.beautifycrack.module.ProductCategory;
 import net.beautifycrack.module.Providers;
 import net.beautifycrack.module.Qualification;
 import net.beautifycrack.module.Worker;
@@ -51,7 +53,7 @@ public class ProvidersServiceImpl implements ProvidersService
     }
 
     @Override
-    public Providers showProviders(Integer id) throws BusinessException
+    public Providers showProviders(Long id) throws BusinessException
     {
         return providersMapper.showProviders(id);
     }
@@ -69,27 +71,39 @@ public class ProvidersServiceImpl implements ProvidersService
     }
 
     @Override
-    public List<Worker> findProviderWorker(Integer providerId) throws BusinessException
+    public List<Worker> findProviderWorker(Long providerId) throws BusinessException
     {
         return providersMapper.findProviderWorker(providerId);
     }
 
     @Override
-    public List<ConstructionCase> findConstructionCase(Integer providerId) throws BusinessException
+    public List<ConstructionCase> findConstructionCase(Long providerId) throws BusinessException
     {
         return providersMapper.findConstructionCase(providerId);
     }
 
     @Override
-    public List<BookingCommunity> findBookingCommunity(Integer providerId) throws BusinessException
+    public List<BookingCommunity> findBookingCommunity(Long providerId) throws BusinessException
     {
         return providersMapper.findBookingCommunity(providerId);
     }
 
     @Override
-    public List<Qualification> findQualification(Integer company) throws BusinessException
+    public List<Qualification> findQualification(Long company) throws BusinessException
     {
         return providersMapper.findQualification(company);
+    }
+
+    @Override
+    public List<AntiFake> findAntiFake(Long company) throws BusinessException
+    {
+        return providersMapper.findAntiFake(company);
+    }
+
+    @Override
+    public List<ProductCategory> findProductCategory(Long company) throws BusinessException
+    {
+        return providersMapper.findProductCategory(company);
     }
 
 }

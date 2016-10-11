@@ -3,8 +3,10 @@ package net.beautifycrack.service;
 import java.util.List;
 
 import net.beautifycrack.exception.BusinessException;
+import net.beautifycrack.module.AntiFake;
 import net.beautifycrack.module.BookingCommunity;
 import net.beautifycrack.module.ConstructionCase;
+import net.beautifycrack.module.ProductCategory;
 import net.beautifycrack.module.Providers;
 import net.beautifycrack.module.Qualification;
 import net.beautifycrack.module.Worker;
@@ -38,7 +40,7 @@ public interface ProvidersService
      * @return
      * @throws BusinessException
      */
-    Providers showProviders(Integer id) throws BusinessException;
+    Providers showProviders(Long id) throws BusinessException;
 
     /**
      * 查询总数
@@ -65,7 +67,7 @@ public interface ProvidersService
      * @return
      * @throws BusinessException
      */
-    List<Worker> findProviderWorker(Integer providerId) throws BusinessException;
+    List<Worker> findProviderWorker(Long providerId) throws BusinessException;
 
     /**
      * 查找施工案例信息
@@ -74,7 +76,7 @@ public interface ProvidersService
      * @return
      * @throws BusinessException
      */
-    List<ConstructionCase> findConstructionCase(Integer providerId) throws BusinessException;
+    List<ConstructionCase> findConstructionCase(Long providerId) throws BusinessException;
 
     /**
      * 查找预约小区信息
@@ -83,7 +85,7 @@ public interface ProvidersService
      * @return
      * @throws BusinessException
      */
-    List<BookingCommunity> findBookingCommunity(Integer providerId) throws BusinessException;
+    List<BookingCommunity> findBookingCommunity(Long providerId) throws BusinessException;
 
     /**
      * 查找公司资质信息
@@ -92,5 +94,24 @@ public interface ProvidersService
      * @return
      * @throws BusinessException
      */
-    List<Qualification> findQualification(Integer company) throws BusinessException;
+    List<Qualification> findQualification(Long company) throws BusinessException;
+
+    /**
+     * 查找公司防伪信息
+     * 
+     * @param company
+     * @return
+     * @throws BusinessException
+     */
+    List<AntiFake> findAntiFake(Long company) throws BusinessException;
+
+    /**
+     * 查找公司经营产品分类
+     * 
+     * @param company
+     * @return
+     * @throws BusinessException
+     */
+    List<ProductCategory> findProductCategory(Long company) throws BusinessException;
+
 }

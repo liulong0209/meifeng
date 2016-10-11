@@ -32,7 +32,7 @@ public class FileInfoServiceImpl implements FileInfoService
     private FileInfoMapper fileInfoMapper;
 
     @Override
-    public FileInfo findFileById(Integer fileId) throws BusinessException
+    public FileInfo findFileById(Long fileId) throws BusinessException
     {
         return fileInfoMapper.findFileById(fileId);
     }

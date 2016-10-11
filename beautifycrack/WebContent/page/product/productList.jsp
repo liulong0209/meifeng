@@ -31,6 +31,6 @@
 <%@include file="../common/footer.jsp" %>  	
 	<script type="text/javascript">
 		//加载入口模块
-		seajs.use("sea-modules/product/productList",function(module){module.init(${firstCategory});});
+		seajs.use("sea-modules/product/productList",function(module){module.init(${firstCategory},${type});});
 	</script> 
 </html>

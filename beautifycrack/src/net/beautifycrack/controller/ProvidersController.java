@@ -77,7 +77,7 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/company/showDetail/{id}")
-    public ModelAndView showCompany(HttpServletRequest request, HttpServletResponse response, @PathVariable Integer id)
+    public ModelAndView showCompany(HttpServletRequest request, HttpServletResponse response, @PathVariable Long id)
     {
         ModelAndView mv = new ModelAndView();
         Providers company = providersService.showProviders(id);
@@ -94,7 +94,7 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/worker/showDetail/{id}")
-    public ModelAndView showWorker(@PathVariable Integer id)
+    public ModelAndView showWorker(@PathVariable Long id)
     {
         ModelAndView mv = new ModelAndView();
         Providers worker = providersService.showProviders(id);
@@ -110,7 +110,7 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/providers/showWorker/{companyId}")
-    public @ResponseBody Object showWorkerData(@PathVariable Integer companyId)
+    public @ResponseBody Object showWorkerData(@PathVariable Long companyId)
     {
         return providersService.findProviderWorker(companyId);
     }
@@ -122,7 +122,7 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/providers/showCase/{companyId}")
-    public @ResponseBody Object showCaseData(@PathVariable Integer companyId)
+    public @ResponseBody Object showCaseData(@PathVariable Long companyId)
     {
         return providersService.findConstructionCase(companyId);
     }
@@ -134,7 +134,7 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/company/showBookingCommunity/{companyId}")
-    public @ResponseBody Object showBookingCommunityData(@PathVariable Integer companyId)
+    public @ResponseBody Object showBookingCommunityData(@PathVariable Long companyId)
     {
         return providersService.findBookingCommunity(companyId);
     }
@@ -146,7 +146,7 @@ public class ProvidersController
      * @return
      */
     @RequestMapping(value = "/company/showQualification/{companyId}")
-    public @ResponseBody Object showQualificationData(@PathVariable Integer companyId)
+    public @ResponseBody Object showQualificationData(@PathVariable Long companyId)
     {
         return providersService.findQualification(companyId);
     }
@@ -195,6 +195,78 @@ public class ProvidersController
         }
         // 查询数据
         return providersService.providersListIndex(list);
+    }
+
+    /**
+     **************** 以下方法在美缝材料和美缝工具使用***************************
+     */
+
+    /**
+     * 跳转到美缝材料详情页面(展示材料所属公司信息)
+     * 
+     * @param providerId
+     * @return
+     */
+    @RequestMapping(value = "/material/showCompanyMaterial/{providerId}")
+    public Object showCompanyMaterial(@PathVariable Long providerId)
+    {
+        ModelAndView mv = new ModelAndView();
+        Providers company = providersService.showProviders(providerId);
+        mv.getModel().put("company", company);
+        mv.setViewName("product/productCompany");
+        return mv;
+    }
+
+    /**
+     * 跳转到美缝工具详情页面(展示工具所属公司信息)
+     * 
+     * @param providerId
+     * @return
+     */
+    @RequestMapping(value = "/tools/showCompanyTools/{providerId}")
+    public Object showCompanyTools(@PathVariable Long providerId)
+    {
+        ModelAndView mv = new ModelAndView();
+        Providers company = providersService.showProviders(providerId);
+        mv.getModel().put("company", company);
+        mv.setViewName("product/productCompany");
+        return mv;
+    }
+
+    /**
+     * 展示公司证书信息(证书和资质使用同一个表，所以共用一个service方法)
+     * 
+     * @param companyId
+     * @return
+     */
+    @RequestMapping(value = "/company/certificate/{companyId}")
+    public @ResponseBody Object showCertificateData(@PathVariable Long companyId)
+    {
+        return providersService.findQualification(companyId);
+    }
+
+    /**
+     * 展示公司防伪信息
+     * 
+     * @param companyId
+     * @return
+     */
+    @RequestMapping(value = "/company/antifake/{companyId}")
+    public @ResponseBody Object showAntifakeData(@PathVariable Long companyId)
+    {
+        return providersService.findAntiFake(companyId);
+    }
+
+    /**
+     * 获取公司经营产品分类
+     * 
+     * @param companyId
+     * @return
+     */
+    @RequestMapping(value = "/company/productCategory/{companyId}")
+    public @ResponseBody Object showProductCategory(@PathVariable Long companyId)
+    {
+        return providersService.findProductCategory(companyId);
     }
 
 }

@@ -16,7 +16,7 @@
 	</select>
 	
 	<!-- 查询一条详细信息 -->
-	<select id="showNews" parameterType="Integer" resultType="news">
+	<select id="showNews" parameterType="Long" resultType="news">
 		select 
 		id as id,
 		title as title,

@@ -19,7 +19,7 @@
 	</select>
 	
 	<!-- 查询总数 -->
-	<select id="queryTotal" resultType="Integer" parameterType="Integer">
+	<select id="queryTotal" resultType="Integer" parameterType="Long">
 		select count(*) from tbl_evaluation where gainer=#{providersId}
 	</select>
 	

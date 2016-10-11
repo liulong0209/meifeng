@@ -50,7 +50,7 @@ public class EvaluationController
      * @return
      */
     @RequestMapping(value = "/pageList", method = RequestMethod.POST)
-    public @ResponseBody Object pageList(PagerUtil pu, Integer gainer)
+    public @ResponseBody Object pageList(PagerUtil pu, Long gainer)
     {
         pu.setPageSize(10);// œ‘ æ10Ãı
         List<Evaluation> dataList = evaluationService.pagerList(pu, gainer);

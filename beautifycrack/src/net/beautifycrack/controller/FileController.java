@@ -53,7 +53,7 @@ public class FileController
      * @throws BusinessException
      */
     @RequestMapping(value = "/image/get/{imageId}")
-    public void getImage(HttpServletRequest request, HttpServletResponse response, @PathVariable Integer imageId)
+    public void getImage(HttpServletRequest request, HttpServletResponse response, @PathVariable Long imageId)
             throws BusinessException
     {
         logger.debug("FileController->getImage:imageId:{}", imageId);
@@ -74,7 +74,7 @@ public class FileController
         }
         catch (IOException e)
         {
-        	logger.error("获取附件失败",e);
+            logger.error("获取附件失败", e);
         }
         finally
         {

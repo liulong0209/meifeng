@@ -23,5 +23,5 @@ public interface FileInfoService
      * @return
      * @throws BusinessException
      */
-    FileInfo findFileById(Integer fileId) throws BusinessException;
+    FileInfo findFileById(Long fileId) throws BusinessException;
 }

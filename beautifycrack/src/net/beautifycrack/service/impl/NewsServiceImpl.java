@@ -46,7 +46,7 @@ public class NewsServiceImpl implements NewsService
     }
 
     @Override
-    public News showNews(Integer id) throws BusinessException
+    public News showNews(Long id) throws BusinessException
     {
         return newsMapper.showNews(id);
     }

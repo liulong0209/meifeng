@@ -6,7 +6,7 @@ define(function(require,exports,module){
 	require('jquery');
 	
 	//初始化数据
-	function initData(pageNo,categoryId){
+	function initData(pageNo,categoryId,type){
 		require.async('custom',function(){
 			$.ajax({    
 				url: contextPath+'/product/pageList',       
@@ -20,7 +20,7 @@ define(function(require,exports,module){
 				success: function (data) {
 					if(data && data.dataList)
 					{
-						render(data,pageNo);
+						render(data,pageNo,type);
 					}	
 				},
 				complete: function () {
@@ -36,7 +36,7 @@ define(function(require,exports,module){
 	}
 	
 	//渲染数据
-	function render(data,pageNo){
+	function render(data,pageNo,type){
 		if(data.dataList.length==0)
 		{
 			$("#productList").empty().append("<li class=\"clearfix tcenter mt20\">此分类暂无产品</li>");
@@ -47,7 +47,12 @@ define(function(require,exports,module){
 		$.each(data.dataList,function(i,product){
 			$productli+="<li class=\"fleft\">";
 			$productli+=    "<div class=\"w275 border_f3 ml30 mt20 mb20 pointer\">"	
-			$productli+=		"<a href=\""+contextPath+"/material/showDetail/"+product.providersId+"\" target=\"_blank\"><img src=\""+contextPath+"/file/image/get/"+product.imgId+"\" width=\"275\" height=\"220\"/></a>";
+			if(type==0){
+				$productli+=	"<a href=\""+contextPath+"/tools/showCompanyTools/"+product.providersId+"\" target=\"_blank\">";
+			}else{
+				$productli+=	"<a href=\""+contextPath+"/material/showCompanyMaterial/"+product.providersId+"\" target=\"_blank\">";
+			}
+			$productli+=			"<img src=\""+contextPath+"/file/image/get/"+product.imgId+"\" width=\"275\" height=\"220\"/></a>";
 			$productli+=		"<div class=\"tcenter pt10 pb10 f14 c666 bold\">"+product.productName+"</div>";
 			$productli+=	"</div>";
 			$productli+="</li>";
@@ -72,8 +77,8 @@ define(function(require,exports,module){
 	}
 	
 	//初始化
-	function init(categoryId){
-		initData(1,categoryId);
+	function init(categoryId,type){
+		initData(1,categoryId,type);
 		bindEvent();
 	}
 	

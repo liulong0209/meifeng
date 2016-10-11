@@ -4,7 +4,7 @@
   
 <mapper namespace="net.beautifycrack.dao.FileInfoMapper">
 	<!-- 查询新闻列表 -->
-	<select id="findFileById" parameterType="Integer" resultType="fileInfo" >
+	<select id="findFileById" parameterType="Long" resultType="fileInfo" >
 		select 
 		 	file_id as fileId,
 			orgin_name as orginName,

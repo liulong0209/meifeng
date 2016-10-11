@@ -84,7 +84,7 @@ public class NewsController
      * @return
      */
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
-    public ModelAndView showDetail(HttpServletRequest request, HttpServletResponse response, @PathVariable Integer id)
+    public ModelAndView showDetail(HttpServletRequest request, HttpServletResponse response, @PathVariable Long id)
     {
         ModelAndView mv = new ModelAndView();
         News news = newsService.showNews(id);

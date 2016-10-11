@@ -16,6 +16,7 @@
 		<typeAlias alias="worker" type="net.beautifycrack.module.Worker"/>
 		<typeAlias alias="productCategory" type="net.beautifycrack.module.ProductCategory"/>
 		<typeAlias alias="product" type="net.beautifycrack.module.Product"/>
+		<typeAlias alias="antifake" type="net.beautifycrack.module.AntiFake"/>
 	</typeAliases>
 	<mappers>			
 		<mapper resource="net/beautifycrack/dao/impl/AdvertisementMapper.xml" />

@@ -37,7 +37,7 @@ public class EvaluationServiceImpl implements EvaluationService
     private EvaluationMapper evaluationMapper;
 
     @Override
-    public List<Evaluation> pagerList(PagerUtil pager, Integer gainer) throws BusinessException
+    public List<Evaluation> pagerList(PagerUtil pager, Long gainer) throws BusinessException
     {
         Map<String, Object> parameter = new HashMap<String, Object>();
         parameter.put("providersId", gainer);
@@ -47,7 +47,7 @@ public class EvaluationServiceImpl implements EvaluationService
     }
 
     @Override
-    public Integer queryTotal(Integer providersId) throws BusinessException
+    public Integer queryTotal(Long providersId) throws BusinessException
     {
         return evaluationMapper.queryTotal(providersId);
     }

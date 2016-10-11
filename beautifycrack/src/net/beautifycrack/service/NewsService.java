@@ -34,7 +34,7 @@ public interface NewsService
      * @return
      * @throws BusinessException
      */
-    News showNews(Integer id) throws BusinessException;
+    News showNews(Long id) throws BusinessException;
 
     /**
      * ²éÑ¯×ÜÊý
