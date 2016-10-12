@@ -108,6 +108,20 @@ public class ProductController
     }
 
     /**
+     * 查询公司具体产品分类的产品
+     * 
+     * @param categoryId
+     * @param companyId
+     * @return
+     */
+    @RequestMapping(value = "/product/queryProduct", method = RequestMethod.POST)
+    public @ResponseBody Object queryProduct(Long categoryId, Long companyId)
+    {
+        List<Product> list = productService.queryProduct(companyId, categoryId);
+        return list;
+    }
+
+    /**
      * 首页显示的产品数据(材料和工具)
      * 
      * @return

@@ -133,11 +133,12 @@
 		where providers_id = #{providerId}
 	</select>
 	
-	<!-- 查找公司防伪信息 -->
+	<!-- 查找公司经营产品分类信息 -->
 	<select id="findProductCategory" parameterType="Long" resultType="productCategory">
 		   select 
 		          pc.product_type_id as id,
-		          pc.name as name
+		          pc.name as name,
+		          pe.providers_tpye as type
 		   from tbl_product_class pc,tbl_providers_info pri,tbl_providers_extend pe
 		   where pc.product_type_id= pe.extend_id and pri.providers_id=pe.providers_id
 		   and pri.providers_id=#{companyId}

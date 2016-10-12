@@ -72,4 +72,13 @@ public class ProductServiceImpl implements ProductService
         return productMapper.indexShow(type);
     }
 
+    @Override
+    public List<Product> queryProduct(Long companyId, Long categoryId) throws BusinessException
+    {
+        Map<String, Object> paramater = new HashMap<String, Object>();
+        paramater.put("companyId", companyId);
+        paramater.put("categoryId", categoryId);
+        return productMapper.queryCompanyProduct(paramater);
+    }
+
 }

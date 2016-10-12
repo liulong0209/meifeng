@@ -135,10 +135,10 @@ to {-webkit-transform: rotateZ(360deg); -moz-transform: rotateZ(360deg);transfor
 }
 .relative{position: relative;}
 .display-block{display:block;}
+.inline-block{display:inline-block;}
 .text-indent28{text-indent: 28px;}
 .margin-auto{margin:0 auto;}
 .pointer{cursor: pointer;}
-
 
 
 

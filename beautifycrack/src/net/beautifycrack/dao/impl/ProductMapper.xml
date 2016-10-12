@@ -27,7 +27,7 @@
 		left join tbl_providers_info pi on pro.providers_id = pi.providers_id
 		where pro.sts = 1
 		and  pi.serviceType=1
-		and product_type = #{categoryId}
+		and pro.product_type = #{categoryId}
 		order by pro.order_no
 		LIMIT #{startRow}, #{pageSize}
 	</select>
@@ -60,6 +60,28 @@
 		and pc.type=#{type}
 		order by pro.order_no
 		LIMIT 0, 4
+	</select>
+	
+	<!-- 根据公司和分类查询产品 -->
+	<select id="queryCompanyProduct" parameterType="Map" resultType="product">
+		select 
+			pro.prod_id as id,
+			pro.product_name as productName,
+			pro.product_intro as profile,
+			pro.product_pic as imgId,
+			pro.product_type as category,
+			pro.providers_id as providersId,
+			pi.provider_name as providersName
+		from tbl_product pro,tbl_product_class pc,tbl_providers_info pi,tbl_providers_extend pe
+		where pro.sts = 1
+		and  pi.serviceType=1
+		and pro.product_type=pc.product_type_id
+		and pro.providers_id=pi.providers_id
+		and pc.product_type_id = pe.extend_id
+		and pi.providers_id = pe.providers_id
+		and pro.product_type = #{categoryId}
+		and pro.providers_id =#{companyId}
+		order by pro.order_no
 	</select>
 </mapper>
 

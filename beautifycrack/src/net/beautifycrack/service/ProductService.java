@@ -62,4 +62,13 @@ public interface ProductService
      * @throws BusinessException
      */
     List<Product> indexShow(Integer type) throws BusinessException;
+
+    /**
+     * 根据公司和分类查询产品
+     * 
+     * @param categoryId
+     * @return
+     * @throws BusinessException
+     */
+    List<Product> queryProduct(Long companyId, Long categoryId) throws BusinessException;
 }

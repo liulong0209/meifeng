@@ -20,20 +20,9 @@
 		<div class="block clearfix">
 			<div class="t1">主营产品</div>
 			<div id="productInfo" class="index-image pt10">
-				<ul id="productTab" class="nav nav-tabs" role="tablist">
-				  <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
-				  <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
-				  <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
-				  <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
-				</ul>
-				
+				<ul id="productTab" class="nav nav-tabs" role="tablist"></ul>
 				<!-- Tab panes -->
-				<div class="tab-content">
-				  <div role="tabpanel" class="tab-pane active" id="home">home</div>
-				  <div role="tabpanel" class="tab-pane" id="profile">profile</div>
-				  <div role="tabpanel" class="tab-pane" id="messages">messages</div>
-				  <div role="tabpanel" class="tab-pane" id="settings">settings</div>
-				</div>
+				<div id="product_content" class="tab-content clearfix minh256 mt20 mb20"></div>
 			</div>
 		</div>
 		
@@ -49,6 +38,6 @@
 	<%@include file="../common/footer.jsp" %>
 	<script type="text/javascript">
 		//加载入口模块
-		seajs.use("sea-modules/product/productCompany",function(module){module.init(${company.providersId});});	
+		seajs.use("sea-modules/product/productCompany",function(module){module.init("${company.providersId}");});	
 	</script> 
 </html>

@@ -17,16 +17,53 @@ define(function(require,exports,module){
 			$("#productInfo").empty().append("<li class=\"tcenter\">该公司还没有上传任何产品信息</li>");
 			return;
 		}
-		var $certificate="";
-		$.each(data,function(i,certificate){
-			$certificate+=	"<div class=\"fleft pr75\">";
-			$certificate+=		"<img src=\""+contextPath+"/file/image/get/"+certificate.imageId+"\" width=\"187\" height=\"189\">";
-			$certificate+=		"<div class=\"tcenter pt5 f14\">"+certificate.title+"</div>"
-			$certificate+=	"</div>";
+		var $category="";
+		$.each(data,function(i,category){
+			$category+=	"<li role=\"presentation\"";
+			if(i==0){
+				$category+=	"class=\"active\"";
+			}
+			$category+=	"><a href=\"#product_"+category.id+"\" role=\"tab\" data-toggle=\"tab\" categoryId="+category.id+" class=\"f14 bold\">"+category.name+"</a></li>";
 		})
-		$certificate+="<div class=\"clearfix\"></div>";
-		//渲染新闻列表
-		$("#certificateInfo").empty().append($certificate)
+		//渲染标签页
+		$("#productTab").empty().append($category);
+		//tab页绑定点击事件
+		require.async('bootstrap',function(){
+			$('#productTab a').click(function (e) {
+				  e.preventDefault();
+				  $("div[id^=product_]").removeClass("active");
+				  queryProduct($(this).attr("categoryId"));
+				  $(this).tab('show');
+			})
+			//查询第一个tab页内容
+			queryProduct($("#productTab a").first().attr("categoryId"));
+		});
+	}
+	
+	//根据分类查找产品
+	function queryProduct(categoryId){
+		execute(contextPath+'/product/queryProduct',rendProductData,{"categoryId":categoryId,"companyId":companyId});
+	}
+	
+	function rendProductData(data){
+		if(data.length==0)
+		{
+			$("#product_content").empty().append("<div role=\"tabpanel\" class=\"tab-pane active tcenter pt30\" id=\"product_00\">该分类暂时没有产品</div>");
+			return;
+		}
+		var $productobj="<div role=\"tabpanel\" class=\"tab-pane active clearfix\" id=\"product_"+data[0].category+"\">";
+		$.each(data,function(i,product){
+			$productobj+="<div class=\"wper25 clearfix inline-block mb20\">";
+			$productobj+=	"<div class=\"fleft border_f3 pointer\">";
+			$productobj+=		"<img src=\"/mf/file/image/get/"+product.imgId+"\" width=\"275\" height=\"220\">";
+			$productobj+=		"<div class=\"tcenter pt10 pb10 f14 c666 bold\">"+product.productName+"</div>";
+			$productobj+=	"</div>";
+			$productobj+="</div>";
+		});
+		$productobj+="</div>";
+		//先清空再追加，保证数据最新
+		$("#product_content").find("#product_"+data[0].category).remove();
+		$("#product_content").append($productobj)
 	}
 	
 	//初始公司证书数据
@@ -109,14 +146,8 @@ define(function(require,exports,module){
 	
 	//初始化
 	function init(id){
-		require.async('bootstrap',function(){
-			$('#productTab a').click(function (e) {
-				  e.preventDefault()
-				  $(this).tab('show')
-			})
-		});
-		
 		companyId = id;
+		initProductCategoryData();
 		initCertificateData();
 		initantifakeData();
 	}
