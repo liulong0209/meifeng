@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.25)
-# Date: 2016-10-12 19:11:39
+# Date: 2016-10-14 10:46:45
 # Generator: MySQL-Front 5.3  (Build 4.13)
 
 /*!40101 SET NAMES utf8 */;
@@ -927,7 +927,7 @@ CREATE TABLE `tbl_providers_extend` (
   `STS` char(1) NOT NULL,
   `CREATE_DATE` datetime NOT NULL,
   PRIMARY KEY (`providers_extend_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='提供商扩展信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='提供商扩展信息表';
 
 #
 # Data for table "tbl_providers_extend"
@@ -961,6 +961,33 @@ CREATE TABLE `tbl_providers_info` (
 #
 
 INSERT INTO `tbl_providers_info` VALUES (1,'西安城市人家装修公司','陕西城市人家装饰（集团）有限公司是由国内大型房地产公司及金融投资机构投资的大型家居装饰企业。公司秉承集团总公司倡导的为客户营造“健康家居，健康生活”的服务宗旨，致力于环保、健康家装，并取得了丰硕成果，得到古城百姓的广泛信赖，被称为“健康家居使者”。','400-800-0011转12403','陕西省西安市雁塔区南三环朱雀路交叉口西北角',1,0,NULL,1,0,1,1,0),(2,'西安业之峰装饰公司','西安业之峰装饰公司咨询电话：17791881949 联系我时请说是在装一网上看到的，谢谢！ 业之','400-800-0011转12404','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',2,0,NULL,2,0,2,1,0),(3,'广州潺智信息科技有限公司','政府开发多年开发经验，可人员驻场开发','400-800-0011转12403','陕西省西安市雁塔区南三环朱雀路交叉口西北角',1,0,NULL,3,0,1,1,0),(4,'卓越团队','政府开发多年开发经验，可人员驻场开发','400-800-0011转12404','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',2,0,NULL,1,1,NULL,1,0),(5,'李泽','从事美缝多年，经验丰富','13211111111','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',9,0,NULL,1,2,NULL,1,0),(6,'林大公司','西安林大公司公司咨询电话：17791881949 联系我时请说是在装一网上看到的，谢谢！ 业之','13211111111','西安市高新科技一路59号（区科技一路与丈八北路丁字路...',1,0,NULL,1,0,1,1,1);
+
+#
+# Source for table "tbl_user_base"
+#
+
+CREATE TABLE `tbl_user_base` (
+  `userId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户标识 主键',
+  `userName` varchar(64) DEFAULT NULL COMMENT '账号',
+  `password` varchar(255) DEFAULT NULL COMMENT '密码',
+  `gender` int(1) DEFAULT NULL COMMENT '性别 0男 1女 2保密',
+  `birthday` varchar(255) DEFAULT NULL COMMENT '出生年月',
+  `avatar` bigint(20) DEFAULT NULL COMMENT '用户头像id',
+  `nickname` varchar(64) DEFAULT NULL COMMENT '昵称',
+  `phoneNo` varchar(255) DEFAULT NULL COMMENT '手机号',
+  `state` int(11) DEFAULT NULL COMMENT '状态 0正常 1删除',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
+  `lastLoginTime` datetime DEFAULT NULL COMMENT '最后一次登录时间',
+  `createTime` datetime DEFAULT NULL COMMENT '创建时间',
+  `updateTime` datetime DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户基本信息表';
+
+#
+# Data for table "tbl_user_base"
+#
+
+INSERT INTO `tbl_user_base` VALUES (1,'test','C4CA4238A0B923820DCC509A6F75849B',NULL,NULL,NULL,NULL,'13111111111',0,NULL,NULL,'2016-10-13 17:14:44',NULL);
 
 #
 # Source for table "tbl_work_case"

@@ -1,8 +1,17 @@
 package net.beautifycrack.controller;
 
+import javax.annotation.Resource;
+
+import net.beautifycrack.module.UserInfo;
+import net.beautifycrack.service.UserInfoService;
+import net.beautifycrack.util.MD5Util;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -21,6 +30,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/register")
 public class RegisterController
 {
+    private static Logger logger = LoggerFactory.getLogger(RegisterController.class);
+
+    @Resource
+    private UserInfoService userInfoService;
+
     /**
      * 跳转到注册首页
      * 
@@ -35,13 +49,61 @@ public class RegisterController
     }
 
     /**
+     * 校验用户名是否已存在
+     * 
+     * @param userName
+     * @return
+     */
+    @RequestMapping(value = "/judgeAccount")
+    public @ResponseBody Object judgeAccount(String userName)
+    {
+        logger.debug("RegisterController->judgeAccount->userName:{}", userName);
+        // 如果账号已存在，前台校验不通过
+        if (userInfoService.userNameExist(userName))
+        {
+            return "{\"valid\": false  }";
+        }
+        else
+        {
+            return "{\"valid\": true  }";
+        }
+    }
+
+    /**
+     * 校验手机号是否已存在
+     * 
+     * @param userName
+     * @return
+     */
+    @RequestMapping(value = "/judgePhone")
+    public @ResponseBody Object judgePhone(String phoneNo)
+    {
+        logger.debug("RegisterController->judgePhone->phoneNo:{}", phoneNo);
+        // 如果手机号已存在，前台校验不通过
+        if (userInfoService.phoneExist(phoneNo))
+        {
+            return "{\"valid\": false  }";
+        }
+        else
+        {
+            return "{\"valid\": true  }";
+        }
+    }
+
+    /**
      * 提交注册
      * 
      * @return
      */
     @RequestMapping(value = "/commit")
-    public Object registerCommit()
+    public Object registerCommit(String userName, String password, String phoneNo)
     {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserName(userName);
+        userInfo.setPassword(MD5Util.generatePassword(password));
+        userInfo.setPhoneNo(phoneNo);
+        userInfoService.addUser(userInfo);
         return null;
     }
+
 }
