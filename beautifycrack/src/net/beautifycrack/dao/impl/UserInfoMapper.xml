@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.beautifycrack.dao.UserInfoMapper">
+	<!-- 查询账号 -->
+	<select id="userNameExist" parameterType="String" resultType="Integer" >
+		select count(userId) from tbl_user_base where userName=#{userName}
+	</select>
+	<!-- 查询手机号-->
+	<select id="phoneExist" parameterType="String" resultType="Integer" >
+		select count(userId) from tbl_user_base where phoneNo=#{phoneNo}
+	</select>
+	
+	<!-- 增加用户 -->
+	<insert id="addUser" parameterType="userInfo">
+		insert into tbl_user_base
+		(
+			userName,
+			password,
+			phoneNo,
+			state,
+			createTime 
+		)
+		value
+		(
+			#{userName},
+			#{password},
+			#{phoneNo},
+			0,
+			now()
+		)
+	</insert>
+	
+	<!-- 修改密码 -->
+	<update id="changePassword" parameterType="Map">
+		update tbl_user_base set password=#{password} where userId=#{userId}
+	</update>
+	
+	<!-- 用户登录查找 -->
+	<select id="login" parameterType="String" resultType="userInfo">
+		select 
+			  userName as userName,
+			  gender as gender,
+			  birthday as birthday,
+			  avatar as avatar,
+			  nickname as nickname,
+			  phoneNo as phoneNo,
+			  state  as state,
+			  remarks as remarks,
+			  lastLoginTime as lastLoginTime, 
+			  createTime  as createTime,
+			  updateTime as updateTime
+		from tbl_user_base
+		where state = 0
+		and (userName=#{acount} or phoneNo=#{account})
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
