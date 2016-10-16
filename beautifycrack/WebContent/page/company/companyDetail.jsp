@@ -48,9 +48,11 @@
 				</div>
 				<textarea class="form-control" rows="6" placeholder="我来说两句...."></textarea>
 				<div class="tright pt10">
-					<span><a href="">登录</a></span>
-					<span>|</span>
-					<span><a href="">注册</a></span>
+					<c:if test="${sessionScope.userInfo.userName==null}">
+						<span><a id="cLogin" href="javascript:void(0)">登录</a></span>
+						<span>|</span>
+						<span><a href="${contextPath}/register/index">注册</a></span>
+					</c:if>
 					<button type="button" class="btn btn-success ml15" id="commit">发表评论</button>
 				</div>
 			</div>

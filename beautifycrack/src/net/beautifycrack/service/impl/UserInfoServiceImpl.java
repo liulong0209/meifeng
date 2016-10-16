@@ -29,17 +29,9 @@ public class UserInfoServiceImpl implements UserInfoService
     private UserInfoMapper userInfoMapper;
 
     @Override
-    public Integer verify(String account, String password) throws BusinessException
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public UserInfo queryUserInfo(String account) throws BusinessException
     {
-        // TODO Auto-generated method stub
-        return null;
+        return userInfoMapper.queryUserInfo(account);
     }
 
     @Override

@@ -6,8 +6,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.beautifycrack.constant.Common;
 import net.beautifycrack.module.UserInfo;
 import net.beautifycrack.service.UserInfoService;
+import net.beautifycrack.util.MD5Util;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -42,22 +44,26 @@ public class LoginController
      * @return
      */
     @RequestMapping(value = "/login")
-    public @ResponseBody String login(HttpServletRequest request, HttpServletResponse response, String account,
+    public @ResponseBody Object login(HttpServletRequest request, HttpServletResponse response, String account,
             String password)
     {
-        Integer result = userInfoService.verify(account, password);
-        if (result == 0)
+    	UserInfo userInfo = userInfoService.queryUserInfo(account);
+        if (userInfo == null)
         {
-
+        	return Common.USERINFO_NOT_EXISTS;
         }
         else
         {
-
+        	//ÃÜÂë²»ÕýÈ·
+        	if(!userInfo.getPassword().equals(MD5Util.generatePassword(password)))
+        	{
+        		return Common.USERINFO_PASSWORD_ERROR;
+        	}
         }
 
-        UserInfo userInfo = userInfoService.queryUserInfo(account);
+        
         request.getSession().setAttribute("userInfo", userInfo);
-        return "";
+        return 0;
     }
 
     /**

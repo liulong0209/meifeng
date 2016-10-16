@@ -41,4 +41,13 @@ public interface UserInfoMapper
      * @throws BusinessException
      */
     void addUser(UserInfo userInfo) throws BusinessException;
+    
+    /**
+     * 根据账号或手机号查找用户
+     * 
+     * @param account
+     * @return
+     * @throws BusinessException
+     */
+    UserInfo queryUserInfo(String account) throws BusinessException;
 }

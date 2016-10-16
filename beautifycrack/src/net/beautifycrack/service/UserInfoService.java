@@ -16,17 +16,6 @@ import net.beautifycrack.module.UserInfo;
  */
 public interface UserInfoService
 {
-
-    /**
-     * 用户登录
-     * 
-     * @param account
-     * @param password
-     * @return
-     * @throws BusinessException
-     */
-    Integer verify(String account, String password) throws BusinessException;
-
     /**
      * 用户名是否存在
      * 
@@ -46,7 +35,7 @@ public interface UserInfoService
     Boolean phoneExist(String phone) throws BusinessException;
 
     /**
-     * 根据账号查找用户
+     * 根据账号或手机号查找用户
      * 
      * @param account
      * @return

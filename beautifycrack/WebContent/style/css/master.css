@@ -280,3 +280,29 @@ overflow:hidden; }
 	height: 34px;
 	display: inline-block;
 }
+
+.errorbox {
+  /*background: #fff9f9;
+  border: 1px solid #fac5c5;*/
+  color: #f22625;
+  height: 26px;
+  line-height: 26px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  display:none;
+}
+
+.errorbox i {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  border-radius: 14px;
+  font-size: 10px;
+  background: #f11b1b;
+  font-style: normal;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 5px;
+}

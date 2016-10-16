@@ -1,6 +1,7 @@
 package net.beautifycrack.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import net.beautifycrack.module.UserInfo;
 import net.beautifycrack.service.UserInfoService;
@@ -96,14 +97,25 @@ public class RegisterController
      * @return
      */
     @RequestMapping(value = "/commit")
-    public Object registerCommit(String userName, String password, String phoneNo)
+    public @ResponseBody Object registerCommit(HttpServletRequest request,String userName, String password, String phoneNo)
     {
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUserName(userName);
-        userInfo.setPassword(MD5Util.generatePassword(password));
-        userInfo.setPhoneNo(phoneNo);
-        userInfoService.addUser(userInfo);
-        return null;
+    	try
+    	{
+    		UserInfo userInfo = new UserInfo();
+    		userInfo.setUserName(userName);
+    		userInfo.setPassword(MD5Util.generatePassword(password));
+    		userInfo.setPhoneNo(phoneNo);
+    		userInfoService.addUser(userInfo);
+    		
+    		//×¢²áºó×Ô¶¯µÇÂ¼
+    		UserInfo user = userInfoService.queryUserInfo(userName);
+    		request.getSession().setAttribute("userInfo", user);
+    		return 0;
+    	}
+    	catch (Exception e) 
+    	{
+    		return 1;
+		}
     }
 
 }

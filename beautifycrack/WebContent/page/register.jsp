@@ -45,7 +45,7 @@
 	<div class="main">
 		<div class="content">
 			<div class="title">填写注册信息</div>
-			<form class="form-horizontal" role="form" action="${contextPath}/register/commit" method="post">
+			<form class="form-horizontal" role="form">
 			  <div class="form-group">
 			    <label for="userName" class="col-sm-2 control-label">用户名</label>
 			    <div class="col-sm-10">
@@ -75,6 +75,10 @@
 			     	<button type="submit" id="registerbtn" class="btn btn-primary">立即注册</button>
 			    </div>
 			  </div>
+			  <div id="registErrorInfo" class="form-group tcenter errorbox ">
+				 	<i>!</i>	
+				 	<span id="span-regist"></span>
+				 </div>
 			</form>
 		</div>
 	</div>

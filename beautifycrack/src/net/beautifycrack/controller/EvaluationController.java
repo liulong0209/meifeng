@@ -82,8 +82,8 @@ public class EvaluationController
             // 用户没有登录，不能进行评
             if (user == null)
             {
-                // dataMaps.put("result", "0");
-                // return dataMaps;
+                dataMaps.put("result", "0");
+                return dataMaps;
 
             }
             // evaluation.setReviewer(user.getId());

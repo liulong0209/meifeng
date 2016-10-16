@@ -8,9 +8,37 @@ define(function(require, exports, module) {
 	//注册按钮事件绑定
 	function bindEvent(){
 		$("#registerbtn").click(function(){
-			//$("form").submit();
-			var a = $('form').data('bootstrapValidator').isValid();
-			var b =a;
+			$("form").data('bootstrapValidator').validate();
+			if(!$("form").data('bootstrapValidator').isValid()){
+				return false;
+			}
+			$.ajax({    
+				url: contextPath+"/register/commit",       
+				type:'post',    
+				cache:false,  			
+				dataType:'json', 
+				data:{
+					userName:$("#userName").val(),
+					password:$("#password").val(),
+					phoneNo:$("#phoneNo").val()
+				},
+			    success: function (data) {
+			    	if(data!=0)
+			    	{
+			    		$("#span-regist").empty().append("登录发生错误");
+			    		$("#registErrorInfo").fadeIn();
+			    	}
+			    	else
+			    	{
+			    		location.replace(document.referrer);
+			    	}
+				},
+			  	error: function (data) {
+			        console.info("error: " + data.responseText);
+			    }
+			});
+			
+			return false;
 		})
 	}
 	
@@ -18,12 +46,12 @@ define(function(require, exports, module) {
 	function validator(){
 		require.async('bootstrapValidator',function(){
 			$('form').bootstrapValidator({
-		　　　　　　　　message: 'This value is not valid',
-		            feedbackIcons: {
-            　　　　　　　　valid: 'glyphicon glyphicon-ok',
-            　　　　　　　　invalid: 'glyphicon glyphicon-remove',
-            　　　　　　　　validating: 'glyphicon glyphicon-refresh'
-        　　　　　　　　},
+			message: 'This value is not valid',
+		    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
 		            fields: {
 		            	userName: {
 		                    message: '用户名验证失败',

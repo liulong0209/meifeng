@@ -3,11 +3,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="net.beautifycrack.dao.UserInfoMapper">
-	<!-- 查询账号 -->
+	<!-- 查询账号是否存在 -->
 	<select id="userNameExist" parameterType="String" resultType="Integer" >
 		select count(userId) from tbl_user_base where userName=#{userName}
 	</select>
-	<!-- 查询手机号-->
+	<!-- 查询手机号是否存在-->
 	<select id="phoneExist" parameterType="String" resultType="Integer" >
 		select count(userId) from tbl_user_base where phoneNo=#{phoneNo}
 	</select>
@@ -38,9 +38,10 @@
 	</update>
 	
 	<!-- 用户登录查找 -->
-	<select id="login" parameterType="String" resultType="userInfo">
+	<select id="queryUserInfo" parameterType="String" resultType="userInfo">
 		select 
 			  userName as userName,
+			  password as password,
 			  gender as gender,
 			  birthday as birthday,
 			  avatar as avatar,

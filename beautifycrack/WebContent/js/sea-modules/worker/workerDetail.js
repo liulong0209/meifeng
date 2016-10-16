@@ -130,11 +130,11 @@ define(function(require,exports,module){
 	function commitComment(){
 		//判断是否登录
 		if(!userInfo){
-//			require.async('bootstrap',function(){
-//				$('#tipsModule').find(".modal-body").empty().append("登录后才可以进行评价，请先登录!");
-//				$('#tipsModule').modal("show");
-//			})
-//			return;
+			require.async('bootstrap',function(){
+				$('#tipsModule').find(".modal-body").empty().append("登录后才可以进行评价，请先登录!");
+				$('#tipsModule').modal("show");
+			})
+			return;
 		}
 		
 		var level = $('input[name="optionsRadios"]:checked').val();
@@ -189,6 +189,11 @@ define(function(require,exports,module){
 	
 	//按钮绑定事件
 	function buttonBindEvent(){
+		//登录按钮绑定
+		$("#wLogin").click(function(){
+			var login = require('sea-modules/login');
+			login.showLoginModel();
+		});
 		//发表评论按钮事件
 		$("#commit").click(function(){
 			commitComment();

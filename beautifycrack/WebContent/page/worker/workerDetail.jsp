@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--施工人员列表页主体-->
 <%@include file="../common/header.jsp" %>  
 	<div class="container yh">
@@ -41,9 +40,11 @@
 				</div>
 				<textarea class="form-control" rows="6" placeholder="我来说两句...."></textarea>
 				<div class="tright pt10">
-					<span><a href="">登录</a></span>
-					<span>|</span>
-					<span><a href="">注册</a></span>
+					<c:if test="${sessionScope.userInfo.userName==null}">
+						<span><a id="wLogin" href="javascript:void(0)">登录</a></span>
+						<span>|</span>
+						<span><a href="${contextPath}/register/index">注册</a></span>
+					</c:if>
 					<button type="button" class="btn btn-success ml15" id="commit">发表评论</button>
 				</div>
 			</div>
