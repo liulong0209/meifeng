@@ -29,7 +29,7 @@ define(function(require, exports, module) {
 			}else{
 				$materiadiv+="<div class=\"w275 fleft h165 ofHidden\">";
 			}
-			$materiadiv+=	"<a href=\""+contextPath+"/material/showDetail/"+material.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+material.imgId+"\" width=\"275\" height=\"165\">";
+			$materiadiv+=	"<a href=\""+contextPath+"/material/showCompanyMaterial/"+material.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+material.imgId+"\" width=\"275\" height=\"165\">";
 			$materiadiv+=		"<p class=\"f16\">"+material.productName+"</p>";
 			$materiadiv+=		"<b class=\"h45\"></b>";
 			$materiadiv+=	"</a>";
@@ -56,7 +56,7 @@ define(function(require, exports, module) {
 			}else{
 				$toolsdiv+="<div class=\"w275 fleft h165 ofHidden\">";
 			}
-			$toolsdiv+=	"<a href=\""+contextPath+"/material/showDetail/"+tools.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+tools.imgId+"\" width=\"275\" height=\"165\">";
+			$toolsdiv+=	"<a href=\""+contextPath+"/material/showCompanyTools/"+tools.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+tools.imgId+"\" width=\"275\" height=\"165\">";
 			$toolsdiv+=		"<p class=\"f16\">"+tools.productName+"</p>";
 			$toolsdiv+=		"<b class=\"h45\"></b>";
 			$toolsdiv+=	"</a>";
