@@ -30,7 +30,7 @@ define(function(require, exports, module) {
 				$materiadiv+="<div class=\"w275 fleft h165 ofHidden\">";
 			}
 			$materiadiv+=	"<a href=\""+contextPath+"/material/showCompanyMaterial/"+material.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+material.imgId+"\" width=\"275\" height=\"165\">";
-			$materiadiv+=		"<p class=\"f16\">"+material.productName+"</p>";
+			$materiadiv+=		"<p class=\"f15\">"+material.productName+"</p>";
 			$materiadiv+=		"<b class=\"h45\"></b>";
 			$materiadiv+=	"</a>";
 			$materiadiv+="</div>"

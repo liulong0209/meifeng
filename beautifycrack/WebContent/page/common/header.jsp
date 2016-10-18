@@ -12,7 +12,7 @@
 <link href="${contextPath}/style/css/kkpager_blue.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/master.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/base.css" type="text/css" rel="stylesheet" />
-<title>美缝</title>
+<title>美缝剂施工,瓷砖美缝剂,瓷砖美缝</title>
 </head>
 <body>
 <!--头部-->
