@@ -56,7 +56,7 @@ public class FileController
     public void getImage(HttpServletRequest request, HttpServletResponse response, @PathVariable Long imageId)
             throws BusinessException
     {
-        logger.debug("FileController->getImage:imageId:{}", imageId);
+        // logger.debug("FileController->getImage:imageId:{}", imageId);
         FileInputStream fis = null;
         FileInfo fileInfo = null;
         response.setContentType("image/gif");
@@ -74,7 +74,7 @@ public class FileController
         }
         catch (IOException e)
         {
-            logger.error("获取附件失败", e);
+            // logger.error("获取附件失败", e.getMessage());
         }
         finally
         {

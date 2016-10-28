@@ -3,54 +3,72 @@
 <%@include file="common/header.jsp" %>  
 	<!--幻灯片-->
 	<div class="banner" id="banner">
-			<ul style="overflow: hidden">
-				<c:forEach var="slide" items="${slideList}">
-					<li>
-						<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="100%"></a>
-					</li>
-				</c:forEach>			
-			</ul>
+		<ul style="overflow: hidden">
+			<c:forEach var="slide" items="${slideList}">
+				<li>
+					<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="100%"></a>
+				</li>
+			</c:forEach>			
+		</ul>
 	</div> 
 
 	<!--美缝材料-->
 	<div class="clearfix ofHidden block yh pt20">
-		<div class="t1">
-			<a href="${contextPath}/material" class="fright f12">更多>></a>
-			美缝材料
+		<div class="index-title pt20 pb30 tcenter">
+			<h1>
+				<span>美缝材料</span>
+			</h1>
+			<span class="c666 f16">最新最热的美缝材料，快来看看吧！</span>
 		</div>
-		<div id="materialList" class="index-image clearfix pt15 "></div>
+		<div id="materialList" class="rows minh405 index-image clearfix"></div>
 	</div>
 	
 	<!--美缝工具-->
 	<div class="clearfix ofHidden block yh pt20">
-		<div class="t1">
-			<a href="${contextPath}/tools" class="fright f12">更多>></a>
-			美缝工具
+		<div class="index-title pt20 pb30 tcenter">
+			<h1>
+				<span>美缝工具</span>
+			</h1>
+			<span class="c666 f16">最新最热的美缝工具，快来看看吧！</span>
 		</div>
-		<div id="toolsList" class="index-image clearfix pt15 "></div>
+		<div id="toolsList" class="rows minh405 index-image  clearfix"></div>
 	</div>
 	
-    <div class="clearfix ofHidden block yh pt20">
-    	<div class="index_left fleft">			
-			<div class="t1">美缝公司<a href="${contextPath}/company" class="fright f12 pr30">更多>></a></div>
-			<ul id="company" class="pt15"></ul>
-			
-			<div class="clearfix"></div>
-			
-			<div class="t1">施工人员<a href="${contextPath}/worker" class="fright f12 pr30">更多>></a></div>
-			<ul id="worker" class="pt15 pb20"></ul>
-			
-			<div class="clearfix"></div>
- 
-        </div>
-	        
-        <!--新闻动态-->
-    	<div class="index_right fright pb20">
-        	<div class="t1">新闻动态<a href="${contextPath}/news/list" class="fright f12">更多>></a></div>
-            <ul id="newsli" class="alzs clearfix ofHidden"></ul>
-        </div>
-    </div>
-    
+	<!--新闻动态-->
+	<div class="clearfix ofHidden block yh pt20">
+		<div class="index-title pt20 pb30 tcenter">
+			<h1>
+				<span>新闻动态</span>
+			</h1>
+			<span class="c666 f16">美缝行业最新新闻</span>
+		</div>
+		<div class="w1190 margin-auto yh">
+			<ul id="newsli" class="alzs clearfix ofHidden"></ul>
+		</div>
+	</div>
+	
+	<!--美缝公司-->
+	<div class="clearfix ofHidden block yh pt20">
+		<div class="index-title pt20 pb30 tcenter">
+			<h1>
+				<span>美缝公司</span>
+			</h1>
+			<span class="c666 f16">多家美缝公司已入住</span>
+		</div>
+		<div id="company" class="rows minh210 clearfix"></div>
+	</div>
+	
+	<!--施工人员-->
+	<div class="clearfix ofHidden block yh pt20">
+		<div class="index-title pt20 pb30 tcenter">
+			<h1>
+				<span>施工人员</span>
+			</h1>
+			<span class="c666 f16">多名美缝人员为您服务</span>
+		</div>
+		<div id="worker" class="rows clearfix"></div>
+	</div>
+	
 	<%@include file="common/footer.jsp" %>
 	<script type="text/javascript">
 		//加载入口模块

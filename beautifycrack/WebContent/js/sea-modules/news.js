@@ -40,24 +40,25 @@ define(function(require, exports, module){
 	{	
 		if(data.dataList.length==0)
 		{
-			$("#newsList").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
+			$("#newsli").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
 			return;
 		}
 		
 		var $newli="";
 		$.each(data.dataList,function(i,news){
-			$newli+="<li class=\"clearfix\">";
-			$newli+=	"<div class=\"fleft\">";
-			$newli+=		"<a href=\"news/show/"+news.id+"\">"+news.title+"</a>";
-			$newli+=	"</div>";
-			$newli+=	"<div class=\"fright\">";
-			$newli+=		"<span class=\"time f12\">"+$.formatDate("yyyy-MM-dd",new Date(news.publishTime))+"</span>";
-			$newli+=	"</div>";
-			$newli+="</li>";
+			$newli+="<li>";
+			$newli+=	"<div class=\"col-md-10\">";
+			$newli+=		"<div class=\"news-title\">";
+			$newli+=			"<a href=\""+contextPath +"/news/show/"+news.id+"\">"+news.title+"</a>";
+			$newli+=		"</div>";
+			$newli+=		"<div class=\"news-content\">"+news.content+"</div>";
+			$newli+=	"</div>"
+			$newli+=	"<div class=\"col-md-2 pt5\"><span class=\"f12\">"+$.formatDate("yyyy-MM-dd",new Date(news.publishTime))+"</span></div>"
+			$newli+="</li>"
 		})
 		
 		//渲染新闻列表
-		$("#newsList").empty().append($newli)
+		$("#newsli").empty().append($newli)
 		
 		//渲染分页
 		var pager = require("sea-modules/common");

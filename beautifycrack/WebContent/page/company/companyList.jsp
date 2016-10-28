@@ -3,7 +3,7 @@
 <%@include file="../common/header.jsp" %>  
 	<!--公司列表页主体-->
 	<div class="container yh">
-    	<div class="block relative">
+    	<div class="relative">
     		<div class="navmenu">美缝公司</div>
 			<div class="text-list yh">
 				<ul id="companyList"></ul>

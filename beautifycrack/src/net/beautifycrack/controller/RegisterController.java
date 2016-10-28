@@ -58,7 +58,8 @@ public class RegisterController
     @RequestMapping(value = "/judgeAccount")
     public @ResponseBody Object judgeAccount(String userName)
     {
-        logger.debug("RegisterController->judgeAccount->userName:{}", userName);
+        // logger.debug("RegisterController->judgeAccount->userName:{}",
+        // userName);
         // 如果账号已存在，前台校验不通过
         if (userInfoService.userNameExist(userName))
         {
@@ -79,7 +80,7 @@ public class RegisterController
     @RequestMapping(value = "/judgePhone")
     public @ResponseBody Object judgePhone(String phoneNo)
     {
-        logger.debug("RegisterController->judgePhone->phoneNo:{}", phoneNo);
+        // logger.debug("RegisterController->judgePhone->phoneNo:{}", phoneNo);
         // 如果手机号已存在，前台校验不通过
         if (userInfoService.phoneExist(phoneNo))
         {
@@ -97,25 +98,26 @@ public class RegisterController
      * @return
      */
     @RequestMapping(value = "/commit")
-    public @ResponseBody Object registerCommit(HttpServletRequest request,String userName, String password, String phoneNo)
+    public @ResponseBody Object registerCommit(HttpServletRequest request, String userName, String password,
+            String phoneNo)
     {
-    	try
-    	{
-    		UserInfo userInfo = new UserInfo();
-    		userInfo.setUserName(userName);
-    		userInfo.setPassword(MD5Util.generatePassword(password));
-    		userInfo.setPhoneNo(phoneNo);
-    		userInfoService.addUser(userInfo);
-    		
-    		//注册后自动登录
-    		UserInfo user = userInfoService.queryUserInfo(userName);
-    		request.getSession().setAttribute("userInfo", user);
-    		return 0;
-    	}
-    	catch (Exception e) 
-    	{
-    		return 1;
-		}
+        try
+        {
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUserName(userName);
+            userInfo.setPassword(MD5Util.generatePassword(password));
+            userInfo.setPhoneNo(phoneNo);
+            userInfoService.addUser(userInfo);
+
+            // 注册后自动登录
+            UserInfo user = userInfoService.queryUserInfo(userName);
+            request.getSession().setAttribute("userInfo", user);
+            return 0;
+        }
+        catch (Exception e)
+        {
+            return 1;
+        }
     }
 
 }

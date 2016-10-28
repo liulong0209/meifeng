@@ -157,7 +157,7 @@ public class ProvidersController
     @RequestMapping(value = "/providers/pageList", method = RequestMethod.POST)
     public @ResponseBody Object pageList(PagerUtil pu, String type)
     {
-        logger.info("ProvidersController->pageList:type{}", type);
+        // logger.info("ProvidersController->pageList:type{}", type);
         Map<String, Object> dataMaps = new HashMap<String, Object>();
         // 类型以list传入
         List<Integer> list = new ArrayList<Integer>();

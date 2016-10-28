@@ -117,13 +117,18 @@ text-shadow: #000 0 1px 0;
 .c333{color:#333}
 .c666{color:#666}
 .c999{color:#999}
+.c80{color:#808080}
+.ce50{color:#e50}
 .border_ccc{ border:1px solid #CCC;}
 .border_f3{ border:1px solid #f3f3f3;}
+.border_ddd{ border:1px solid #dddddd;}
 .border_bottom_f3{ border-bottom:1px solid #f3f3f3;}
+.border_ededed{ border:5px solid #ededed;}
 .box-shadow{box-shadow: 0 0 15px #cccccc;-webkit-box-shadow: 0 0 15px #cccccc;-moz-box-shadow: 0 0 15px #cccccc;}
 .radius4{-moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
 .radius30{-moz-border-radius:30px; -webkit-border-radius:30px; border-radius:30px;}
-.block {width:1190px; clear:both; margin:0 auto;}
+.radius75{-moz-border-radius:75px; -webkit-border-radius:75px; border-radius:75px;}
+.block {width:1280px; clear:both; margin:0 auto;}
 
 @-webkit-keyframes xuanzhuan {
 from {-webkit-transform: rotateZ(0deg); -moz-transform: rotateZ(0deg);transform: rotateZ(0deg);}    
@@ -139,6 +144,7 @@ to {-webkit-transform: rotateZ(360deg); -moz-transform: rotateZ(360deg);transfor
 .text-indent28{text-indent: 28px;}
 .margin-auto{margin:0 auto;}
 .pointer{cursor: pointer;}
+.position_a{ position:absolute !important;left:0; top:97px; z-index:2; }
 
 
 

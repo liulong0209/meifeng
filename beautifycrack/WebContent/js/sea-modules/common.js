@@ -50,13 +50,13 @@ define(function(require, exports, module){
 			//如果当前url以上下文根结尾，说明是首页
 			if((String(window.location)).endWith(contextPath+"/"))
 			{
-				$(".nav a").first().addClass("active"); 
+				$(".navigation-inner li").first().addClass("active"); 
 				return;
 			}
 			//切割当前url
-			$(".nav a").each(function(){  
+			$(".navigation-inner li").each(function(){  
 				var $this = $(this); 
-				var href =$this.attr("href");
+				var href =$this.find("a").attr("href");
 				//用“/”分割href
 				var arr = href.split("/");
 				if(href!=contextPath &&(String(window.location)).indexOf("/"+arr[arr.length-1])>0)

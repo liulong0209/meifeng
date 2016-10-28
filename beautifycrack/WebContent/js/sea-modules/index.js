@@ -24,16 +24,19 @@ define(function(require, exports, module) {
 		}
 		var $materiadiv="";
 		$.each(data,function(i,material){
-			if(i!=0){
-				$materiadiv+="<div class=\"w275 fleft h165 ofHidden ml30\">";
-			}else{
-				$materiadiv+="<div class=\"w275 fleft h165 ofHidden\">";
-			}
-			$materiadiv+=	"<a href=\""+contextPath+"/material/showCompanyMaterial/"+material.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+material.imgId+"\" width=\"275\" height=\"165\">";
-			$materiadiv+=		"<p class=\"f15\">"+material.productName+"</p>";
-			$materiadiv+=		"<b class=\"h45\"></b>";
-			$materiadiv+=	"</a>";
-			$materiadiv+="</div>"
+			$materiadiv+="<div class=\"col-md-3 mb20\">";
+			$materiadiv+=	"<div class=\"border_ddd\">";
+			$materiadiv+=		"<div class=\"w283 margin-auto ofHidden\">";
+			$materiadiv+=			"<a href=\""+contextPath+"/material/showCompanyMaterial/"+material.providersId+"\" target=\"_blank\"><img src=\""+contextPath+"/file/image/get/"+material.imgId+"\" width=\"283\" height=\"283\"></a>";
+			$materiadiv+=		"</div>";
+			$materiadiv+=		"<div class=\"pt20 pb20 pl30\">";
+			$materiadiv+=			"<div>";
+			$materiadiv+=				"<div class=\"f16 c333 h30\"><a href=\""+contextPath+"/material/showCompanyMaterial/"+material.providersId+"\" target=\"_blank\">"+material.productName+"</a></div>";
+			$materiadiv+=				"<div class=\"f14 c80 h30\"><span>商家："+material.providersName+"</span></div>";
+			$materiadiv+=			"</div>";
+			$materiadiv+=		"</div>";
+			$materiadiv+=	"</div>";
+			$materiadiv+="</div>";
 		});
 		
 		$("#materialList").empty().append($materiadiv);
@@ -51,16 +54,19 @@ define(function(require, exports, module) {
 		}
 		var $toolsdiv="";
 		$.each(data,function(i,tools){
-			if(i!=0){
-				$toolsdiv+="<div class=\"w275 fleft h165 ofHidden ml30\">";
-			}else{
-				$toolsdiv+="<div class=\"w275 fleft h165 ofHidden\">";
-			}
-			$toolsdiv+=	"<a href=\""+contextPath+"/material/showCompanyTools/"+tools.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+tools.imgId+"\" width=\"275\" height=\"165\">";
-			$toolsdiv+=		"<p class=\"f16\">"+tools.productName+"</p>";
-			$toolsdiv+=		"<b class=\"h45\"></b>";
-			$toolsdiv+=	"</a>";
-			$toolsdiv+="</div>"
+			$toolsdiv+="<div class=\"col-md-3 mb20\">";
+			$toolsdiv+=	"<div class=\"border_ddd\">";
+			$toolsdiv+=		"<div class=\"w283 margin-auto ofHidden\">";
+			$toolsdiv+=			"<a href=\""+contextPath+"/tools/showCompanyTools/"+tools.providersId+"\" target=\"_blank\"><img src=\""+contextPath+"/file/image/get/"+tools.imgId+"\" width=\"283\" height=\"283\"></a>";
+			$toolsdiv+=		"</div>";
+			$toolsdiv+=		"<div class=\"pt20 pb20 pl30\">";
+			$toolsdiv+=			"<div>";
+			$toolsdiv+=				"<div class=\"f16 c333 h30\"><a href=\""+contextPath+"/tools/showCompanyTools/"+tools.providersId+"\" target=\"_blank\">"+tools.productName+"</a></div>";
+			$toolsdiv+=				"<div class=\"f14 c80 h30\"><span>商家："+tools.providersName+"</span></div>";
+			$toolsdiv+=			"</div>";
+			$toolsdiv+=		"</div>";
+			$toolsdiv+=	"</div>";
+			$toolsdiv+="</div>";
 		});
 		
 		$("#toolsList").empty().append($toolsdiv);
@@ -78,17 +84,19 @@ define(function(require, exports, module) {
 		}
 		var $companyli="";
 		$.each(data,function(i,company){
-			$companyli+="<li>"
-			$companyli+=	"<div class=\"fleft w150\">";
-			$companyli+=		"<a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\" target=\"_blank\"  class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+company.logo+"\" width=\"150\" height=\"150\"></a>";
+			$companyli+="<div class=\"col-md-4 mb20\">"
+			$companyli+=	"<div class=\"border_ededed pt15 pr15 pb15 pl15\">"
+			$companyli+=		"<div class=\"fleft w150\">";
+			$companyli+=			"<a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\" target=\"_blank\"  class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+company.logo+"\" width=\"150\" height=\"150\"></a>";
+			$companyli+=		"</div>";
+			$companyli+=		"<div class=\"fleft pl15 w200\">";
+			$companyli+=			"<div class=\"f16 bold ellipsis w235\" title=\""+company.providerName+"\"><a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\" target=\"_blank\">"+company.providerName+"</a></div>";
+			$companyli+=			"<div class=\"pt5\">地址：<span class=\"c80\">"+company.address+"</span></div>";
+			$companyli+=			"<div class=\"pt5\">电话：<span class=\"c80\">"+company.phoneNo+"</span></div>";
+			$companyli+=		"</div>"
+			$companyli+=		"<div class=\"clearfix\"></div>";
 			$companyli+=	"</div>";
-			$companyli+=	"<div class=\"fleft pl15 w235\">";
-			$companyli+=		"<div class=\"f16 bold ellipsis w235\" title=\""+company.providerName+"\"><a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\" target=\"_blank\">"+company.providerName+"</a></div>";
-			$companyli+=		"<div class=\"pt5\">地址："+company.address+"</div>";
-			$companyli+=		"<div class=\"pt5\">电话："+company.phoneNo+"</div>";
-			$companyli+=	"</div>"
-			$companyli+=	"<div class=\"clearfix\"></div>";
-			$companyli+="</li>";
+			$companyli+="</div>";
 		});
 		$("#company").empty().append($companyli);
 	}
@@ -106,17 +114,24 @@ define(function(require, exports, module) {
 		}
 		var $workerli="";
 		$.each(data,function(i,worker){
-			$workerli+="<li>"
-			$workerli+=	"<div class=\"fleft w150\">";
-			$workerli+=		"<a href=\""+contextPath+"/worker/showDetail/"+worker.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+worker.logo+"\" width=\"150\" height=\"150\"></a>";
-			$workerli+=	"</div>";
-			$workerli+=	"<div class=\"fleft pl15 w235\">";
-			$workerli+=		"<div class=\"f16 bold \">"+worker.providerName+"</div>";
-			$workerli+=		"<div class=\"pt5\">服务区域："+worker.address+"</div>";
-			$workerli+=		"<div class=\"pt5\">电话："+worker.phoneNo+"</div>";
-			$workerli+=	"</div>"
-			$workerli+=	"<div class=\"clearfix\"></div>";
-			$workerli+="</li>";
+			$workerli+="<div class=\"col-md-6 mb20\">";
+			$workerli+="	<div class=\"fleft w150\">";
+			$workerli+=			"<a href=\""+contextPath+"/worker/showDetail/"+worker.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+worker.logo+"\" width=\"150\" height=\"150\" class=\"radius75\"></a>";
+			$workerli+=		"</div>";
+			$workerli+="	<div class=\"fleft pt15 pl30 workertext\">";
+			$workerli+="		<div class=\"f16 bold\">"+worker.providerName;
+			if(worker.type==1){
+				$workerli+="(团队)";
+			}
+			else{
+				$workerli+="(个人)";
+			}
+			$workerli+="</div>";
+			$workerli+="		<div class=\"pt5\">服务区域：<span class=\"c80\">"+worker.address+"</span></div>";
+			$workerli+="		<div class=\"pt5\">电话：<span class=\"c80\">"+worker.phoneNo+"</span></div>";
+			$workerli+="	</div>";
+			$workerli+="	<div class=\"clearfix\"></div>";
+			$workerli+="</div>";
 		});
 		$("#worker").empty().append($workerli);
 	}
@@ -135,7 +150,15 @@ define(function(require, exports, module) {
 		require.async('custom',function(){
 			var $newli="";
 			$.each(data,function(i,news){
-				$newli+="<li><a href=\""+contextPath +"/news/show/"+news.id+"\">"+news.title+"<span class=\"fright f12\">"+$.formatDate("yyyy-MM-dd",new Date(news.publishTime))+"</span></a></li>"
+				$newli+="<li>";
+				$newli+=	"<div class=\"col-md-10\">";
+				$newli+=		"<div class=\"news-title\">";
+				$newli+=			"<a href=\""+contextPath +"/news/show/"+news.id+"\">"+news.title+"</a>";
+				$newli+=		"</div>";
+				$newli+=		"<div class=\"news-content\">"+news.content+"</div>";
+				$newli+=	"</div>"
+				$newli+=	"<div class=\"col-md-2 pt5\"><span class=\"f12\">"+$.formatDate("yyyy-MM-dd",new Date(news.publishTime))+"</span></div>"
+				$newli+="</li>"
 			})
 			
 			$("#newsli").empty().append($newli);

@@ -3,9 +3,12 @@
 <%@include file="../common/header.jsp" %>  
 	<!--新闻列表页主体-->
 	<div class="container yh">
-    	<div class="block relative">
+    	<div class="relative">
     		<div class="navmenu">新闻动态</div>
-			<ul id="newsList"></ul>
+    		
+    		<div class="w1190 margin-auto yh">
+			<ul id="newsli" class="alzs clearfix ofHidden"></ul>
+			</div>
 			<!-- 分页页码 -->
     		<div id="kkpager"></div>
     	</div>
