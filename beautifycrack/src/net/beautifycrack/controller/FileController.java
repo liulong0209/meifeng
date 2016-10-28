@@ -20,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.gson.JsonObject;
+
 /**
  * 文件管理控制器
  * 
@@ -89,6 +91,28 @@ public class FileController
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    /**
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/fileUpload")
+    public void fileUpload(HttpServletRequest request, HttpServletResponse response)
+    {
+        JsonObject result = new JsonObject();
+        response.setContentType("text/plain;charset=UTF-8");
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        try
+        {
+            response.getWriter().write(result.toString());
+        }
+        catch (IOException e)
+        {
+            // log.error(e.getMessage(), e);
         }
     }
 }
