@@ -13,14 +13,13 @@ import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.FileInfo;
 import net.beautifycrack.service.FileInfoService;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.google.gson.JsonObject;
 
 /**
  * 文件管理控制器
@@ -101,13 +100,19 @@ public class FileController
     @RequestMapping(value = "/fileUpload")
     public void fileUpload(HttpServletRequest request, HttpServletResponse response)
     {
-        JsonObject result = new JsonObject();
+        JSONObject result = new JSONObject();
         response.setContentType("text/plain;charset=UTF-8");
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);
         try
         {
+            result.put("state", "SUCCESS");
+            result.put("url", "/style/images/logo.png");
+            result.put("original", "logo.png");
+            result.put("title", "logo.png");
+            result.put("fileType", ".png");
+
             response.getWriter().write(result.toString());
         }
         catch (IOException e)
