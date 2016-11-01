@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +20,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,21 +31,20 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-
-@Scope("prototype")
 @Controller
-public class UEditorController {
-	
-	/**
+public class UEditorController
+{
+
+    /**
      * 日志记录器
      */
     private static final Logger LOG = LoggerFactory.getLogger(UEditorController.class);
-    
+
     /**
      * 状态
      */
     private static final String STATE = "state";
-    
+
     /**
      * 上传成功
      */
@@ -57,8 +54,7 @@ public class UEditorController {
      * URL
      */
     private static final String URL = "url";
-    
-    
+
     /**
      * 文件类型
      */
@@ -74,23 +70,21 @@ public class UEditorController {
      */
     private static final String TITLE = "title";
 
-
-    
-	/**
+    /**
      * 默认分发action名称
      */
     private static final String DEFAULT_ACTION_NAME = "config";
-    
+
     /**
      * 默认上传类型
      */
     private static final String DEFAULT_TYPE = "file";
-    
+
     /**
      * 允许文件类型后缀
      */
     private static final String ALLOW_FILES_SUFFIX = "AllowFiles";
-    
+
     /**
      * 允许文件大小后缀
      */
@@ -100,24 +94,29 @@ public class UEditorController {
      * 1mb - 1024kb
      */
     private static final int MB_KB = 1024;
-    
+
     /**
      * ueditor配置文件
      */
-    @Resource
     private Map<String, Object> config = new HashMap<String, Object>();
-    
-    @Value("${ue.config.path}")
-    private String ueConfigPath="/js/ueditor1_4_3_3-utf8-jsp/jsp/config.json";
-    
+
+    public void setConfig(Map<String, Object> config)
+    {
+        this.config = config;
+    }
+
+    @Value("#{properties['ue.config.path']}")
+    private String ueConfigPath;
+
     /**
-	 * UEditor上传请求分发器
-	 * @param actionName
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	@RequestMapping(value = "/ueditor")
+     * UEditor上传请求分发器
+     * 
+     * @param actionName
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/ueditor")
     public String dispatcher(@RequestParam(value = "action", required = false) String actionName,
             HttpServletRequest request, HttpServletResponse response)
     {
@@ -128,7 +127,7 @@ public class UEditorController {
         }
         return "forward:ueditor/" + action;
     }
-    
+
     /**
      * 设置Http响应头信息
      * 
@@ -144,7 +143,7 @@ public class UEditorController {
         response.setContentType("text/html");
         response.setHeader("Cache-Control", "no-cache");
     }
-    
+
     /**
      * 
      * @Title: config
@@ -165,7 +164,7 @@ public class UEditorController {
     {
         responseInit(response);
         @SuppressWarnings("deprecation")
-        String fullFileName = request.getRealPath("/js/ueditor1_4_3_3-utf8-jsp/jsp/config.json");//ueConfigPath
+        String fullFileName = request.getRealPath(ueConfigPath);
         Reader reader = null;
         Gson gson = new Gson();
 
@@ -183,9 +182,8 @@ public class UEditorController {
         }
         return config;
     }
-	
-	
-	/**
+
+    /**
      * 文件上传
      * 
      * @Title: uploadFile
@@ -234,7 +232,6 @@ public class UEditorController {
         }
         renderJson(response, json.toString());
     }
-    
 
     /**
      * 上传文件校验
@@ -279,7 +276,7 @@ public class UEditorController {
         // 非允许上传类型
         return null;
     }
-    
+
     /**
      * 
      * @Title: isAllowSuffix
@@ -315,7 +312,7 @@ public class UEditorController {
         }
         return false;
     }
-    
+
     /**
      * 执行文件上传
      * 
@@ -338,61 +335,68 @@ public class UEditorController {
     {
         @SuppressWarnings("deprecation")
         JSONObject result = new JSONObject();
-//        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-//		MultipartFile uplFile = multipartRequest.getFileMap().entrySet().iterator().next().getValue();
-//		// filename
-//		String filename = FilenameUtils.getName(uplFile.getOriginalFilename());
-//		LOG.debug("Parameter NewFile: {}", filename);
-//		String ext = FilenameUtils.getExtension(filename);
-//		
-//		String fileUrl="http://localhost:8080/mf/style/images/logo.png";
-		
-//		result.put(STATE, SUCCESS);
-//		result.put(URL, fileUrl);
-//		result.put(ORIGINAL, filename);
-//		result.put(TITLE, filename);
-//		result.put(FILE_TYPE, "." + ext);
-		result.put(STATE, SUCCESS);
-		result.put(URL, "http://localhost:8080/mf/style/images/logo.png");
-		result.put(ORIGINAL, "test");
-		result.put(TITLE, "test");
-		result.put(FILE_TYPE, "." + "png");
-		return result;
+        // MultipartHttpServletRequest multipartRequest =
+        // (MultipartHttpServletRequest) request;
+        // MultipartFile uplFile =
+        // multipartRequest.getFileMap().entrySet().iterator().next().getValue();
+        // // filename
+        // String filename =
+        // FilenameUtils.getName(uplFile.getOriginalFilename());
+        // LOG.debug("Parameter NewFile: {}", filename);
+        // String ext = FilenameUtils.getExtension(filename);
+        //
+        // String fileUrl="http://localhost:8080/mf/style/images/logo.png";
+
+        // result.put(STATE, SUCCESS);
+        // result.put(URL, fileUrl);
+        // result.put(ORIGINAL, filename);
+        // result.put(TITLE, filename);
+        // result.put(FILE_TYPE, "." + ext);
+        result.put(STATE, SUCCESS);
+        result.put(URL, "http://localhost:8080/mf/style/images/logo.png");
+        result.put(ORIGINAL, "test");
+        result.put(TITLE, "test");
+        result.put(FILE_TYPE, "." + "png");
+        return result;
     }
-    
+
     /**
-	 * 发送json。使用UTF-8编码。
-	 * 
-	 * @param response
-	 *            HttpServletResponse
-	 * @param text
-	 *            发送的字符串
-	 */
-	private void renderJson(HttpServletResponse response, String text) {
-		render(response, "application/json;charset=UTF-8", text);
-	}
-    
+     * 发送json。使用UTF-8编码。
+     * 
+     * @param response
+     *            HttpServletResponse
+     * @param text
+     *            发送的字符串
+     */
+    private void renderJson(HttpServletResponse response, String text)
+    {
+        render(response, "application/json;charset=UTF-8", text);
+    }
+
     /**
-	 * 发送内容。使用UTF-8编码。
-	 * 
-	 * @param response
-	 * @param contentType
-	 * @param text
-	 */
-	private void render(HttpServletResponse response, String contentType,
-			String text) {
-		response.setContentType(contentType);
-		response.setHeader("Pragma", "No-cache");
-		response.setHeader("Cache-Control", "no-cache");
-		response.setDateHeader("Expires", 0);
-		try {
-			response.getWriter().write(text);
-		} catch (IOException e) {
-			LOG.error(e.getMessage(), e);
-		}
-	}
-	
-	/**
+     * 发送内容。使用UTF-8编码。
+     * 
+     * @param response
+     * @param contentType
+     * @param text
+     */
+    private void render(HttpServletResponse response, String contentType, String text)
+    {
+        response.setContentType(contentType);
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        try
+        {
+            response.getWriter().write(text);
+        }
+        catch (IOException e)
+        {
+            LOG.error(e.getMessage(), e);
+        }
+    }
+
+    /**
      * 
      * @Title: isAllowMaxFile
      * @Description: 是否超出限制大小
@@ -418,5 +422,4 @@ public class UEditorController {
         Double allowSize = (Double) config.get(type + ALLOW_MAX_SIZE);
         return allowSize > size;
     }
-
 }
