@@ -37,7 +37,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
-    <url-pattern>/index/home</url-pattern>
+    <url-pattern>/home.do</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
@@ -98,6 +98,6 @@
 	</taglib>
   </jsp-config>
   <welcome-file-list>
-    <welcome-file>index/home</welcome-file>
+    <welcome-file>home.do</welcome-file>
   </welcome-file-list>
 </web-app>

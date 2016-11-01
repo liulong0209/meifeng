@@ -59,7 +59,7 @@
     
     <!--把事务控制在Service层-->
     <aop:config>    
-	   <aop:pointcut id="pc" expression="execution(public * net.website.service.*.*(..))" /> 
+	   <aop:pointcut id="pc" expression="execution(public * net.beautifycrack.service.*.*(..))" /> 
 	   <aop:advisor pointcut-ref="pc" advice-ref="txAdvice" />
     </aop:config>
 	
@@ -75,7 +75,7 @@
 
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="net.website.dao" />
+		<property name="basePackage" value="net.beautifycrack.dao" />
 	</bean>
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

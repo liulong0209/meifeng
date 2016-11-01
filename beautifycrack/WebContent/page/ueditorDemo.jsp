@@ -18,10 +18,7 @@
     <script type="text/javascript">
         var ue = UE.getEditor('container',{
             autoHeight: false,
-            serverUrl : "<%=request.getContextPath() %>/ueditor",
-            imageActionName:"fileUpload",
-            imageUrl: "<%=request.getContextPath() %>/file/fileUpload",
-            filePath: "<%=request.getContextPath() %>/file/fileUpload"
+            serverUrl : "<%=request.getContextPath() %>/ueditor"
         });
     </script>
 </html>
