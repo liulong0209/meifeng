@@ -45,7 +45,7 @@ public class NewsController
      * 
      * @return
      */
-    @RequestMapping(value = "/showAdd")
+    @RequestMapping(value = "/showAdd", method = RequestMethod.GET)
     public ModelAndView showAdd()
     {
         ModelAndView mv = new ModelAndView();
@@ -59,7 +59,7 @@ public class NewsController
      * @param news
      * @return
      */
-    @RequestMapping(value = "/add")
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
     public @ResponseBody Object addNews(News news)
     {
         Map<String, Object> result = new HashMap<String, Object>();
@@ -92,5 +92,28 @@ public class NewsController
         mv.getModelMap().put("news", news);
         mv.setViewName("/console/news/news_edit");
         return mv;
+    }
+    
+    /**
+     * 更新新闻
+     * 
+     * @param news
+     * @return
+     */
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    public @ResponseBody Object updateNews(News news)
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try
+        {
+            newsService.update(news);
+            result.put("result", Common.SUCCESS);
+            return result;
+        }
+        catch (BusinessException e)
+        {
+            result.put("result", Common.FAIL);
+            return result;
+        }
     }
 }

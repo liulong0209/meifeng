@@ -69,7 +69,7 @@
 		        };
 		    $.extend(settings, options);
 			$("#loadding").remove();
-			var laddingDiv="<div id='loadding' style='position: fixed;width: 200px;background-color: #000;opacity: 0.4;top: 240px;left: 40%;'>"
+			var laddingDiv="<div id='loadding' style='position: fixed;width: 200px;background-color: #000;opacity: 0.4;top: 240px;left: 40%;z-index: 1000'>"
 				laddingDiv+=  "<div style='position: relative;top: 115px;color: #fff;text-align: center;'>"+settings.loadText+"</div>";
 				laddingDiv+=  "<div class='sk-fading-circle'>";
 			    laddingDiv+=    "<div class='sk-circle1 sk-circle'></div>";

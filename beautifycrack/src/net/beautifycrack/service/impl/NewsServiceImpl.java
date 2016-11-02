@@ -80,7 +80,7 @@ public class NewsServiceImpl implements NewsService
     public void update(News news) throws BusinessException
     {
         // 如果是发布，设置发布时间
-        if (news.getState().intValue() == Common.PUBLISH)
+        if (news.getState()!=null && news.getState().intValue() == Common.PUBLISH)
         {
             news.setPublishTime(new Date(System.currentTimeMillis()));
         }

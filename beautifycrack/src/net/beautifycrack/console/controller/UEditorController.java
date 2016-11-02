@@ -1,4 +1,4 @@
-package net.beautifycrack.controller;
+package net.beautifycrack.console.controller;
 
 import java.io.File;
 import java.io.FileReader;
@@ -333,30 +333,22 @@ public class UEditorController
      */
     private JSONObject doUpload(HttpServletRequest request, String type, Boolean mark) throws Exception
     {
-        @SuppressWarnings("deprecation")
-        JSONObject result = new JSONObject();
-        // MultipartHttpServletRequest multipartRequest =
-        // (MultipartHttpServletRequest) request;
-        // MultipartFile uplFile =
-        // multipartRequest.getFileMap().entrySet().iterator().next().getValue();
-        // // filename
-        // String filename =
-        // FilenameUtils.getName(uplFile.getOriginalFilename());
-        // LOG.debug("Parameter NewFile: {}", filename);
-        // String ext = FilenameUtils.getExtension(filename);
-        //
-        // String fileUrl="http://localhost:8080/mf/style/images/logo.png";
+         @SuppressWarnings("deprecation")
+         JSONObject result = new JSONObject();
+         MultipartHttpServletRequest multipartRequest =(MultipartHttpServletRequest) request;
+         MultipartFile uplFile = multipartRequest.getFileMap().entrySet().iterator().next().getValue();
+         // filename
+         String filename =FilenameUtils.getName(uplFile.getOriginalFilename());
+         LOG.debug("Parameter NewFile: {}", filename);
+         String ext = FilenameUtils.getExtension(filename);
+        
+         String fileUrl="http://localhost:8080/mf/style/images/logo.png";
 
-        // result.put(STATE, SUCCESS);
-        // result.put(URL, fileUrl);
-        // result.put(ORIGINAL, filename);
-        // result.put(TITLE, filename);
-        // result.put(FILE_TYPE, "." + ext);
-        result.put(STATE, SUCCESS);
-        result.put(URL, "http://localhost:8080/mf/style/images/logo.png");
-        result.put(ORIGINAL, "test");
-        result.put(TITLE, "test");
-        result.put(FILE_TYPE, "." + "png");
+         result.put(STATE, SUCCESS);
+         result.put(URL, fileUrl);
+         result.put(ORIGINAL, filename);
+         result.put(TITLE, filename);
+         result.put(FILE_TYPE, "." + ext);
         return result;
     }
 

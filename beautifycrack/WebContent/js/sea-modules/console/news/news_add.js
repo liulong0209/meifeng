@@ -11,30 +11,52 @@ define(function(require, exports, module){
 		if(!$("form").data('bootstrapValidator').isValid()){
 			return false;
 		}
-		$.ajax({    
-			url: contextPath+"/console/newsmanager/add",       
-			type:'post',    
-			cache:false,  			
-			dataType:'json', 
-			data:{
-				title:$("#newsTitle").val(),
-				content:$("#newsContent").val(),
-				state:state
-			},
-		    success: function (data) {
-		    	if(data!=0)
-		    	{
-		    		$("#span-regist").empty().append("登录发生错误");
-		    		$("#registErrorInfo").fadeIn();
-		    	}
-		    	else
-		    	{
-		    		location.replace(document.referrer);
-		    	}
-			},
-		  	error: function (data) {
-		        console.info("error: " + data.responseText);
-		    }
+		require.async('custom',function(){
+			$.ajax({    
+				url: contextPath+"/console/newsmanager/add",       
+				type:'post',    
+				cache:false,  			
+				dataType:'json', 
+				data:{
+					title:$("#newsTitle").val(),
+					content:$("#newsContent").val(),
+					state:state
+				},
+				beforeSend: function () {
+						$.showLoadding({loadText:"执行中,请稍后...."});
+				},
+			    success: function (data) {
+			    	var tips = "";
+		    		if(state==0){
+		    			tips = "保存";
+		    		}else{
+		    			tips = "发布";
+		    		}
+			    		
+			    	if(data && data.result==0)
+			    	{
+			    		require.async('bootstrap',function(){
+							$('#tipsModule').find(".modal-body").empty().append(tips+"成功!");
+							$('#tipsModule').modal("show");
+							setTimeout("window.location.reload()",1000);
+						})
+			    	}
+			    	else
+			    	{
+			    		require.async('bootstrap',function(){
+							$('#tipsModule').find(".modal-body").empty().append(tips+"失败!");
+							$('#tipsModule').modal("show");
+						})
+			    	}
+				},
+			  	error: function (data) {
+			  		$.hideLoadding();
+			        console.info("error: " + data.responseText);
+			    },
+			    complete: function () {
+				    $.hideLoadding();
+				}
+			});
 		});
 		
 	}

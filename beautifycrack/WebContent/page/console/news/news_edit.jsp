@@ -8,16 +8,18 @@
 <title>新闻编辑</title>
 <link href="${contextPath}/style/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/bootstrapValidator.min.css" type="text/css" rel="stylesheet" />
+<link href="${contextPath}/style/css/loadding.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<form class="form-horizontal" role="form">
+			  <input type="hidden" id="newsId" value="${news.id }">
 			  <input type="hidden" id="newsContent">
 			  <div class="form-group">
 			    <label for="newsTitle" class="col-md-1 control-label">新闻标题</label>
 			    <div class="col-md-11">
-			      <input type="text" class="form-control" id="newsTitle"  placeholder="新闻标题" value="${news.title}">
+			      <input type="text" class="form-control" id="newsTitle" name="title"  placeholder="新闻标题" value="${news.title}">
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -38,7 +40,7 @@
 			    		</c:when>
 			    		<c:otherwise>
 			    			<p>
-							  <button type="button" id="publish" class="btn btn-primary btn-lg">更新</button>
+							  <button type="button" id="update" class="btn btn-primary btn-lg">更新</button>
 							</p>
 			    		</c:otherwise>
 			    	</c:choose>
@@ -46,6 +48,18 @@
 			  </div>
 			</form>
 		</div>
+	</div>
+	<!--提示框  -->
+    <div id="tipsModule" class="modal fade bs-example-modal-sm yh" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-sm">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	          <h4 class="modal-title" id="mySmallModalLabel">提示</h4>
+	        </div>
+	        <div class="modal-body f14"></div>
+	      </div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
 	</div>
 </body>
     <!-- 配置文件 -->
@@ -76,6 +90,7 @@
 			  alias: {
 			    "jquery": "3th/jquery/jquery-3.1.0.min.js",
 			    "bootstrap": "3th/bootstrap.js",
+			    "custom": "3th/jquery/plug-in/jquery.custom.js", //自定义的jquery插件
 			    "bootstrapValidator": "3th/bootstrapValidator.js"
 			  }
 			})

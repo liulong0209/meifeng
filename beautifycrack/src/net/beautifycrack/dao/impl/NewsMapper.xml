@@ -73,16 +73,16 @@
 	<update id="update" parameterType="news">
 		update tbl_news set update_time=now()
 		<if test="null != title and ''!=title">
-			,title = #{title},
+			,title = #{title}
 		</if>
 		<if test="null != content and ''!=content">
-			,content = #{content},
+			,content = #{content}
 		</if>
 		<if test="null != state">
-			,state = #{state},
+			,publish_state = #{state}
 		</if>
 		<if test="null != publishTime">
-			,publish_time = #{publishTime},
+			,publish_time = #{publishTime}
 		</if>
 		where news_id=#{id}
 	</update>
