@@ -89,8 +89,10 @@ public class NewsController
         ModelAndView mv = new ModelAndView();
         News news = newsService.showNews(id);
         mv.getModelMap().put("news", news);
-        mv.getModelMap().put("publishTime", DateFormatUtils.format(news.getPublishTime(), "yyyy-MM-dd"));
-        mv.getModelMap().put("contextPath", request.getContextPath());
+        if (news.getPublishTime() != null)
+        {
+            mv.getModelMap().put("publishTime", DateFormatUtils.format(news.getPublishTime(), "yyyy-MM-dd"));
+        }
         mv.setViewName("news/newsDetail");
         return mv;
     }

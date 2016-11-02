@@ -1,11 +1,13 @@
 package net.beautifycrack.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import net.beautifycrack.constant.Common;
 import net.beautifycrack.dao.NewsMapper;
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.News;
@@ -63,4 +65,25 @@ public class NewsServiceImpl implements NewsService
         return newsMapper.newsListIndex();
     }
 
+    @Override
+    public void add(News news) throws BusinessException
+    {
+        // 如果是发布，设置发布时间
+        if (news.getState().intValue() == Common.PUBLISH)
+        {
+            news.setPublishTime(new Date(System.currentTimeMillis()));
+        }
+        newsMapper.add(news);
+    }
+
+    @Override
+    public void update(News news) throws BusinessException
+    {
+        // 如果是发布，设置发布时间
+        if (news.getState().intValue() == Common.PUBLISH)
+        {
+            news.setPublishTime(new Date(System.currentTimeMillis()));
+        }
+        newsMapper.update(news);
+    }
 }

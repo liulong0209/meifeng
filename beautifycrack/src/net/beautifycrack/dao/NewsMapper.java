@@ -51,4 +51,20 @@ public interface NewsMapper
      * @throws BusinessException
      */
     List<News> newsListIndex() throws BusinessException;
+
+    /**
+     * 增加新闻
+     * 
+     * @param news
+     * @throws BusinessException
+     */
+    void add(News news) throws BusinessException;
+
+    /**
+     * 增加新闻
+     * 
+     * @param news
+     * @throws BusinessException
+     */
+    void update(News news) throws BusinessException;
 }

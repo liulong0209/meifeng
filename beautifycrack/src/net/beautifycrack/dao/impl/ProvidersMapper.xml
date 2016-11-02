@@ -16,7 +16,7 @@
 			head as head,
 			city as city
 		from tbl_providers_info 
-		where sts=0 and serviceType=0 and type in
+		where sts='A' and serviceType=0 and type in
 				<foreach item="item" index="index" collection="list" 
                          open="(" separator="," close=")">
                         #{item}
@@ -38,7 +38,7 @@
 			head as head,
 			city as city
 		from tbl_providers_info 
-		where sts=0 and providers_id =#{providersId}
+		where sts='A' and providers_id =#{providersId}
 	</select>
 	
 	<!-- 查询总数 -->
@@ -47,7 +47,7 @@
 			count(*) 
 		from tbl_providers_info 
 		where 
-			sts=0 and serviceType=0
+			sts='A' and serviceType=0
 			and type in
 			<foreach item="item" index="index" collection="list" 
                          open="(" separator="," close=")">
@@ -68,7 +68,7 @@
 			head as head,
 			city as city
 		from tbl_providers_info 
-		where sts=0 and serviceType=0 and type in
+		where sts='A' and serviceType=0 and type in
 			<foreach item="item" index="index" collection="list" 
                          open="(" separator="," close=")">
                         #{item}
@@ -142,7 +142,7 @@
 		   from tbl_product_class pc,tbl_providers_info pri,tbl_providers_extend pe
 		   where pc.product_type_id= pe.extend_id and pri.providers_id=pe.providers_id
 		   and pri.providers_id=#{companyId}
-		   and pri.sts=0
+		   and pri.sts='A'
 		   and pri.serviceType=1
 	</select>
 </mapper>

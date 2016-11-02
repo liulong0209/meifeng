@@ -16,18 +16,38 @@ public class Common
      */
     public static final Integer PRODUCT_TOOLS = 0;
     public static final Integer PRODUCT_MATERIAL = 1;
-    
+
     /**
      * 用户相关常量
      */
     /**
      * 用户不存在
      */
-    public static final Integer USERINFO_NOT_EXISTS=10000;
-    
+    public static final Integer USERINFO_NOT_EXISTS = 10000;
+
     /**
      * 密码错误
      */
-    public static final Integer USERINFO_PASSWORD_ERROR=10001;
-    
+    public static final Integer USERINFO_PASSWORD_ERROR = 10001;
+
+    /**
+     * 成功标示
+     */
+    public static final Integer SUCCESS = 0;
+
+    /**
+     * 失败标示
+     */
+    public static final Integer FAIL = 1;
+
+    /**
+     * 草稿
+     */
+    public static final int DRAFT = 0;
+
+    /**
+     * 发布
+     */
+    public static final int PUBLISH = 1;
+
 }
