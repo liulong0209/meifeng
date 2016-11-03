@@ -11,7 +11,11 @@
   <context-param>
   	<param-name>log4jConfigLocation</param-name>
   	<param-value>classpath:/log4j.xml</param-value>
- 	</context-param>
+  </context-param>
+  <context-param>
+	<param-name>webAppRootKey</param-name>
+	<param-value>beautifycrack</param-value>
+  </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   <!-- 加载log4j配置文件 -->

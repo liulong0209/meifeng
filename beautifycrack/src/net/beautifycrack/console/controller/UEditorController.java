@@ -1,5 +1,7 @@
 package net.beautifycrack.console.controller;
 
+import static net.beautifycrack.constant.Common.IMG_SHOW_URL;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,8 +11,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.beautifycrack.service.FileInfoService;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -31,6 +36,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * UEditor控制器
+ * 
+ * UEditorController.java
+ * 
+ * @Description: <br>
+ * <br>
+ * @Company: chinasofti
+ * @Created on 2016年11月3日 下午3:35:10
+ * @author liulong
+ */
 @Controller
 public class UEditorController
 {
@@ -105,8 +121,29 @@ public class UEditorController
         this.config = config;
     }
 
+    /**
+     * 上传文件根路径
+     */
+    @Value("#{properties['root.upload.path']}")
+    private String uploadPath;
+
+    /**
+     * ueditor配置文件路径
+     */
     @Value("#{properties['ue.config.path']}")
     private String ueConfigPath;
+
+    /**
+     * 上传路径
+     */
+    @Value("#{properties['ue.upload.path']}")
+    private String ueUploadPath;
+
+    /**
+     * 文件接口
+     */
+    @Resource
+    private FileInfoService fileInfoService;
 
     /**
      * UEditor上传请求分发器
@@ -246,7 +283,6 @@ public class UEditorController
      * @throws JSONException
      *             JSONObject
      * @Version v1.0
-     * @author s54322/sunyue
      * @Date 2016年5月18日
      */
     private JSONObject validateUpload(HttpServletRequest request, String type) throws JSONException
@@ -287,7 +323,6 @@ public class UEditorController
      *            扩展名
      * @return boolean
      * @Version v1.0
-     * @author s54322/sunyue
      * @Date 2016年5月19日
      */
     @SuppressWarnings("unchecked")
@@ -328,27 +363,27 @@ public class UEditorController
      * @throws Exception
      *             JSONObject
      * @Version v1.0
-     * @author s54322/sunyue
      * @Date 2016年5月18日
      */
     private JSONObject doUpload(HttpServletRequest request, String type, Boolean mark) throws Exception
     {
-         @SuppressWarnings("deprecation")
-         JSONObject result = new JSONObject();
-         MultipartHttpServletRequest multipartRequest =(MultipartHttpServletRequest) request;
-         MultipartFile uplFile = multipartRequest.getFileMap().entrySet().iterator().next().getValue();
-         // filename
-         String filename =FilenameUtils.getName(uplFile.getOriginalFilename());
-         LOG.debug("Parameter NewFile: {}", filename);
-         String ext = FilenameUtils.getExtension(filename);
-        
-         String fileUrl="http://localhost:8080/mf/style/images/logo.png";
+        JSONObject result = new JSONObject();
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        MultipartFile uplFile = multipartRequest.getFileMap().entrySet().iterator().next().getValue();
+        // filename
+        String filename = FilenameUtils.getName(uplFile.getOriginalFilename());
+        LOG.debug("Parameter NewFile: {}", filename);
+        String ext = FilenameUtils.getExtension(filename);
 
-         result.put(STATE, SUCCESS);
-         result.put(URL, fileUrl);
-         result.put(ORIGINAL, filename);
-         result.put(TITLE, filename);
-         result.put(FILE_TYPE, "." + ext);
+        String fileUrl = fileInfoService.uploadFile(uploadPath, ueUploadPath, ext, filename, uplFile.getInputStream());
+
+        fileUrl = request.getContextPath() + IMG_SHOW_URL + fileUrl;
+
+        result.put(STATE, SUCCESS);
+        result.put(URL, fileUrl);
+        result.put(ORIGINAL, filename);
+        result.put(TITLE, filename);
+        result.put(FILE_TYPE, "." + ext);
         return result;
     }
 
@@ -398,7 +433,6 @@ public class UEditorController
      *            文件大小
      * @return boolean
      * @Version v1.0
-     * @author s54322/sunyue
      * @Date 2016年5月19日
      */
     private boolean isAllowMaxFile(String type, int size)

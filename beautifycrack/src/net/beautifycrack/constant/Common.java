@@ -50,4 +50,14 @@ public class Common
      */
     public static final int PUBLISH = 1;
 
+    /**
+     * 新闻编辑增加的图片
+     */
+    public static final int FILE_UPLPADER_NEWS = -2;
+
+    /**
+     * 图片访问URL
+     */
+    public static final String IMG_SHOW_URL = "/file/imageshow?s=";
+
 }

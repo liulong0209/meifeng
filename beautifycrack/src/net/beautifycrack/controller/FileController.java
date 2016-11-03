@@ -2,6 +2,7 @@ package net.beautifycrack.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -13,13 +14,13 @@ import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.FileInfo;
 import net.beautifycrack.service.FileInfoService;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 文件管理控制器
@@ -32,12 +33,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Created on 2016年9月19日 下午7:28:54
  * @author liulong
  */
-@Scope("prototype")
 @Controller
 @RequestMapping("/file")
 public class FileController
 {
     private static Logger logger = LoggerFactory.getLogger(FileController.class);
+
+    /**
+     * 资源文件路径
+     */
+    @Value("#{properties['root.upload.path']}")
+    private String rootUploadPath;
 
     /**
      * 文件接口
@@ -95,29 +101,42 @@ public class FileController
 
     /**
      * 
-     * @return
+     * @Title: showImage
+     * @Description: 往前台输出显示图片
+     * @param imgSrc
+     *            图片路径
+     * @param request
+     *            HttpServletRequest
+     * @param response
+     *            HttpServletResponse
+     * @Version v1.0
+     * @author s54322/sunyue
+     * @Date 2016年5月19日
      */
-    @RequestMapping(value = "/fileUpload")
-    public void fileUpload(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping(value = "/imageshow")
+    public void showImage(@RequestParam(value = "s") String imgSrc, HttpServletRequest request,
+            HttpServletResponse response)
     {
-        JSONObject result = new JSONObject();
-        response.setContentType("text/plain;charset=UTF-8");
-        response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setDateHeader("Expires", 0);
+        FileInputStream is;
         try
         {
-            result.put("state", "SUCCESS");
-            result.put("url", "/style/images/logo.png");
-            result.put("original", "logo.png");
-            result.put("title", "logo.png");
-            result.put("fileType", ".png");
-
-            response.getWriter().write(result.toString());
+            is = new FileInputStream(rootUploadPath + new String(imgSrc.getBytes("iso-8859-1"), "utf-8"));
+            int i = is.available(); // 得到文件大小
+            byte[] data = new byte[i];
+            is.read(data); // 读数据
+            is.close();
+            response.setContentType("image/*"); // 设置返回的文件类型
+            OutputStream toClient = response.getOutputStream(); // 得到向客户端输出二进制数据的对象
+            toClient.write(data); // 输出数据
+            toClient.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
         }
         catch (IOException e)
         {
-            // log.error(e.getMessage(), e);
+            e.printStackTrace();
         }
     }
 }

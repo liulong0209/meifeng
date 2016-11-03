@@ -80,7 +80,7 @@ define(function(require, exports, module){
 		                            message: '新闻标题不能为空'
 		                        },
 		                        stringLength: {
-		                            max: 18,
+		                            max: 255,
 		                            message: '新闻标题长度不能超过255个字符'
 		                        },
 		                    }
