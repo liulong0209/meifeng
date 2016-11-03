@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="${contextPath}/style/css/bootstrap.min.css" rel="stylesheet" />
+<title>美缝平台后台管理</title>
+</head>
+<body>
 <div>
 	<button type="button" class="btn btn-primary">发布新闻</button>
 </div>
@@ -14,27 +21,14 @@
 		  <th>操作</th>
 		</tr>
 	  </thead>
-	  <tbody>
-		<tr>
-		  <td>1</td>
-		  <td>家具是我们家居生活中最为重要的</td>
-		  <td>家具是我们家居生活中最为重要的，有了好的家具才会有好的生活。随着社会经济的增长，人们的生活水平有了很大的提高，那么什么样的家具好呢</td>
-		  <td>
-			<button type="button" class="btn btn-primary btn-xs">编辑</button>
-			<button type="button" class="btn btn-primary btn-xs">查看</button>
-			<button type="button" class="btn btn-default btn-xs">删除</button>
-		  </td>
-		</tr>
-		<tr>
-		  <td>2</td>
-		  <td>家具是我们家居生活中最为重要的</td>
-		  <td>家具是我们家居生活中最为重要的，有了好的家具才会有好的生活。随着社会经济的增长，人们的生活水平有了很大的提高，那么什么样的家具好呢</td>
-		  <td>
-			<button type="button" class="btn btn-primary btn-xs">编辑</button>
-			<button type="button" class="btn btn-primary btn-xs">查看</button>
-			<button type="button" class="btn btn-default btn-xs">删除</button>
-		  </td>
-		</tr>
-	  </tbody>
+	  <tbody id="newsList"></tbody>
 	</table>
 </div>	
+</body>
+<script type="text/javascript">
+	var contextPath = "${contextPath}";
+</script>
+<script src="${contextPath}/js/3th/jquery-3.1.0.min.js"></script>
+<script src="${contextPath}/js/3th/bootstrap.min.js"></script>
+<script src="${contextPath}/js/module/news_list.js"></script>
+</html>

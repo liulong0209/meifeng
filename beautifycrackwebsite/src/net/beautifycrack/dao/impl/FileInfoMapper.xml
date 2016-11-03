@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.beautifycrack.dao.FileInfoMapper">
+	<!-- 查询新闻列表 -->
+	<select id="findFileById" parameterType="Long" resultType="fileInfo" >
+		select 
+		 	file_id as fileId,
+			orgin_name as orginName,
+			file_name as fileName,
+			file_path as filePath,
+			creator as creator,
+			create_time as createTime
+		from tbl_file_info
+		where file_id=#{fileId}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -489,8 +489,11 @@ background: #17191B;
 }
 .sidebar-collapse .nav > li > a:hover,
 .sidebar-collapse .nav > li > a:focus {
-	 
 	outline:0;
+}
+.sidebar-collapse .nav > li > a:hover{
+	background-color: #1cc09f !important;
+    color: #fff !important;
 }
  
 .navbar-side {

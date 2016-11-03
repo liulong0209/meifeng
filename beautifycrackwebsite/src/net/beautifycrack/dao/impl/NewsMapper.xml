@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.beautifycrack.dao.NewsMapper">
+	<!-- 查询新闻列表 -->
+	<select id="pagerList" resultType="news" parameterType="Map">
+		select 
+		news_id as id,
+		title as title,
+     	case when LENGTH(content)>150 then
+		   concat(left(content,150),'...') 
+     	else
+     		content
+     	end as content,
+		 publish_time as publishTime
+		from tbl_news
+		where publish_state=1
+		order by publish_time desc
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 查询一条详细信息 -->
+	<select id="showNews" parameterType="Long" resultType="news">
+		select 
+		news_id as id,
+		title as title,
+		content as content,
+		publish_state as state,
+		publish_time as publishTime 
+		from tbl_news where news_id=#{id}
+	</select>
+	
+	<!-- 查询总数 -->
+	<select id="queryTotal" resultType="Integer">
+		select count(*) from tbl_news where publish_state=1
+	</select>
+	
+	<select id="newsListIndex" resultType="news">
+		select
+		news_id as id,
+		title as title,
+     	case when LENGTH(content)>150 then
+		   concat(left(content,150),'...') 
+     	else
+     		content
+     	end as content,
+		 publish_time as publishTime
+		from tbl_news
+		where publish_state=1
+		order by publish_time desc
+		LIMIT 0,5
+	</select>
+	
+	<!-- 增加数据 -->
+	<insert id="add" parameterType="news">
+		insert into tbl_news(
+			title,
+			content,
+			publish_state,
+			publish_time,
+			create_time) 
+		value(
+			#{title},
+			#{content},
+			#{state},
+			#{publishTime},
+			now()
+		)
+	</insert>
+	
+	<!-- 修改数据 -->
+	<update id="update" parameterType="news">
+		update tbl_news set update_time=now()
+		<if test="null != title and ''!=title">
+			,title = #{title}
+		</if>
+		<if test="null != content and ''!=content">
+			,content = #{content}
+		</if>
+		<if test="null != state">
+			,publish_state = #{state}
+		</if>
+		<if test="null != publishTime">
+			,publish_time = #{publishTime}
+		</if>
+		where news_id=#{id}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
