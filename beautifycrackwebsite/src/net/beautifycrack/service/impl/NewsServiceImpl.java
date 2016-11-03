@@ -60,12 +60,6 @@ public class NewsServiceImpl implements NewsService
     }
 
     @Override
-    public List<News> newsListIndex() throws BusinessException
-    {
-        return newsMapper.newsListIndex();
-    }
-
-    @Override
     public void add(News news) throws BusinessException
     {
         // 如果是发布，设置发布时间

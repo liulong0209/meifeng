@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.beautifycrack.dao.AdvertisementMapper">
+	<select id="getSlideImg" resultType="ad">
+		select
+			ads_id as id,
+			title as title,
+			img_id as imgId,
+			order_no as orderNo,
+			state as state,
+			create_time as createTime
+		from tbl_ads
+		where state = 1
+		order by order_no asc
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

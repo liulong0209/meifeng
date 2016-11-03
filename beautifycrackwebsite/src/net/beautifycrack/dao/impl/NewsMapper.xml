@@ -7,15 +7,13 @@
 	<select id="pagerList" resultType="news" parameterType="Map">
 		select 
 		news_id as id,
-		title as title,
-     	case when LENGTH(content)>150 then
-		   concat(left(content,150),'...') 
+     	case when LENGTH(title)>30 then
+		   concat(left(title,30),'...') 
      	else
-     		content
-     	end as content,
-		 publish_time as publishTime
+     		title
+     	end as title,
+		publish_state as state
 		from tbl_news
-		where publish_state=1
 		order by publish_time desc
 		LIMIT #{startRow}, #{pageSize}
 	</select>
@@ -34,22 +32,6 @@
 	<!-- 查询总数 -->
 	<select id="queryTotal" resultType="Integer">
 		select count(*) from tbl_news where publish_state=1
-	</select>
-	
-	<select id="newsListIndex" resultType="news">
-		select
-		news_id as id,
-		title as title,
-     	case when LENGTH(content)>150 then
-		   concat(left(content,150),'...') 
-     	else
-     		content
-     	end as content,
-		 publish_time as publishTime
-		from tbl_news
-		where publish_state=1
-		order by publish_time desc
-		LIMIT 0,5
 	</select>
 	
 	<!-- 增加数据 -->
