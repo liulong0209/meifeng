@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.beautifycrack.dao.EvaluationMapper">
+	<!-- 查询评价列表 -->
+	<select id="pagerList" resultType="evaluation" parameterType="Map">
+		select 
+		 evaluation_id as id,
+		 gainer as gainer,
+		 content as content,
+		 reviewer as reviewer, 
+		 level as level,
+		 review_time as reviewTime
+		from tbl_evaluation
+		where gainer=#{providersId}
+		order by review_time desc
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 查询总数 -->
+	<select id="queryTotal" resultType="Integer" parameterType="Long">
+		select count(*) from tbl_evaluation where gainer=#{providersId}
+	</select>
+	
+	<insert id="addEvaluation" parameterType="evaluation">
+		insert into tbl_evaluation 
+		(
+			gainer,
+			content,
+			reviewer,
+			level,
+			review_time
+		)
+		value
+		(
+			#{gainer},
+			#{content},
+			#{reviewer},
+			#{level},
+			now()
+		)
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+

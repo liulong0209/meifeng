@@ -38,7 +38,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProvidersController
 {
-    private static Logger logger = LoggerFactory.getLogger(IndexController.class);
+    private static Logger logger = LoggerFactory.getLogger(ProvidersController.class);
 
     /**
      * 提供商接口注入
