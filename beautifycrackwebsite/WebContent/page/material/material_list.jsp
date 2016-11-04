@@ -8,7 +8,7 @@
 <link href="${contextPath}/style/css/kkpager_blue.css" rel="stylesheet" />
 <link href="${contextPath}/style/css/inner-base.css" rel="stylesheet" />
 <link href="${contextPath}/style/css/loadding.css" rel="stylesheet" />
-<title>美缝平台后台管理</title>
+<title>美缝材料管理</title>
 </head>
 <body>
 <div class="pt10 pl10">
@@ -19,11 +19,13 @@
 	  <thead>
 		<tr>
 		  <th>#</th>
-		  <th>公司名称</th>
+		  <th>材料名称</th>
+		  <th>分类</th>
+		  <th>所属公司</th>
 		  <th>操作</th>
 		</tr>
 	  </thead>
-	  <tbody id="companyList"></tbody>
+	  <tbody id="materialList"></tbody>
 	</table>
 	<!-- 分页页码 -->
     <div id="kkpager"></div>
@@ -31,6 +33,6 @@
 </body>
 <%@include file="../inc/footer.jsp" %> 
 <script type="text/javascript">
-	seajs.use("sea-modules/company/company_list",function(module){module.init();});
+	seajs.use("sea-modules/material/material_list",function(module){module.init();});
 </script>
 </html>

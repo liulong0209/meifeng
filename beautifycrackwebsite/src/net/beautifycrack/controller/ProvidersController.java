@@ -64,7 +64,7 @@ public class ProvidersController
     {
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("worker/workerList");
+        mv.setViewName("worker/worker_list");
         return mv;
     }
 

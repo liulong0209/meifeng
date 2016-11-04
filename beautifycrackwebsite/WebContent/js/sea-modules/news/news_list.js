@@ -57,7 +57,6 @@ define(function(require, exports, module){
 			$newsList+=		"<button type=\"button\" class=\"btn btn-default btn-xs\">删除</button>";
 			$newsList+=	"</td>";
 			$newsList+="</tr>";
-			
 		})
 		
 		//渲染新闻列表
