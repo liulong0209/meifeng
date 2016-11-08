@@ -282,7 +282,7 @@ overflow:hidden; }
 .text-list{ padding:0px}
 .text-list ul li:hover{background-color:#FEFDEB;}
 .text-list ul li{border-bottom:1px solid #CCC; padding:20px 0}
-.text-list ul li .fleft{height:110px;text-align:center; font-size:16px; color:#666;}
+.text-list ul li .fleft{height:145px;text-align:center; font-size:16px; color:#666;}
 .text-list ul li .fleft img{ width:160px; height:110px;}
 .text-list ul li .fright{ height:110px; position:relative;}
 .text-list ul li .fright p.bt a{ color:#333; font-size:18px;}

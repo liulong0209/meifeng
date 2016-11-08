@@ -55,7 +55,10 @@ public class ProductController
         // 获取材料分类条目
         List<ProductCategory> materialCategory = productService.getMaterialCategory();
         ModelAndView mv = new ModelAndView();
-        mv.getModelMap().put("firstCategory", materialCategory.get(0).getId());
+        if (materialCategory.size() > 0)
+        {
+            mv.getModelMap().put("firstCategory", materialCategory.get(0).getId());
+        }
         mv.getModelMap().put("productCategory", materialCategory);
         // 表明点击的时候材料
         mv.getModelMap().put("type", Common.PRODUCT_MATERIAL);
@@ -74,7 +77,10 @@ public class ProductController
         // 获取工具分类条目
         List<ProductCategory> toolsCategory = productService.getToolsCategory();
         ModelAndView mv = new ModelAndView();
-        mv.getModelMap().put("firstCategory", toolsCategory.get(0).getId());
+        if (toolsCategory.size() > 0)
+        {
+            mv.getModelMap().put("firstCategory", toolsCategory.get(0).getId());
+        }
         mv.getModelMap().put("productCategory", toolsCategory);
         // 表明点击的时候工具
         mv.getModelMap().put("type", Common.PRODUCT_TOOLS);

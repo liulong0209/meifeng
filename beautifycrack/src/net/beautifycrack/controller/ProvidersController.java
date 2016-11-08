@@ -83,7 +83,6 @@ public class ProvidersController
         Providers company = providersService.showProviders(id);
         mv.getModel().put("company", company);
         mv.setViewName("company/companyDetail");
-        // request.getSession(true).setAttribute("user", "user");
         return mv;
     }
 

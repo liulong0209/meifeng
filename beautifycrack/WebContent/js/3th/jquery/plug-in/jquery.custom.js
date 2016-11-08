@@ -91,7 +91,48 @@
 		//隐藏加载中
 		hideLoadding:function(){
 			$("#loadding").remove();
-		}
+		},
+		showEllipsis:function(value,length)
+        {
+        	/**参数说明：
+        	 * 根据长度截取先使用字符串，超长部分追加…
+        	 * value 对象字符串
+        	 * length 目标字节长度
+        	 * 返回值： 处理结果字符串
+        	 */
+        	//未定义返回空字符串
+        	if(!value){
+        		return "";
+        	}
+        	//length属性读出来的汉字长度为1
+    	    if(value.length*2 <= length) 
+    	    {
+    	        return value;
+    	    }
+    	    var strlen = 0;
+    	    var s = "";
+    	    for(var i = 0;i < value.length; i++) 
+    	    {
+    	        s = s + value.charAt(i);
+    	        if (value.charCodeAt(i) > 128) 
+    	        {
+    	            strlen = strlen + 2;
+    	            if(strlen >= length)
+    	            {
+    	                return s.substring(0,s.length-1) + "...";
+    	            }
+    	        } 
+    	        else 
+    	        {
+    	            strlen = strlen + 1;
+    	            if(strlen >= length)
+    	            {
+    	                return s.substring(0,s.length-2) + "...";
+    	            }
+    	        }
+    	    }
+    	    return s;
+        }
 	});
   
 }));

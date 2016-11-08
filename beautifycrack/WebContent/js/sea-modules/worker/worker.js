@@ -50,7 +50,7 @@ define(function(require,exports,module){
 			$workerli+=	"</div>";
 			$workerli+=	"<div class=\"fleft pl30\">";
 			$workerli+=		"<p class=\"bold tleft h30 pb5\"><a href=\""+contextPath+"/worker/showDetail/"+worker.providersId+"\" target=\"_blank\">"+worker.providerName+"("+judge(worker.type)+")</a></p>"
-			$workerli+=		"<p class=\"f12 tleft w400 pb5\"><i class=\"fnormal c333\">"+judge(worker.type)+"简介：</i>"+worker.profile+"</p>"
+			$workerli+=		"<p class=\"f12 tleft w400 pb5\"><i class=\"fnormal c333\">"+judge(worker.type)+"简介：</i>"+$.showEllipsis(worker.profile,120)+"</p>"
 			$workerli+=		"<p class=\"f12 tleft w400 pb5\"><i class=\"fnormal c333\">服务区域：</i>"+worker.address+"</p>";
 			$workerli+=		"<p class=\"f12 tleft w400 pb5\"><i class=\"fnormal c333\">联系方式：</i>"+worker.phoneNo+"</p>";
 			$workerli+=	"</div>";

@@ -19,7 +19,7 @@ define(function(require, exports, module) {
 	//渲染材料
 	function renderMaterial(data){
 		if(data.length==0){
-			$("#materialList").empty().append("<li class=\"clearfix tcenter\">暂无材料</li>");
+			$("#materialList").empty().append("<div class=\"clearfix tcenter\">暂无材料</div>");
 			return;
 		}
 		var $materiadiv="";
@@ -49,7 +49,7 @@ define(function(require, exports, module) {
 	//渲染工具
 	function rendertools(data){
 		if(data.length==0){
-			$("#toolsList").empty().append("<li class=\"clearfix tcenter\">暂无工具</li>");
+			$("#toolsList").empty().append("<div class=\"clearfix tcenter\">暂无工具</div>");
 			return;
 		}
 		var $toolsdiv="";
@@ -79,7 +79,7 @@ define(function(require, exports, module) {
 	//渲染公司数据
 	function renderCompany(data){
 		if(data.length==0){
-			$("#company").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
+			$("#company").empty().append("<div class=\"clearfix tcenter\">暂无公司</div>");
 			return;
 		}
 		var $companyli="";
@@ -90,7 +90,7 @@ define(function(require, exports, module) {
 			$companyli+=			"<a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\" target=\"_blank\"  class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+company.logo+"\" width=\"150\" height=\"150\"></a>";
 			$companyli+=		"</div>";
 			$companyli+=		"<div class=\"fleft pl15 w200\">";
-			$companyli+=			"<div class=\"f16 bold ellipsis w235\" title=\""+company.providerName+"\"><a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\" target=\"_blank\">"+company.providerName+"</a></div>";
+			$companyli+=			"<div class=\"f16 bold\" title=\""+company.providerName+"\"><a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\" target=\"_blank\">"+company.providerName+"</a></div>";
 			$companyli+=			"<div class=\"pt5\">地址：<span class=\"c80\">"+company.address+"</span></div>";
 			$companyli+=			"<div class=\"pt5\">电话：<span class=\"c80\">"+company.phoneNo+"</span></div>";
 			$companyli+=		"</div>"
@@ -109,7 +109,7 @@ define(function(require, exports, module) {
 	//渲染施工工人数据
 	function rederWorker(data){
 		if(data.length==0){
-			$("#worker").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
+			$("#worker").empty().append("<div class=\"clearfix tcenter\">暂无施工工人</div>");
 			return;
 		}
 		var $workerli="";
@@ -119,14 +119,14 @@ define(function(require, exports, module) {
 			$workerli+=			"<a href=\""+contextPath+"/worker/showDetail/"+worker.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+worker.logo+"\" width=\"150\" height=\"150\" class=\"radius75\"></a>";
 			$workerli+=		"</div>";
 			$workerli+="	<div class=\"fleft pt15 pl30 workertext\">";
-			$workerli+="		<div class=\"f16 bold\">"+worker.providerName;
+			$workerli+="		<div class=\"f16 bold\"><a href=\""+contextPath+"/worker/showDetail/"+worker.providersId+"\" target=\"_blank\" class=\"h165\">"+worker.providerName;
 			if(worker.type==1){
 				$workerli+="(团队)";
 			}
 			else{
 				$workerli+="(个人)";
 			}
-			$workerli+="</div>";
+			$workerli+="</a></div>";
 			$workerli+="		<div class=\"pt5\">服务区域：<span class=\"c80\">"+worker.address+"</span></div>";
 			$workerli+="		<div class=\"pt5\">电话：<span class=\"c80\">"+worker.phoneNo+"</span></div>";
 			$workerli+="	</div>";
@@ -144,7 +144,7 @@ define(function(require, exports, module) {
 	//渲染新闻数据
 	function renderNews(data){
 		if(data.length==0){
-			$("#newsli").empty().append("<li class=\"clearfix tcenter\">暂无数据</li>");
+			$("#newsli").empty().append("<li class=\"clearfix tcenter\">暂无新闻</li>");
 			return;
 		}
 		require.async('custom',function(){

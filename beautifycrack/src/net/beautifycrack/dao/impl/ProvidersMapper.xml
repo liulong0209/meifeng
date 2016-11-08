@@ -8,7 +8,11 @@
 		select 
 			providers_id as providersId,
 			provider_name as providerName,
-			profile as profile,
+			case when LENGTH(profile)>130 then
+		   		concat(left(profile,130),'...') 
+     		else
+     			profile
+     		end as profile,
 			phone_no as phoneNo,
 			address as address,
 			logo as logo,
