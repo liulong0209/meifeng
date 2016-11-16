@@ -1,12 +1,16 @@
 package net.beautifycrack.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import net.beautifycrack.dao.AdvertisementMapper;
+import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.Advertisement;
 import net.beautifycrack.service.AdvertisementService;
+import net.beautifycrack.util.PagerUtil;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -33,9 +37,43 @@ public class AdvertisementServiceImpl implements AdvertisementService
     private AdvertisementMapper adMapper;
 
     @Override
-    public List<Advertisement> getSlideImg()
+    public List<Advertisement> pagerList(PagerUtil pager) throws BusinessException
     {
-        return adMapper.getSlideImg();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+        map.put("pageSize", pager.getPageSize());
+        return adMapper.pagerList(map);
+    }
+
+    @Override
+    public Integer queryTotal() throws BusinessException
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void add(Advertisement ads) throws BusinessException
+    {
+        adMapper.add(ads);
+    }
+
+    @Override
+    public void update(Advertisement ads) throws BusinessException
+    {
+        adMapper.update(ads);
+    }
+
+    @Override
+    public void queryById(Long adsId) throws BusinessException
+    {
+        adMapper.queryById(adsId);
+    }
+
+    @Override
+    public void delete(Long adsId) throws BusinessException
+    {
+        adMapper.delete(adsId);
     }
 
 }

@@ -31,7 +31,7 @@
 	
 	<!-- 查询总数 -->
 	<select id="queryTotal" resultType="Integer">
-		select count(*) from tbl_news where publish_state=1
+		select count(*) from tbl_news
 	</select>
 	
 	<!-- 增加数据 -->

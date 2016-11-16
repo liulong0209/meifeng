@@ -3,18 +3,82 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="net.beautifycrack.dao.AdvertisementMapper">
-	<select id="getSlideImg" resultType="ad">
+	<!-- 分页查询数据 -->
+	<select id="pagerList" parameterType="Map" resultType="ad">
 		select
 			ads_id as id,
 			title as title,
 			img_id as imgId,
 			order_no as orderNo,
 			state as state,
-			create_time as createTime
+			create_time as createTime,
+			update_time as updateTime
 		from tbl_ads
-		where state = 1
-		order by order_no asc
+		order by create_time desc
+		LIMIT #{startRow}, #{pageSize}
 	</select>
+	
+	<!-- 查询总数 -->
+	<select id="queryTotal">
+		select count(*) from tbl_ads
+	</select>
+	
+	<!-- 新增数据 -->
+	<insert id="add" parameterType="ad">
+		insert into tbl_ads
+		(
+			title,
+			img_id,
+			order_no,
+			state,
+			create_time
+		)
+		value
+		(
+			#{title},
+			#{imgId},
+			#{orderNo},
+			#{state},
+			now(),
+		)
+	</insert>
+	<!-- 更新数据 -->
+	<update id="update" parameterType="ad">
+		update tbl_ads 
+		set
+		update_time = now()
+		<if test="title!=null and title!=''">
+			,title = #{title}
+		</if>
+		<if test="imgId!=null">
+			,img_id =#{imgId}
+		</if>
+		<if test="orderNo!=null">
+			,order_no= #{orderNo}
+		</if>
+		<if test="state!=null">
+			,state = #{state}
+		</if>
+	</update>
+	
+	<!-- 根据id查询数据 -->
+	<select id="queryById" parameterType="Long">
+		select
+			ads_id as id,
+			title as title,
+			img_id as imgId,
+			order_no as orderNo,
+			state as state,
+			create_time as createTime,
+			update_time as updateTime
+		from tbl_ads
+		where ads_id = #{adsId}
+	</select>
+	
+	<!-- 根据id删除数据 -->
+	<delete id="delete" parameterType="Long">
+		delete from tbl_ads where ads_id = #{adsId}
+	</delete>
 </mapper>
 
 

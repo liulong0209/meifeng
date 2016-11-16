@@ -58,6 +58,6 @@ public class Common
     /**
      * Õº∆¨∑√Œ URL
      */
-    public static final String IMG_SHOW_URL = "/file/imageshow?s=";
+    public static final String IMG_SHOW_URL = "/file/imageshow.do?s=";
 
 }

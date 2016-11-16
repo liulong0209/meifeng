@@ -1,5 +1,5 @@
 /**
- * 新闻列表
+ * 轮播广告列表
  */
  
 define(function(require, exports, module){
@@ -10,7 +10,7 @@ define(function(require, exports, module){
 	function initData(pageNo){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/news/pageList.do',       
+				url: contextPath+'/ads/pageList.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
@@ -41,31 +41,31 @@ define(function(require, exports, module){
 	{	
 		if(data.dataList.length==0)
 		{
-			$("#newsList").empty().append("<tr><td colspan='4' align=center>暂无数据</td></tr>");
+			$("#adsList").empty().append("<tr><td colspan='5' align=center>暂无数据</td></tr>");
 			return;
 		}
 		
-		var $newsList="";
+		var $adsList="";
 		$.each(data.dataList,function(i,news){
-			$newsList+="<tr>";
-			$newsList+=	"<td>"+(i+1)+"</td>";
-			$newsList+=	"<td>"+news.title+"</td>";
-			$newsList+=	"<td>"+(news.state==0?"草稿":"已发布")+"</td>";
-			$newsList+=	"<td>";
-			$newsList+=		"<button type=\"button\" id=\"news_edit_"+news.id+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
-			$newsList+=		"<input type=\"hidden\" value=\""+news.id+"\">";
-			$newsList+=		"<button type=\"button\" id=\"news_show\" class=\"btn btn-primary btn-xs mr10\">查看</button>";
-			$newsList+=		"<button type=\"button\" id=\"news_edit\" class=\"btn btn-default btn-xs\">删除</button>";
-			$newsList+=	"</td>";
-			$newsList+="</tr>";
+			$adsList+="<tr>";
+			$adsList+=	"<td>"+(i+1)+"</td>";
+			$adsList+=	"<td>"+news.title+"</td>";
+			$adsList+=	"<td>"+(news.state==0?"草稿":"已发布")+"</td>";
+			$adsList+=	"<td>";
+			$adsList+=		"<button type=\"button\" id=\"news_edit_"+news.id+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
+			$adsList+=		"<input type=\"hidden\" value=\""+news.id+"\">";
+			$adsList+=		"<button type=\"button\" id=\"news_show\" class=\"btn btn-primary btn-xs mr10\">查看</button>";
+			$adsList+=		"<button type=\"button\" id=\"news_edit\" class=\"btn btn-default btn-xs\">删除</button>";
+			$adsList+=	"</td>";
+			$adsList+="</tr>";
 		})
 		
 		//渲染新闻列表
-		$("#newsList").empty().append($newsList);
+		$("#adsList").empty().append($adsList);
 		
 		//按钮绑定事件
 		$("button[id^='news_edit_']").click(function(){
-			window.location.href =  contextPath+'/news/showEdit.do?newsId='+$(this).next("input[type=hidden]").val();
+			window.location.href =  contextPath+'/ads/showEdit.do?newsId='+$(this).next("input[type=hidden]").val();
 		})
 		
 		//渲染分页
@@ -77,9 +77,9 @@ define(function(require, exports, module){
 	function init(){
 		initData(1);
 		
-		//绑定发布新闻
-		$("#addNews").click(function(){
-			window.location.href =  contextPath+'/news/showAdd.do';
+		//新增绑定
+		$("#addAds").click(function(){
+			window.location.href =  contextPath+'/ads/showAdd.do';
 		})
 	}
 	

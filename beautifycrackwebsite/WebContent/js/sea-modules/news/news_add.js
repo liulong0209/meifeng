@@ -13,7 +13,7 @@ define(function(require, exports, module){
 		}
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+"/console/newsmanager/add",       
+				url: contextPath+"/news/add.do",       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
@@ -38,7 +38,6 @@ define(function(require, exports, module){
 			    		require.async('bootstrap',function(){
 							$('#tipsModule').find(".modal-body").empty().append(tips+"成功!");
 							$('#tipsModule').modal("show");
-							setTimeout("window.location.reload()",1000);
 						})
 			    	}
 			    	else

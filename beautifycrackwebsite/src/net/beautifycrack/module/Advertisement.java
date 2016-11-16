@@ -51,6 +51,11 @@ public class Advertisement implements Serializable
      */
     private Date createTime;
 
+    /**
+     * ÐÞ¸ÄÊ±¼ä
+     */
+    private Date updateTime;
+
     public Long getId()
     {
         return id;
@@ -110,4 +115,15 @@ public class Advertisement implements Serializable
     {
         this.createTime = createTime;
     }
+
+    public Date getUpdateTime()
+    {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime)
+    {
+        this.updateTime = updateTime;
+    }
+
 }

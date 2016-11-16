@@ -55,7 +55,7 @@ define(function(require,exports,module){
 		$.each(data,function(i,product){
 			$productobj+="<div class=\"wper25 clearfix inline-block mb20\">";
 			$productobj+=	"<div class=\"fleft border_f3 pointer\">";
-			$productobj+=		"<img src=\"/mf/file/image/get/"+product.imgId+"\" width=\"275\" height=\"220\">";
+			$productobj+=		"<img src="+contextPath+"/file/image/get/"+product.imgId+" width=\"275\" height=\"220\">";
 			$productobj+=		"<div class=\"tcenter pt10 pb10 f14 c666 bold\">"+product.productName+"</div>";
 			$productobj+=	"</div>";
 			$productobj+="</div>";

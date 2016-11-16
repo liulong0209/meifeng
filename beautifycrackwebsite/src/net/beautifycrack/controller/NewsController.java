@@ -8,11 +8,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.beautifycrack.constant.Common;
+import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.News;
 import net.beautifycrack.service.NewsService;
 import net.beautifycrack.util.PagerUtil;
 
-import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,6 +63,45 @@ public class NewsController
     }
 
     /**
+     * 跳转到新闻新增
+     * 
+     * @param request
+     * @param response
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/news/showAdd.do", method = RequestMethod.GET)
+    public ModelAndView showAdd(HttpServletRequest request, HttpServletResponse response)
+    {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("news/news_add");
+        return mv;
+    }
+
+    /**
+     * 增加新闻
+     * 
+     * @param news
+     * @return
+     */
+    @RequestMapping(value = "/news/add.do", method = RequestMethod.POST)
+    public @ResponseBody Object addNews(News news)
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try
+        {
+            newsService.add(news);
+            result.put("result", Common.SUCCESS);
+            return result;
+        }
+        catch (BusinessException e)
+        {
+            result.put("result", Common.FAIL);
+            return result;
+        }
+    }
+
+    /**
      * 展示新闻详情
      * 
      * @param request
@@ -69,17 +109,36 @@ public class NewsController
      * @param id
      * @return
      */
-    @RequestMapping(value = "/news/show.do", method = RequestMethod.GET)
-    public ModelAndView showDetail(HttpServletRequest request, HttpServletResponse response, Long id)
+    @RequestMapping(value = "/news/showEdit.do", method = RequestMethod.GET)
+    public ModelAndView showDetail(HttpServletRequest request, HttpServletResponse response, Long newsId)
     {
         ModelAndView mv = new ModelAndView();
-        News news = newsService.showNews(id);
+        News news = newsService.showNews(newsId);
         mv.getModelMap().put("news", news);
-        if (news.getPublishTime() != null)
-        {
-            mv.getModelMap().put("publishTime", DateFormatUtils.format(news.getPublishTime(), "yyyy-MM-dd"));
-        }
-        mv.setViewName("news/newsDetail");
+        mv.setViewName("/news/news_edit");
         return mv;
+    }
+
+    /**
+     * 更新新闻
+     * 
+     * @param news
+     * @return
+     */
+    @RequestMapping(value = "/news/update.do", method = RequestMethod.POST)
+    public @ResponseBody Object updateNews(News news)
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try
+        {
+            newsService.update(news);
+            result.put("result", Common.SUCCESS);
+            return result;
+        }
+        catch (BusinessException e)
+        {
+            result.put("result", Common.FAIL);
+            return result;
+        }
     }
 }

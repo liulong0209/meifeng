@@ -7,21 +7,25 @@
 <title>新闻增加</title>
 <link href="${contextPath}/style/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/bootstrapValidator.min.css" type="text/css" rel="stylesheet" />
-<link href="${contextPath}/style/css/loadding.css" type="text/css" rel="stylesheet" />
+<link href="${contextPath}/style/css/inner-base.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<form class="form-horizontal" role="form">
 			  <input type="hidden" id="newsContent">
-			  <div class="form-group">
-			    <label for="newsTitle" class="col-md-1 control-label">新闻标题</label>
+			  <div class="form-group pt10">
+			  	<div class="col-md-1 pl0">
+			    	<label for="newsTitle" class="control-label">新闻标题</label>
+			  	</div>
 			    <div class="col-md-11">
 			      <input type="text" class="form-control" id="newsTitle" name="title"  placeholder="新闻标题">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label class="col-md-1 control-label">新闻内容</label>
+			  	<div class="col-md-1 pl0">
+			    	<label class="control-label">新闻内容</label>
+			  	</div>
 			    <div class="col-md-11">
 			      <!-- 加载编辑器的容器 -->
 			    <script id="container" type="text/plain">这里编辑新闻</script>
@@ -58,28 +62,17 @@
     <script type="text/javascript" src="${contextPath}/js/ueditor1_4_3_3-utf8-jsp/ueditor.all.js"></script>
     <script type="text/javascript">
        var ue = UE.getEditor('container',{
-           autoHeight: false,
+    	   autoHeightEnabled: false,
            initialFrameHeight:550,
-           serverUrl : "${contextPath}/ueditor"
+           serverUrl : "${contextPath}/ueditor.do"
        });
        //失去焦点是将内容赋给隐藏域
        ue.on('blur',function(){
     	   $("#newsContent").val(ue.getContent());
        });
     </script>
-    <script type="text/javascript" src="${contextPath}/js/3th/sea/sea.js"></script>
+    <%@include file="../inc/footer.jsp" %> 
     <script type="text/javascript">
-    	var contextPath = "${contextPath}";
-	    //seajs的配置
-		seajs.config({
-			  base: "${contextPath}/js/",//基本路径
-			  alias: {
-			    "jquery": "3th/jquery/jquery-3.1.0.min.js",
-			    "bootstrap": "3th/bootstrap.js",
-			    "custom": "3th/jquery/plug-in/jquery.custom.js", //自定义的jquery插件
-			    "bootstrapValidator": "3th/bootstrapValidator.js"
-			  }
-			})
-		seajs.use("sea-modules/console/news/news_add",function(module){module.init()})
+		seajs.use("sea-modules/news/news_add",function(module){module.init()})
 	</script>
 </html>

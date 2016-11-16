@@ -1,7 +1,9 @@
 package net.beautifycrack.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.Advertisement;
 
 /**
@@ -18,9 +20,50 @@ import net.beautifycrack.module.Advertisement;
 public interface AdvertisementMapper
 {
     /**
-     * 获取首页的轮播幻灯片
+     * 分页查询数据
      * 
      * @return
+     * @throws BusinessException
      */
-    List<Advertisement> getSlideImg();
+    List<Advertisement> pagerList(Map<String, Object> map) throws BusinessException;
+
+    /**
+     * 查询总数
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    Integer queryTotal() throws BusinessException;
+
+    /**
+     * 新增数据
+     * 
+     * @param ads
+     * @throws BusinessException
+     */
+    void add(Advertisement ads) throws BusinessException;
+
+    /**
+     * 修改数据
+     * 
+     * @param ads
+     * @throws BusinessException
+     */
+    void update(Advertisement ads) throws BusinessException;
+
+    /**
+     * 根据id查询数据
+     * 
+     * @param adsId
+     * @throws BusinessException
+     */
+    void queryById(Long adsId) throws BusinessException;
+
+    /**
+     * 根据id删除数据
+     * 
+     * @param adsId
+     * @throws BusinessException
+     */
+    void delete(Long adsId) throws BusinessException;
 }

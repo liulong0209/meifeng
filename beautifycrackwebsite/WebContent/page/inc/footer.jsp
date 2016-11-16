@@ -11,7 +11,8 @@
 		    "custom": "3th/jquery/plug-in/jquery.custom.js", //自定义的jquery插件
 		    "kkpager":"3th/kkpager.js", //分页组件
 		    "bootstrap": "3th/bootstrap.js",
-		    "bootstrapValidator": "3th/bootstrapValidator.js"
+		    "bootstrapValidator": "3th/bootstrapValidator.js",
+		    "fileinput": "3th/fileinput.min.js"
 		  }
 		})
 </script>

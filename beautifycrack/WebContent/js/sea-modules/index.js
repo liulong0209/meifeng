@@ -118,7 +118,7 @@ define(function(require, exports, module) {
 			$workerli+="	<div class=\"fleft w150\">";
 			$workerli+=			"<a href=\""+contextPath+"/worker/showDetail/"+worker.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+worker.logo+"\" width=\"150\" height=\"150\" class=\"radius75\"></a>";
 			$workerli+=		"</div>";
-			$workerli+="	<div class=\"fleft pt15 pl30 workertext\">";
+			$workerli+="	<div class=\"fleft pt15 pl30 workertext w310\">";
 			$workerli+="		<div class=\"f16 bold\"><a href=\""+contextPath+"/worker/showDetail/"+worker.providersId+"\" target=\"_blank\" class=\"h165\">"+worker.providerName;
 			if(worker.type==1){
 				$workerli+="(团队)";
