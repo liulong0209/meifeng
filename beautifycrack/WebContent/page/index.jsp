@@ -6,7 +6,7 @@
 		<ul style="overflow: hidden">
 			<c:forEach var="slide" items="${slideList}">
 				<li>
-					<a href=""><img src="${contextPath}/file/image/get/${slide.id}" height="450px" width="100%"></a>
+					<a href=""><img src="${contextPath}/file/image/get/${slide.imgId}" height="450px" width="100%"></a>
 				</li>
 			</c:forEach>			
 		</ul>
