@@ -63,4 +63,11 @@ public class UserInfoServiceImpl implements UserInfoService
     {
         userInfoMapper.addUser(userInfo);
     }
+
+    @Override
+    public void update(UserInfo userInfo) throws BusinessException
+    {
+        userInfoMapper.update(userInfo);
+    }
+
 }

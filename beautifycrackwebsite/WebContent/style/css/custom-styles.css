@@ -88,12 +88,12 @@ position: fixed;
   position: relative;
   top: 55px;
 }
-.top-navbar .nav > li > a:hover, .top-navbar .nav > li > a:focus {
+.top-navbar .nav > li > a:focus {
 text-decoration: none;
 background-color: #2497BA;
 color: #fff;
 }
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+.nav .open > a:focus {
 background-color: #18A88B;
 border-color: #18A88B;
 }

@@ -8,23 +8,24 @@
 <link href="${contextPath}/style/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/bootstrapValidator.min.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/inner-base.css" type="text/css" rel="stylesheet" />
+<link href="${contextPath}/style/css/loadding.css" rel="stylesheet" />
 <link href="${contextPath}/style/css/fileinput.css" type="text/css" rel="stylesheet"/>	
 </head>
 <body>
 	<ol class="breadcrumb">
-	  <li><a href="#">轮播广告列表</a></li>
+	  <li><a href="${contextPath}/adsmanager.do">轮播广告列表</a></li>
 	  <li class="active">新增</li>
 	</ol>
 	<div class="container">
 		<div class="row">
-			<form class="form-horizontal" role="form" enctype="multipart/form-data">
-			  <input type="hidden" id="newsContent">
+			<form class="form-horizontal" role="form">
+			  <input type="hidden" id="state" name="state">
 			  <div class="form-group pt10">
 			  	<div class="col-xs-1 pl0">
 			    	<label for="newsTitle" class="control-label">标题</label>
 			  	</div>
 			    <div class="col-xs-11">
-			      <input type="text" class="form-control" id="newsTitle" name="title"  placeholder="标题">
+			      <input type="text" class="form-control" id="adsTitle" name="title"  placeholder="标题">
 			    </div>
 			  </div>
 			  <div class="form-group pt10">
@@ -33,7 +34,7 @@
 			  	</div>
 			    <div class="col-md-11">
 				    <label></label>
-                    <input id="imgFile" type="file" multiple=true>
+                    <input id="imgFile" name="imgFile" type="file" multiple=false>
 			    </div>
 			  </div>
 			  <div class="form-group pt10">
@@ -41,7 +42,7 @@
 			    	<label for="newsTitle" class="control-label">排序号</label>
 			  	</div>
 			    <div class="col-xs-2">
-			      <input type="number" class="form-control" id="newsTitle" name="title">
+			      <input type="number" class="form-control" id="adsOrderNo" name="orderNo">
 			    </div>
 			  </div>
 			  <div class="form-group">

@@ -40,6 +40,7 @@
 	<!-- 用户登录查找 -->
 	<select id="queryUserInfo" parameterType="String" resultType="userInfo">
 		select 
+		      userId as userId,
 			  userName as userName,
 			  password as password,
 			  gender as gender,
@@ -56,6 +57,18 @@
 		where state = 0
 		and (userName=#{acount} or phoneNo=#{account})
 	</select>
+	
+	<!-- 用户修改 -->
+	<update id="update" parameterType="userInfo">
+		update tbl_user_base
+		<set>
+			<if test="#{lastLoginTime!=null}">
+				lastLoginTime=#{lastLoginTime},
+			</if>
+			updateTime=now()
+		</set>
+		where userId=#{userId}
+	</update>
 	
 </mapper>
 

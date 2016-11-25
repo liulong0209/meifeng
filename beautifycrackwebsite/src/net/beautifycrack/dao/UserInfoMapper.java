@@ -41,7 +41,7 @@ public interface UserInfoMapper
      * @throws BusinessException
      */
     void addUser(UserInfo userInfo) throws BusinessException;
-    
+
     /**
      * 根据账号或手机号查找用户
      * 
@@ -50,4 +50,12 @@ public interface UserInfoMapper
      * @throws BusinessException
      */
     UserInfo queryUserInfo(String account) throws BusinessException;
+
+    /**
+     * 用户修改
+     * 
+     * @param userInfo
+     * @throws BusinessException
+     */
+    void update(UserInfo userInfo) throws BusinessException;
 }

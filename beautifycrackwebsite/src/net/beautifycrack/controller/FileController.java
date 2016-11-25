@@ -5,11 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.beautifycrack.constant.Common;
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.FileInfo;
 import net.beautifycrack.service.FileInfoService;
@@ -19,7 +22,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 文件管理控制器
@@ -63,6 +68,10 @@ public class FileController
             throws BusinessException
     {
         logger.debug("FileController->getImage:imageId:{}", imageId);
+        if (imageId == null)
+        {
+            return;
+        }
         FileInputStream fis = null;
         FileInfo fileInfo = null;
         response.setContentType("image/gif");
@@ -92,7 +101,7 @@ public class FileController
                 }
                 catch (IOException e)
                 {
-                    e.printStackTrace();
+                    logger.error("获取附件失败", e.getMessage());
                 }
             }
         }
@@ -114,7 +123,7 @@ public class FileController
      */
     @RequestMapping(value = "/imageshow.do")
     public void showImage(@RequestParam(value = "s") String imgSrc, HttpServletRequest request,
-            HttpServletResponse response)
+            HttpServletResponse response) throws BusinessException
     {
         FileInputStream is;
         try
@@ -131,11 +140,35 @@ public class FileController
         }
         catch (FileNotFoundException e)
         {
-            e.printStackTrace();
+            logger.error("往前台输出显示图片失败，原因：", e);
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            logger.error("往前台输出显示图片失败，原因：", e);
         }
+    }
+
+    /**
+     * 删除文件
+     * 
+     * @param imgId
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> deleteFile(Long fileId) throws BusinessException
+    {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        try
+        {
+            fileInfoService.deleteFile(fileId);
+            resultMap.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            resultMap.put("result", Common.FAIL);
+            logger.error("删除文件失败，原因：", e);
+        }
+        return resultMap;
     }
 }

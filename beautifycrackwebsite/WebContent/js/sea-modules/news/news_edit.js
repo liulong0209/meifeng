@@ -37,17 +37,13 @@ define(function(require, exports, module){
 		    		}
 			    	if(data && data.result==0)
 			    	{
-			    		require.async('bootstrap',function(){
-							$('#tipsModule').find(".modal-body").empty().append(tips+"成功!");
-							$('#tipsModule').modal("show");
-						})
+			    		$("#page-inner iframe",window.parent.document).attr("src",contextPath+"/newsmanager.do");
 			    	}
 			    	else
 			    	{
-			    		require.async('bootstrap',function(){
-							$('#tipsModule').find(".modal-body").empty().append(tips+"失败!");
-							$('#tipsModule').modal("show");
-						})
+			    		require.async('alertable',function(){
+			    			$.alertable.alert(tips+'失败!',{parentObj:window.parent.document});
+			    		});
 			    	}
 				},
 			  	error: function (data) {

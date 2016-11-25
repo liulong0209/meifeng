@@ -141,4 +141,27 @@ public class NewsController
             return result;
         }
     }
+
+    /**
+     * É¾³ýÐÂÎÅ
+     * 
+     * @param news
+     * @return
+     */
+    @RequestMapping(value = "/news/delete.do", method = RequestMethod.POST)
+    public @ResponseBody Object deleteNews(Long newsId)
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try
+        {
+            newsService.delete(newsId);
+            result.put("result", Common.SUCCESS);
+            return result;
+        }
+        catch (BusinessException e)
+        {
+            result.put("result", Common.FAIL);
+            return result;
+        }
+    }
 }

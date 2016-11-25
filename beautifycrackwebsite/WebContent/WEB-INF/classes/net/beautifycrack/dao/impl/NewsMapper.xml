@@ -68,6 +68,11 @@
 		</if>
 		where news_id=#{id}
 	</update>
+	
+	<!-- 删除数据 -->
+	<delete id="delete" parameterType="Long">
+		delete from tbl_news where news_id=#{newsId}
+	</delete>
 </mapper>
 
 

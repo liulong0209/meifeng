@@ -20,6 +20,12 @@ public class Common
     /**
      * 用户相关常量
      */
+
+    /**
+     * 状态正常
+     */
+    public static final Integer STATUS_OK = 0;
+
     /**
      * 用户不存在
      */
@@ -54,6 +60,11 @@ public class Common
      * 新闻编辑增加的图片
      */
     public static final int FILE_UPLPADER_NEWS = -2;
+
+    /**
+     * 没有图片(之前有，删除后，imgID会置为-1)
+     */
+    public static final int NO_FILE = -1;
 
     /**
      * 图片访问URL

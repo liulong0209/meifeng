@@ -1,5 +1,6 @@
 package net.beautifycrack.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import net.beautifycrack.exception.BusinessException;
@@ -57,7 +58,7 @@ public interface AdvertisementService
      * @param adsId
      * @throws BusinessException
      */
-    void queryById(Long adsId) throws BusinessException;
+    Advertisement queryById(Long adsId) throws BusinessException;
 
     /**
      * 根据id删除数据
@@ -65,5 +66,5 @@ public interface AdvertisementService
      * @param adsId
      * @throws BusinessException
      */
-    void delete(Long adsId) throws BusinessException;
+    void delete(Advertisement ads) throws BusinessException, IOException;
 }

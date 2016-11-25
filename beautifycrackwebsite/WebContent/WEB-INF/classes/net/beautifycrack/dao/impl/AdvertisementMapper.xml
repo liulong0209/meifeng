@@ -19,8 +19,8 @@
 	</select>
 	
 	<!-- 查询总数 -->
-	<select id="queryTotal">
-		select count(*) from tbl_ads
+	<select id="queryTotal" resultType="Integer">
+		select count(ads_id) from tbl_ads
 	</select>
 	
 	<!-- 新增数据 -->
@@ -39,7 +39,7 @@
 			#{imgId},
 			#{orderNo},
 			#{state},
-			now(),
+			now()
 		)
 	</insert>
 	<!-- 更新数据 -->
@@ -59,10 +59,11 @@
 		<if test="state!=null">
 			,state = #{state}
 		</if>
+		where ads_id=#{id}
 	</update>
 	
 	<!-- 根据id查询数据 -->
-	<select id="queryById" parameterType="Long">
+	<select id="queryById" parameterType="Long" resultType="ad">
 		select
 			ads_id as id,
 			title as title,

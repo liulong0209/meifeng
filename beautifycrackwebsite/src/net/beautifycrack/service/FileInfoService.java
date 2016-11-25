@@ -43,6 +43,30 @@ public interface FileInfoService
      * @return String
      * @throws BusinessException
      */
-    String uploadFile(String dir, String path, String ext, String original, InputStream in) throws BusinessException,
-            IOException;
+    String uploadFile(String dir, String path, String ext, String original, InputStream in, String returnValue)
+            throws BusinessException, IOException;
+
+    /**
+     * 上传图片
+     * 
+     * @param dir上传目录
+     * @param path上传路径
+     * @param ext文件扩展名
+     * @param original文件原始名
+     * @param imgBase64Str
+     *            图片以base64编码的字符串
+     * @throws BusinessException
+     *             IOException
+     * @return
+     */
+    Long uploadImg(String dir, String path, String original, String imgBase64Str) throws BusinessException, IOException;
+
+    /**
+     * 删除文件
+     * 
+     * @param imgId
+     * @throws BusinessException
+     * @throws IOException
+     */
+    void deleteFile(Long fileId) throws BusinessException, IOException;
 }

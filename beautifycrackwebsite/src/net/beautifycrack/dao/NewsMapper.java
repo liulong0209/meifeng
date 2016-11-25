@@ -59,4 +59,12 @@ public interface NewsMapper
      * @throws BusinessException
      */
     void update(News news) throws BusinessException;
+
+    /**
+     * 增加新闻
+     * 
+     * @param newsId
+     * @throws BusinessException
+     */
+    void delete(Long newsId) throws BusinessException;
 }

@@ -57,7 +57,7 @@ public interface AdvertisementMapper
      * @param adsId
      * @throws BusinessException
      */
-    void queryById(Long adsId) throws BusinessException;
+    Advertisement queryById(Long adsId) throws BusinessException;
 
     /**
      * 根据id删除数据

@@ -51,4 +51,12 @@ public interface UserInfoService
      */
     void addUser(UserInfo userInfo) throws BusinessException;
 
+    /**
+     * ÓÃ»§ÐÞ¸Ä
+     * 
+     * @param userInfo
+     * @throws BusinessException
+     */
+    void update(UserInfo userInfo) throws BusinessException;
+
 }

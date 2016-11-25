@@ -15,6 +15,37 @@
 		from tbl_file_info
 		where file_id=#{fileId}
 	</select>
+	
+	<!-- 获取最大文件id -->
+	<select id="getMaxFileId" resultType="Long">
+		select IFNULL(max(file_id+1),1) from tbl_file_info
+	</select>
+	<!-- 新增文件 -->
+	<insert id="add" parameterType="fileInfo">
+		insert into tbl_file_info
+		(
+			file_id,
+			orgin_name,
+			file_name,
+			file_path,
+			creator,
+			create_time
+		)
+		value
+		(
+			#{fileId},
+			#{orginName},
+			#{fileName},
+			#{filePath},
+			#{creator},
+			now()
+		)
+	</insert>
+	
+	<!-- 删除文件 -->
+	<delete id="delete" parameterType="Long">
+		delete from tbl_file_info where file_id=#{fileId};
+	</delete>
 </mapper>
 
 

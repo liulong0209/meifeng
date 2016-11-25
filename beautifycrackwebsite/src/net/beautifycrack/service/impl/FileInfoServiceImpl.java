@@ -1,17 +1,22 @@
 package net.beautifycrack.service.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.annotation.Resource;
 
-import net.beautifycrack.constant.Common;
 import net.beautifycrack.dao.FileInfoMapper;
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.FileInfo;
 import net.beautifycrack.service.FileInfoService;
 import net.beautifycrack.util.UploadUtils;
 
+import org.apache.commons.io.FileDeleteStrategy;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -43,12 +48,30 @@ public class FileInfoServiceImpl implements FileInfoService
     }
 
     @Override
-    public String uploadFile(String dir, String path, String ext, String original, InputStream in)
+    public String uploadFile(String dir, String path, String ext, String original, InputStream in, String returnValue)
             throws BusinessException, IOException
     {
         String filename = UploadUtils.generateFilename(path, ext);
-        save(dir, filename, original, ext, in, true);
-        return filename;
+        String fileId = save(dir, filename, original, ext, in, "", true);
+        if ("filename".equals(returnValue))
+        {
+            return filename;
+        }
+        else if ("fileId".equals(returnValue))
+        {
+            return fileId;
+        }
+        return null;
+    }
+
+    @Override
+    public Long uploadImg(String dir, String path, String original, String imgBase64Str) throws BusinessException,
+            IOException
+    {
+        String ext = FilenameUtils.getExtension(original);
+        String filename = UploadUtils.generateFilename(path, ext);
+        String fileId = save(dir, filename, original, ext, null, imgBase64Str, true);
+        return Long.valueOf(fileId);
     }
 
     /**
@@ -69,24 +92,56 @@ public class FileInfoServiceImpl implements FileInfoService
      *            文件输入流
      * @throws IOException
      *             IOException
-     * @Version v1.0
-     * @author s54322/sunyue
-     * @Date 2016年5月18日
+     * @return String 返回文件id
      */
-    private void save(String dir, String path, String filename, String ext, InputStream in, boolean isUpdate)
-            throws IOException
+    private String save(String dir, String path, String filename, String ext, InputStream in, String imgBase64Str,
+            boolean isUpdate) throws IOException
     {
         // 文件上传至目录
-        UploadUtils.generateFileInPath(dir, path, in);
+        if (in != null)
+        {
+            UploadUtils.generateFileInPath(dir, path, in);
+        }
+        if (!StringUtils.isEmpty(imgBase64Str))
+        {
+            Base64 base64 = new Base64();
+            byte[] b = base64.decode(imgBase64Str.getBytes());
+            File file = new File(dir + File.separator + path);
+            FileUtils.writeByteArrayToFile(file, b);
+        }
+
         FileInfo fileInfo = new FileInfo();
         // 记录入库
         if (isUpdate)
         {
+            fileInfo.setFileId(fileInfoMapper.getMaxFileId());
             fileInfo.setOrginName(filename);
             fileInfo.setFileName(path);
-            fileInfo.setFilePath(path + filename);
-            fileInfo.setCreator(Common.FILE_UPLPADER_NEWS);
+            fileInfo.setFilePath(dir + File.separator + path);
+            // fileInfo.setCreator(Common.FILE_UPLPADER_NEWS);
+            fileInfoMapper.add(fileInfo);
         }
+
+        return fileInfo.getFileId().toString();
     }
 
+    @Override
+    public void deleteFile(Long fileId) throws BusinessException, IOException
+    {
+        FileInfo fileInfo = fileInfoMapper.findFileById(fileId);
+
+        // 删除数据库
+        fileInfoMapper.delete(fileId);
+
+        if (fileInfo != null)
+        {
+            // 删除文件
+            FileDeleteStrategy strategy = FileDeleteStrategy.NORMAL;
+            File fileToDelete = new File(fileInfo.getFilePath());
+            if (fileToDelete.exists())
+            {
+                strategy.delete(fileToDelete);
+            }
+        }
+    }
 }

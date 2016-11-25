@@ -7,6 +7,7 @@
 <!-- Bootstrap Styles-->
 <link href="${contextPath}/style/css/bootstrap.min.css" rel="stylesheet" />
 <link href="${contextPath}/style/css/font-awesome.css" rel="stylesheet" />
+<link href="${contextPath}/style/css/jquery.alertable.css" rel="stylesheet" />
 <link href="${contextPath}/style/css/custom-styles.css" rel="stylesheet" />
 <link href='${contextPath}/style/css/googleapis.css' rel='stylesheet' />
 <title>美缝平台后台管理</title>
@@ -20,7 +21,7 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <a><i class="fa fa-user fa-fw"></i>您好：xxx</a>
+                    <a><i class="fa fa-user fa-fw"></i>您好：${sessionScope.userInfo.userName}</a>
                 </li>
                 <li>
                     <a href="javaScript:void('0')" id="logout"><i class="fa fa-sign-out fa-fw"></i>退出</a>
@@ -38,6 +39,7 @@
                     <li>
                         <a href="javaScript:void('0')" url="${contextPath}/newsmanager.do"><i class="fa fa-desktop"></i> 新闻动态管理</a>
                     </li>
+                    <!-- 
 					<li>
                         <a href="javaScript:void('0')" url="${contextPath}/companymanager.do"><i class="fa fa-bar-chart-o"></i> 美缝公司管理</a>
                     </li>
@@ -55,6 +57,7 @@
                     <li>
                         <a href="empty.html"><i class="fa fa-fw fa-file"></i>工具材料分类管理</a>
                     </li>
+                     -->
                 </ul>
 
             </div>
@@ -73,9 +76,9 @@
 </body>
     <script src="${contextPath}/js/3th/jquery-3.1.0.min.js"></script>
     <script src="${contextPath}/js/3th/bootstrap.min.js"></script>
+    <script src="${contextPath}/js/jquery.alertable.min.js"></script>
     <script src="${contextPath}/js/home.js"></script>
-    <!--  
-    <script src="${contextPath}/js/jquery.metisMenu.js"></script>
-    <script src="${contextPath}/js/custom-scripts.js"></script>
-    -->
+    <script type="text/javascript">
+    	var contextPath = "${contextPath}";
+    </script>
 </html>

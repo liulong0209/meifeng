@@ -6,3 +6,17 @@
 .pl10{padding-left: 10px;}
 
 #kkpager{width: 650px;margin: 0 auto;padding: 40px 0 0 0;}
+
+/*页面编辑图片展示*/
+.img-edit-show{
+	position: relative;
+}
+
+.img-edit-show .delete{
+	position: absolute;
+	font-size: 26px;
+	color: red;
+	left: 480px;
+	top:-8px;
+	cursor: pointer;
+}

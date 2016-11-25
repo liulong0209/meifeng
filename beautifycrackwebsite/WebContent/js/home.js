@@ -30,9 +30,23 @@ $(function(){
 			$("#page-inner iframe").attr("src",url);
 		})
 		
+		//鼠标经过离开菜单事件绑定
+		$("#main-menu li a").hover(function(){
+			$(this).addClass('active-menu');
+		},function(){
+			//已有选中的，再确定该菜单的选中样式
+			if($("#main-menu li .active-menu").length>1){
+				$(this).removeClass('active-menu');
+			}
+		});
+		
 		//退出按钮事件绑定
 		$("#logout").click(function(){
-			
+			 $.alertable.confirm('确认退出吗?').then(function() {
+			      window.location.href=contextPath+"/logout.do"
+			 }, function() {
+			      return;   
+			 });
 		})
 	}
 	

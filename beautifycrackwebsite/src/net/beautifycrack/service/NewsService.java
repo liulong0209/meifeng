@@ -59,4 +59,12 @@ public interface NewsService
      * @throws BusinessException
      */
     void update(News news) throws BusinessException;
+
+    /**
+     * É¾³ýÐÂÎÅ
+     * 
+     * @param newsId
+     * @throws BusinessException
+     */
+    void delete(Long newsId) throws BusinessException;
 }

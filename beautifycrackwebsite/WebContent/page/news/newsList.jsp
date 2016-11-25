@@ -11,6 +11,9 @@
 <title>新闻管理</title>
 </head>
 <body>
+<ol class="breadcrumb">
+	  <li class="active">新闻动态列表</li>
+	</ol>
 <div class="pt10 pl10">
 	<button id="addNews" type="button" class="btn btn-primary">发布新闻</button>
 </div>

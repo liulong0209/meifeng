@@ -24,4 +24,28 @@ public interface FileInfoMapper
      * @throws BusinessException
      */
     FileInfo findFileById(Long fileId) throws BusinessException;
+
+    /**
+     * 获取最大的文件id
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    Long getMaxFileId() throws BusinessException;
+
+    /**
+     * 新增
+     * 
+     * @param fileInfo
+     * @throws BusinessException
+     */
+    void add(FileInfo fileInfo) throws BusinessException;
+
+    /**
+     * 删除
+     * 
+     * @param fileInfo
+     * @throws BusinessException
+     */
+    void delete(Long fileId) throws BusinessException;
 }

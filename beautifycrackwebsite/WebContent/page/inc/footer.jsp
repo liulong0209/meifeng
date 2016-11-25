@@ -12,7 +12,8 @@
 		    "kkpager":"3th/kkpager.js", //分页组件
 		    "bootstrap": "3th/bootstrap.js",
 		    "bootstrapValidator": "3th/bootstrapValidator.js",
-		    "fileinput": "3th/fileinput.min.js"
+		    "fileinput": "3th/fileinput.min.js",
+		    "alertable": "3th/jquery.alertable.min.js"
 		  }
 		})
 </script>

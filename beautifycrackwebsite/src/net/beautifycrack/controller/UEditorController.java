@@ -20,8 +20,8 @@ import net.beautifycrack.service.FileInfoService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -375,7 +375,8 @@ public class UEditorController
         LOG.debug("Parameter NewFile: {}", filename);
         String ext = FilenameUtils.getExtension(filename);
 
-        String fileUrl = fileInfoService.uploadFile(uploadPath, ueUploadPath, ext, filename, uplFile.getInputStream());
+        String fileUrl = fileInfoService.uploadFile(uploadPath, ueUploadPath, ext, filename, uplFile.getInputStream(),
+                "filename");
 
         fileUrl = request.getContextPath() + IMG_SHOW_URL + fileUrl;
 
