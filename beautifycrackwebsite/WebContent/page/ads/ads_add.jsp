@@ -34,7 +34,7 @@
 			  	</div>
 			    <div class="col-md-11">
 				    <label></label>
-                    <input id="imgFile" name="imgFile" type="file" multiple=false>
+                    <input id="imgFile" name="imgFile" type="file">
 			    </div>
 			  </div>
 			  <div class="form-group pt10">

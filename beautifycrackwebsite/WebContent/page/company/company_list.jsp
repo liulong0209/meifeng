@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="pt10 pl10">
-	<button type="button" class="btn btn-primary">新增</button>
+	<button id="addCompany" type="button" class="btn btn-primary">新增</button>
 </div>
 <div class="table-responsive">
 	<table class="table table-hover">

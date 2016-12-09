@@ -102,7 +102,7 @@ public class NewsController
     }
 
     /**
-     * 展示新闻详情
+     * 展示新闻编辑
      * 
      * @param request
      * @param response
@@ -110,7 +110,7 @@ public class NewsController
      * @return
      */
     @RequestMapping(value = "/news/showEdit.do", method = RequestMethod.GET)
-    public ModelAndView showDetail(HttpServletRequest request, HttpServletResponse response, Long newsId)
+    public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long newsId)
     {
         ModelAndView mv = new ModelAndView();
         News news = newsService.showNews(newsId);

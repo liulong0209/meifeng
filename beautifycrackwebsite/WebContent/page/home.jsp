@@ -39,10 +39,11 @@
                     <li>
                         <a href="javaScript:void('0')" url="${contextPath}/newsmanager.do"><i class="fa fa-desktop"></i> 新闻动态管理</a>
                     </li>
-                    <!-- 
+
 					<li>
                         <a href="javaScript:void('0')" url="${contextPath}/companymanager.do"><i class="fa fa-bar-chart-o"></i> 美缝公司管理</a>
                     </li>
+                    <!-- 
                     <li>
                         <a href="javaScript:void('0')" url="${contextPath}/workermanager.do"><i class="fa fa-qrcode"></i> 施工工人管理</a>
                     </li>

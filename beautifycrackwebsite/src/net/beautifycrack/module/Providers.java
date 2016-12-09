@@ -3,7 +3,7 @@ package net.beautifycrack.module;
 import java.util.Date;
 
 /**
- * 公司实体 Company.java
+ * 供应商 Providers.java
  * 
  * @Description: <br>
  * <br>
@@ -29,7 +29,7 @@ public class Providers
     private String profile;
 
     /**
-     * 手机号码
+     * 联系方式
      */
     private String phoneNo;
 
@@ -44,14 +44,9 @@ public class Providers
     private Long logo;
 
     /**
-     * 状态0 正常 1删除
+     * 0 待审核 1 未通过 2通过
      */
     private Integer state;
-
-    /**
-     * 状态改变时间
-     */
-    private Date stateDate;
 
     /**
      * 排序号
@@ -72,6 +67,26 @@ public class Providers
      * 所属城市id
      */
     private Integer city;
+
+    /**
+     * 提供服务类型 0 提供施工 1提供产品
+     */
+    private Integer serviceType;
+
+    /**
+     * 创建者
+     */
+    private Long creator;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
     public Long getProvidersId()
     {
@@ -143,16 +158,6 @@ public class Providers
         this.state = state;
     }
 
-    public Date getStateDate()
-    {
-        return stateDate;
-    }
-
-    public void setStateDate(Date stateDate)
-    {
-        this.stateDate = stateDate;
-    }
-
     public Integer getOrderNo()
     {
         return orderNo;
@@ -191,6 +196,46 @@ public class Providers
     public void setCity(Integer city)
     {
         this.city = city;
+    }
+
+    public Integer getServiceType()
+    {
+        return serviceType;
+    }
+
+    public void setServiceType(Integer serviceType)
+    {
+        this.serviceType = serviceType;
+    }
+
+    public Long getCreator()
+    {
+        return creator;
+    }
+
+    public void setCreator(Long creator)
+    {
+        this.creator = creator;
+    }
+
+    public Date getCreateTime()
+    {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime)
+    {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime()
+    {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime)
+    {
+        this.updateTime = updateTime;
     }
 
 }

@@ -8,13 +8,7 @@ import javax.annotation.Resource;
 
 import net.beautifycrack.dao.ProvidersMapper;
 import net.beautifycrack.exception.BusinessException;
-import net.beautifycrack.module.AntiFake;
-import net.beautifycrack.module.BookingCommunity;
-import net.beautifycrack.module.ConstructionCase;
-import net.beautifycrack.module.ProductCategory;
 import net.beautifycrack.module.Providers;
-import net.beautifycrack.module.Qualification;
-import net.beautifycrack.module.Worker;
 import net.beautifycrack.service.ProvidersService;
 import net.beautifycrack.util.PagerUtil;
 
@@ -53,57 +47,32 @@ public class ProvidersServiceImpl implements ProvidersService
     }
 
     @Override
-    public Providers showProviders(Long id) throws BusinessException
-    {
-        return providersMapper.showProviders(id);
-    }
-
-    @Override
     public Integer queryTotal(List<Integer> list) throws BusinessException
     {
         return providersMapper.queryTotal(list);
     }
 
     @Override
-    public List<Providers> providersListIndex(List<Integer> list) throws BusinessException
+    public void addProviders(Providers providers) throws BusinessException
     {
-        return providersMapper.providersListIndex(list);
+        providersMapper.addProviders(providers);
     }
 
     @Override
-    public List<Worker> findProviderWorker(Long providerId) throws BusinessException
+    public void updateProviders(Providers providers) throws BusinessException
     {
-        return providersMapper.findProviderWorker(providerId);
+        providersMapper.updateProviders(providers);
     }
 
     @Override
-    public List<ConstructionCase> findConstructionCase(Long providerId) throws BusinessException
+    public void deleteProviders(Providers providers) throws BusinessException
     {
-        return providersMapper.findConstructionCase(providerId);
+        providersMapper.deleteProviders(providers.getProvidersId());
     }
 
     @Override
-    public List<BookingCommunity> findBookingCommunity(Long providerId) throws BusinessException
+    public Providers queryProvider(Long providerId) throws BusinessException
     {
-        return providersMapper.findBookingCommunity(providerId);
+        return providersMapper.queryProvider(providerId);
     }
-
-    @Override
-    public List<Qualification> findQualification(Long company) throws BusinessException
-    {
-        return providersMapper.findQualification(company);
-    }
-
-    @Override
-    public List<AntiFake> findAntiFake(Long company) throws BusinessException
-    {
-        return providersMapper.findAntiFake(company);
-    }
-
-    @Override
-    public List<ProductCategory> findProductCategory(Long company) throws BusinessException
-    {
-        return providersMapper.findProductCategory(company);
-    }
-
 }

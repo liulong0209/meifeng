@@ -1,5 +1,6 @@
 package net.beautifycrack.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,14 +10,18 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.beautifycrack.constant.Common;
+import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.Providers;
+import net.beautifycrack.service.FileInfoService;
 import net.beautifycrack.service.ProvidersService;
 import net.beautifycrack.util.PagerUtil;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,108 +50,32 @@ public class ProvidersController
     ProvidersService providersService;
 
     /**
-     * 跳转到公司列表页面
+     * 上传文件根路径
+     */
+    @Value("#{properties['root.upload.path']}")
+    private String uploadPath;
+
+    /**
+     * 供应商文件目录
+     */
+    @Value("#{properties['providers.upload.path']}")
+    private String providersUploadPath;
+
+    /**
+     * 文件接口
+     */
+    @Resource
+    private FileInfoService fileInfoService;
+
+    /**
+     * 跳转到美缝公司管理列表页面
      */
     @RequestMapping(value = "/companymanager.do")
     public ModelAndView company(HttpServletRequest request, HttpServletResponse response)
     {
-
         ModelAndView mv = new ModelAndView();
         mv.setViewName("company/company_list");
         return mv;
-    }
-
-    /**
-     * 跳转到施工工人列表页面
-     */
-    @RequestMapping(value = "/workermanager.do")
-    public ModelAndView worker(HttpServletRequest request, HttpServletResponse response)
-    {
-
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("worker/worker_list");
-        return mv;
-    }
-
-    /**
-     * 跳转到公司详情页面
-     * 
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "/company/showDetail/{id}")
-    public ModelAndView showCompany(HttpServletRequest request, HttpServletResponse response, @PathVariable Long id)
-    {
-        ModelAndView mv = new ModelAndView();
-        Providers company = providersService.showProviders(id);
-        mv.getModel().put("company", company);
-        mv.setViewName("company/companyDetail");
-        // request.getSession(true).setAttribute("user", "user");
-        return mv;
-    }
-
-    /**
-     * 跳转到施工工人详情页面
-     * 
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "/worker/showDetail/{id}")
-    public ModelAndView showWorker(@PathVariable Long id)
-    {
-        ModelAndView mv = new ModelAndView();
-        Providers worker = providersService.showProviders(id);
-        mv.getModel().put("worker", worker);
-        mv.setViewName("worker/workerDetail");
-        return mv;
-    }
-
-    /**
-     * 展示施工工人信息(公司、团队的)
-     * 
-     * @param companyId
-     * @return
-     */
-    @RequestMapping(value = "/providers/showWorker/{companyId}")
-    public @ResponseBody Object showWorkerData(@PathVariable Long companyId)
-    {
-        return providersService.findProviderWorker(companyId);
-    }
-
-    /**
-     * 展示施工案例信息(三种类型都有)
-     * 
-     * @param companyId
-     * @return
-     */
-    @RequestMapping(value = "/providers/showCase/{companyId}")
-    public @ResponseBody Object showCaseData(@PathVariable Long companyId)
-    {
-        return providersService.findConstructionCase(companyId);
-    }
-
-    /**
-     * 展示公司预约小区信息
-     * 
-     * @param companyId
-     * @return
-     */
-    @RequestMapping(value = "/company/showBookingCommunity/{companyId}")
-    public @ResponseBody Object showBookingCommunityData(@PathVariable Long companyId)
-    {
-        return providersService.findBookingCommunity(companyId);
-    }
-
-    /**
-     * 展示公司资质信息
-     * 
-     * @param companyId
-     * @return
-     */
-    @RequestMapping(value = "/company/showQualification/{companyId}")
-    public @ResponseBody Object showQualificationData(@PathVariable Long companyId)
-    {
-        return providersService.findQualification(companyId);
     }
 
     /**
@@ -155,7 +84,7 @@ public class ProvidersController
     @RequestMapping(value = "/providers/pageList.do", method = RequestMethod.POST)
     public @ResponseBody Object pageList(PagerUtil pu, String type)
     {
-        // logger.info("ProvidersController->pageList:type{}", type);
+        logger.info("ProvidersController->pageList:type{}", type);
         Map<String, Object> dataMaps = new HashMap<String, Object>();
         // 类型以list传入
         List<Integer> list = new ArrayList<Integer>();
@@ -178,75 +107,138 @@ public class ProvidersController
     }
 
     /**
-     **************** 以下方法在美缝材料和美缝工具使用***************************
+     * 跳转到新增美缝公司页面
      */
-
-    /**
-     * 跳转到美缝材料详情页面(展示材料所属公司信息)
-     * 
-     * @param providerId
-     * @return
-     */
-    @RequestMapping(value = "/material/showCompanyMaterial/{providerId}")
-    public Object showCompanyMaterial(@PathVariable Long providerId)
+    @RequestMapping(value = "/company/showAdd.do")
+    public ModelAndView showAddCompany(HttpServletRequest request, HttpServletResponse response)
     {
         ModelAndView mv = new ModelAndView();
-        Providers company = providersService.showProviders(providerId);
-        mv.getModel().put("company", company);
-        mv.setViewName("product/productCompany");
+        mv.setViewName("company/company_add");
         return mv;
     }
 
     /**
-     * 跳转到美缝工具详情页面(展示工具所属公司信息)
+     * 美缝公司 团队 个人增加
      * 
-     * @param providerId
+     * @param request
+     * @param response
+     * @param providers
+     * @param imageData
+     * @param original
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/providers/add.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> add(HttpServletRequest request, HttpServletResponse response,
+            Providers providers, String imageData, String original) throws BusinessException
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try
+        {
+            // 上传文件
+            if (!StringUtils.isEmpty(imageData))
+            {
+
+                Long fileId = Long.valueOf(fileInfoService.uploadImg(uploadPath, providersUploadPath, original,
+                        imageData.substring("data:image/png;base64,".length())));
+                providers.setLogo(fileId);
+            }
+            // 添加到数据库
+            providersService.addProviders(providers);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (IOException e)
+        {
+            result.put("result", Common.FAIL);
+            logger.error("新增美缝公司失败：原因{}", e);
+        }
+        return result;
+    }
+
+    /**
+     * 跳转美缝公司更新页面
+     * 
+     * @param request
+     * @param response
+     * @param companyId
      * @return
      */
-    @RequestMapping(value = "/tools/showCompanyTools/{providerId}")
-    public Object showCompanyTools(@PathVariable Long providerId)
+    @RequestMapping(value = "/company/showEdit.do", method = RequestMethod.GET)
+    public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long companyId)
     {
         ModelAndView mv = new ModelAndView();
-        Providers company = providersService.showProviders(providerId);
-        mv.getModel().put("company", company);
-        mv.setViewName("product/productCompany");
+        Providers providers = providersService.queryProvider(companyId);
+        mv.getModelMap().put("company", providers);
+        mv.setViewName("company/company_edit");
         return mv;
     }
 
     /**
-     * 展示公司证书信息(证书和资质使用同一个表，所以共用一个service方法)
+     * 美缝公司 团队 个人更新
      * 
-     * @param companyId
+     * @param request
+     * @param response
+     * @param ads
+     * @param file
      * @return
+     * @throws BusinessException
      */
-    @RequestMapping(value = "/company/certificate/{companyId}")
-    public @ResponseBody Object showCertificateData(@PathVariable Long companyId)
+    @RequestMapping(value = "/providers/update.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> update(HttpServletRequest request, HttpServletResponse response,
+            Providers providers, String imageData, String original) throws BusinessException
     {
-        return providersService.findQualification(companyId);
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try
+        {
+            // 上传文件
+            if (!StringUtils.isEmpty(imageData))
+            {
+
+                Long fileId = Long.valueOf(fileInfoService.uploadImg(uploadPath, providersUploadPath, original,
+                        imageData.substring("data:image/png;base64,".length())));
+                providers.setLogo(fileId);
+            }
+            // 同步到数据库
+            providersService.updateProviders(providers);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            logger.debug("更新供应商失败，原因：", e);
+            result.put("result", Common.FAIL);
+        }
+
+        return result;
     }
 
     /**
-     * 展示公司防伪信息
+     * 美缝公司 团队 个人删除
      * 
-     * @param companyId
+     * @param request
+     * @param response
+     * @param providers
      * @return
+     * @throws BusinessException
      */
-    @RequestMapping(value = "/company/antifake/{companyId}")
-    public @ResponseBody Object showAntifakeData(@PathVariable Long companyId)
+    @RequestMapping(value = "/providers/delete.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> delete(HttpServletRequest request, HttpServletResponse response,
+            Providers providers) throws BusinessException
     {
-        return providersService.findAntiFake(companyId);
-    }
+        Map<String, Object> result = new HashMap<String, Object>();
 
-    /**
-     * 获取公司经营产品分类
-     * 
-     * @param companyId
-     * @return
-     */
-    @RequestMapping(value = "/company/productCategory/{companyId}")
-    public @ResponseBody Object showProductCategory(@PathVariable Long companyId)
-    {
-        return providersService.findProductCategory(companyId);
-    }
+        try
+        {
+            providersService.deleteProviders(providers);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            logger.debug("删除供应商失败，原因：", e);
+            result.put("result", Common.FAIL);
+        }
 
+        return result;
+    }
 }

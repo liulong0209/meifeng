@@ -16,7 +16,7 @@
 			head as head,
 			city as city
 		from tbl_providers_info 
-		where sts='A' and serviceType=0 and type in
+		where serviceType=0 and type in
 				<foreach item="item" index="index" collection="list" 
                          open="(" separator="," close=")">
                         #{item}
@@ -26,7 +26,7 @@
 	</select>
 	
 	<!-- 查询一条详细信息 -->
-	<select id="showProviders" parameterType="Long" resultType="providers">
+	<select id="queryProvider" parameterType="Long" resultType="providers">
 		select 
 			providers_id as providersId,
 			provider_name as providerName,
@@ -38,7 +38,7 @@
 			head as head,
 			city as city
 		from tbl_providers_info 
-		where sts='A' and providers_id =#{providersId}
+		where providers_id =#{providerId}
 	</select>
 	
 	<!-- 查询总数 -->
@@ -46,8 +46,7 @@
 		select 
 			count(*) 
 		from tbl_providers_info 
-		where 
-			sts='A' and serviceType=0
+		where serviceType=0
 			and type in
 			<foreach item="item" index="index" collection="list" 
                          open="(" separator="," close=")">
@@ -55,96 +54,68 @@
              </foreach>
 	</select>
 	
-	<!-- 首页显示数据 -->
-	<select id="providersListIndex" parameterType="List" resultType="providers">		
-		select 
-			providers_id as providersId,
-			provider_name as providerName,
-			profile as profile,
-			phone_no as phoneNo,
-			address as address,
-			logo as logo,
-			type as type,
-			head as head,
-			city as city
-		from tbl_providers_info 
-		where sts='A' and serviceType=0 and type in
-			<foreach item="item" index="index" collection="list" 
-                         open="(" separator="," close=")">
-                        #{item}
-             </foreach>
-		order by order_no
-		LIMIT 0,4
-	</select>
+	<!-- 新增供应商 -->
+	<insert id="addProviders" parameterType="providers">
+		insert into tbl_providers_info (
+			provider_name,
+			profile,
+			phone_no,
+			address,
+			logo,
+			state,
+			order_no,
+			type,
+			head,
+			city,
+			serviceType,
+			creator,
+			create_time
+		)
+		value
+		(
+			#{providerName},
+			#{profile},
+			#{phoneNo},
+			#{address},
+			#{logo},
+			#{state},
+			#{orderNo},
+			#{type},
+			#{head},
+			#{city},
+			#{serviceType},
+			#{createTime},
+			now()
+		)
+	</insert>
 	
-	<!-- 查找施工工人信息,显示3条 -->
-	<select id="findProviderWorker" parameterType="Long" resultType="worker">
-		select 
-			worker_id as id,
-			name as name,
-			avatar as avatar,
-			providers_id as providerId
-		from tbl_worker
-		where providers_id = #{providerId}
-		LIMIT 0,3
-	</select>
+	<!-- 更新提供商 -->
+	<update id="updateProviders" parameterType="providers">
+		update tbl_providers_info 
+		set
+		update_time = now()
+		<if test="providerName!=null and providerName!=''">
+			,provider_name = #{providerName}
+		</if>
+		<if test="profile!=null and profile!=''">
+			,profile = #{profile}
+		</if>
+		<if test="phoneNo!=null and phoneNo!=''">
+			,phone_no = #{phoneNo}
+		</if>
+		<if test="address!=null and address!=''">
+			,address = #{address}
+		</if>
+		<if test="logo!=null">
+			,logo =#{logo}
+		</if>
+		where providers_id =#{providersId}
+	</update>
 	
-	<!-- 查找施工案例信息 -->
-	<select id="findConstructionCase" parameterType="Long" resultType="constructionCase">
-		select 
-			case_id as id,
-			title as communityName,
-			img_id as imageId,
-			providers_id as providerId
-		from tbl_work_case
-		where providers_id = #{providerId}
-	</select>
-	
-	<!-- 查找预约小区信息 -->
-	<select id="findBookingCommunity" parameterType="Long" resultType="bookingCommunity">
-		select 
-			region_id as id,
-			title as communityName,
-			img_id as imageId,
-			providers_id as providerId
-		from tbl_book_region
-		where providers_id = #{providerId}
-	</select>
-	
-	<!-- 查找公司资质信息 -->
-	<select id="findQualification" parameterType="Long" resultType="qualification">
-		select 
-			com_rank_id as id,
-			title as title,
-			img_id as imageId,
-			providers_id as providerId
-		from tbl_company_rank
-		where providers_id = #{providerId}
-	</select>
-	
-	<!-- 查找公司防伪信息 -->
-	<select id="findAntiFake" parameterType="Long" resultType="antifake">
-		select 
-			prod_anti_id as id,
-			title as title,
-			file_id as imageId,
-			providers_id as providerId
-		from tbl_product_anti_fake
-		where providers_id = #{providerId}
-	</select>
-	
-	<!-- 查找公司经营产品分类信息 -->
-	<select id="findProductCategory" parameterType="Long" resultType="productCategory">
-		   select 
-		          pc.product_type_id as id,
-		          pc.name as name,
-		          pe.providers_tpye as type
-		   from tbl_product_class pc,tbl_providers_info pri,tbl_providers_extend pe
-		   where pc.product_type_id= pe.extend_id and pri.providers_id=pe.providers_id
-		   and pri.providers_id=#{companyId}
-		   and pri.sts='A'
-		   and pri.serviceType=1
-	</select>
+	<!-- 删除供应商 -->
+	<delete id="deleteProviders" parameterType="Long">
+		delete from tbl_providers_info where providers_id =#{providerId}
+	</delete>
 </mapper>
 
 
