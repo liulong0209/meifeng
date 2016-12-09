@@ -34,31 +34,31 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/adsmanager.do"><i class="fa fa-dashboard"></i> 轮播广告维护</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/adsmanager.do"><i class="fa fa-dashboard"></i>轮播广告维护</a>
                     </li>
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/newsmanager.do"><i class="fa fa-desktop"></i> 新闻动态管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/newsmanager.do"><i class="fa fa-desktop"></i>新闻动态管理</a>
                     </li>
 
 					<li>
-                        <a href="javaScript:void('0')" url="${contextPath}/companymanager.do"><i class="fa fa-bar-chart-o"></i> 美缝公司管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/companymanager.do"><i class="fa fa-bar-chart-o"></i>美缝公司管理</a>
                     </li>
-                    <!-- 
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/workermanager.do"><i class="fa fa-qrcode"></i> 施工工人管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/workermanager.do"><i class="fa fa-qrcode"></i>施工工人管理</a>
                     </li>
                     
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/materialmanager.do"><i class="fa fa-table"></i> 美缝材料管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/materialClass.do"><i class="fa fa-fw fa-file"></i>材料分类管理</a>
                     </li>
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/toolsmanager.do"><i class="fa fa-edit"></i> 美缝工具管理 </a>
+                        <a href="javaScript:void('0')" url="${contextPath}/materialmanager.do"><i class="fa fa-table"></i>美缝材料管理</a>
                     </li>
-
                     <li>
-                        <a href="empty.html"><i class="fa fa-fw fa-file"></i>工具材料分类管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/toolsClass.do"><i class="fa fa-fw fa-file"></i>工具分类管理</a>
                     </li>
-                     -->
+                    <li>
+                        <a href="javaScript:void('0')" url="${contextPath}/toolsmanager.do"><i class="fa fa-edit"></i>美缝工具管理 </a>
+                    </li>
                 </ul>
 
             </div>

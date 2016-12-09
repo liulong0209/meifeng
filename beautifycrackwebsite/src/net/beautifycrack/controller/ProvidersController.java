@@ -241,4 +241,29 @@ public class ProvidersController
 
         return result;
     }
+
+    /**
+     * 编辑删除图片时更新供应商logo为-1
+     * 
+     * @param ads
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/providers/ajaxUpdate.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> ajaxUpdate(Providers providers) throws BusinessException
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try
+        {
+            providersService.updateProviders(providers);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            result.put("result", Common.FAIL);
+            logger.debug("更新供应商失败，原因：", e);
+        }
+
+        return result;
+    }
 }

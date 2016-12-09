@@ -66,8 +66,78 @@ define(function(require,exports,module){
 
 				});
 			});
-			
 		});
+		
+		//图片删除
+		$("#delete").click(function(){
+			require.async('alertable',function(){
+				$.alertable.confirm('确认删除嘛!',{parentObj:window.parent.document}).then(function() {
+					//删除logo
+					deleteLogo();
+			    }, function() {
+			         return;      
+			    });
+			})
+		})
+	}
+	
+	function deleteLogo(){
+		require.async('custom',function(){
+			$.ajax({    
+				url: contextPath+'/file/delete.do',       
+				type:'post',    
+				cache:false,  			
+				dataType:'json', 
+				data:{"fileId":$("#logoId").val()},
+				beforeSend: function () {
+					$.showLoadding({loadText:"执行中，请稍后...."});
+			    },
+			    success: function (data) {
+			    	if(data.result=='0'){
+			    		require.async('alertable',function(){
+			    			$.alertable.alert('删除成功!',{parentObj:window.parent.document});
+			    			//页面删除图片元素
+				    		$(".img-edit-show").remove();
+				    		
+				    		$("#imgFile").show();
+				    		//加载图片上传组件
+				    		initFileUpload();
+				    		
+				    		//更改数据里img_id
+				    		updatelogo();
+			    		})
+			    	}else{
+			    		require.async('alertable',function(){
+			    			$.alertable.alert('删除失败!',{parentObj:window.parent.document});
+			    		})
+			    	}
+			    },
+			    complete: function () {
+			    	$.hideLoadding();
+			    },
+			    error: function (data) {
+			    	$.hideLoadding();
+			        console.info("error: " + data.responseText);
+			    }
+
+			});
+		});
+	}
+	
+	//删除图片是更新imgid字段为-1
+	function updatelogo(){
+		$.ajax({    
+			url: contextPath+'/providers/ajaxUpdate.do',       
+			type:'post',    
+			cache:false,  			
+			dataType:'json', 
+			data:{providersId:$("#providersId").val(),logo:-1},
+		    success: function (data) {
+		    	
+		    },
+		    error: function (data) {
+		        console.info("error: " + data.responseText);
+		    }});
 	}
 	
 	//输入框校验

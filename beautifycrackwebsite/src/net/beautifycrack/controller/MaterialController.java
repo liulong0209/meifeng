@@ -78,4 +78,16 @@ public class MaterialController
         return dataMaps;
     }
 
+    /**
+     * 跳转到美缝材料分类列表
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/materialClass.do")
+    public Object materialClass()
+    {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("material/material_class_list");
+        return mv;
+    }
 }

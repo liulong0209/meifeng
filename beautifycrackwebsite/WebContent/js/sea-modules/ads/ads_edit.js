@@ -65,6 +65,7 @@ define(function(require, exports, module){
 			    			$.alertable.alert('删除成功!',{parentObj:window.parent.document});
 			    			//页面删除图片元素
 				    		$(".img-edit-show").remove();
+				    		$("#imgFile").show();
 				    		//加载图片上传组件
 				    		initFileUpload();
 				    		

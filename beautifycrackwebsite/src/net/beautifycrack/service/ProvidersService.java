@@ -1,5 +1,6 @@
 package net.beautifycrack.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import net.beautifycrack.exception.BusinessException;
@@ -59,7 +60,7 @@ public interface ProvidersService
      * @param providers
      * @throws BusinessException
      */
-    void deleteProviders(Providers providers) throws BusinessException;
+    void deleteProviders(Providers providers) throws BusinessException, IOException;
 
     /**
      * 根据供应商id查询供应商

@@ -51,7 +51,7 @@ define(function(require,exports,module){
 			$companyList+=	"<td>"+company.providerName+"</td>";
 			$companyList+=	"<td>";
 			$companyList+=		"<button type=\"button\" id=\"company_edit_"+company.providersId+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
-			$companyList+=		"<button type=\"button\" id=\"company_delete_"+company.providersId+"\" class=\"btn btn-default btn-xs\">删除</button>";
+			$companyList+=		"<button type=\"button\" id=\"company_delete_"+company.providersId+"\" class=\"btn btn-default btn-xs\" logovalu="+(company.logo?company.logo:"")+">删除</button>";
 			$companyList+=	"</td>";
 			$companyList+="</tr>";
 			
@@ -68,11 +68,11 @@ define(function(require,exports,module){
 		//删除按钮绑定事件
 		$("button[id^='company_delete_']").click(function(){
 			var companyId = $(this).attr("id").replace("company_delete_","");
-			var imgId = $(this).attr("imgvalu");
+			var logovalu = $(this).attr("logovalu");
 			if(typeof(imgId) == "undefined"){imgId=null};
 			require.async('alertable',function(){
 				$.alertable.confirm('确认删除嘛!',{parentObj:window.parent.document}).then(function() {
-					deleteAds(companyId,imgId);
+					deletelogo(companyId,logovalu);
 			    }, function() {
 			         return;      
 			    });
@@ -84,14 +84,14 @@ define(function(require,exports,module){
 		pager.loadPager(pageNo,data.pager.totalPage,data.pager.totalRecords,initData);
 	}
 	
-	function deleteAds(companyId,imgId){
+	function deletelogo(companyId,logovalu){
 		require.async('custom',function(){
 			$.ajax({    
 				url: contextPath+'/providers/delete.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{"companyId":companyId,"imgId":imgId},
+				data:{"companyId":companyId,"logo":logovalu},
 				beforeSend: function () {
 					$.showLoadding({loadText:"执行中，请稍后...."});
 			    },
