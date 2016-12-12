@@ -21,7 +21,7 @@
 			<form class="form-horizontal" role="form">
 			  <div class="form-group pt10">
 			  	<div class="col-md-2 pl0">
-			    	<label for="newsTitle" class="control-label">公司名称</label>
+			    	<label for="companyName" class="control-label">公司名称</label>
 			  	</div>
 			    <div class="col-md-10">
 			      <input type="text" class="form-control" id="companyName" name="companyName"  placeholder="公司名称">
@@ -29,7 +29,7 @@
 			  </div>
 			  <div class="form-group">
 			  	<div class="col-md-2 pl0">
-			    	<label class="control-label">公司简介</label>
+			    	<label for="introduction" class="control-label">公司简介</label>
 			  	</div>
 			    <div class="col-md-10">
 			     	<textarea class="form-control" rows="12" placeholder="公司简介" id="introduction" name="introduction"></textarea>
@@ -37,7 +37,7 @@
 			  </div>
 			  <div class="form-group">
 			  	<div class="col-md-2 pl0">
-			    	<label class="control-label">联系方式</label>
+			    	<label for="contact" class="control-label">联系方式</label>
 			  	</div>
 			    <div class="col-md-5">
 			     	<input type="text" class="form-control" id="contact" name="contact"  placeholder="联系方式">
@@ -54,7 +54,7 @@
 			  </div>
 			  <div class="form-group pt10">
 			  	<div class="col-md-2 pl0">
-			    	<label for="newsTitle" class="control-label">公司地址</label>
+			    	<label for="address" class="control-label">公司地址</label>
 			  	</div>
 			    <div class="col-md-10">
 			      <input type="text" class="form-control" id="address" name="address"  placeholder="公司地址">

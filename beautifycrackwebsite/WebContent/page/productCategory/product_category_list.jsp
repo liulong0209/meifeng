@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html">
 <html>
 <head>
@@ -11,6 +12,16 @@
 <title>美缝工具/材料分类管理</title>
 </head>
 <body>
+<ol class="breadcrumb">
+	  <c:choose>
+	  	<c:when test="${productType==0}">
+	  		<li class="active">工具分类管理</li>
+	  	</c:when>
+	  	<c:otherwise>
+	  		<li class="active">材料分类管理</li>
+	  	</c:otherwise>
+	  </c:choose>
+</ol>
 <div class="pt10 pl10">
 	<button id="product_category_add" type="button" class="btn btn-primary">新增</button>
 </div>

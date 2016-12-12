@@ -11,6 +11,9 @@
 <title>美缝平台后台管理</title>
 </head>
 <body>
+<ol class="breadcrumb">
+	  <li class="active">美缝公司管理</li>
+</ol>
 <div class="pt10 pl10">
 	<button id="addCompany" type="button" class="btn btn-primary">新增</button>
 </div>

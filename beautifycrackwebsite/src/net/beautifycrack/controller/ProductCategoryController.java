@@ -34,7 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProductCategoryController
 {
-    private static Logger logger = LoggerFactory.getLogger(MaterialController.class);
+    private static Logger logger = LoggerFactory.getLogger(ProductCategoryController.class);
 
     /**
      * 注入产品接口
@@ -69,7 +69,7 @@ public class ProductCategoryController
     public @ResponseBody Object pageCategoryList(PagerUtil pu, Integer productType) throws BusinessException
 
     {
-        logger.debug("MaterialController->pageCategoryList->productType=" + productType);
+        logger.debug("ProductCategoryController->pageCategoryList->productType=" + productType);
         Map<String, Object> dataMaps = new HashMap<String, Object>();
 
         List<ProductCategory> list = productCategoryService.queryCategories(pu, productType);
@@ -95,6 +95,7 @@ public class ProductCategoryController
     public Object productCategoryShowAdd(Integer productType) throws BusinessException
 
     {
+    	logger.debug("ProductCategoryController->productCategoryShowAdd->productType=" + productType);
         ModelAndView mv = new ModelAndView();
         mv.getModelMap().put("productType", productType);
         mv.setViewName("productCategory/product_category_add");
@@ -135,6 +136,7 @@ public class ProductCategoryController
     @RequestMapping(value = "/productCategory/delete.do")
     public @ResponseBody Map<String, Object> delete(Integer id) throws BusinessException
     {
+    	logger.debug("ProductCategoryController->delete->id=" + id);
         Map<String, Object> result = new HashMap<String, Object>();
         try
         {

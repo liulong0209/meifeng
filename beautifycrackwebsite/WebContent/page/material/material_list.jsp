@@ -11,8 +11,11 @@
 <title>美缝材料管理</title>
 </head>
 <body>
+<ol class="breadcrumb">
+	  <li class="active">美缝材料管理</li>
+</ol>
 <div class="pt10 pl10">
-	<button type="button" class="btn btn-primary">新增</button>
+	<button id="addMaterial" type="button" class="btn btn-primary">新增</button>
 </div>
 <div class="table-responsive">
 	<table class="table table-hover">

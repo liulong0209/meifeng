@@ -3,7 +3,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="net.beautifycrack.dao.ProductMapper">
-	
+	<!-- 分页查询数据 -->
+	<select id="pageList" parameterType="Map" resultType="product">
+		select
+			a.prod_id as id,
+			a.product_name as productName,
+			a.product_type as category,
+			b.name as categoryName,
+			a.providers_id as providersId,
+			c.provider_name as providersName
+		from tbl_product a 
+		left join tbl_product_class b on a.product_type=b.product_type_id 
+		left join tbl_providers_info c on a.providers_id=c.providers_id
+		where b.type=#{productType}
+		and c.serviceType=1
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	<select id="queryTotal" parameterType="Integer" resultType="Integer">
+		select count(prod_id) from tbl_product a
+		left join tbl_product_class b on a.product_type=b.product_type_id 
+		where b.type=#{productType}
+	</select>
 </mapper>
 
 

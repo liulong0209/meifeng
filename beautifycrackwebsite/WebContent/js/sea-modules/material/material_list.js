@@ -13,7 +13,7 @@ define(function(require,exports,module){
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{"pageNo":pageNo,"categoryId":categoryId},
+				data:{"pageNo":pageNo,"productType":1},
 				beforeSend: function () {
 					$.showLoadding();
 				},
@@ -66,8 +66,11 @@ define(function(require,exports,module){
 	
 	
 	//初始化
-	function init(categoryId,type){
-		initData(1,categoryId,type);
+	function init(){
+		initData(1);
+		$("#addMaterial").click(function(){
+			window.location.href=contextPath+"/material/showAdd.do"
+		})
 	}
 	
 	//对外输出接口
