@@ -1,5 +1,5 @@
 /**
- * 公司列表
+ * 材料分类列表
  */
 define(function(require,exports,module){
 	//引入jquery
@@ -9,11 +9,11 @@ define(function(require,exports,module){
 	function initData(pageNo){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/providers/pageList.do',       
+				url: contextPath+'/productCategory/pageList.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{"pageNo":pageNo,"type":0},
+				data:{"pageNo":pageNo,"productType":$("#productType").val()},
 				beforeSend: function () {
 					$.showLoadding();
 				},
@@ -37,61 +37,57 @@ define(function(require,exports,module){
 	
 	//渲染数据
 	function render(data,pageNo){
-		
 		if(data.dataList.length==0)
 		{
-			$("#companyList").empty().append("<tr><td>暂无数据</td></tr>");
+			$("#productCategoryList").empty().append("<tr><td>暂无数据</td></tr>");
+			$("#kkpager").empty();
 			return;
 		}
-		
-		var $companyList="";
-		$.each(data.dataList,function(i,company){
-			$companyList+="<tr>";
-			$companyList+=	"<td>"+(i+1)+"</td>";
-			$companyList+=	"<td>"+company.providerName+"</td>";
-			$companyList+=	"<td>";
-			$companyList+=		"<button type=\"button\" id=\"company_edit_"+company.providersId+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
-			$companyList+=		"<button type=\"button\" id=\"company_delete_"+company.providersId+"\" class=\"btn btn-default btn-xs\" logovalu="+(company.logo?company.logo:"")+">删除</button>";
-			$companyList+=	"</td>";
-			$companyList+="</tr>";
-			
+		var $productCategoryList="";
+		$.each(data.dataList,function(i,productCategory){
+			$productCategoryList+="<tr>";
+			$productCategoryList+=	"<td>"+(i+1)+"</td>";
+			$productCategoryList+=	"<td>"+productCategory.name+"</td>";
+			$productCategoryList+=	"<td>";
+			$productCategoryList+=		"<button id=\"edit_"+productCategory.id+"\" type=\"button\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
+			$productCategoryList+=		"<button id=\"delete_"+productCategory.id+"\" type=\"button\" class=\"btn btn-default btn-xs\">删除</button>";
+			$productCategoryList+=	"</td>";
+			$productCategoryList+="</tr>";
 		})
 		
-		//渲染公司列表
-		$("#companyList").empty().append($companyList);
+		//渲染列表
+		$("#productCategoryList").empty().append($productCategoryList)
+		
+		//渲染分页
+		var pager = require("sea-modules/common");
+		pager.loadPager(pageNo,data.pager.totalPage,data.pager.totalRecords,initData);
 		
 		//编辑按钮绑定事件
-		$("button[id^='company_edit_']").click(function(){
-			window.location.href =  contextPath+'/company/showEdit.do?companyId='+$(this).attr("id").replace("company_edit_","");
+		$("button[id^='edit_']").click(function(){
+			window.location.href =  contextPath+'/productCategory/showEdit.do?id='+$(this).attr("id").replace("edit_","");
 		})
 		
 		//删除按钮绑定事件
-		$("button[id^='company_delete_']").click(function(){
-			var companyId = $(this).attr("id").replace("company_delete_","");
-			var logovalu = $(this).attr("logovalu");
-			if(typeof(imgId) == "undefined"){imgId=null};
+		$("button[id^='delete_']").click(function(){
+			var id = $(this).attr("id").replace("delete_","");
 			require.async('alertable',function(){
 				$.alertable.confirm('确认删除嘛!',{parentObj:window.parent.document}).then(function() {
-					deletecompany(companyId,logovalu);
+					deleteCategory(id);
 			    }, function() {
 			         return;      
 			    });
 			})
 		})
-		
-		//渲染分页
-		var pager = require("sea-modules/common");
-		pager.loadPager(pageNo,data.pager.totalPage,data.pager.totalRecords,initData);
 	}
 	
-	function deletecompany(companyId,logovalu){
+	function deleteCategory(id){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/providers/delete.do',       
+				url: contextPath+'/productCategory/delete.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{"providersId":companyId,"logo":logovalu},
+				data:{"id":id},
 				beforeSend: function () {
 					$.showLoadding({loadText:"执行中，请稍后...."});
 			    },
@@ -115,13 +111,18 @@ define(function(require,exports,module){
 		});
 	}
 	
+	//时间绑定
+	function eventBind(){
+		$("#product_category_add").click(function(){
+			window.location.href=contextPath+"/productCategory/showAdd.do?productType="+$("#productType").val()
+		})
+	}
+	
+	
 	//初始化
 	function init(){
 		initData(1);
-		//绑定新增公司
-		$("#addCompany").click(function(){
-			window.location.href =  contextPath+'/company/showAdd.do';
-		})
+		eventBind();
 	}
 	
 	//对外输出接口

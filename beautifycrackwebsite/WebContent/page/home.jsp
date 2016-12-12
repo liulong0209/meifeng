@@ -48,13 +48,13 @@
                     </li>
                     
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/materialClass.do"><i class="fa fa-fw fa-file"></i>材料分类管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/materialCategory.do?productType=1"><i class="fa fa-fw fa-file"></i>材料分类管理</a>
                     </li>
                     <li>
                         <a href="javaScript:void('0')" url="${contextPath}/materialmanager.do"><i class="fa fa-table"></i>美缝材料管理</a>
                     </li>
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/toolsClass.do"><i class="fa fa-fw fa-file"></i>工具分类管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/toolsCategory.do?productType=0"><i class="fa fa-fw fa-file"></i>工具分类管理</a>
                     </li>
                     <li>
                         <a href="javaScript:void('0')" url="${contextPath}/toolsmanager.do"><i class="fa fa-edit"></i>美缝工具管理 </a>

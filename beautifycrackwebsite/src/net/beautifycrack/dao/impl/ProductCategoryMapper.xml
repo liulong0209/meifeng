@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.beautifycrack.dao.ProductCategoryMapper">
+	<!-- 获取产品分类条目 -->
+	<select id="queryCategories" parameterType="Map" resultType="productCategory">
+		select 
+		 product_type_id as id,
+		 name as name
+		from tbl_product_class
+		where type=#{productType}
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 分页查询数据 -->
+	<select id="queryCategoriesTotal" parameterType="Integer" resultType="Integer">
+		select count(product_type_id) from tbl_product_class where type=#{productType}
+	</select>
+	<!-- 新增 -->
+	<insert id="add" parameterType="productCategory">
+		insert into tbl_product_class (name,type,CREATE_DATE) value (#{name},#{type},now())
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="productCategory">
+		update tbl_product_class set name=#{name} where product_type_id=#{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Integer">
+		delete from tbl_product_class where product_type_id=#{id}
+	</delete>
+	
+	<select id="queryById" parameterType="Integer" resultType="productCategory">
+		select 
+		 product_type_id as id,
+		 name as name,
+		 type as type
+		from tbl_product_class
+		where product_type_id=#{id}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -25,6 +25,7 @@
 		<mapper resource="net/beautifycrack/dao/impl/ProvidersMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/EvaluationMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/ProductMapper.xml" />
+		<mapper resource="net/beautifycrack/dao/impl/ProductCategoryMapper.xml" />
 		<mapper resource="net/beautifycrack/dao/impl/UserInfoMapper.xml" />
 	</mappers>
 </configuration> 
