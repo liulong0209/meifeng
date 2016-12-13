@@ -42,7 +42,7 @@ public class ProvidersServiceImpl implements ProvidersService
      */
     @Resource
     private ProvidersMapper providersMapper;
-    
+
     /**
      * ÎÄ¼þdao
      */
@@ -97,7 +97,7 @@ public class ProvidersServiceImpl implements ProvidersService
             {
                 strategy.delete(fileToDelete);
             }
-    }
+        }
     }
 
     @Override
@@ -105,4 +105,11 @@ public class ProvidersServiceImpl implements ProvidersService
     {
         return providersMapper.queryProvider(providerId);
     }
+
+    @Override
+    public List<Providers> findProvideProductCompany() throws BusinessException
+    {
+        return providersMapper.findProvideProductCompany();
+    }
+
 }

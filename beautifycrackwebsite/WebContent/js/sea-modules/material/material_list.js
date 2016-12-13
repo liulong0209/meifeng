@@ -9,7 +9,7 @@ define(function(require,exports,module){
 	function initData(pageNo,categoryId,type){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/material/pageList.do',       
+				url: contextPath+'/product/pageList.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
@@ -48,9 +48,10 @@ define(function(require,exports,module){
 			$materialList+="<tr>";
 			$materialList+=	"<td>"+(i+1)+"</td>";
 			$materialList+=	"<td>"+material.productName+"</td>";
+			$materialList+=	"<td>"+material.categoryName+"</td>";
+			$materialList+=	"<td>"+material.providersName+"</td>";
 			$materialList+=	"<td>";
 			$materialList+=		"<button type=\"button\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
-			$materialList+=		"<button type=\"button\" class=\"btn btn-primary btn-xs mr10\">查看</button>";
 			$materialList+=		"<button type=\"button\" class=\"btn btn-default btn-xs\">删除</button>";
 			$materialList+=	"</td>";
 			$materialList+="</tr>";

@@ -95,7 +95,7 @@ public class ProductCategoryController
     public Object productCategoryShowAdd(Integer productType) throws BusinessException
 
     {
-    	logger.debug("ProductCategoryController->productCategoryShowAdd->productType=" + productType);
+        logger.debug("ProductCategoryController->productCategoryShowAdd->productType=" + productType);
         ModelAndView mv = new ModelAndView();
         mv.getModelMap().put("productType", productType);
         mv.setViewName("productCategory/product_category_add");
@@ -134,9 +134,9 @@ public class ProductCategoryController
      * @throws BusinessException
      */
     @RequestMapping(value = "/productCategory/delete.do")
-    public @ResponseBody Map<String, Object> delete(Integer id) throws BusinessException
+    public @ResponseBody Map<String, Object> delete(Long id) throws BusinessException
     {
-    	logger.debug("ProductCategoryController->delete->id=" + id);
+        logger.debug("ProductCategoryController->delete->id=" + id);
         Map<String, Object> result = new HashMap<String, Object>();
         try
         {
@@ -159,7 +159,7 @@ public class ProductCategoryController
      * @return
      */
     @RequestMapping(value = "/productCategory/showEdit.do")
-    public Object productCategoryShowEdit(Integer id) throws BusinessException
+    public Object productCategoryShowEdit(Long id) throws BusinessException
 
     {
         ModelAndView mv = new ModelAndView();

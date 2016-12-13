@@ -38,6 +38,15 @@
 		from tbl_product_class
 		where product_type_id=#{id}
 	</select>
+	
+	<!-- 根据类型获得产品分类 -->
+	<select id="findCategoryByType" parameterType="Integer" resultType="productCategory">
+		select 
+		 product_type_id as id,
+		 name as name
+		from tbl_product_class
+		where type=#{type}
+	</select>
 </mapper>
 
 

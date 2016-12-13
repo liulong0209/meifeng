@@ -70,4 +70,12 @@ public interface ProvidersService
      * @throws BusinessException
      */
     Providers queryProvider(Long providerId) throws BusinessException;
+
+    /**
+     * 查询提供产品的公司
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    List<Providers> findProvideProductCompany() throws BusinessException;
 }

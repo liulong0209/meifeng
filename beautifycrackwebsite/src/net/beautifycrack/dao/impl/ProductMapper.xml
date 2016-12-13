@@ -24,6 +24,76 @@
 		left join tbl_product_class b on a.product_type=b.product_type_id 
 		where b.type=#{productType}
 	</select>
+	<!-- 新增 -->
+	<insert id="add" parameterType="product">
+		insert into tbl_product
+		(
+			product_name,
+			product_intro,
+			product_pic,
+			product_type,
+			providers_id,
+			order_no,
+			sts,
+			CREATE_DATE
+		)
+		value
+		(
+			#{productName},
+			#{profile},
+			#{imgId},
+			#{category},
+			#{providersId},
+			#{orderNo},
+			#{state},
+			now()
+		)
+	</insert>
+	
+	<!-- 更新 -->
+	<update id="update" parameterType="product">
+		update tbl_product 
+		set
+		update_time = now()
+		<if test="productName!=null and productName!=''">
+			,product_name = #{productName}
+		</if>
+		<if test="profile!=null and profile!=''">
+			,product_intro = #{profile}
+		</if>
+		<if test="imgId!=null">
+			,product_pic =#{logo}
+		</if>
+		<if test="category!=null">
+			,product_type =#{category}
+		</if>
+		<if test="providersId!=null">
+			,providers_id =#{providersId}
+		</if>
+		<if test="orderNo!=null">
+			,order_no =#{orderNo}
+		</if>
+		where prod_id =#{id}
+	</update>
+	
+	<!-- 查询 -->
+	<select id="find" parameterType="Long" resultType="product">
+		select
+			prod_id as id,
+			product_name as productName,
+			product_intro as profile,
+			product_pic as imgId,
+			product_type as category,
+			providers_id as providersId,
+			order_no as orderNo
+		from tbl_product 
+		where prod_id=#{id}
+	</select>
+	
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Long">
+		delete from tbl_product where prod_id=#{id}
+	</delete>
 </mapper>
 
 

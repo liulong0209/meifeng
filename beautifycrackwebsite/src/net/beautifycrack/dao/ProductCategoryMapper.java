@@ -59,7 +59,7 @@ public interface ProductCategoryMapper
      * @param id
      * @throws BusinessException
      */
-    void delete(Integer id) throws BusinessException;
+    void delete(Long id) throws BusinessException;
 
     /**
      * 查询分类
@@ -68,6 +68,15 @@ public interface ProductCategoryMapper
      * @return
      * @throws BusinessException
      */
-    ProductCategory queryById(Integer id) throws BusinessException;
+    ProductCategory queryById(Long id) throws BusinessException;
+
+    /**
+     * 根据类型获取产品分类(0工具 1材料)
+     * 
+     * @param type
+     * @return
+     * @throws BusinessException
+     */
+    List<ProductCategory> findCategoryByType(Integer type) throws BusinessException;
 
 }

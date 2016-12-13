@@ -70,4 +70,27 @@ public interface ProvidersMapper
      * @throws BusinessException
      */
     Providers queryProvider(Long providerId) throws BusinessException;
+
+    /**
+     * 查询提供产品的公司
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    List<Providers> findProvideProductCompany() throws BusinessException;
+
+    /**
+     * 判断公司是否已经有某个产品分类
+     * 
+     * @param paMap
+     * @return
+     */
+    Integer judgeCompanyproductCategory(Map<String, Object> paMap);
+
+    /**
+     * 增加公司产品分类
+     * 
+     * @param paMap
+     */
+    void addCompanyproductCategory(Map<String, Object> paMap);
 }

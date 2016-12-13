@@ -65,15 +65,21 @@ public class ProductCategoryServiceImpl implements ProductCategoryService
     }
 
     @Override
-    public void delete(Integer id) throws BusinessException
+    public void delete(Long id) throws BusinessException
     {
         productCategoryMapper.delete(id);
     }
 
     @Override
-    public ProductCategory queryById(Integer id) throws BusinessException
+    public ProductCategory queryById(Long id) throws BusinessException
     {
         return productCategoryMapper.queryById(id);
+    }
+
+    @Override
+    public List<ProductCategory> findCategoryByType(Integer type) throws BusinessException
+    {
+        return productCategoryMapper.findCategoryByType(type);
     }
 
 }

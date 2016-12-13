@@ -1,6 +1,7 @@
 package net.beautifycrack.module;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 
@@ -58,6 +59,26 @@ public class Product implements Serializable
      * 提供商名称
      */
     private String providersName;
+
+    /**
+     * 排序号
+     */
+    private Integer orderNo;
+
+    /**
+     * 状态 0 正常
+     */
+    private Integer state;
+
+    /**
+     * 新建时间
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
     public Long getId()
     {
@@ -137,6 +158,46 @@ public class Product implements Serializable
     public void setProfile(String profile)
     {
         this.profile = profile;
+    }
+
+    public Integer getOrderNo()
+    {
+        return orderNo;
+    }
+
+    public void setOrderNo(Integer orderNo)
+    {
+        this.orderNo = orderNo;
+    }
+
+    public Integer getState()
+    {
+        return state;
+    }
+
+    public void setState(Integer state)
+    {
+        this.state = state;
+    }
+
+    public Date getCreateTime()
+    {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime)
+    {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime()
+    {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime)
+    {
+        this.updateTime = updateTime;
     }
 
 }
