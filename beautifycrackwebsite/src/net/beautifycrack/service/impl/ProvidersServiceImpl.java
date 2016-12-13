@@ -64,8 +64,24 @@ public class ProvidersServiceImpl implements ProvidersService
     {
         return providersMapper.queryTotal(list);
     }
+    
+    
 
     @Override
+	public List<Providers> productCompanyPagerList(PagerUtil pager)
+			throws BusinessException {
+    	 Map<String, Object> map = new HashMap<String, Object>();
+         map.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+         map.put("pageSize", pager.getPageSize());
+         return providersMapper.productCompanyPagerList(map);
+	}
+
+	@Override
+	public Integer queryProductCompanyTotal() throws BusinessException {
+		return providersMapper.queryProductCompanyTotal();
+	}
+
+	@Override
     public void addProviders(Providers providers) throws BusinessException
     {
         providersMapper.addProviders(providers);

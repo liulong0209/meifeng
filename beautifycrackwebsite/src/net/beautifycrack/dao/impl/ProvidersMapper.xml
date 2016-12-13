@@ -44,7 +44,7 @@
 	<!-- 查询总数 -->
 	<select id="queryTotal" resultType="Integer" parameterType="List">
 		select 
-			count(*) 
+			count(providers_id) 
 		from tbl_providers_info 
 		where serviceType=0
 			and type in
@@ -52,6 +52,33 @@
                          open="(" separator="," close=")">
                         #{item}
              </foreach>
+	</select>
+	
+		<!-- 分页查询数据 -->
+	<select id="productCompanyPagerList" resultType="providers" parameterType="Map">
+		select 
+			providers_id as providersId,
+			provider_name as providerName,
+			profile as profile,
+			phone_no as phoneNo,
+			address as address,
+			logo as logo,
+			type as type,
+			head as head,
+			city as city
+		from tbl_providers_info 
+		where serviceType=1 and type =0
+		order by order_no
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 查询总数 -->
+	<select id="queryProductCompanyTotal" resultType="Integer">
+		select 
+			count(providers_id) 
+		from tbl_providers_info 
+		where serviceType=1
+			and type=0
 	</select>
 	
 	<!-- 新增供应商 -->

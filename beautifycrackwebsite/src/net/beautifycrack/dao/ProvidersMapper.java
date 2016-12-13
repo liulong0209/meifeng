@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.Providers;
+import net.beautifycrack.util.PagerUtil;
 
 /**
  * 公司dao
@@ -34,6 +35,22 @@ public interface ProvidersMapper
      * @throws BusinessException
      */
     Integer queryTotal(List<Integer> list) throws BusinessException;
+    
+    /**
+     * 分页查询商品提供公司数据
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    List<Providers> productCompanyPagerList(Map<String, Object> map) throws BusinessException;
+
+    /**
+     * 查询商品提供公司总数
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    Integer queryProductCompanyTotal() throws BusinessException;
 
     /**
      * 新增供应商

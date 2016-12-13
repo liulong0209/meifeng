@@ -28,9 +28,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 提供商的控制器，包括 公司 团队 个人
+ * 商品提供商控制器
  * 
- * ProvidersController.java
+ * ProductCompanyController.java
  * 
  * @Description: <br>
  * <br>
@@ -39,9 +39,9 @@ import org.springframework.web.servlet.ModelAndView;
  * @author liulong
  */
 @Controller
-public class ProvidersController
+public class ProductCompanyController
 {
-    private static Logger logger = LoggerFactory.getLogger(ProvidersController.class);
+    private static Logger logger = LoggerFactory.getLogger(ProductCompanyController.class);
 
     /**
      * 提供商接口注入
@@ -68,57 +68,49 @@ public class ProvidersController
     private FileInfoService fileInfoService;
 
     /**
-     * 跳转到美缝公司管理列表页面
+     * 跳转到工具材料提供公司的列表页面
      */
-    @RequestMapping(value = "/companymanager.do")
+    @RequestMapping(value = "/productCompanymanager.do")
     public ModelAndView company(HttpServletRequest request, HttpServletResponse response)
     {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("company/company_list");
+        mv.setViewName("productCompany/productCompany_list");
         return mv;
     }
-
+    
     /**
-     * 加载公司、团队、个人列表数据，前台通多ajax调用
+     * 分页显示数据
      */
-    @RequestMapping(value = "/providers/pageList.do", method = RequestMethod.POST)
-    public @ResponseBody Object pageList(PagerUtil pu, String type)
+    @RequestMapping(value = "/productCompany/pageList.do", method = RequestMethod.POST)
+    public @ResponseBody Object pageList(PagerUtil pu)
     {
-        logger.info("ProvidersController->pageList:type{}", type);
         Map<String, Object> dataMaps = new HashMap<String, Object>();
-        // 类型以list传入
-        List<Integer> list = new ArrayList<Integer>();
-        String[] array = type.split(",");
-        for (String s : array)
-        {
-            list.add(Integer.valueOf(s));
-        }
-
+        
         // 查询数据
-        List<Providers> providersList = providersService.pagerList(pu, list);
+        List<Providers> providersList = providersService.productCompanyPagerList(pu);
 
         dataMaps.put("dataList", providersList);
         // 查询数据总数
-        Integer total = providersService.queryTotal(list);
+        Integer total = providersService.queryProductCompanyTotal();
         pu.setTotalRecords(total);
         pu.setTotalPage(pu.getTotalPage());
         dataMaps.put("pager", pu);
         return dataMaps;
     }
-
+    
     /**
-     * 跳转到新增美缝公司页面
+     * 跳转到新增工具材料提供公司页面
      */
-    @RequestMapping(value = "/company/showAdd.do")
+    @RequestMapping(value = "/productCompany/showAdd.do")
     public ModelAndView showAddCompany(HttpServletRequest request, HttpServletResponse response)
     {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("company/company_add");
+        mv.setViewName("productCompany/productCompany_add");
         return mv;
     }
-
+    
     /**
-     * 美缝公司 团队 个人增加
+     * 工具材料提供公司增加
      * 
      * @param request
      * @param response
@@ -128,7 +120,7 @@ public class ProvidersController
      * @return
      * @throws BusinessException
      */
-    @RequestMapping(value = "/providers/add.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/productCompany/add.do", method = RequestMethod.POST)
     public @ResponseBody Map<String, Object> add(HttpServletRequest request, HttpServletResponse response,
             Providers providers, String imageData, String original) throws BusinessException
     {
@@ -155,27 +147,27 @@ public class ProvidersController
         }
         return result;
     }
-
+    
     /**
-     * 跳转美缝公司更新页面
+     * 跳转工具材料提供公司更新页面
      * 
      * @param request
      * @param response
      * @param companyId
      * @return
      */
-    @RequestMapping(value = "/company/showEdit.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/productCompany/showEdit.do", method = RequestMethod.GET)
     public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long companyId)
     {
         ModelAndView mv = new ModelAndView();
         Providers providers = providersService.queryProvider(companyId);
         mv.getModelMap().put("company", providers);
-        mv.setViewName("company/company_edit");
+        mv.setViewName("productCompany/productCompany_edit");
         return mv;
     }
-
+    
     /**
-     * 美缝公司 团队 个人更新
+     * 工具材料提供公司更新
      * 
      * @param request
      * @param response
@@ -184,7 +176,7 @@ public class ProvidersController
      * @return
      * @throws BusinessException
      */
-    @RequestMapping(value = "/providers/update.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/productCompany/update.do", method = RequestMethod.POST)
     public @ResponseBody Map<String, Object> update(HttpServletRequest request, HttpServletResponse response,
             Providers providers, String imageData, String original) throws BusinessException
     {
@@ -214,7 +206,7 @@ public class ProvidersController
     }
 
     /**
-     * 美缝公司 团队 个人删除
+     * 工具材料提供公司删除
      * 
      * @param request
      * @param response
@@ -222,7 +214,7 @@ public class ProvidersController
      * @return
      * @throws BusinessException
      */
-    @RequestMapping(value = "/providers/delete.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/productCompany/delete.do", method = RequestMethod.POST)
     public @ResponseBody Map<String, Object> delete(HttpServletRequest request, HttpServletResponse response,
             Providers providers) throws BusinessException
     {
@@ -249,7 +241,7 @@ public class ProvidersController
      * @return
      * @throws BusinessException
      */
-    @RequestMapping(value = "/providers/ajaxUpdate.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/productCompany/ajaxUpdate.do", method = RequestMethod.POST)
     public @ResponseBody Map<String, Object> ajaxUpdate(Providers providers) throws BusinessException
     {
         Map<String, Object> result = new HashMap<String, Object>();

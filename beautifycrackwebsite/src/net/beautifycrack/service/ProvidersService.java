@@ -37,6 +37,22 @@ public interface ProvidersService
      * @throws BusinessException
      */
     Integer queryTotal(List<Integer> list) throws BusinessException;
+    
+    /**
+     * 分页查询商品提供公司数据
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    List<Providers> productCompanyPagerList(PagerUtil pager) throws BusinessException;
+
+    /**
+     * 查询商品提供公司总数
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    Integer queryProductCompanyTotal() throws BusinessException;
 
     /**
      * 新增供应商

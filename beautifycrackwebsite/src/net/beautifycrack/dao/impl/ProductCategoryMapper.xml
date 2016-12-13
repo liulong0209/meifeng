@@ -26,11 +26,11 @@
 		update tbl_product_class set name=#{name} where product_type_id=#{id}
 	</update>
 	<!-- 删除 -->
-	<delete id="delete" parameterType="Integer">
+	<delete id="delete" parameterType="Long">
 		delete from tbl_product_class where product_type_id=#{id}
 	</delete>
 	
-	<select id="queryById" parameterType="Integer" resultType="productCategory">
+	<select id="queryById" parameterType="Long" resultType="productCategory">
 		select 
 		 product_type_id as id,
 		 name as name,
