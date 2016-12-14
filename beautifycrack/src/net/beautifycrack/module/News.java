@@ -32,6 +32,11 @@ public class News implements Serializable
     private String title;
 
     /**
+     * 副标题
+     */
+    private String subtitle;
+
+    /**
      * 内容
      */
     private String content;
@@ -74,6 +79,16 @@ public class News implements Serializable
     public void setTitle(String title)
     {
         this.title = title;
+    }
+
+    public String getSubtitle()
+    {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle)
+    {
+        this.subtitle = subtitle;
     }
 
     public String getContent()

@@ -136,7 +136,7 @@ define(function(require,exports,module){
 				$evaluation +=			"<img src=\""+contextPath+"/file/image/get/"+evaluation.reviewer+"\" width=\"50\" height=\"50\" class=\"radius30\"/>"
 				$evaluation +=		"</div>";
 				$evaluation +=		"<div class=\"fleft pl30\">";
-				$evaluation +=			"<div class=\"f14 c666\"><span class=\"pr30 bold\">"+evaluation.reviewer+"</span></span>"+$.formatDate("yyyy-MM-dd hh:mm:ss",new Date(evaluation.reviewTime))+"</span></div>";
+				$evaluation +=			"<div class=\"f14 c666\"><span class=\"pr30 bold\">"+evaluation.reviewerName+"</span></span>"+$.formatDate("yyyy-MM-dd hh:mm:ss",new Date(evaluation.reviewTime))+"</span></div>";
 				$evaluation +=			"<div class=\"pt10 f14 c666\">"+evaluation.content+"</div>";
 				$evaluation +=		"</div>";
 				$evaluation +=	"</div>";
