@@ -40,6 +40,7 @@
 	<!-- 用户登录查找 -->
 	<select id="queryUserInfo" parameterType="String" resultType="userInfo">
 		select 
+		      userId as userId,
 			  userName as userName,
 			  password as password,
 			  gender as gender,

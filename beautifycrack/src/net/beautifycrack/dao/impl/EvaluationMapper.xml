@@ -6,13 +6,15 @@
 	<!-- 查询评价列表 -->
 	<select id="pagerList" resultType="evaluation" parameterType="Map">
 		select 
-		 evaluation_id as id,
-		 gainer as gainer,
-		 content as content,
-		 reviewer as reviewer, 
-		 level as level,
-		 review_time as reviewTime
-		from tbl_evaluation
+		 a.evaluation_id as id,
+		 a.gainer as gainer,
+		 a.content as content,
+		 a.reviewer as reviewer, 
+		 b.userName as reviewerName,
+		 a.level as level,
+		 a.review_time as reviewTime
+		from tbl_evaluation a
+		left join tbl_user_base b on a.reviewer=b.userId
 		where gainer=#{providersId}
 		order by review_time desc
 		LIMIT #{startRow}, #{pageSize}

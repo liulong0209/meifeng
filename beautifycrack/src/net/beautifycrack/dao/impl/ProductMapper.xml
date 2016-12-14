@@ -25,8 +25,7 @@
 		from tbl_product pro
 		left join tbl_product_class pc on pro.product_type=pc.product_type_id
 		left join tbl_providers_info pi on pro.providers_id = pi.providers_id
-		where pro.sts = 'A'
-		and  pi.serviceType=1
+		where pi.serviceType=1
 		and pro.product_type = #{categoryId}
 		order by pro.order_no
 		LIMIT #{startRow}, #{pageSize}
@@ -36,8 +35,7 @@
 		select 
 			count(pro.prod_id) 
 		from tbl_product pro, tbl_product_class pc,tbl_providers_info pi
-		where pro.sts = 'A'
-		and  pi.serviceType=1
+		where  pi.serviceType=1
 		and pro.product_type=pc.product_type_id
 		and pro.providers_id = pi.providers_id
 		and product_type = #{categoryId}
@@ -55,8 +53,7 @@
 		from tbl_product pro
 		left join tbl_product_class pc on pro.product_type=pc.product_type_id
 		left join tbl_providers_info pi on pro.providers_id = pi.providers_id
-		where pro.sts = 'A'
-		and  pi.serviceType=1
+		where  pi.serviceType=1
 		and pc.type=#{type}
 		order by pro.order_no
 		LIMIT 0, 8
@@ -73,8 +70,7 @@
 			pro.providers_id as providersId,
 			pi.provider_name as providersName
 		from tbl_product pro,tbl_product_class pc,tbl_providers_info pi,tbl_providers_extend pe
-		where pro.sts = 'A'
-		and  pi.serviceType=1
+		where  pi.serviceType=1
 		and pro.product_type=pc.product_type_id
 		and pro.providers_id=pi.providers_id
 		and pc.product_type_id = pe.extend_id

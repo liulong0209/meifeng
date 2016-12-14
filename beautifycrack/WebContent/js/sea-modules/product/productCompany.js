@@ -114,6 +114,42 @@ define(function(require,exports,module){
 		$("#antifakeInfo").empty().append($antifake)
 	}
 	
+	//初始化评价信息
+	function initEvaluationData(pageNo)
+	{
+		execute(contextPath+'/evaluation/pageList',renderEvaluationData,{"pageNo":pageNo,"gainer":companyId});
+	}
+	//渲染评价信息
+	function renderEvaluationData(data)
+	{
+		if(data.dataList.length==0)
+		{
+			$("#evaluationInfo").empty().append("<li class=\"clearfix tcenter\">暂时没有人评价</li>");
+			return;
+		}
+		require.async('custom',function(){
+			var $evaluation="";
+			$.each(data.dataList,function(i,evaluation){
+				$evaluation +="<div class=\"pt20 pb20 clearfix border_bottom_f3\">";
+				$evaluation +=	"<div class=\"ofHidden\">";
+				$evaluation +=		"<div class=\"fleft\">";
+				$evaluation +=			"<img src=\""+contextPath+"/file/image/get/"+evaluation.reviewer+"\" width=\"50\" height=\"50\" class=\"radius30\"/>"
+				$evaluation +=		"</div>";
+				$evaluation +=		"<div class=\"fleft pl30\">";
+				$evaluation +=			"<div class=\"f14 c666\"><span class=\"pr30 bold\">"+evaluation.reviewerName+"</span></span>"+$.formatDate("yyyy-MM-dd hh:mm:ss",new Date(evaluation.reviewTime))+"</span></div>";
+				$evaluation +=			"<div class=\"pt10 f14 c666\">"+evaluation.content+"</div>";
+				$evaluation +=		"</div>";
+				$evaluation +=	"</div>";
+				$evaluation +="</div>";
+			})
+			$("#evaluationInfo").empty().append($evaluation);
+		})
+		
+		//渲染分页
+		var pager = require("sea-modules/common");
+		pager.loadPager(data.pager.pageNo,data.pager.totalPage,data.pager.totalRecords,initEvaluationData,"evaluationCell");
+	}
+	
 	
 
 	//ajax获取数据共方法
@@ -144,12 +180,89 @@ define(function(require,exports,module){
 		});
 	}
 	
+	//发表评论
+	function commitComment(){
+		//判断是否登录
+		if(!userInfo){
+			require.async('bootstrap',function(){
+				$('#tipsModule').find(".modal-body").empty().append("登录后才可以进行评价，请先登录!");
+				$('#tipsModule').modal("show");
+			})
+			return;
+		}
+		
+		var level = $('input[name="optionsRadios"]:checked').val();
+		if(!level){
+			require.async('bootstrap',function(){
+				$('#tipsModule').find(".modal-body").empty().append("请选择评价类型");
+				$('#tipsModule').modal("show");
+			})
+			return;
+		}
+		//判断内容是否为空
+		var content = $("textarea").val();
+		if(content==""){
+			require.async('bootstrap',function(){
+				$('#tipsModule').find(".modal-body").empty().append("请输入评价内容");
+				$('#tipsModule').modal("show");
+			})
+			return;
+		}
+		//异步提交
+		execute(contextPath+'/evaluation/evaluate',
+			function(data){
+				if(data.result=='0')
+				{
+					require.async('bootstrap',function(){
+						$('#tipsModule').find(".modal-body").empty().append("登录后才可以进行评价，请先登录!");
+						$('#tipsModule').modal("show");
+					})
+				}
+				else if(data.result=='1')
+				{
+					require.async('bootstrap',function(){
+						$('#tipsModule').find(".modal-body").empty().append("评价成功！");
+						$('#tipsModule').modal("show");
+						//清空表单
+						$('input[name="optionsRadios"]:checked').attr('checked',false);
+						$("textarea").val("");
+						//重新加载评价内容
+						initEvaluationData(1);
+					})
+				}
+				else if(data.result=='2')
+				{
+					require.async('bootstrap',function(){
+						$('#tipsModule').find(".modal-body").empty().append("评价成功！");
+						$('#tipsModule').modal("show");
+					})
+				}
+			}
+		,{"gainer":companyId,"content":content,"level":level});
+	}
+	
+	//按钮绑定事件
+	function buttonBindEvent(){
+		//登录按钮绑定
+		$("#cLogin").click(function(){
+			var login = require('sea-modules/login');
+			login.showLoginModel();
+		});
+		//发表评论按钮事件
+		$("#commit").click(function(){
+			commitComment();
+		})
+	}
+	
+	
 	//初始化
 	function init(id){
 		companyId = id;
 		initProductCategoryData();
 		initCertificateData();
 		initantifakeData();
+		initEvaluationData(1);
+		buttonBindEvent();
 	}
 	
 	//对外输出接口

@@ -8,11 +8,11 @@
 		select 
 		news_id as id,
 		title as title,
-     	case when LENGTH(content)>150 then
-		   concat(left(content,150),'...') 
+     	case when LENGTH(subtitle)>150 then
+		   concat(left(subtitle,150),'...') 
      	else
-     		content
-     	end as content,
+     		subtitle
+     	end as subtitle,
 		 publish_time as publishTime
 		from tbl_news
 		where publish_state=1
@@ -25,6 +25,7 @@
 		select 
 		news_id as id,
 		title as title,
+		subtitle as subtitle,
 		content as content,
 		publish_state as state,
 		publish_time as publishTime 
@@ -40,11 +41,11 @@
 		select
 		news_id as id,
 		title as title,
-     	case when LENGTH(content)>150 then
-		   concat(left(content,150),'...') 
+     	case when LENGTH(subtitle)>150 then
+		   concat(left(subtitle,150),'...') 
      	else
-     		content
-     	end as content,
+     		subtitle
+     	end as subtitle,
 		 publish_time as publishTime
 		from tbl_news
 		where publish_state=1
@@ -56,12 +57,14 @@
 	<insert id="add" parameterType="news">
 		insert into tbl_news(
 			title,
+			subtitle,
 			content,
 			publish_state,
 			publish_time,
 			create_time) 
 		value(
 			#{title},
+			#{subtitle},
 			#{content},
 			#{state},
 			#{publishTime},
@@ -72,6 +75,9 @@
 	<!-- 修改数据 -->
 	<update id="update" parameterType="news">
 		update tbl_news set update_time=now()
+		<if test="null != subtitle and ''subtitle">
+			,subtitle = #{subtitle}
+		</if>
 		<if test="null != title and ''!=title">
 			,title = #{title}
 		</if>

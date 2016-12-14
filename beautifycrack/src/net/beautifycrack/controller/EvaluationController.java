@@ -86,7 +86,7 @@ public class EvaluationController
                 return dataMaps;
 
             }
-            // evaluation.setReviewer(user.getId());
+            evaluation.setReviewer(user.getUserId());
             evaluationService.addEvaluation(evaluation);
             dataMaps.put("result", "1");
             return dataMaps;

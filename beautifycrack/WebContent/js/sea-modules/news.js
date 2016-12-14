@@ -51,7 +51,7 @@ define(function(require, exports, module){
 			$newli+=		"<div class=\"news-title\">";
 			$newli+=			"<a href=\""+contextPath +"/news/show/"+news.id+"\">"+news.title+"</a>";
 			$newli+=		"</div>";
-			$newli+=		"<div class=\"news-content\">"+news.content+"</div>";
+			$newli+=		"<div class=\"news-content\">"+(news.subtitle?news.subtitle:"")+"</div>";
 			$newli+=	"</div>"
 			$newli+=	"<div class=\"col-md-2 pt5\"><span class=\"f12\">"+$.formatDate("yyyy-MM-dd",new Date(news.publishTime))+"</span></div>"
 			$newli+="</li>"

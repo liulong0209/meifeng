@@ -34,7 +34,42 @@
 			<div class="t1">防伪查询</div>
 			<div id="antifakeInfo" class="index-image pt10"></div>
 		</div>
+		<div id="evaluationCell" class="clearfix">
+			<div class="t1">客户评价</div>
+			<div id="evaluationInfo"></div>
+			<!-- 分页页码 -->
+    		<div id="kkpager"></div>
+    		<div class="pt20">
+    			<div class="f24">我要评价</div>
+    			<div class="radio f14">
+				  <label><input type="radio" name="optionsRadios" value="2">好评</label>
+				  <label><input type="radio" name="optionsRadios" value="1">中评</label>
+				  <label><input type="radio" name="optionsRadios" value="0">差评</label>
+				</div>
+				<textarea class="form-control" rows="6" placeholder="我来说两句...."></textarea>
+				<div class="tright pt10">
+					<c:if test="${sessionScope.userInfo.userName==null}">
+						<span><a id="cLogin" href="javascript:void(0)"><span class="glyphicon glyphicon-user pr5"></span>登录</a></span>
+						<span>|</span>
+						<span><a href="${contextPath}/register/index"><span class="glyphicon glyphicon-log-in pr5"></span>注册</a></span>
+					</c:if>
+					<button type="button" class="btn btn-success ml15" id="commit">发表评论</button>
+				</div>
+			</div>
+		</div>	
     </div>
+    <!--提示框  -->
+    <div id="tipsModule" class="modal fade bs-example-modal-sm yh" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-sm">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	          <h4 class="modal-title" id="mySmallModalLabel">提示</h4>
+	        </div>
+	        <div class="modal-body f14"></div>
+	      </div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
+	</div>
 	<%@include file="../common/footer.jsp" %>
 	<script type="text/javascript">
 		//加载入口模块
