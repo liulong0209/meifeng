@@ -19,6 +19,7 @@ define(function(require, exports, module){
 				dataType:'json', 
 				data:{
 					title:$("#newsTitle").val(),
+					subtitle:$("#newsSubTitle").val(),
 					content:$("#newsContent").val(),
 					state:state
 				},
@@ -76,6 +77,18 @@ define(function(require, exports, module){
 		                        stringLength: {
 		                            max: 255,
 		                            message: '新闻标题长度不能超过255个字符'
+		                        },
+		                    }
+		                },
+		                subtitle: {
+		                    message: '新闻副标题验证失败',
+		                    validators: {
+		                        notEmpty: {
+		                            message: '新闻副标题不能为空'
+		                        },
+		                        stringLength: {
+		                            max: 500,
+		                            message: '新闻标副题长度不能超过500个字符'
 		                        },
 		                    }
 		                }

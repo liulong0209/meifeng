@@ -5,7 +5,6 @@ import java.util.Map;
 
 import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.Providers;
-import net.beautifycrack.util.PagerUtil;
 
 /**
  * 公司dao
@@ -95,19 +94,4 @@ public interface ProvidersMapper
      * @throws BusinessException
      */
     List<Providers> findProvideProductCompany() throws BusinessException;
-
-    /**
-     * 判断公司是否已经有某个产品分类
-     * 
-     * @param paMap
-     * @return
-     */
-    Integer judgeCompanyproductCategory(Map<String, Object> paMap);
-
-    /**
-     * 增加公司产品分类
-     * 
-     * @param paMap
-     */
-    void addCompanyproductCategory(Map<String, Object> paMap);
 }

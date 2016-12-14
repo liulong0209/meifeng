@@ -16,9 +16,9 @@ import org.apache.commons.io.FileDeleteStrategy;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
 
 /**
  * 文件接口实现类
@@ -104,8 +104,7 @@ public class FileInfoServiceImpl implements FileInfoService
         }
         if (!StringUtils.isEmpty(imgBase64Str))
         {
-            Base64 base64 = new Base64();
-            byte[] b = base64.decode(imgBase64Str.getBytes());
+            byte[] b = Base64Utils.decode(imgBase64Str.getBytes());
             File file = new File(dir + File.separator + path);
             FileUtils.writeByteArrayToFile(file, b);
         }

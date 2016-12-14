@@ -23,6 +23,7 @@
 		select 
 		news_id as id,
 		title as title,
+		subtitle as subtitle,
 		content as content,
 		publish_state as state,
 		publish_time as publishTime 
@@ -38,12 +39,14 @@
 	<insert id="add" parameterType="news">
 		insert into tbl_news(
 			title,
+			subtitle,
 			content,
 			publish_state,
 			publish_time,
 			create_time) 
 		value(
 			#{title},
+			#{subtitle},
 			#{content},
 			#{state},
 			#{publishTime},
@@ -56,6 +59,9 @@
 		update tbl_news set update_time=now()
 		<if test="null != title and ''!=title">
 			,title = #{title}
+		</if>
+		<if test="null != subtitle and ''!=subtitle">
+			,subtitle = #{subtitle}
 		</if>
 		<if test="null != content and ''!=content">
 			,content = #{content}

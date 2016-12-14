@@ -22,15 +22,23 @@
 			  <input type="hidden" id="newsContent">
 			  <div class="form-group pt10">
 			  	<div class="col-md-1 pl0">
-			    	<label for="newsTitle" class="control-label">新闻标题</label>
+			    	<label for="newsTitle" class="control-label">标题</label>
 			  	</div>
 			    <div class="col-md-11">
 			      <input type="text" class="form-control" id="newsTitle" name="title"  placeholder="新闻标题" value="${news.title}">
 			    </div>
 			  </div>
+			  <div class="form-group pt10">
+			  	<div class="col-md-1 pl0">
+			    	<label for="newsSubTitle" class="control-label">副标题</label>
+			  	</div>
+			    <div class="col-md-11">
+			      <input type="text" class="form-control" id="newsSubTitle" name="subtitle"  placeholder="新闻副标题" value="${news.subtitle}">
+			    </div>
+			  </div>
 			  <div class="form-group">
 			  	<div class="col-md-1 pl0">
-			    	<label class="control-label">新闻内容</label>
+			    	<label class="control-label">内容</label>
 			  	</div>
 			    <div class="col-md-11">
 			      <!-- 加载编辑器的容器 -->

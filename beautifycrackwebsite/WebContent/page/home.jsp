@@ -47,7 +47,7 @@
                         <a href="javaScript:void('0')" url="${contextPath}/workermanager.do"><i class="fa fa-qrcode"></i>施工工人管理</a>
                     </li>
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/productCompanymanager.do"><i class="fa fa-fw fa-file"></i>材料/工具提供公司管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/productCompanymanager.do"><i class="fa fa-fw fa-file"></i>提供材料/工具的公司管理</a>
                     </li>
                     <li>
                         <a href="javaScript:void('0')" url="${contextPath}/materialCategory.do?productType=1"><i class="fa fa-fw fa-file"></i>材料分类管理</a>

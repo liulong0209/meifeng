@@ -62,30 +62,19 @@
 	<!-- 根据公司和分类查询产品 -->
 	<select id="queryCompanyProduct" parameterType="Map" resultType="product">
 		select 
-			pro.prod_id as id,
-			pro.product_name as productName,
-			pro.product_intro as profile,
-			pro.product_pic as imgId,
-			pro.product_type as category,
-			pro.providers_id as providersId,
-			pi.provider_name as providersName
-		from tbl_product pro,tbl_product_class pc,tbl_providers_info pi,tbl_providers_extend pe
-		where  pi.serviceType=1
-		and pro.product_type=pc.product_type_id
-		and pro.providers_id=pi.providers_id
-		and pc.product_type_id = pe.extend_id
-		and pi.providers_id = pe.providers_id
-		and pro.product_type = #{categoryId}
-		and pro.providers_id =#{companyId}
-		order by pro.order_no
+			a.prod_id as id,
+			a.product_name as productName,
+			a.product_intro as profile,
+			a.product_pic as imgId,
+			a.product_type as category,
+			a.providers_id as providersId,
+			c.provider_name as providersName
+		from tbl_product a,tbl_product_class b,tbl_providers_info c
+		where  c.serviceType=1
+		and a.product_type=b.product_type_id
+		and a.providers_id=c.providers_id
+		and a.product_type = #{categoryId}
+		and a.providers_id =#{companyId}
+		order by a.order_no
 	</select>
 </mapper>
-
-
-
-
-
-
-
-
-

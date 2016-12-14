@@ -69,7 +69,7 @@ define(function(require,exports,module){
 		$("button[id^='company_delete_']").click(function(){
 			var companyId = $(this).attr("id").replace("company_delete_","");
 			var logovalu = $(this).attr("logovalu");
-			if(typeof(imgId) == "undefined"){imgId=null};
+			if(typeof(logovalu) == "undefined"){logovalu=null};
 			require.async('alertable',function(){
 				$.alertable.confirm('确认删除嘛!',{parentObj:window.parent.document}).then(function() {
 					deletecompany(companyId,logovalu);

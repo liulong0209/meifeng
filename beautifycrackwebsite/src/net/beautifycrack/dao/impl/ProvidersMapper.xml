@@ -152,20 +152,6 @@
 		from tbl_providers_info 
 		where serviceType=1
 	</select>
-	
-	<!-- 判断公司是否已经有某个产品分类 -->
-	<select id="judgeCompanyproductCategory" resultType="Integer" parameterType="Map">
-		select count(providers_extend_id) from tbl_providers_extend
-		where providers_id=#{providersId} and extend_id=#{category} and providers_tpye={type}
-	</select>
-	
-	<!-- 增加公司产品分类 -->
-	<insert id="addCompanyproductCategory">
-		insert into tbl_providers_extend
-		(providers_id,extend_id,providers_tpye,CREATE_DATE)
-		value
-		(#{providersId},#{category},#{type},now())
-	</insert>
 </mapper>
 
 

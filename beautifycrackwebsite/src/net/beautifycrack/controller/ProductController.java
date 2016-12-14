@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import net.beautifycrack.constant.Common;
 import net.beautifycrack.exception.BusinessException;
@@ -208,6 +210,123 @@ public class ProductController
             result.put("result", Common.FAIL);
             logger.error("新增美缝公司失败：原因{}", e);
         }
+        return result;
+    }
+    
+    /**
+     * 产品删除
+     * 
+     * @param request
+     * @param response
+     * @param providers
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/product/delete.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> delete(HttpServletRequest request, HttpServletResponse response,
+            Product product) throws BusinessException
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try
+        {
+        	productService.delete(product);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            logger.debug("删除供应商失败，原因：", e);
+            result.put("result", Common.FAIL);
+        }
+
+        return result;
+    }
+    
+    /**
+     * 跳转到美缝材料编辑页面
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/material/showEdit.do")
+    public ModelAndView showMaterialEdit(Long productId)
+    {
+        ModelAndView mv = new ModelAndView();
+        // 产品分类
+        List<ProductCategory> categoriList = productCategoryService.findCategoryByType(Common.PRODUCT_MATERIAL);
+
+        // 供应公司
+        List<Providers> providersList = providersService.findProvideProductCompany();
+        
+        Product product = productService.find(productId);
+
+        mv.getModelMap().put("categoriList", categoriList);
+        mv.getModelMap().put("providersList", providersList);
+        mv.getModelMap().put("product", product);
+        mv.setViewName("material/material_edit");
+        return mv;
+    }
+    
+    /**
+     * 美缝公司 团队 个人更新
+     * 
+     * @param request
+     * @param response
+     * @param ads
+     * @param file
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/product/update.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> update(HttpServletRequest request, HttpServletResponse response,
+            Product product, String imageData, String original) throws BusinessException
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try
+        {
+            // 上传文件
+            if (!StringUtils.isEmpty(imageData))
+            {
+
+                Long fileId = Long.valueOf(fileInfoService.uploadImg(uploadPath, productUploadPath, original,
+                        imageData.substring("data:image/png;base64,".length())));
+                product.setImgId(fileId);
+            }
+            // 同步到数据库
+            productService.update(product);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            logger.debug("更新供应商失败，原因：", e);
+            result.put("result", Common.FAIL);
+        }
+
+        return result;
+    }
+    
+    /**
+     * 编辑删除图片时更新供应商logo为-1
+     * 
+     * @param ads
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/product/ajaxUpdate.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> ajaxUpdate(Product product) throws BusinessException
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try
+        {
+        	productService.update(product);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            result.put("result", Common.FAIL);
+            logger.debug("更新供应商失败，原因：", e);
+        }
+
         return result;
     }
 }

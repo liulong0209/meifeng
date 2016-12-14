@@ -1,5 +1,7 @@
 package net.beautifycrack.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,15 +9,15 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import net.beautifycrack.constant.Common;
-import net.beautifycrack.dao.ProductCategoryMapper;
+import net.beautifycrack.dao.FileInfoMapper;
 import net.beautifycrack.dao.ProductMapper;
-import net.beautifycrack.dao.ProvidersMapper;
 import net.beautifycrack.exception.BusinessException;
+import net.beautifycrack.module.FileInfo;
 import net.beautifycrack.module.Product;
-import net.beautifycrack.module.ProductCategory;
 import net.beautifycrack.service.ProductService;
 import net.beautifycrack.util.PagerUtil;
 
+import org.apache.commons.io.FileDeleteStrategy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,18 +43,12 @@ public class ProductServiceImpl implements ProductService
      */
     @Resource
     private ProductMapper productMapper;
-
+    
     /**
-     * 注入dao
+     * 文件dao
      */
     @Resource
-    private ProvidersMapper providersMapper;
-
-    /**
-     * 注入dao
-     */
-    @Resource
-    private ProductCategoryMapper roductCategoryMapper;
+    private FileInfoMapper fileInfoMapper;
 
     @Override
     public List<Product> pageList(PagerUtil pager, Integer productType) throws BusinessException
@@ -81,20 +77,6 @@ public class ProductServiceImpl implements ProductService
         Map<String, Object> paMap = new HashMap<String, Object>();
         paMap.put("providersId", product.getProvidersId());
         paMap.put("category", product.getCategory());
-
-        ProductCategory category = roductCategoryMapper.queryById(product.getCategory());
-        if (category.getType() == Common.PRODUCT_MATERIAL)
-        {
-            paMap.put("type", 5);
-        }
-        else if (category.getType() == Common.PRODUCT_TOOLS)
-        {
-            paMap.put("type", 4);
-        }
-        if (providersMapper.judgeCompanyproductCategory(paMap) == 0)
-        {
-            providersMapper.addCompanyproductCategory(paMap);
-        }
     }
 
     @Override
@@ -110,8 +92,26 @@ public class ProductServiceImpl implements ProductService
     }
 
     @Override
-    public void delete(Product product) throws BusinessException
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Product product) throws BusinessException, IOException
     {
         productMapper.delete(product.getId());
+        
+        if (product.getImgId() != null && product.getImgId() != Common.NO_FILE)
+        {
+            // 删除附件
+            FileInfo fileInfo = fileInfoMapper.findFileById(product.getImgId());
+
+            // 删除数据库
+            fileInfoMapper.delete(product.getImgId());
+
+            // 删除文件
+            FileDeleteStrategy strategy = FileDeleteStrategy.NORMAL;
+            File fileToDelete = new File(fileInfo.getFilePath());
+            if (fileToDelete.exists())
+            {
+                strategy.delete(fileToDelete);
+            }
+        }
     }
 }

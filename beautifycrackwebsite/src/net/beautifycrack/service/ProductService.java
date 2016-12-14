@@ -1,5 +1,6 @@
 package net.beautifycrack.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import net.beautifycrack.exception.BusinessException;
@@ -68,5 +69,5 @@ public interface ProductService
      * @param product
      * @throws BusinessException
      */
-    void delete(Product product) throws BusinessException;
+    void delete(Product product) throws BusinessException, IOException;
 }
