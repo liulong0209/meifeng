@@ -174,7 +174,7 @@ public class ProvidersResourceController
         catch (IOException e)
         {
             result.put("result", Common.FAIL);
-            logger.error("新增美缝公司失败：原因{}", e);
+            logger.error("新增工人失败：原因{}", e);
         }
         return result;
     }
@@ -201,13 +201,21 @@ public class ProvidersResourceController
         }
         catch (Exception e)
         {
-            logger.debug("删除供应商失败，原因：", e);
+            logger.debug("删除工人失败，原因：", e);
             result.put("result", Common.FAIL);
         }
 
         return result;
     }
 
+    /**
+     * 跳转到工人修改页面
+     * @param request
+     * @param response
+     * @param workerId
+     * @return
+     * @throws BusinessException
+     */
     @RequestMapping(value = "/showWorkerEdit.do", method = RequestMethod.GET)
     public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long workerId)
             throws BusinessException
@@ -220,5 +228,43 @@ public class ProvidersResourceController
         mv.setViewName("providersResource/worker_edit");
         return mv;
     }
+    
+    /**
+     * 更新工人
+     * @param request
+     * @param response
+     * @param worker
+     * @param imageData
+     * @param original
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/updateWorker.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> update(HttpServletRequest request, HttpServletResponse response,
+            Worker worker, String imageData, String original) throws BusinessException
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
 
+        try
+        {
+            // 上传文件
+            if (!StringUtils.isEmpty(imageData))
+            {
+
+                Long fileId = Long.valueOf(fileInfoService.uploadImg(uploadPath, providersUploadPath+ "/worker", original,
+                        imageData.substring("data:image/png;base64,".length())));
+                worker.setAvatar(fileId);
+            }
+            // 同步到数据库
+            providersResourceService.updateWork(worker);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            logger.debug("更新工人失败，原因：", e);
+            result.put("result", Common.FAIL);
+        }
+
+        return result;
+    }
 }

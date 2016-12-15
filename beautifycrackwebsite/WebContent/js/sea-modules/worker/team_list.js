@@ -130,7 +130,7 @@ define(function(require,exports,module){
 		
 		//施工人员
 		$("#worker").click(function(){
-			window.location.href =  contextPath+'';
+			window.location.href =  contextPath+'/providersResource/workerList.do?providersId='+$('input:radio:checked').val();
 		})
 		//施工案例
 		$("#case").click(function(){

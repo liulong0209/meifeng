@@ -44,7 +44,7 @@
 		</if>
 		
 		<if test="avatar!=null">
-			,avatar={avatar}
+			,avatar=#{avatar}
 		</if>
 		where worker_id=#{id}
 	</update>

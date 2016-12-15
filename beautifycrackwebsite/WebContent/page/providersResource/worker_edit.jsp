@@ -27,6 +27,8 @@
 		<div class="row">
 			<form class="form-horizontal" role="form">
 			 <input type="hidden" id="providersId" value="${providers.providersId }">
+			 <input type="hidden" id="workerId" value="${worker.id }">
+			 <input type="hidden" id="avatar" value="${worker.avatar }">
 			  <div class="form-group pt10">
 			  	<div class="col-xs-1 pl0">
 			    	<label for="workerName" class="control-label">姓名</label>

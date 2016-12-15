@@ -12,6 +12,7 @@ import net.beautifycrack.module.FileInfo;
 import net.beautifycrack.service.FileInfoService;
 import net.beautifycrack.util.UploadUtils;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileDeleteStrategy;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -105,7 +106,7 @@ public class FileInfoServiceImpl implements FileInfoService
         }
         if (!StringUtils.isEmpty(imgBase64Str))
         {
-            byte[] b = Base64Utils.decode(imgBase64Str.getBytes());
+            byte[] b = Base64.decodeBase64(imgBase64Str.getBytes());
             File file = new File(dir + File.separator + path);
             FileUtils.writeByteArrayToFile(file, b);
         }
