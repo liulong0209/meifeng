@@ -38,7 +38,7 @@ public class Worker implements Serializable
     /**
      * 公司或团队id
      */
-    private Long providerId;
+    private Long providersId;
 
     public Long getId()
     {
@@ -70,14 +70,14 @@ public class Worker implements Serializable
         this.avatar = avatar;
     }
 
-    public Long getProviderId()
+    public Long getProvidersId()
     {
-        return providerId;
+        return providersId;
     }
 
-    public void setProviderId(Long providerId)
+    public void setProvidersId(Long providersId)
     {
-        this.providerId = providerId;
+        this.providersId = providersId;
     }
 
 }

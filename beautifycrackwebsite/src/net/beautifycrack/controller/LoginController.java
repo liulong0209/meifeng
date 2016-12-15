@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.beautifycrack.constant.Common;
+import net.beautifycrack.exception.BusinessException;
 import net.beautifycrack.module.UserInfo;
 import net.beautifycrack.service.LoginService;
 
@@ -57,10 +58,11 @@ public class LoginController
      * @param response
      * @param user
      * @return
+     * @throws BusinessException
      */
     @RequestMapping(value = "/login.do")
     public @ResponseBody Map<String, Object> login(HttpServletRequest request, HttpServletResponse response,
-            UserInfo user)
+            UserInfo user) throws BusinessException
     {
         Map<String, Object> result = new HashMap<String, Object>();
         int status = loginService.login(user);

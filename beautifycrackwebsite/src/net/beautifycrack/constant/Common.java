@@ -71,4 +71,19 @@ public class Common
      */
     public static final String IMG_SHOW_URL = "/file/imageshow.do?s=";
 
+    /**
+     * 美缝公司类型
+     */
+    public static final int COMPANR = 0;
+
+    /**
+     * 施工工人团队类型
+     */
+    public static final int WORKER_TEAM = 1;
+
+    /**
+     * 施工工人个人类型
+     */
+    public static final int WORKER_PERSON = 2;
+
 }

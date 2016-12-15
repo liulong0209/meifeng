@@ -1,5 +1,5 @@
 /**
- * 美缝材料新增
+ * 美缝工具新增
  */
 define(function(require,exports,module){
 	//引入jquery
@@ -34,9 +34,9 @@ define(function(require,exports,module){
 					cache:false,  			
 					dataType:'json', 
 					data:{
-						productName:$("#materialName").val(),
-						profile:$("#materialInfo").val(),
-						category:$("#materialType").val(),
+						productName:$("#toolsName").val(),
+						profile:$("#toolsInfo").val(),
+						category:$("#toolsType").val(),
 						providersId:$("#providers").val(),
 						imageData:$(".file-preview-image").attr("src"),
 						original:$(".file-preview-image").attr("title")
@@ -46,7 +46,7 @@ define(function(require,exports,module){
 				    },
 				    success: function (data) {
 				    	if(data.result=='0'){
-				    		$("#page-inner iframe",window.parent.document).attr("src",contextPath+"/materialmanager.do");
+				    		$("#page-inner iframe",window.parent.document).attr("src",contextPath+"/toolsmanager.do");
 				    	}else{
 				    		require.async('alertable',function(){
 				    			$.alertable.alert('新增 失败!',{parentObj:window.parent.document});
@@ -78,35 +78,35 @@ define(function(require,exports,module){
 	            validating: 'glyphicon glyphicon-refresh'
 		    },
             fields: {
-            	materialName: {
-                    message: '材料名称验证失败',
+            	toolsName: {
+                    message: '工具名称验证失败',
                     validators: {
                         notEmpty: {
-                            message: '材料名称不能为空'
+                            message: '工具名称不能为空'
                         },
                         stringLength: {
                             max: 32,
-                            message: '材料名称长度不能超过32个字'
+                            message: '工具名称长度不能超过32个字'
                         }
                     }
                 },
-                materialInfo: {
-                    message: '材料简介验证失败',
+                toolsInfo: {
+                    message: '工具简介验证失败',
                     validators: {
                         notEmpty: {
-                            message: '材料简介不能为空'
+                            message: '工具简介不能为空'
                         },
                         stringLength: {
                             max: 1000,
-                            message: '材料简介长度不能超过1000个字'
+                            message: '工具简介长度不能超过1000个字'
                         }
                     }
                 },
-                materialType: {
-                    message: '材料列别验证失败',
+                toolsType: {
+                    message: '工具类别验证失败',
                     validators: {
                         notEmpty: {
-                            message: '材料列别不能为空'
+                            message: '工具类别不能为空'
                         }
                     }
                 },

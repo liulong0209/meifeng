@@ -1,5 +1,5 @@
 /**
- * 美缝材料新增
+ * 个人新增
  */
 define(function(require,exports,module){
 	//引入jquery
@@ -29,15 +29,17 @@ define(function(require,exports,module){
 			
 			require.async('custom',function(){
 				$.ajax({    
-					url: contextPath+'/product/add.do',       
+					url: contextPath+'/providers/add.do',       
 					type:'post',    
 					cache:false,  			
 					dataType:'json', 
 					data:{
-						productName:$("#materialName").val(),
-						profile:$("#materialInfo").val(),
-						category:$("#materialType").val(),
-						providersId:$("#providers").val(),
+						providerName:$("#personName").val(),
+						profile:$("#introduction").val(),
+						phoneNo:$("#contact").val(),
+						address:$("#address").val(),
+						type:2,
+						serviceType:0,
 						imageData:$(".file-preview-image").attr("src"),
 						original:$(".file-preview-image").attr("title")
 					},
@@ -46,7 +48,7 @@ define(function(require,exports,module){
 				    },
 				    success: function (data) {
 				    	if(data.result=='0'){
-				    		$("#page-inner iframe",window.parent.document).attr("src",contextPath+"/materialmanager.do");
+				    		$("#page-inner iframe",window.parent.document).attr("src",contextPath+"/workermanager.do?type=2");
 				    	}else{
 				    		require.async('alertable',function(){
 				    			$.alertable.alert('新增 失败!',{parentObj:window.parent.document});
@@ -71,50 +73,58 @@ define(function(require,exports,module){
 	function validator(){
 		require.async('bootstrapValidator',function(){
 			$('form').bootstrapValidator({
-				message: 'This value is not valid',
-			    feedbackIcons: {
-	            valid: 'glyphicon glyphicon-ok',
-	            invalid: 'glyphicon glyphicon-remove',
-	            validating: 'glyphicon glyphicon-refresh'
+			message: 'This value is not valid',
+		    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
 		    },
             fields: {
-            	materialName: {
-                    message: '材料名称验证失败',
+            	personName: {
+                    message: '个人名称验证失败',
                     validators: {
                         notEmpty: {
-                            message: '材料名称不能为空'
+                            message: '个人名称不能为空'
                         },
                         stringLength: {
-                            max: 32,
-                            message: '材料名称长度不能超过32个字'
+                            max: 50,
+                            message: '个人名称长度不能超过50个字'
                         }
                     }
                 },
-                materialInfo: {
-                    message: '材料简介验证失败',
+                introduction: {
+                    message: '个人简介验证失败',
                     validators: {
                         notEmpty: {
-                            message: '材料简介不能为空'
+                            message: '个人简介不能为空'
                         },
                         stringLength: {
                             max: 1000,
-                            message: '材料简介长度不能超过1000个字'
+                            message: '个人简介长度不能超过1000个字'
                         }
                     }
                 },
-                materialType: {
-                    message: '材料列别验证失败',
+                contact: {
+                    message: '联系方式验证失败',
                     validators: {
                         notEmpty: {
-                            message: '材料列别不能为空'
+                            message: '联系方式不能为空'
+                        },
+                        stringLength: {
+                            max: 50,
+                            message: '联系方式长度不能超过50个字'
                         }
                     }
                 },
-                providers: {
-                    message: '所属公司验证失败',
+                address: {
+                    message: '服务区域验证失败',
                     validators: {
                         notEmpty: {
-                            message: '所属公司不能为空'
+                            message: '服务区域不能为空'
+                        },
+                        stringLength: {
+                            max: 100,
+                            message: '服务区域长度不能超过100个字'
                         }
                     }
                 }

@@ -1,5 +1,5 @@
 /**
- * 美缝公司更新
+ * 施工工人团队更新
  */
 define(function(require,exports,module){
 	//引入jquery
@@ -35,7 +35,7 @@ define(function(require,exports,module){
 					dataType:'json', 
 					data:{
 						providersId:$("#providersId").val(),
-						providerName:$("#companyName").val(),
+						providerName:$("#teamName").val(),
 						profile:$("#introduction").val(),
 						phoneNo:$("#contact").val(),
 						address:$("#address").val(),
@@ -47,7 +47,7 @@ define(function(require,exports,module){
 				    },
 				    success: function (data) {
 				    	if(data.result=='0'){
-				    		$("#page-inner iframe",window.parent.document).attr("src",contextPath+"/companymanager.do");
+				    		$("#page-inner iframe",window.parent.document).attr("src",contextPath+"/workermanager.do?type=1");
 				    	}else{
 				    		require.async('alertable',function(){
 				    			$.alertable.alert('更新 失败!',{parentObj:window.parent.document});
@@ -149,27 +149,27 @@ define(function(require,exports,module){
             validating: 'glyphicon glyphicon-refresh'
 		    },
             fields: {
-            	companyName: {
-                    message: '公司名称验证失败',
+            	teamName: {
+                    message: '团队名称验证失败',
                     validators: {
                         notEmpty: {
-                            message: '公司名称不能为空'
+                            message: '团队名称不能为空'
                         },
                         stringLength: {
                             max: 50,
-                            message: '公司名称长度不能超过50个字'
+                            message: '团队名称长度不能超过50个字'
                         }
                     }
                 },
                 introduction: {
-                    message: '公司简介验证失败',
+                    message: '团队简介验证失败',
                     validators: {
                         notEmpty: {
-                            message: '公司简介不能为空'
+                            message: '团队简介不能为空'
                         },
                         stringLength: {
                             max: 1000,
-                            message: '公司简介长度不能超过1000个字'
+                            message: '团队简介长度不能超过1000个字'
                         }
                     }
                 },
@@ -186,14 +186,14 @@ define(function(require,exports,module){
                     }
                 },
                 address: {
-                    message: '公司地址验证失败',
+                    message: '团队地址验证失败',
                     validators: {
                         notEmpty: {
-                            message: '公司地址不能为空'
+                            message: '团队地址不能为空'
                         },
                         stringLength: {
                             max: 100,
-                            message: '公司地址长度不能超过100个字'
+                            message: '团队地址长度不能超过100个字'
                         }
                     }
                 }

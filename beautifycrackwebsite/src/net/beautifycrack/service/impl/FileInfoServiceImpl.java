@@ -93,9 +93,10 @@ public class FileInfoServiceImpl implements FileInfoService
      * @throws IOException
      *             IOException
      * @return String 返回文件id
+     * @throws BusinessException
      */
     private String save(String dir, String path, String filename, String ext, InputStream in, String imgBase64Str,
-            boolean isUpdate) throws IOException
+            boolean isUpdate) throws IOException, BusinessException
     {
         // 文件上传至目录
         if (in != null)

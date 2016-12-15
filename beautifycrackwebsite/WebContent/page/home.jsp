@@ -41,16 +41,24 @@
                     </li>
 
 					<li>
-                        <a href="javaScript:void('0')" url="${contextPath}/companymanager.do"><i class="fa fa-bar-chart-o"></i>美缝公司管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/companymanager.do"><i class="fa fa-sitemap"></i>美缝公司管理</a>
                     </li>
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/workermanager.do"><i class="fa fa-qrcode"></i>施工工人管理</a>
+                        <a href="#"><i class="fa fa-folder-open"></i>施工工人管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="javaScript:void('0')" url="${contextPath}/workermanager.do?type=1"><i class="fa fa-users"></i>团队</a>
+                            </li>
+                            <li>
+                                <a href="javaScript:void('0')" url="${contextPath}/workermanager.do?type=2"><i class="fa fa-user"></i>个人</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/productCompanymanager.do"><i class="fa fa-fw fa-file"></i>提供材料/工具的公司管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/productCompanymanager.do"><i class="fa fa-fw fa-qrcode"></i>提供材料/工具的公司管理</a>
                     </li>
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/materialCategory.do?productType=1"><i class="fa fa-fw fa-file"></i>材料分类管理</a>
+                        <a href="javaScript:void('0')" url="${contextPath}/materialCategory.do?productType=1"><i class="fa fa-briefcase"></i>材料分类管理</a>
                     </li>
                     <li>
                         <a href="javaScript:void('0')" url="${contextPath}/materialmanager.do"><i class="fa fa-table"></i>美缝材料管理</a>
@@ -59,7 +67,7 @@
                         <a href="javaScript:void('0')" url="${contextPath}/toolsCategory.do?productType=0"><i class="fa fa-fw fa-file"></i>工具分类管理</a>
                     </li>
                     <li>
-                        <a href="javaScript:void('0')" url="${contextPath}/toolsmanager.do"><i class="fa fa-edit"></i>美缝工具管理 </a>
+                        <a href="javaScript:void('0')" url="${contextPath}/toolsmanager.do"><i class="fa fa-wrench"></i>美缝工具管理 </a>
                     </li>
                 </ul>
 
@@ -79,6 +87,7 @@
 </body>
     <script src="${contextPath}/js/3th/jquery-3.1.0.min.js"></script>
     <script src="${contextPath}/js/3th/bootstrap.min.js"></script>
+    <script src="${contextPath}/js/3th/jquery.metisMenu.js"></script>
     <script src="${contextPath}/js/jquery.alertable.min.js"></script>
     <script src="${contextPath}/js/home.js"></script>
     <script type="text/javascript">

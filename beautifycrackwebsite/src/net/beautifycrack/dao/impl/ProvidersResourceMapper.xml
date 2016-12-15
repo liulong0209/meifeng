@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.beautifycrack.dao.ProvidersResourceMapper">
+	<!-- 分页工人查询数据 -->
+	<select id="wokerPagerList" parameterType="Map" resultType="worker">
+		select
+			worker_id as id,
+			name as name,
+			avatar as avatar,
+			providers_id as providersId
+		from tbl_worker
+		where providers_id=#{providersId}
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 查询工人总数 -->
+	<select id="queryWokerTotal" parameterType="Long" resultType="Integer" >
+		select count(worker_id) from tbl_worker where providers_id=#{providersId}
+	</select>
+	
+	<!-- 增加工人 -->
+	<insert id="addWork" parameterType="worker">
+		insert into tbl_worker(name,avatar,providers_id,create_time)value(#{name},#{avatar},#{providersId},now())
+	</insert>
+	
+	<!-- 查找工人 -->
+	<select id="findWorker" parameterType="Long" resultType="worker">
+		select
+			worker_id as id,
+			name as name,
+			avatar as avatar,
+			providers_id as providersId
+		from tbl_worker
+		where worker_id=#{id}
+	</select>
+	<!-- 更新工人 -->
+	<update id="updateWork" parameterType="worker">
+		update tbl_worker
+		set update_time = now()
+		<if test="name!=null and name!=''">
+			,name=#{name}
+		</if>
+		
+		<if test="avatar!=null">
+			,avatar={avatar}
+		</if>
+		where worker_id=#{id}
+	</update>
+	
+	<!-- 删除工人 -->
+	<delete id="deleteWork" parameterType="Long">
+		delete from tbl_worker where worker_id=#{id}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -5,7 +5,7 @@
 <html lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>美缝公司编辑</title>
+<title>施工工人-个人编辑</title>
 <link href="${contextPath}/style/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/bootstrapValidator.min.css" type="text/css" rel="stylesheet" />
 <link href="${contextPath}/style/css/inner-base.css" type="text/css" rel="stylesheet" />
@@ -14,28 +14,28 @@
 </head>
 <body>
 	<ol class="breadcrumb">
-	  <li><a href="${contextPath}/companymanager.do">美缝公司列表</a></li>
+	  <li><a href="${contextPath}/workermanager.do?type=2">施工工人-个人管理</a></li>
 	  <li class="active">编辑</li>
 	</ol>
 	<div class="container">
 		<div class="row">
 			<form class="form-horizontal" role="form">
-			<input type="hidden" id="providersId" value="${company.providersId}">
-			<input type="hidden" id="logoId" value="${company.logo}">
+			<input type="hidden" id="providersId" value="${worker.providersId}">
+			<input type="hidden" id="logoId" value="${worker.logo}">
 			  <div class="form-group pt10">
 			  	<div class="col-md-2 pl0">
-			    	<label for="companyName" class="control-label">公司名称</label>
+			    	<label for="personName" class="control-label">个人名称</label>
 			  	</div>
 			    <div class="col-md-10">
-			      <input type="text" class="form-control" id="companyName" name="companyName"  placeholder="公司名称" value="${company.providerName}">
+			      <input type="text" class="form-control" id="personName" name="personName"  placeholder="个人名称" value="${worker.providerName}">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			  	<div class="col-md-2 pl0">
-			    	<label for="introduction" class="control-label">公司简介</label>
+			    	<label for="introduction" class="control-label">个人简介</label>
 			  	</div>
 			    <div class="col-md-10">
-			     	<textarea class="form-control" rows="12" placeholder="公司简介" id="introduction" name="introduction">${company.profile}</textarea>
+			     	<textarea class="form-control" rows="12" placeholder="个人简介" id="introduction" name="introduction">${worker.profile}</textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -43,24 +43,24 @@
 			    	<label for="contact" class="control-label">联系方式</label>
 			  	</div>
 			    <div class="col-md-5">
-			     	<input type="text" class="form-control" id="contact" name="contact"  placeholder="联系方式" value="${company.phoneNo}">
+			     	<input type="text" class="form-control" id="contact" name="contact"  placeholder="联系方式" value="${worker.phoneNo}">
 			    </div>
 			  </div>
 			  <div class="form-group pt10">
 			  	<div class="col-md-2 pl0">
-			    	<label class="control-label">公司LOGO</label>
+			    	<label class="control-label">个人LOGO</label>
 			  	</div>
 			    <div class="col-md-10">
-			    		<c:if test="${company.logo!=null && company.logo!=-1}">
+			    		<c:if test="${worker.logo!=null && worker.logo!=-1}">
 		    			<div class="img-edit-show">
 		    				<span class="glyphicon glyphicon-remove delete" id="delete"></span>
-							<img src="${contextPath}/file/image/get.do?imageId=${company.logo}" class="img-thumbnail" width="500" height="300">
+							<img src="${contextPath}/file/image/get.do?imageId=${worker.logo}" class="img-thumbnail" width="500" height="300">
 		    			</div>
 		    			</c:if>
 			    	
 						<label></label>
 					<c:choose>
-			    		<c:when test="${company.logo!=null && company.logo!=-1}">
+			    		<c:when test="${worker.logo!=null && worker.logo!=-1}">
 		    			<input id="imgFile" name="imgFile" type="file" style="display:none">
 		    			</c:when>
 			    		<c:otherwise>
@@ -71,10 +71,10 @@
 			  </div>
 			  <div class="form-group pt10">
 			  	<div class="col-md-2 pl0">
-			    	<label for="address" class="control-label">公司地址</label>
+			    	<label for="address" class="control-label">服务区域</label>
 			  	</div>
 			    <div class="col-md-10">
-			      <input type="text" class="form-control" id="address" name="address"  placeholder="公司地址" value="${company.address }">
+			      <input type="text" class="form-control" id="address" name="address"  placeholder="服务区域" value="${worker.address }">
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -90,6 +90,6 @@
 </body>
     <%@include file="../inc/footer.jsp" %> 
     <script type="text/javascript">
-		seajs.use("sea-modules/company/company_edit",function(module){module.init()})
+		seajs.use("sea-modules/worker/person_edit",function(module){module.init()})
 	</script>
 </html>

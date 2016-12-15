@@ -47,7 +47,7 @@ define(function(require,exports,module){
 		var $companyList="";
 		$.each(data.dataList,function(i,company){
 			$companyList+="<tr>";
-			$companyList+=	"<td>"+(i+1)+"</td>";
+			$companyList+=	"<td><input type=\"radio\" name=\"company\" id=\"company_"+company.providersId+"\" value=\""+company.providersId+"\"></td>";
 			$companyList+=	"<td>"+company.providerName+"</td>";
 			$companyList+=	"<td>";
 			$companyList+=		"<button type=\"button\" id=\"company_edit_"+company.providersId+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
@@ -59,6 +59,11 @@ define(function(require,exports,module){
 		
 		//渲染公司列表
 		$("#companyList").empty().append($companyList);
+		
+		//radion事件绑定
+		$("input[type='radio']").click(function(){
+			$(".btn-info").removeAttr("disabled");
+		})
 		
 		//编辑按钮绑定事件
 		$("button[id^='company_edit_']").click(function(){
@@ -121,6 +126,22 @@ define(function(require,exports,module){
 		//绑定新增公司
 		$("#addCompany").click(function(){
 			window.location.href =  contextPath+'/company/showAdd.do';
+		})
+		//公司工人
+		$("#worker").click(function(){
+			window.location.href =  contextPath+'/providersResource/workerList.do?providersId='+$('input:radio:checked').val();
+		})
+		//施工案例
+		$("#case").click(function(){
+			window.location.href =  contextPath+'/providersResource/caseList.do?providersId='+$('input:radio:checked').val();
+		})
+		//预约小区
+		$("#book").click(function(){
+			window.location.href =  contextPath+'/providersResource/bookList.do?providersId='+$('input:radio:checked').val();
+		})
+		//公司资质
+		$("#qualification").click(function(){
+			window.location.href =  contextPath+'/providersResource/qualificationList.do?providersId='+$('input:radio:checked').val();
 		})
 	}
 	

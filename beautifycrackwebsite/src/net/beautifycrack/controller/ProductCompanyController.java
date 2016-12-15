@@ -1,7 +1,6 @@
 package net.beautifycrack.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,15 +76,17 @@ public class ProductCompanyController
         mv.setViewName("productCompany/productCompany_list");
         return mv;
     }
-    
+
     /**
      * 分页显示数据
+     * 
+     * @throws BusinessException
      */
     @RequestMapping(value = "/productCompany/pageList.do", method = RequestMethod.POST)
-    public @ResponseBody Object pageList(PagerUtil pu)
+    public @ResponseBody Object pageList(PagerUtil pu) throws BusinessException
     {
         Map<String, Object> dataMaps = new HashMap<String, Object>();
-        
+
         // 查询数据
         List<Providers> providersList = providersService.productCompanyPagerList(pu);
 
@@ -97,7 +98,7 @@ public class ProductCompanyController
         dataMaps.put("pager", pu);
         return dataMaps;
     }
-    
+
     /**
      * 跳转到新增工具材料提供公司页面
      */
@@ -108,7 +109,7 @@ public class ProductCompanyController
         mv.setViewName("productCompany/productCompany_add");
         return mv;
     }
-    
+
     /**
      * 工具材料提供公司增加
      * 
@@ -147,7 +148,7 @@ public class ProductCompanyController
         }
         return result;
     }
-    
+
     /**
      * 跳转工具材料提供公司更新页面
      * 
@@ -155,9 +156,11 @@ public class ProductCompanyController
      * @param response
      * @param companyId
      * @return
+     * @throws BusinessException
      */
     @RequestMapping(value = "/productCompany/showEdit.do", method = RequestMethod.GET)
     public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long companyId)
+            throws BusinessException
     {
         ModelAndView mv = new ModelAndView();
         Providers providers = providersService.queryProvider(companyId);
@@ -165,7 +168,7 @@ public class ProductCompanyController
         mv.setViewName("productCompany/productCompany_edit");
         return mv;
     }
-    
+
     /**
      * 工具材料提供公司更新
      * 

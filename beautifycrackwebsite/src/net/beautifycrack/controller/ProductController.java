@@ -138,9 +138,10 @@ public class ProductController
      * 跳转到美缝材料新增页面
      * 
      * @return
+     * @throws BusinessException
      */
     @RequestMapping(value = "/material/showAdd.do")
-    public ModelAndView showMaterialAdd()
+    public ModelAndView showMaterialAdd() throws BusinessException
     {
         ModelAndView mv = new ModelAndView();
         // 产品分类
@@ -159,9 +160,10 @@ public class ProductController
      * 跳转到美缝工具新增页面
      * 
      * @return
+     * @throws BusinessException
      */
     @RequestMapping(value = "/tools/showAdd.do")
-    public ModelAndView showToolsAdd()
+    public ModelAndView showToolsAdd() throws BusinessException
     {
         ModelAndView mv = new ModelAndView();
         // 产品分类
@@ -212,7 +214,7 @@ public class ProductController
         }
         return result;
     }
-    
+
     /**
      * 产品删除
      * 
@@ -230,7 +232,7 @@ public class ProductController
 
         try
         {
-        	productService.delete(product);
+            productService.delete(product);
             result.put("result", Common.SUCCESS);
         }
         catch (Exception e)
@@ -241,14 +243,15 @@ public class ProductController
 
         return result;
     }
-    
+
     /**
      * 跳转到美缝材料编辑页面
      * 
      * @return
+     * @throws BusinessException
      */
     @RequestMapping(value = "/material/showEdit.do")
-    public ModelAndView showMaterialEdit(Long productId)
+    public ModelAndView showMaterialEdit(Long productId) throws BusinessException
     {
         ModelAndView mv = new ModelAndView();
         // 产品分类
@@ -256,7 +259,7 @@ public class ProductController
 
         // 供应公司
         List<Providers> providersList = providersService.findProvideProductCompany();
-        
+
         Product product = productService.find(productId);
 
         mv.getModelMap().put("categoriList", categoriList);
@@ -265,7 +268,32 @@ public class ProductController
         mv.setViewName("material/material_edit");
         return mv;
     }
-    
+
+    /**
+     * 跳转到美缝工具编辑页面
+     * 
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/tools/showEdit.do")
+    public ModelAndView showToolsEdit(Long productId) throws BusinessException
+    {
+        ModelAndView mv = new ModelAndView();
+        // 产品分类
+        List<ProductCategory> categoriList = productCategoryService.findCategoryByType(Common.PRODUCT_TOOLS);
+
+        // 供应公司
+        List<Providers> providersList = providersService.findProvideProductCompany();
+
+        Product product = productService.find(productId);
+
+        mv.getModelMap().put("categoriList", categoriList);
+        mv.getModelMap().put("providersList", providersList);
+        mv.getModelMap().put("product", product);
+        mv.setViewName("tools/tools_edit");
+        return mv;
+    }
+
     /**
      * 美缝公司 团队 个人更新
      * 
@@ -304,7 +332,7 @@ public class ProductController
 
         return result;
     }
-    
+
     /**
      * 编辑删除图片时更新供应商logo为-1
      * 
@@ -318,7 +346,7 @@ public class ProductController
         Map<String, Object> result = new HashMap<String, Object>();
         try
         {
-        	productService.update(product);
+            productService.update(product);
             result.put("result", Common.SUCCESS);
         }
         catch (Exception e)

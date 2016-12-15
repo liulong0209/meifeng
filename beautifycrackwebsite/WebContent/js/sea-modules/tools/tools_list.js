@@ -1,5 +1,5 @@
 /**
- * 材料列表
+ * 工具列表
  */
 define(function(require,exports,module){
 	//引入jquery
@@ -13,7 +13,7 @@ define(function(require,exports,module){
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{"pageNo":pageNo,"productType":1},
+				data:{"pageNo":pageNo,"productType":0},
 				beforeSend: function () {
 					$.showLoadding();
 				},
@@ -39,44 +39,44 @@ define(function(require,exports,module){
 	function render(data,pageNo){
 		if(data.dataList.length==0)
 		{
-			$("#materialList").empty().append("<tr><td>暂无数据</td></tr>");
+			$("#toolsList").empty().append("<tr><td>暂无数据</td></tr>");
 			$("#kkpager").empty();
 			return;
 		}
-		var $materialList="";
-		$.each(data.dataList,function(i,material){
-			$materialList+="<tr>";
-			$materialList+=	"<td>"+(i+1)+"</td>";
-			$materialList+=	"<td>"+material.productName+"</td>";
-			$materialList+=	"<td>"+material.categoryName+"</td>";
-			$materialList+=	"<td>"+material.providersName+"</td>";
-			$materialList+=	"<td>";
-			$materialList+=		"<button type=\"button\" id=\"material_edit_"+material.id+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
-			$materialList+=		"<button type=\"button\" id=\"material_delete_"+material.id+"\"  class=\"btn btn-default btn-xs\" imgId="+(material.imgId?material.imgId:"")+">删除</button>";
-			$materialList+=	"</td>";
-			$materialList+="</tr>";
+		var $toolsList="";
+		$.each(data.dataList,function(i,tools){
+			$toolsList+="<tr>";
+			$toolsList+=	"<td>"+(i+1)+"</td>";
+			$toolsList+=	"<td>"+tools.productName+"</td>";
+			$toolsList+=	"<td>"+tools.categoryName+"</td>";
+			$toolsList+=	"<td>"+tools.providersName+"</td>";
+			$toolsList+=	"<td>";
+			$toolsList+=		"<button type=\"button\" id=\"tools_edit_"+tools.id+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
+			$toolsList+=		"<button type=\"button\" id=\"tools_delete_"+tools.id+"\"  class=\"btn btn-default btn-xs\" imgId="+(tools.imgId?tools.imgId:"")+">删除</button>";
+			$toolsList+=	"</td>";
+			$toolsList+="</tr>";
 		})
 		
 		//渲染列表
-		$("#materialList").empty().append($materialList);
+		$("#toolsList").empty().append($toolsList);
 		
 		//渲染分页
 		var pager = require("sea-modules/common");
 		pager.loadPager(pageNo,data.pager.totalPage,data.pager.totalRecords,initData);
 		
 		//编辑按钮绑定事件
-		$("button[id^='material_edit_']").click(function(){
-			window.location.href =  contextPath+'/material/showEdit.do?productId='+$(this).attr("id").replace("material_edit_","");
+		$("button[id^='tools_edit_']").click(function(){
+			window.location.href =  contextPath+'/tools/showEdit.do?productId='+$(this).attr("id").replace("tools_edit_","");
 		})
 		
 		//删除按钮绑定事件
-		$("button[id^='material_delete_']").click(function(){
-			var materialId = $(this).attr("id").replace("material_delete_","");
+		$("button[id^='tools_delete_']").click(function(){
+			var toolsId = $(this).attr("id").replace("tools_delete_","");
 			var imgId = $(this).attr("imgId");
 			if(typeof(imgId) == "undefined"){imgId=null};
 			require.async('alertable',function(){
 				$.alertable.confirm('确认删除嘛!',{parentObj:window.parent.document}).then(function() {
-					deletematerial(materialId,imgId);
+					deletetools(toolsId,imgId);
 			    }, function() {
 			         return;      
 			    });
@@ -84,14 +84,14 @@ define(function(require,exports,module){
 		})
 	}
 	
-	function deletematerial(materialId,imgId){
+	function deletetools(toolsId,imgId){
 		require.async('custom',function(){
 			$.ajax({    
 				url: contextPath+'/product/delete.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{"id":materialId,"imgId":imgId},
+				data:{"id":toolsId,"imgId":imgId},
 				beforeSend: function () {
 					$.showLoadding({loadText:"执行中，请稍后...."});
 			    },
@@ -119,8 +119,8 @@ define(function(require,exports,module){
 	//初始化
 	function init(){
 		initData(1);
-		$("#addMaterial").click(function(){
-			window.location.href=contextPath+"/material/showAdd.do"
+		$("#addTools").click(function(){
+			window.location.href=contextPath+"/tools/showAdd.do"
 		})
 	}
 	

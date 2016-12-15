@@ -8,6 +8,7 @@
 		select
 			a.prod_id as id,
 			a.product_name as productName,
+			a.product_pic as imgId,
 			a.product_type as category,
 			b.name as categoryName,
 			a.providers_id as providersId,
@@ -62,7 +63,7 @@
 			,product_intro = #{profile}
 		</if>
 		<if test="imgId!=null">
-			,product_pic =#{logo}
+			,product_pic =#{imgId}
 		</if>
 		<if test="category!=null">
 			,product_type =#{category}

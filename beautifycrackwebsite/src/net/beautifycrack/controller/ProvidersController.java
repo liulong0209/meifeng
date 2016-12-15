@@ -79,10 +79,32 @@ public class ProvidersController
     }
 
     /**
+     * 跳转到施工工人管理列表页面
+     */
+    @RequestMapping(value = "/workermanager.do")
+    public ModelAndView worker(HttpServletRequest request, HttpServletResponse response, Integer type)
+    {
+        ModelAndView mv = new ModelAndView();
+        // 团队
+        if (type == Common.WORKER_TEAM)
+        {
+            mv.setViewName("worker/team_list");
+        }
+        // 个人
+        else if (type == Common.WORKER_PERSON)
+        {
+            mv.setViewName("worker/person_list");
+        }
+        return mv;
+    }
+
+    /**
      * 加载公司、团队、个人列表数据，前台通多ajax调用
+     * 
+     * @throws BusinessException
      */
     @RequestMapping(value = "/providers/pageList.do", method = RequestMethod.POST)
-    public @ResponseBody Object pageList(PagerUtil pu, String type)
+    public @ResponseBody Object pageList(PagerUtil pu, String type) throws BusinessException
     {
         logger.info("ProvidersController->pageList:type{}", type);
         Map<String, Object> dataMaps = new HashMap<String, Object>();
@@ -114,6 +136,26 @@ public class ProvidersController
     {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("company/company_add");
+        return mv;
+    }
+
+    /**
+     * 跳转到新增施工工人页面
+     */
+    @RequestMapping(value = "/worker/showAdd.do")
+    public ModelAndView showAddWorker(HttpServletRequest request, HttpServletResponse response, Integer type)
+    {
+        ModelAndView mv = new ModelAndView();
+        // 团队
+        if (type == Common.WORKER_TEAM)
+        {
+            mv.setViewName("worker/team_add");
+        }
+        // 个人
+        else if (type == Common.WORKER_PERSON)
+        {
+            mv.setViewName("worker/person_add");
+        }
         return mv;
     }
 
@@ -163,14 +205,45 @@ public class ProvidersController
      * @param response
      * @param companyId
      * @return
+     * @throws BusinessException
      */
     @RequestMapping(value = "/company/showEdit.do", method = RequestMethod.GET)
     public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long companyId)
+            throws BusinessException
     {
         ModelAndView mv = new ModelAndView();
         Providers providers = providersService.queryProvider(companyId);
         mv.getModelMap().put("company", providers);
         mv.setViewName("company/company_edit");
+        return mv;
+    }
+
+    /**
+     * 施工工人更新页面
+     * 
+     * @param request
+     * @param response
+     * @param companyId
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/worker/showEdit.do", method = RequestMethod.GET)
+    public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long workerId, Integer type)
+            throws BusinessException
+    {
+        ModelAndView mv = new ModelAndView();
+        Providers providers = providersService.queryProvider(workerId);
+        mv.getModelMap().put("worker", providers);
+        // 团队
+        if (type == Common.WORKER_TEAM)
+        {
+            mv.setViewName("worker/team_edit");
+        }
+        // 个人
+        else if (type == Common.WORKER_PERSON)
+        {
+            mv.setViewName("worker/person_edit");
+        }
         return mv;
     }
 

@@ -16,6 +16,10 @@
 </ol>
 <div class="pt10 pl10">
 	<button id="addCompany" type="button" class="btn btn-primary">新增</button>
+	<button id="worker" type="button" class="btn btn-info" disabled="disabled">公司工人</button>
+	<button id="case" type="button" class="btn btn-info" disabled="disabled">施工案例</button>
+	<button id="book" type="button" class="btn btn-info" disabled="disabled">预约小区</button>
+	<button id="qualification" type="button" class="btn btn-info" disabled="disabled">公司资质</button>
 </div>
 <div class="table-responsive">
 	<table class="table table-hover">

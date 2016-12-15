@@ -34,6 +34,7 @@ define(function(require,exports,module){
 					cache:false,  			
 					dataType:'json', 
 					data:{
+						id:$("#productId").val(),
 						productName:$("#materialName").val(),
 						profile:$("#materialInfo").val(),
 						category:$("#materialType").val(),

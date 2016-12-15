@@ -1,5 +1,5 @@
 /**
- * 公司列表
+ * 团队列表
  */
 define(function(require,exports,module){
 	//引入jquery
@@ -9,11 +9,11 @@ define(function(require,exports,module){
 	function initData(pageNo){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/productCompany/pageList.do',       
+				url: contextPath+'/providers/pageList.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{"pageNo":pageNo},
+				data:{"pageNo":pageNo,"type":1},
 				beforeSend: function () {
 					$.showLoadding();
 				},
@@ -40,25 +40,25 @@ define(function(require,exports,module){
 		
 		if(data.dataList.length==0)
 		{
-			$("#companyList").empty().append("<tr><td>暂无数据</td></tr>");
+			$("#teamList").empty().append("<tr><td>暂无数据</td></tr>");
 			return;
 		}
 		
-		var $companyList="";
-		$.each(data.dataList,function(i,company){
-			$companyList+="<tr>";
-			$companyList+=	"<td><input type=\"radio\" name=\"company\" id=\"company_"+company.providersId+"\" value=\""+company.providersId+"\"></td>";
-			$companyList+=	"<td>"+company.providerName+"</td>";
-			$companyList+=	"<td>";
-			$companyList+=		"<button type=\"button\" id=\"company_edit_"+company.providersId+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
-			$companyList+=		"<button type=\"button\" id=\"company_delete_"+company.providersId+"\" class=\"btn btn-default btn-xs\" logovalu="+(company.logo?company.logo:"")+">删除</button>";
-			$companyList+=	"</td>";
-			$companyList+="</tr>";
+		var $teamList="";
+		$.each(data.dataList,function(i,team){
+			$teamList+="<tr>";
+			$teamList+=	"<td><input type=\"radio\" name=\"team\" id=\"team_"+team.providersId+"\" value=\""+team.providersId+"\"></td>";
+			$teamList+=	"<td>"+team.providerName+"</td>";
+			$teamList+=	"<td>";
+			$teamList+=		"<button type=\"button\" id=\"team_edit_"+team.providersId+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
+			$teamList+=		"<button type=\"button\" id=\"team_delete_"+team.providersId+"\" class=\"btn btn-default btn-xs\" logovalu="+(team.logo?team.logo:"")+">删除</button>";
+			$teamList+=	"</td>";
+			$teamList+="</tr>";
 			
 		})
 		
 		//渲染公司列表
-		$("#companyList").empty().append($companyList);
+		$("#teamList").empty().append($teamList);
 		
 		//radion事件绑定
 		$("input[type='radio']").click(function(){
@@ -66,18 +66,18 @@ define(function(require,exports,module){
 		})
 		
 		//编辑按钮绑定事件
-		$("button[id^='company_edit_']").click(function(){
-			window.location.href =  contextPath+'/productCompany/showEdit.do?companyId='+$(this).attr("id").replace("company_edit_","");
+		$("button[id^='team_edit_']").click(function(){
+			window.location.href =  contextPath+'/worker/showEdit.do?workerId='+$(this).attr("id").replace("team_edit_","")+"&type=1";
 		})
 		
 		//删除按钮绑定事件
-		$("button[id^='company_delete_']").click(function(){
-			var companyId = $(this).attr("id").replace("company_delete_","");
+		$("button[id^='team_delete_']").click(function(){
+			var teamId = $(this).attr("id").replace("team_delete_","");
 			var logovalu = $(this).attr("logovalu");
-			if(typeof(imgId) == "undefined"){imgId=null};
+			if(typeof(logovalu) == "undefined"){logovalu=null};
 			require.async('alertable',function(){
 				$.alertable.confirm('确认删除嘛!',{parentObj:window.parent.document}).then(function() {
-					deletecompany(companyId,logovalu);
+					deleteteam(teamId,logovalu);
 			    }, function() {
 			         return;      
 			    });
@@ -89,14 +89,14 @@ define(function(require,exports,module){
 		pager.loadPager(pageNo,data.pager.totalPage,data.pager.totalRecords,initData);
 	}
 	
-	function deletecompany(companyId,logovalu){
+	function deleteteam(teamId,logovalu){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/productCompany/delete.do',       
+				url: contextPath+'/providers/delete.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{"providersId":companyId,"logo":logovalu},
+				data:{"providersId":teamId,"logo":logovalu},
 				beforeSend: function () {
 					$.showLoadding({loadText:"执行中，请稍后...."});
 			    },
@@ -124,15 +124,15 @@ define(function(require,exports,module){
 	function init(){
 		initData(1);
 		//绑定新增公司
-		$("#addCompany").click(function(){
-			window.location.href =  contextPath+'/productCompany/showAdd.do';
-		});
+		$("#addTeam").click(function(){
+			window.location.href =  contextPath+'/worker/showAdd.do?type=1';
+		})
 		
-		//公司证书
-		$("#certificate").click(function(){
+		//施工人员
+		$("#worker").click(function(){
 			window.location.href =  contextPath+'';
 		})
-		//防伪
+		//施工案例
 		$("#case").click(function(){
 			window.location.href =  contextPath+'';
 		})

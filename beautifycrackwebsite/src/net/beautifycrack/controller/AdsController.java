@@ -84,9 +84,11 @@ public class AdsController
 
     /**
      * 加载数据，页面通多ajax调用
+     * 
+     * @throws BusinessException
      */
     @RequestMapping(value = "/ads/pageList.do", method = RequestMethod.POST)
-    public @ResponseBody Object pageList(PagerUtil pu)
+    public @ResponseBody Object pageList(PagerUtil pu) throws BusinessException
     {
         Map<String, Object> dataMaps = new HashMap<String, Object>();
         // 查询数据
@@ -167,9 +169,11 @@ public class AdsController
      * @param response
      * @param id
      * @return
+     * @throws BusinessException
      */
     @RequestMapping(value = "/ads/showEdit.do", method = RequestMethod.GET)
     public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long adsId)
+            throws BusinessException
     {
         ModelAndView mv = new ModelAndView();
         Advertisement ads = adsService.queryById(adsId);

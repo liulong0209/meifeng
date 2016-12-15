@@ -45,9 +45,11 @@ public class NewsController
 
     /**
      * 加载新闻数据，前台通多ajax调用
+     * 
+     * @throws BusinessException
      */
     @RequestMapping(value = "/news/pageList.do", method = RequestMethod.POST)
-    public @ResponseBody Object pageList(PagerUtil pu)
+    public @ResponseBody Object pageList(PagerUtil pu) throws BusinessException
     {
         Map<String, Object> dataMaps = new HashMap<String, Object>();
         // 查询数据
@@ -108,9 +110,10 @@ public class NewsController
      * @param response
      * @param id
      * @return
+     * @throws BusinessException 
      */
     @RequestMapping(value = "/news/showEdit.do", method = RequestMethod.GET)
-    public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long newsId)
+    public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long newsId) throws BusinessException
     {
         ModelAndView mv = new ModelAndView();
         News news = newsService.showNews(newsId);

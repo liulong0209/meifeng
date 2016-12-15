@@ -2,6 +2,26 @@
  * 首页js
  */
 $(function(){
+    "use strict";
+    var mainApp = {
+
+        initFunction: function () {
+            /*MENU 
+            ------------------------------------*/
+            $('#main-menu').metisMenu();
+			
+            $(window).bind("load resize", function () {
+                if ($(this).width() < 768) {
+                    $('div.sidebar-collapse').addClass('collapse')
+                } else {
+                    $('div.sidebar-collapse').removeClass('collapse')
+                }
+            });
+
+     }
+    };
+    // Initializing ///
+    
 	//事件绑定
 	function eventBind(){
 		//左侧菜单收起展开事件绑定
@@ -60,6 +80,7 @@ $(function(){
 	
 	//初始化
 	function init(){
+		mainApp.initFunction();
 		loadFirstMenu();
 		eventBind();
 	}

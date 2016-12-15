@@ -133,7 +133,7 @@
 			title as title,
 			file_id as imageId,
 			providers_id as providerId
-		from tbl_product_anti_fake
+		from tbl_company_anti_fake
 		where providers_id = #{providerId}
 	</select>
 	
