@@ -1,5 +1,5 @@
 /**
- * 公司列表
+ * 工具/材料供应公司列表
  */
 define(function(require,exports,module){
 	//引入jquery
@@ -40,7 +40,7 @@ define(function(require,exports,module){
 		
 		if(data.dataList.length==0)
 		{
-			$("#companyList").empty().append("<tr><td>暂无数据</td></tr>");
+			$("#companyList").empty().append("<tr><td colspan='3' align=center>暂无数据</td></tr>");
 			return;
 		}
 		

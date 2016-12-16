@@ -42,7 +42,17 @@ public class SessionInterceptor implements HandlerInterceptor
         UserInfo user = (UserInfo) request.getSession().getAttribute("userInfo");
         if (user == null)
         {
-            response.sendRedirect(request.getContextPath());
+            String requestType = request.getHeader("X-Requested-With");
+            // 如果是ajax请求
+            if ("XMLHttpRequest".equalsIgnoreCase(requestType))
+            {
+                response.setHeader("sessionstatus", "timeout");
+                response.setHeader("loginPath", request.getContextPath());
+            }
+            else
+            {
+                response.sendRedirect(request.getContextPath());
+            }
         }
         return true;
     }

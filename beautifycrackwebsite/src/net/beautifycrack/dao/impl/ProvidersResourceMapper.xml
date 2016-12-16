@@ -3,8 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="net.beautifycrack.dao.ProvidersResourceMapper">
+    <!--***************施工工人 *************** -->
 	<!-- 分页工人查询数据 -->
-	<select id="wokerPagerList" parameterType="Map" resultType="worker">
+	<select id="workerPagerList" parameterType="Map" resultType="worker">
 		select
 			worker_id as id,
 			name as name,
@@ -16,12 +17,12 @@
 	</select>
 	
 	<!-- 查询工人总数 -->
-	<select id="queryWokerTotal" parameterType="Long" resultType="Integer" >
+	<select id="queryWorkerTotal" parameterType="Long" resultType="Integer" >
 		select count(worker_id) from tbl_worker where providers_id=#{providersId}
 	</select>
 	
 	<!-- 增加工人 -->
-	<insert id="addWork" parameterType="worker">
+	<insert id="addWorker" parameterType="worker">
 		insert into tbl_worker(name,avatar,providers_id,create_time)value(#{name},#{avatar},#{providersId},now())
 	</insert>
 	
@@ -36,7 +37,7 @@
 		where worker_id=#{id}
 	</select>
 	<!-- 更新工人 -->
-	<update id="updateWork" parameterType="worker">
+	<update id="updateWorker" parameterType="worker">
 		update tbl_worker
 		set update_time = now()
 		<if test="name!=null and name!=''">
@@ -50,8 +51,60 @@
 	</update>
 	
 	<!-- 删除工人 -->
-	<delete id="deleteWork" parameterType="Long">
+	<delete id="deleteWorker" parameterType="Long">
 		delete from tbl_worker where worker_id=#{id}
+	</delete>
+	
+	<!--***************施工案例  ************************-->
+	<!-- 分页案例查询数据 -->
+	<select id="workcasePagerList" parameterType="Map" resultType="constructionCase">
+		select
+			case_id as id,
+			title as communityName,
+			img_id as imageId,
+			providers_id as providersId
+		from tbl_work_case
+		where providers_id=#{providersId}
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 查询案例总数 -->
+	<select id="queryWorkcaseTotal" parameterType="Long" resultType="Integer" >
+		select count(case_id) from tbl_work_case where providers_id=#{providersId}
+	</select>
+	
+	<!-- 增加案例-->
+	<insert id="addWorkcase" parameterType="constructionCase">
+		insert into tbl_work_case(title,img_id,providers_id,create_time)value(#{communityName},#{imageId},#{providersId},now())
+	</insert>
+	
+	<!-- 查找案例 -->
+	<select id="findWorkcase" parameterType="Long" resultType="constructionCase">
+		select
+			case_id as id,
+			title as communityName,
+			img_id as imageId,
+			providers_id as providersId
+		from tbl_work_case
+		where case_id=#{id}
+	</select>
+	<!-- 更新案例 -->
+	<update id="updateWorkcase" parameterType="constructionCase">
+		update tbl_work_case
+		set update_time = now()
+		<if test="communityName!=null and communityName!=''">
+			,title=#{communityName}
+		</if>
+		
+		<if test="imageId!=null">
+			,img_id=#{imageId}
+		</if>
+		where case_id=#{id}
+	</update>
+	
+	<!-- 删除案例 -->
+	<delete id="deleteWorkcase" parameterType="Long">
+		delete from tbl_work_case where case_id=#{id}
 	</delete>
 </mapper>
 

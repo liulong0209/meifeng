@@ -1,5 +1,5 @@
 /**
- * 轮播广告新增
+ * 公司 团队下的施工案例增加
  */
  
 define(function(require, exports, module){
@@ -21,37 +21,26 @@ define(function(require, exports, module){
 	
 	//事件绑定
 	function bindEvent(){
-		//保存草稿
-		$("#draft").on("click",function(){
+		$("#add").click(function(){
 			$("form").data('bootstrapValidator').validate();
 			if(!$("form").data('bootstrapValidator').isValid()){
 				return false;
 			}
-			addAds(0);
-		});
-		
-		//直接发布
-		$("#publish").click(function(){
-			$("form").data('bootstrapValidator').validate();
-			if(!$("form").data('bootstrapValidator').isValid()){
-				return false;
-			}
-			addAds(1);
+			addWorkcase();
 		})
 	}
 	
-	//新增轮播广告
-	function addAds(state){
+	//新增
+	function addWorkcase(){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/ads/add.do',       
+				url: contextPath+'/providersResource/addWorkcase.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
 				data:{
-					title:$("#adsTitle").val(),
-					orderNo:$("#adsOrderNo").val(),
-					state:state,
+					communityName:$("#communityName").val(),
+					providersId:$("#providersId").val(),
 					imageData:$(".file-preview-image").attr("src"),
 					original:$(".file-preview-image").attr("title")
 				},
@@ -60,7 +49,7 @@ define(function(require, exports, module){
 			    },
 			    success: function (data) {
 			    	if(data.result=='0'){
-			    		$("#page-inner iframe",window.parent.document).attr("src",contextPath+"/adsmanager.do");
+			    		$("#page-inner iframe",window.parent.document).attr("src",contextPath+"/providersResource/workcaseList.do?providersId="+$("#providersId").val());
 			    	}else{
 			    		require.async('alertable',function(){
 			    			$.alertable.alert('新增 失败!',{parentObj:window.parent.document});
@@ -90,15 +79,15 @@ define(function(require, exports, module){
             validating: 'glyphicon glyphicon-refresh'
 		    },
             fields: {
-            	title: {
-                    message: '标题验证失败',
+            	communityName: {
+                    message: '小区名称验证失败',
                     validators: {
                         notEmpty: {
-                            message: '标题不能为空'
+                            message: '小区名称不能为空'
                         },
                         stringLength: {
-                            max: 25,
-                            message: '标题长度不能超过25个字'
+                            max: 32,
+                            message: '小区名称长度不能超过32个字'
                         }
                     }
                 }

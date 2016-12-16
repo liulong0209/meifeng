@@ -1,5 +1,5 @@
 /**
- * 公司 团队下的施工人员列表
+ * 公司 团队下的案例列表
  */
  
 define(function(require, exports, module){
@@ -10,7 +10,7 @@ define(function(require, exports, module){
 	function initData(pageNo){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/providersResource/worker/pageList.do',       
+				url: contextPath+'/providersResource/workcase/pageList.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
@@ -41,38 +41,38 @@ define(function(require, exports, module){
 	{	
 		if(data.dataList.length==0)
 		{
-			$("#workerList").empty().append("<tr><td colspan='3' align=center>暂无数据</td></tr>");
+			$("#workcaseList").empty().append("<tr><td colspan='3' align=center>暂无数据</td></tr>");
 			return;
 		}
 		
-		var $workerList="";
-		$.each(data.dataList,function(i,worker){
-			$workerList+="<tr>";
-			$workerList+=	"<td>"+(i+1)+"</td>";
-			$workerList+=	"<td>"+worker.name+"</td>";
-			$workerList+=	"<td>";
-			$workerList+=		"<button type=\"button\" id=\"worker_edit_"+worker.id+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
-			$workerList+=		"<button type=\"button\" id=\"worker_delete_"+worker.id+"\" class=\"btn btn-default btn-xs\" avatar="+(worker.avatar?worker.avatar:"")+">删除</button>";
-			$workerList+=	"</td>";
-			$workerList+="</tr>";
+		var $workcaseList="";
+		$.each(data.dataList,function(i,workcase){
+			$workcaseList+="<tr>";
+			$workcaseList+=	"<td>"+(i+1)+"</td>";
+			$workcaseList+=	"<td>"+workcase.communityName+"</td>";
+			$workcaseList+=	"<td>";
+			$workcaseList+=		"<button type=\"button\" id=\"workcase_edit_"+workcase.id+"\" class=\"btn btn-primary btn-xs mr10\">编辑</button>";
+			$workcaseList+=		"<button type=\"button\" id=\"workcase_delete_"+workcase.id+"\" class=\"btn btn-default btn-xs\" imageId="+(workcase.imageId?workcase.imageId:"")+">删除</button>";
+			$workcaseList+=	"</td>";
+			$workcaseList+="</tr>";
 		})
 		
 		//渲染新闻列表
-		$("#workerList").empty().append($workerList);
+		$("#workcaseList").empty().append($workcaseList);
 		
 		//编辑按钮绑定事件
-		$("button[id^='worker_edit_']").click(function(){
-			window.location.href =  contextPath+'/providersResource/showWorkerEdit.do?workerId='+$(this).attr("id").replace("worker_edit_","");
+		$("button[id^='workcase_edit_']").click(function(){
+			window.location.href =  contextPath+'/providersResource/showWorkcaseEdit.do?workcaseId='+$(this).attr("id").replace("workcase_edit_","");
 		})
 		
 		//删除按钮绑定事件
-		$("button[id^='worker_delete_']").click(function(){
-			var workerId = $(this).attr("id").replace("worker_delete_","");
-			var avatar = $(this).attr("avatar");
-			if(typeof(avatar) == "undefined"){avatar=null};
+		$("button[id^='workcase_delete_']").click(function(){
+			var workcaseId = $(this).attr("id").replace("workcase_delete_","");
+			var imageId = $(this).attr("imageId");
+			if(typeof(imageId) == "undefined"){imageId=null};
 			require.async('alertable',function(){
 				$.alertable.confirm('确认删除嘛!',{parentObj:window.parent.document}).then(function() {
-					deleteWorker(workerId,avatar);
+					deleteWorkcase(workcaseId,imageId);
 			    }, function() {
 			         return;      
 			    });
@@ -84,14 +84,14 @@ define(function(require, exports, module){
 		pager.loadPager(pageNo,data.pager.totalPage,data.pager.totalRecords,initData);
 	}
 	
-	function deleteWorker(workerId,avatar){
+	function deleteWorkcase(workcaseId,imageId){
 		require.async('custom',function(){
 			$.ajax({    
-				url: contextPath+'/providersResource/deleteWorker.do',       
+				url: contextPath+'/providersResource/deleteWorkcase.do',       
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
-				data:{id:workerId,avatar:avatar},
+				data:{id:workcaseId,imageId:imageId},
 				beforeSend: function () {
 					$.showLoadding({loadText:"执行中，请稍后...."});
 			    },
@@ -119,8 +119,8 @@ define(function(require, exports, module){
 	function init(){
 		initData(1);
 		//新增绑定
-		$("#addWorker").click(function(){
-			window.location.href =  contextPath+'/providersResource/showWorkerAdd.do?providersId='+$("#providersId").val();
+		$("#addWorkcase").click(function(){
+			window.location.href =  contextPath+'/providersResource/showWorkcaseAdd.do?providersId='+$("#providersId").val();
 		})
 	}
 	

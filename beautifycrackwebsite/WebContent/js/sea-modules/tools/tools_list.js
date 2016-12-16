@@ -39,7 +39,7 @@ define(function(require,exports,module){
 	function render(data,pageNo){
 		if(data.dataList.length==0)
 		{
-			$("#toolsList").empty().append("<tr><td>暂无数据</td></tr>");
+			$("#toolsList").empty().append("<tr><td colspan='5' align=center>暂无数据</td></tr>");
 			$("#kkpager").empty();
 			return;
 		}

@@ -1,5 +1,5 @@
 /**
- * 个人新增
+ * 施工工人个人新增
  */
 define(function(require,exports,module){
 	//引入jquery

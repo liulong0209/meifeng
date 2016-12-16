@@ -1,5 +1,5 @@
 /**
- * 个人列表
+ * 施工工人个人列表
  */
 define(function(require,exports,module){
 	//引入jquery
@@ -40,7 +40,7 @@ define(function(require,exports,module){
 		
 		if(data.dataList.length==0)
 		{
-			$("#personList").empty().append("<tr><td>暂无数据</td></tr>");
+			$("#personList").empty().append("<tr><td colspan='3' align=center>暂无数据</td></tr>");
 			return;
 		}
 		
@@ -129,7 +129,7 @@ define(function(require,exports,module){
 		});
 		//施工案例
 		$("#case").click(function(){
-			window.location.href =  contextPath+'';
+			window.location.href =  contextPath+'/providersResource/workcaseList.do?providersId='+$('input:radio:checked').val();
 		})
 	}
 	

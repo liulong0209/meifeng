@@ -40,7 +40,7 @@ define(function(require,exports,module){
 		
 		if(data.dataList.length==0)
 		{
-			$("#companyList").empty().append("<tr><td>暂无数据</td></tr>");
+			$("#companyList").empty().append("<tr><td colspan='3' align=center>暂无数据</td></tr>");
 			return;
 		}
 		
@@ -133,7 +133,7 @@ define(function(require,exports,module){
 		})
 		//施工案例
 		$("#case").click(function(){
-			window.location.href =  contextPath+'/providersResource/caseList.do?providersId='+$('input:radio:checked').val();
+			window.location.href =  contextPath+'/providersResource/workcaseList.do?providersId='+$('input:radio:checked').val();
 		})
 		//预约小区
 		$("#book").click(function(){

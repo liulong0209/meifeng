@@ -39,7 +39,7 @@ public class ConstructionCase implements Serializable
     /**
      * 公司 团队 id
      */
-    private Long providerId;
+    private Long providersId;
 
     public Long getId()
     {
@@ -71,14 +71,14 @@ public class ConstructionCase implements Serializable
         this.imageId = imageId;
     }
 
-    public Long getProviderId()
+    public Long getProvidersId()
     {
-        return providerId;
+        return providersId;
     }
 
-    public void setProviderId(Long providerId)
+    public void setProvidersId(Long providersId)
     {
-        this.providerId = providerId;
+        this.providersId = providersId;
     }
 
 }

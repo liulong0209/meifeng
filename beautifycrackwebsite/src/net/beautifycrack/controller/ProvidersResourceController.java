@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.beautifycrack.constant.Common;
 import net.beautifycrack.exception.BusinessException;
+import net.beautifycrack.module.ConstructionCase;
 import net.beautifycrack.module.Providers;
 import net.beautifycrack.module.Worker;
 import net.beautifycrack.service.FileInfoService;
@@ -75,6 +76,7 @@ public class ProvidersResourceController
     @Resource
     private FileInfoService fileInfoService;
 
+    /***************** 施工工人 *****************/
     /**
      * 跳转到提供商下的工人列表
      * 
@@ -97,7 +99,7 @@ public class ProvidersResourceController
     }
 
     /**
-     * 加载公司、团队、个人列表数据，前台通多ajax调用
+     * 加载公司、团队下的施工人员列表数据，前台通多ajax调用
      * 
      * @throws BusinessException
      */
@@ -108,11 +110,11 @@ public class ProvidersResourceController
         Map<String, Object> dataMaps = new HashMap<String, Object>();
 
         // 查询数据
-        List<Worker> workerList = providersResourceService.wokerPagerList(pager, providersId);
+        List<Worker> workerList = providersResourceService.workerPagerList(pager, providersId);
 
         dataMaps.put("dataList", workerList);
         // 查询数据总数
-        Integer total = providersResourceService.queryWokerTotal(providersId);
+        Integer total = providersResourceService.queryWorkerTotal(providersId);
         pager.setTotalRecords(total);
         pager.setTotalPage(pager.getTotalPage());
         dataMaps.put("pager", pager);
@@ -168,7 +170,7 @@ public class ProvidersResourceController
                 worker.setAvatar(fileId);
             }
             // 添加到数据库
-            providersResourceService.addWork(worker);
+            providersResourceService.addWorker(worker);
             result.put("result", Common.SUCCESS);
         }
         catch (IOException e)
@@ -196,7 +198,7 @@ public class ProvidersResourceController
 
         try
         {
-            providersResourceService.deleteWork(worker);
+            providersResourceService.deleteWorker(worker);
             result.put("result", Common.SUCCESS);
         }
         catch (Exception e)
@@ -210,6 +212,7 @@ public class ProvidersResourceController
 
     /**
      * 跳转到工人修改页面
+     * 
      * @param request
      * @param response
      * @param workerId
@@ -217,7 +220,7 @@ public class ProvidersResourceController
      * @throws BusinessException
      */
     @RequestMapping(value = "/showWorkerEdit.do", method = RequestMethod.GET)
-    public ModelAndView showEdit(HttpServletRequest request, HttpServletResponse response, Long workerId)
+    public ModelAndView showWorkerEdit(HttpServletRequest request, HttpServletResponse response, Long workerId)
             throws BusinessException
     {
         ModelAndView mv = new ModelAndView();
@@ -228,9 +231,10 @@ public class ProvidersResourceController
         mv.setViewName("providersResource/worker_edit");
         return mv;
     }
-    
+
     /**
      * 更新工人
+     * 
      * @param request
      * @param response
      * @param worker
@@ -251,12 +255,12 @@ public class ProvidersResourceController
             if (!StringUtils.isEmpty(imageData))
             {
 
-                Long fileId = Long.valueOf(fileInfoService.uploadImg(uploadPath, providersUploadPath+ "/worker", original,
-                        imageData.substring("data:image/png;base64,".length())));
+                Long fileId = Long.valueOf(fileInfoService.uploadImg(uploadPath, providersUploadPath + "/worker",
+                        original, imageData.substring("data:image/png;base64,".length())));
                 worker.setAvatar(fileId);
             }
             // 同步到数据库
-            providersResourceService.updateWork(worker);
+            providersResourceService.updateWorker(worker);
             result.put("result", Common.SUCCESS);
         }
         catch (Exception e)
@@ -267,4 +271,201 @@ public class ProvidersResourceController
 
         return result;
     }
+
+    /***************** 施工案例 *****************/
+    /**
+     * 跳转到提供商下的施工案例列表
+     * 
+     * @param request
+     * @param response
+     * @param providersId
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/workcaseList.do")
+    public ModelAndView workcaseList(HttpServletRequest request, HttpServletResponse response, Long providersId)
+            throws BusinessException
+    {
+        logger.debug("ProvidersResourceController->workerList->providersId=" + providersId);
+        Providers providers = providersService.queryProvider(providersId);
+        ModelAndView mv = new ModelAndView();
+        mv.getModelMap().put("providers", providers);
+        mv.setViewName("providersResource/workcase_list");
+        return mv;
+    }
+
+    /**
+     * 加载公司、团队、个人的施工案例列表数据，前台通多ajax调用
+     * 
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/workcase/pageList.do", method = RequestMethod.POST)
+    public @ResponseBody Object workcasePageList(PagerUtil pager, Long providersId) throws BusinessException
+    {
+        logger.info("ProvidersResourceController->workerPageList->providersId{}", providersId);
+        Map<String, Object> dataMaps = new HashMap<String, Object>();
+
+        // 查询数据
+        List<ConstructionCase> workcaseList = providersResourceService.workcasePagerList(pager, providersId);
+
+        dataMaps.put("dataList", workcaseList);
+        // 查询数据总数
+        Integer total = providersResourceService.queryWorkcaseTotal(providersId);
+        pager.setTotalRecords(total);
+        pager.setTotalPage(pager.getTotalPage());
+        dataMaps.put("pager", pager);
+        return dataMaps;
+    }
+
+    /**
+     * 跳转到施工案例增加页面
+     * 
+     * @param request
+     * @param response
+     * @param providersId
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/showWorkcaseAdd.do")
+    public ModelAndView showWorkcaseAdd(HttpServletRequest request, HttpServletResponse response, Long providersId)
+            throws BusinessException
+    {
+        logger.debug("ProvidersResourceController->workerList->providersId=" + providersId);
+        Providers providers = providersService.queryProvider(providersId);
+        ModelAndView mv = new ModelAndView();
+        mv.getModelMap().put("providers", providers);
+        mv.setViewName("providersResource/workcase_add");
+        return mv;
+    }
+
+    /**
+     * 新增施工案例
+     * 
+     * @param request
+     * @param response
+     * @param case
+     * @param imageData
+     * @param original
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/addWorkcase.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> addWorkcase(HttpServletRequest request, HttpServletResponse response,
+            ConstructionCase workcase, String imageData, String original) throws BusinessException
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try
+        {
+            // 上传文件
+            if (!StringUtils.isEmpty(imageData))
+            {
+
+                Long fileId = Long.valueOf(fileInfoService.uploadImg(uploadPath, providersUploadPath + "/workcase",
+                        original, imageData.substring("data:image/png;base64,".length())));
+                workcase.setImageId(fileId);
+            }
+            // 添加到数据库
+            providersResourceService.addWorkcase(workcase);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (IOException e)
+        {
+            result.put("result", Common.FAIL);
+            logger.error("新增施工案例失败：原因{}", e);
+        }
+        return result;
+    }
+
+    /**
+     * 删除施工案例
+     * 
+     * @param request
+     * @param response
+     * @param worker
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/deleteWorkcase.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> deleteWorkcase(HttpServletRequest request, HttpServletResponse response,
+            ConstructionCase workcase) throws BusinessException
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try
+        {
+            providersResourceService.deleteWorkcase(workcase);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            logger.debug("删除施工案例失败，原因：", e);
+            result.put("result", Common.FAIL);
+        }
+
+        return result;
+    }
+
+    /**
+     * 跳转到施工案例修改页面
+     * 
+     * @param request
+     * @param response
+     * @param workerId
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/showWorkcaseEdit.do", method = RequestMethod.GET)
+    public ModelAndView showWorkcaseEdit(HttpServletRequest request, HttpServletResponse response, Long workcaseId)
+            throws BusinessException
+    {
+        ModelAndView mv = new ModelAndView();
+        ConstructionCase workcase = providersResourceService.findWorkcase(workcaseId);
+        Providers providers = providersService.queryProvider(workcase.getProvidersId());
+        mv.getModelMap().put("workcase", workcase);
+        mv.getModelMap().put("providers", providers);
+        mv.setViewName("providersResource/workcase_edit");
+        return mv;
+    }
+
+    /**
+     * 更新施工案例
+     * 
+     * @param request
+     * @param response
+     * @param worker
+     * @param imageData
+     * @param original
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/updateWorkcase.do", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> update(HttpServletRequest request, HttpServletResponse response,
+            ConstructionCase workcase, String imageData, String original) throws BusinessException
+    {
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try
+        {
+            // 上传文件
+            if (!StringUtils.isEmpty(imageData))
+            {
+
+                Long fileId = Long.valueOf(fileInfoService.uploadImg(uploadPath, providersUploadPath + "/workcase",
+                        original, imageData.substring("data:image/png;base64,".length())));
+                workcase.setImageId(fileId);
+            }
+            // 同步到数据库
+            providersResourceService.updateWorkcase(workcase);
+            result.put("result", Common.SUCCESS);
+        }
+        catch (Exception e)
+        {
+            logger.debug("更新施工案例失败，原因：", e);
+            result.put("result", Common.FAIL);
+        }
+
+        return result;
+    }
+
 }

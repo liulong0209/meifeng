@@ -1,5 +1,5 @@
 /**
- * 轮播广告列表
+ * 轮播广告编辑
  */
  
 define(function(require, exports, module){

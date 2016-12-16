@@ -1,5 +1,5 @@
 /**
- * 工具/材料新增
+ * 工具/材料编辑
  */
 define(function(require,exports,module){
 	//引入jquery

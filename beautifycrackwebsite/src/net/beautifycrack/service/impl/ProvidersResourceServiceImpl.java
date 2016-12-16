@@ -12,6 +12,7 @@ import net.beautifycrack.constant.Common;
 import net.beautifycrack.dao.FileInfoMapper;
 import net.beautifycrack.dao.ProvidersResourceMapper;
 import net.beautifycrack.exception.BusinessException;
+import net.beautifycrack.module.ConstructionCase;
 import net.beautifycrack.module.FileInfo;
 import net.beautifycrack.module.Worker;
 import net.beautifycrack.service.ProvidersResourceService;
@@ -50,26 +51,27 @@ public class ProvidersResourceServiceImpl implements ProvidersResourceService
     @Resource
     private FileInfoMapper fileInfoMapper;
 
+    /***************** 施工工人 *****************/
     @Override
-    public List<Worker> wokerPagerList(PagerUtil pager, Long providersId) throws BusinessException
+    public List<Worker> workerPagerList(PagerUtil pager, Long providersId) throws BusinessException
     {
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("providersId", providersId);
         param.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
         param.put("pageSize", pager.getPageSize());
-        return providersResourceMapper.wokerPagerList(param);
+        return providersResourceMapper.workerPagerList(param);
     }
 
     @Override
-    public Integer queryWokerTotal(Long providersId) throws BusinessException
+    public Integer queryWorkerTotal(Long providersId) throws BusinessException
     {
-        return providersResourceMapper.queryWokerTotal(providersId);
+        return providersResourceMapper.queryWorkerTotal(providersId);
     }
 
     @Override
-    public void addWork(Worker worker) throws BusinessException
+    public void addWorker(Worker worker) throws BusinessException
     {
-        providersResourceMapper.addWork(worker);
+        providersResourceMapper.addWorker(worker);
     }
 
     @Override
@@ -79,16 +81,16 @@ public class ProvidersResourceServiceImpl implements ProvidersResourceService
     }
 
     @Override
-    public void updateWork(Worker worker) throws BusinessException
+    public void updateWorker(Worker worker) throws BusinessException
     {
-        providersResourceMapper.updateWork(worker);
+        providersResourceMapper.updateWorker(worker);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void deleteWork(Worker worker) throws BusinessException, IOException
+    public void deleteWorker(Worker worker) throws BusinessException, IOException
     {
-        providersResourceMapper.deleteWork(worker.getId());
+        providersResourceMapper.deleteWorker(worker.getId());
 
         if (worker.getAvatar() != null && worker.getAvatar() != Common.NO_FILE)
         {
@@ -107,4 +109,65 @@ public class ProvidersResourceServiceImpl implements ProvidersResourceService
             }
         }
     }
+
+    /***************** 施工案例 *****************/
+
+    @Override
+    public List<ConstructionCase> workcasePagerList(PagerUtil pager, Long providersId) throws BusinessException
+    {
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("providersId", providersId);
+        param.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+        param.put("pageSize", pager.getPageSize());
+        return providersResourceMapper.workcasePagerList(param);
+    }
+
+    @Override
+    public Integer queryWorkcaseTotal(Long providersId) throws BusinessException
+    {
+        return providersResourceMapper.queryWorkcaseTotal(providersId);
+    }
+
+    @Override
+    public void addWorkcase(ConstructionCase workcase) throws BusinessException
+    {
+        providersResourceMapper.addWorkcase(workcase);
+    }
+
+    @Override
+    public ConstructionCase findWorkcase(Long workcaseId) throws BusinessException
+    {
+        return providersResourceMapper.findWorkcase(workcaseId);
+    }
+
+    @Override
+    public void updateWorkcase(ConstructionCase workcase) throws BusinessException
+    {
+        providersResourceMapper.updateWorkcase(workcase);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteWorkcase(ConstructionCase workcase) throws BusinessException, IOException
+    {
+        providersResourceMapper.deleteWorkcase(workcase.getId());
+        if (workcase.getImageId() != null && workcase.getImageId() != Common.NO_FILE)
+        {
+            // 删除附件
+            FileInfo fileInfo = fileInfoMapper.findFileById(workcase.getImageId());
+
+            // 删除数据库
+            fileInfoMapper.delete(workcase.getImageId());
+
+            // 删除文件
+            FileDeleteStrategy strategy = FileDeleteStrategy.NORMAL;
+            File fileToDelete = new File(fileInfo.getFilePath());
+            if (fileToDelete.exists())
+            {
+                strategy.delete(fileToDelete);
+            }
+        }
+
+    }
+
 }

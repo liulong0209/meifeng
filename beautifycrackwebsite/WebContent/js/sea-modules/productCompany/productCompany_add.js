@@ -1,5 +1,5 @@
 /**
- * 美缝公司新增
+ * 工具/材料供应公司新增
  */
 define(function(require,exports,module){
 	//引入jquery
