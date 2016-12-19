@@ -12,8 +12,11 @@ import net.beautifycrack.constant.Common;
 import net.beautifycrack.dao.FileInfoMapper;
 import net.beautifycrack.dao.ProvidersResourceMapper;
 import net.beautifycrack.exception.BusinessException;
+import net.beautifycrack.module.AntiFake;
+import net.beautifycrack.module.BookingCommunity;
 import net.beautifycrack.module.ConstructionCase;
 import net.beautifycrack.module.FileInfo;
+import net.beautifycrack.module.Qualification;
 import net.beautifycrack.module.Worker;
 import net.beautifycrack.service.ProvidersResourceService;
 import net.beautifycrack.util.PagerUtil;
@@ -158,6 +161,186 @@ public class ProvidersResourceServiceImpl implements ProvidersResourceService
 
             // 删除数据库
             fileInfoMapper.delete(workcase.getImageId());
+
+            // 删除文件
+            FileDeleteStrategy strategy = FileDeleteStrategy.NORMAL;
+            File fileToDelete = new File(fileInfo.getFilePath());
+            if (fileToDelete.exists())
+            {
+                strategy.delete(fileToDelete);
+            }
+        }
+
+    }
+
+    /***************** 预约小区 *****************/
+
+    @Override
+    public List<BookingCommunity> bookingPagerList(PagerUtil pager, Long providersId) throws BusinessException
+    {
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("providersId", providersId);
+        param.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+        param.put("pageSize", pager.getPageSize());
+        return providersResourceMapper.bookingPagerList(param);
+    }
+
+    @Override
+    public Integer queryBookingTotal(Long providersId) throws BusinessException
+    {
+        return providersResourceMapper.queryBookingTotal(providersId);
+    }
+
+    @Override
+    public void addBooking(BookingCommunity booking) throws BusinessException
+    {
+        providersResourceMapper.addBooking(booking);
+    }
+
+    @Override
+    public BookingCommunity findBooking(Long bookingId) throws BusinessException
+    {
+        return providersResourceMapper.findBooking(bookingId);
+    }
+
+    @Override
+    public void updateBooking(BookingCommunity booking) throws BusinessException
+    {
+        providersResourceMapper.updateBooking(booking);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteBooking(BookingCommunity booking) throws BusinessException, IOException
+    {
+        providersResourceMapper.deleteBooking(booking.getId());
+        if (booking.getImageId() != null && booking.getImageId() != Common.NO_FILE)
+        {
+            // 删除附件
+            FileInfo fileInfo = fileInfoMapper.findFileById(booking.getImageId());
+
+            // 删除数据库
+            fileInfoMapper.delete(booking.getImageId());
+
+            // 删除文件
+            FileDeleteStrategy strategy = FileDeleteStrategy.NORMAL;
+            File fileToDelete = new File(fileInfo.getFilePath());
+            if (fileToDelete.exists())
+            {
+                strategy.delete(fileToDelete);
+            }
+        }
+
+    }
+
+    /***************** 公司资质 *****************/
+
+    @Override
+    public List<Qualification> qualificationPagerList(PagerUtil pager, Long providersId) throws BusinessException
+    {
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("providersId", providersId);
+        param.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+        param.put("pageSize", pager.getPageSize());
+        return providersResourceMapper.qualificationPagerList(param);
+    }
+
+    @Override
+    public Integer queryQualificationTotal(Long providersId) throws BusinessException
+    {
+        return providersResourceMapper.queryQualificationTotal(providersId);
+    }
+
+    @Override
+    public void addQualification(Qualification qualification) throws BusinessException
+    {
+        providersResourceMapper.addQualification(qualification);
+    }
+
+    @Override
+    public Qualification findQualification(Long qualificationId) throws BusinessException
+    {
+        return providersResourceMapper.findQualification(qualificationId);
+    }
+
+    @Override
+    public void updateQualification(Qualification qualification) throws BusinessException
+    {
+        providersResourceMapper.updateQualification(qualification);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteQualification(Qualification qualification) throws BusinessException, IOException
+    {
+        providersResourceMapper.deleteQualification(qualification.getId());
+        if (qualification.getImageId() != null && qualification.getImageId() != Common.NO_FILE)
+        {
+            // 删除附件
+            FileInfo fileInfo = fileInfoMapper.findFileById(qualification.getImageId());
+
+            // 删除数据库
+            fileInfoMapper.delete(qualification.getImageId());
+
+            // 删除文件
+            FileDeleteStrategy strategy = FileDeleteStrategy.NORMAL;
+            File fileToDelete = new File(fileInfo.getFilePath());
+            if (fileToDelete.exists())
+            {
+                strategy.delete(fileToDelete);
+            }
+        }
+
+    }
+
+    /***************** 防伪查询 *****************/
+
+    @Override
+    public List<AntiFake> antiFakePagerList(PagerUtil pager, Long providersId) throws BusinessException
+    {
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("providersId", providersId);
+        param.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+        param.put("pageSize", pager.getPageSize());
+        return providersResourceMapper.antiFakePagerList(param);
+    }
+
+    @Override
+    public Integer queryAntiFakeTotal(Long providersId) throws BusinessException
+    {
+        return providersResourceMapper.queryAntiFakeTotal(providersId);
+    }
+
+    @Override
+    public void addAntiFake(AntiFake antiFake) throws BusinessException
+    {
+        providersResourceMapper.addAntiFake(antiFake);
+    }
+
+    @Override
+    public AntiFake findAntiFake(Long antiFakeId) throws BusinessException
+    {
+        return providersResourceMapper.findAntiFake(antiFakeId);
+    }
+
+    @Override
+    public void updateAntiFake(AntiFake antiFake) throws BusinessException
+    {
+        providersResourceMapper.updateAntiFake(antiFake);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteAntiFake(AntiFake antiFake) throws BusinessException, IOException
+    {
+        providersResourceMapper.deleteAntiFake(antiFake.getId());
+        if (antiFake.getImageId() != null && antiFake.getImageId() != Common.NO_FILE)
+        {
+            // 删除附件
+            FileInfo fileInfo = fileInfoMapper.findFileById(antiFake.getImageId());
+
+            // 删除数据库
+            fileInfoMapper.delete(antiFake.getImageId());
 
             // 删除文件
             FileDeleteStrategy strategy = FileDeleteStrategy.NORMAL;

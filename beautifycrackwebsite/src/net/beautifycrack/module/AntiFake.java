@@ -39,7 +39,7 @@ public class AntiFake implements Serializable
     /**
      * ¹«Ë¾id
      */
-    private Long providerId;
+    private Long providersId;
 
     public Long getId()
     {
@@ -71,14 +71,14 @@ public class AntiFake implements Serializable
         this.imageId = imageId;
     }
 
-    public Long getProviderId()
+    public Long getProvidersId()
     {
-        return providerId;
+        return providersId;
     }
 
-    public void setProviderId(Long providerId)
+    public void setProvidersId(Long providersId)
     {
-        this.providerId = providerId;
+        this.providersId = providersId;
     }
 
 }

@@ -130,11 +130,11 @@ define(function(require,exports,module){
 		
 		//公司证书
 		$("#certificate").click(function(){
-			window.location.href =  contextPath+'';
+			window.location.href =  window.location.href =  contextPath+'/providersResource/qualificationList.do?providersId='+$('input:radio:checked').val();
 		})
 		//防伪
-		$("#case").click(function(){
-			window.location.href =  contextPath+'';
+		$("#anti_fake").click(function(){
+			window.location.href =  contextPath+'/providersResource/antifakeList.do?providersId='+$('input:radio:checked').val();
 		})
 	}
 	

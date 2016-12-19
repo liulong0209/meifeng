@@ -34,7 +34,7 @@
 			avatar as avatar,
 			providers_id as providersId
 		from tbl_worker
-		where worker_id=#{id}
+		where worker_id=#{workerId}
 	</select>
 	<!-- 更新工人 -->
 	<update id="updateWorker" parameterType="worker">
@@ -52,7 +52,7 @@
 	
 	<!-- 删除工人 -->
 	<delete id="deleteWorker" parameterType="Long">
-		delete from tbl_worker where worker_id=#{id}
+		delete from tbl_worker where worker_id=#{workerId}
 	</delete>
 	
 	<!--***************施工案例  ************************-->
@@ -86,7 +86,7 @@
 			img_id as imageId,
 			providers_id as providersId
 		from tbl_work_case
-		where case_id=#{id}
+		where case_id=#{workcaseId}
 	</select>
 	<!-- 更新案例 -->
 	<update id="updateWorkcase" parameterType="constructionCase">
@@ -104,7 +104,163 @@
 	
 	<!-- 删除案例 -->
 	<delete id="deleteWorkcase" parameterType="Long">
-		delete from tbl_work_case where case_id=#{id}
+		delete from tbl_work_case where case_id=#{workcaseId}
+	</delete>
+	
+	<!--***************预约小区 ************************-->
+	<!-- 分页预约小区查询数据 -->
+	<select id="bookingPagerList" parameterType="Map" resultType="bookingCommunity">
+		select
+			region_id as id,
+			title as communityName,
+			img_id as imageId,
+			providers_id as providersId
+		from tbl_book_region
+		where providers_id=#{providersId}
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 查询预约小区总数 -->
+	<select id="queryBookingTotal" parameterType="Long" resultType="Integer" >
+		select count(region_id) from tbl_book_region where providers_id=#{providersId}
+	</select>
+	
+	<!-- 增加预约小区-->
+	<insert id="addBooking" parameterType="bookingCommunity">
+		insert into tbl_book_region(title,img_id,providers_id,create_time)value(#{communityName},#{imageId},#{providersId},now())
+	</insert>
+	
+	<!-- 查找预约小区 -->
+	<select id="findBooking" parameterType="Long" resultType="bookingCommunity">
+		select
+			region_id as id,
+			title as communityName,
+			img_id as imageId,
+			providers_id as providersId
+		from tbl_book_region
+		where region_id=#{bookingId}
+	</select>
+	<!-- 更新预约小区 -->
+	<update id="updateBooking" parameterType="bookingCommunity">
+		update tbl_book_region
+		set update_time = now()
+		<if test="communityName!=null and communityName!=''">
+			,title=#{communityName}
+		</if>
+		
+		<if test="imageId!=null">
+			,img_id=#{imageId}
+		</if>
+		where region_id=#{id}
+	</update>
+	
+	<!-- 删除预约小区 -->
+	<delete id="deleteBooking" parameterType="Long">
+		delete from tbl_book_region where region_id=#{bookingId}
+	</delete>
+	
+	<!--***************公司资质 ************************-->
+	<!-- 分页查询公司资质数据 -->
+	<select id="qualificationPagerList" parameterType="Map" resultType="qualification">
+		select
+			com_rank_id as id,
+			title as title,
+			img_id as imageId,
+			providers_id as providersId
+		from tbl_company_rank
+		where providers_id=#{providersId}
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 查询公司资质总数 -->
+	<select id="queryQualificationTotal" parameterType="Long" resultType="Integer" >
+		select count(com_rank_id) from tbl_company_rank where providers_id=#{providersId}
+	</select>
+	
+	<!-- 增加公司资质 -->
+	<insert id="addQualification" parameterType="qualification">
+		insert into tbl_company_rank(title,img_id,providers_id,create_time)value(#{title},#{imageId},#{providersId},now())
+	</insert>
+	
+	<!-- 查找公司资质 -->
+	<select id="findQualification" parameterType="Long" resultType="qualification">
+		select
+			com_rank_id as id,
+			title as title,
+			img_id as imageId,
+			providers_id as providersId
+		from tbl_company_rank
+		where com_rank_id=#{qualificationId}
+	</select>
+	<!-- 更新公司资质 -->
+	<update id="updateQualification" parameterType="qualification">
+		update tbl_company_rank
+		set update_time = now()
+		<if test="title!=null and title!=''">
+			,title=#{title}
+		</if>
+		
+		<if test="imageId!=null">
+			,img_id=#{imageId}
+		</if>
+		where com_rank_id=#{id}
+	</update>
+	
+	<!-- 删除公司资质 -->
+	<delete id="deleteQualification" parameterType="Long">
+		delete from tbl_company_rank where com_rank_id=#{qualificationId}
+	</delete>
+	
+	<!--***************防伪查询 ************************-->
+	<!-- 分页查询防伪查询数据 -->
+	<select id="antiFakePagerList" parameterType="Map" resultType="antifake">
+		select
+			prod_anti_id as id,
+			title as title,
+			img_id as imageId,
+			providers_id as providersId
+		from tbl_company_anti_fake
+		where providers_id=#{providersId}
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!-- 查询防伪查询总数 -->
+	<select id="queryAntiFakeTotal" parameterType="Long" resultType="Integer" >
+		select count(prod_anti_id) from tbl_company_anti_fake where providers_id=#{providersId}
+	</select>
+	
+	<!-- 增加防伪查询-->
+	<insert id="addAntiFake" parameterType="antifake">
+		insert into tbl_company_anti_fake(title,img_id,providers_id,create_time)value(#{title},#{imageId},#{providersId},now())
+	</insert>
+	
+	<!-- 查找防伪查询 -->
+	<select id="findAntiFake" parameterType="Long" resultType="antifake">
+		select
+			prod_anti_id as id,
+			title as title,
+			img_id as imageId,
+			providers_id as providersId
+		from tbl_company_anti_fake
+		where prod_anti_id=#{antifakeId}
+	</select>
+	<!-- 更新防伪查询 -->
+	<update id="updateAntiFake" parameterType="antifake">
+		update tbl_company_anti_fake
+		set update_time = now()
+		<if test="title!=null and title!=''">
+			,title=#{title}
+		</if>
+		
+		<if test="imageId!=null">
+			,img_id=#{imageId}
+		</if>
+		where prod_anti_id=#{id}
+	</update>
+	
+	<!-- 删除防伪查询 -->
+	<delete id="deleteAntiFake" parameterType="Long">
+		delete from tbl_company_anti_fake where prod_anti_id=#{antifakeId}
 	</delete>
 </mapper>
 

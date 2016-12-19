@@ -137,7 +137,7 @@ define(function(require,exports,module){
 		})
 		//预约小区
 		$("#book").click(function(){
-			window.location.href =  contextPath+'/providersResource/bookList.do?providersId='+$('input:radio:checked').val();
+			window.location.href =  contextPath+'/providersResource/bookingList.do?providersId='+$('input:radio:checked').val();
 		})
 		//公司资质
 		$("#qualification").click(function(){

@@ -35,6 +35,7 @@
 			address as address,
 			logo as logo,
 			type as type,
+			serviceType as serviceType,
 			head as head,
 			city as city
 		from tbl_providers_info 
