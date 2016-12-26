@@ -19,7 +19,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Base64Utils;
 
 /**
  * 文件接口实现类
@@ -107,7 +106,7 @@ public class FileInfoServiceImpl implements FileInfoService
         if (!StringUtils.isEmpty(imgBase64Str))
         {
             byte[] b = Base64.decodeBase64(imgBase64Str.getBytes());
-            File file = new File(dir + File.separator + path);
+            File file = new File(dir + path);
             FileUtils.writeByteArrayToFile(file, b);
         }
 
@@ -118,7 +117,7 @@ public class FileInfoServiceImpl implements FileInfoService
             fileInfo.setFileId(fileInfoMapper.getMaxFileId());
             fileInfo.setOrginName(filename);
             fileInfo.setFileName(path);
-            fileInfo.setFilePath(dir + File.separator + path);
+            fileInfo.setFilePath(dir + path);
             // fileInfo.setCreator(Common.FILE_UPLPADER_NEWS);
             fileInfoMapper.add(fileInfo);
         }
