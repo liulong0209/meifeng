@@ -56,6 +56,8 @@
    <script src="${contextPath}/js/login.js"></script>
    <script type="text/javascript">
    		var contextPath = "${contextPath}";
+   		var timeout = "${param.flag}";
+   		var contextPath = "${contextPath}";
    </script>
 </body>
 </html>

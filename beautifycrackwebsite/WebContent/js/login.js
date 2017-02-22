@@ -1,6 +1,8 @@
 
 jQuery(document).ready(function() {
-	
+	if(timeout=='timeout'){
+		window.top.location.replace(contextPath);
+	}
     /*
         Fullscreen background
     */
