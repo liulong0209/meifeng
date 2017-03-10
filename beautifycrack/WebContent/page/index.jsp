@@ -6,7 +6,16 @@
 		<ul style="overflow: hidden">
 			<c:forEach var="slide" items="${slideList}">
 				<li>
-					<a href=""><img src="${contextPath}/file/image/get/${slide.imgId}" height="450px" width="100%"></a>
+					<c:choose>
+						<c:when test="${slide.linkUrl!='' and slide.linkUrl!=null}">
+							<a href="${slide.linkUrl}" target="_blank">
+						</c:when>
+						<c:otherwise>
+							<a href="javaScript:void('0')">
+						</c:otherwise>
+					</c:choose>
+					
+					<img src="${contextPath}/file/image/get/${slide.imgId}" height="450px" width="100%"></a>
 				</li>
 			</c:forEach>			
 		</ul>

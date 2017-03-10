@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <div class="foot clearfix">
 	<div class="rows block clearfix">
-		<div class="col-md-4 tcenter c80 yh">Copyright ©2010-2016</div>
-		<div class="col-md-4 tcenter c80 yh">地址：河南省**市*****路**号</div>
-		<div class="col-md-4 tcenter c80 yh">豫ICP备00010001号</div>
+		<div class="col-md-4 tcenter c80 yh">Copyright ©2016-2017</div>
+		<div class="col-md-4 tcenter c80 yh">地址：郑州二七区中原区经开区</div>
+		<div class="col-md-4 tcenter c80 yh">豫ICP备17007434号</div>
 	</div>
 </div> 
 </body>

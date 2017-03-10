@@ -8,6 +8,7 @@
 			ads_id as id,
 			title as title,
 			img_id as imgId,
+			link_url as linkUrl,
 			order_no as orderNo,
 			state as state,
 			create_time as createTime

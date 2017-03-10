@@ -42,6 +42,11 @@ public class Advertisement implements Serializable
     private Integer orderNo;
 
     /**
+     * Á´½ÓµØÖ·
+     */
+    private String linkUrl;
+
+    /**
      * ×´Ì¬
      */
     private Integer state;
@@ -124,6 +129,16 @@ public class Advertisement implements Serializable
     public void setUpdateTime(Date updateTime)
     {
         this.updateTime = updateTime;
+    }
+
+    public String getLinkUrl()
+    {
+        return linkUrl;
+    }
+
+    public void setLinkUrl(String linkUrl)
+    {
+        this.linkUrl = linkUrl;
     }
 
 }

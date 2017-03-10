@@ -60,6 +60,9 @@
 	          <h4 class="modal-title" id="mySmallModalLabel">提示</h4>
 	        </div>
 	        <div class="modal-body f14"></div>
+	        <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">知道了</button>
+		    </div>
 	      </div><!-- /.modal-content -->
 	    </div><!-- /.modal-dialog -->
 	</div>

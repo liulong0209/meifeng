@@ -38,6 +38,14 @@
 			    </div>
 			  </div>
 			  <div class="form-group pt10">
+			  	<div class="col-xs-1 pl0">
+			    	<label for="newsTitle" class="control-label">链接地址</label>
+			  	</div>
+			    <div class="col-xs-11">
+			      <input type="text" class="form-control" id="adsLinkUrl" name="linkUrl"  placeholder="链接地址,例如:http://www.baidu.com">
+			    </div>
+			  </div>
+			  <div class="form-group pt10">
 			  	<div class="col-md-1 pl0">
 			    	<label for="newsTitle" class="control-label">排序号</label>
 			  	</div>

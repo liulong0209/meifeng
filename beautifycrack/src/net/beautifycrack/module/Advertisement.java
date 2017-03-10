@@ -37,6 +37,11 @@ public class Advertisement implements Serializable
     private Long imgId;
 
     /**
+     * ¡¥Ω”µÿ÷∑
+     */
+    private String linkUrl;
+
+    /**
      * ≈≈–Ú∫≈
      */
     private Integer orderNo;
@@ -110,4 +115,15 @@ public class Advertisement implements Serializable
     {
         this.createTime = createTime;
     }
+
+    public String getLinkUrl()
+    {
+        return linkUrl;
+    }
+
+    public void setLinkUrl(String linkUrl)
+    {
+        this.linkUrl = linkUrl;
+    }
+
 }

@@ -51,6 +51,7 @@ define(function(require, exports, module){
 				data:{
 					title:$("#adsTitle").val(),
 					orderNo:$("#adsOrderNo").val(),
+					linkUrl:$("#adsLinkUrl").val(),
 					state:state,
 					imageData:$(".file-preview-image").attr("src"),
 					original:$(".file-preview-image").attr("title")
@@ -99,6 +100,15 @@ define(function(require, exports, module){
                         stringLength: {
                             max: 25,
                             message: '标题长度不能超过25个字'
+                        }
+                    }
+                },
+                linkUrl: {
+                    message: '链接地址验证失败',
+                    validators: {
+                        stringLength: {
+                        	max: 255,
+                            message: '标题长度不能超过255个字符'
                         }
                     }
                 }

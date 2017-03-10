@@ -106,7 +106,7 @@ define(function(require, exports, module){
 		    }});
 	}
 	
-	//新增轮播广告
+	//编辑轮播广告
 	function updateAds(state){
 		$("form").data('bootstrapValidator').validate();
 		if(!$("form").data('bootstrapValidator').isValid()){
@@ -122,6 +122,7 @@ define(function(require, exports, module){
 					id:$("#adsId").val(),
 					title:$("#adsTitle").val(),
 					orderNo:$("#adsOrderNo").val(),
+					linkUrl:$("#adsLinkUrl").val(),
 					state:state!=null?state:$("#state").val(),
 					imageData:$(".file-preview-image").attr("src"),
 					original:$(".file-preview-image").attr("title")
@@ -169,6 +170,15 @@ define(function(require, exports, module){
 	                        stringLength: {
 	                            max: 25,
 	                            message: '标题长度不能超过25个字'
+	                        }
+	                    }
+	                },
+	                linkUrl: {
+	                    message: '链接地址验证失败',
+	                    validators: {
+	                        stringLength: {
+	                        	max: 255,
+	                            message: '标题长度不能超过255个字符'
 	                        }
 	                    }
 	                }

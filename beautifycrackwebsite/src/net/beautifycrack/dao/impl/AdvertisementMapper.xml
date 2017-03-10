@@ -29,6 +29,7 @@
 		(
 			title,
 			img_id,
+			link_url,
 			order_no,
 			state,
 			create_time
@@ -37,6 +38,7 @@
 		(
 			#{title},
 			#{imgId},
+			#{linkUrl},
 			#{orderNo},
 			#{state},
 			now()
@@ -49,6 +51,9 @@
 		update_time = now()
 		<if test="title!=null and title!=''">
 			,title = #{title}
+		</if>
+		<if test="linkUrl!=null and linkUrl!=''">
+			,link_url = #{linkUrl}
 		</if>
 		<if test="imgId!=null">
 			,img_id =#{imgId}
@@ -68,6 +73,7 @@
 			ads_id as id,
 			title as title,
 			img_id as imgId,
+			link_url as linkUrl,
 			order_no as orderNo,
 			state as state,
 			create_time as createTime,
