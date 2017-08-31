@@ -29,11 +29,17 @@
 		    "zoomify": "3th/jquery/plug-in/jquery.zoomify.js",
 		    "bootstrap": "3th/bootstrap.js",
 		    "bootstrapValidator": "3th/bootstrapValidator.js",
-		    "wow": "3th/wow.js"
+		    "wow": "3th/wow.js",
+		    "headhesive": "3th/headhesive.js"
 		  }
 		})
 	//同步菜单样式
-	seajs.use("sea-modules/common",function(module){module.syncMenuClass();module.showTime();module.backTop()})
+	seajs.use("sea-modules/common",function(module){
+		module.syncMenuClass();
+		module.showTime();
+		module.backTop();
+		module.headhesive();
+	})
 	//登录框
 	seajs.use("sea-modules/login",function(module){module.init()});
 </script>

@@ -70,6 +70,22 @@ define(function(require, exports, module){
 		})
 	}
 	
+	//菜单固定顶部
+	function headhesive(){
+		require.async('headhesive',function(){
+			var options = {
+		            offset: '#showHere',
+		            classes: {
+		                clone:   'banner--clone',
+		                stick:   'banner--stick',
+		                unstick: 'banner--unstick'
+		            }
+		        };
+		        // Initialise with options
+		        var banner = new Headhesive('.header-nav-content', options);
+		})
+	}
+	
 	//获取当前时间
 	function showLocale(objD)  
 	{  
@@ -154,4 +170,5 @@ define(function(require, exports, module){
 	exports.syncMenuClass = syncMenuClass;
 	exports.showTime=showTime;
 	exports.backTop=backTop;
+	exports.headhesive=headhesive;
 })

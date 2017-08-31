@@ -58,13 +58,13 @@ ul li{
     font-size: 12px;
 }
 
-.header a, .header-nav .nav-first-left, .header-nav a, .header-nav label{
+.header a, .header-nav .nav-first-left, .header-nav a, .header-nav-content a, .header-nav label{
     text-decoration: none;
     outline: 0;
     font-family: "Source Han Sans SC","HanHei SC","PingFang SC","Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
     cursor: pointer;
 }
-.header-nav a:hover{
+.header-nav a:hover, .header-nav-content a:hover{
 	text-decoration: none;
 }
 .nav-first-phone {
