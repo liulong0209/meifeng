@@ -17,50 +17,52 @@
 </head>
 <body>
   <!--头部-->
-  <div class="header">
-	  <!--top start-->
-	  <div class="top minh123">
-	    <div class="logo fleft">
-		  <a href="">
-		    <span><image src="${contextPath}/style/images/logo.png"/></span>
-		  </a>
-		</div>
-		<div class="right fright">
-		  <div>
-		    <c:choose>
-			  <c:when test="${sessionScope.userInfo.userName!=null}">
-				<p class="tright mb0">
-					您好：<a>${sessionScope.userInfo.userName}</a>
-				</p>
-			  </c:when>
-			  <c:otherwise>
-   				<p class="tright mb0">
-   					<a id="login" href="javascript:void(0)" class="f16 pr10 yh"><span class="glyphicon glyphicon-user pr5"></span>登录</a> | 
-   					<a href="${contextPath}/register/index" class="f16 pl10 yh"><span class="glyphicon glyphicon-log-in pr5"></span>注册</a>
-   				</p>
-			  </c:otherwise>
-			</c:choose>
-			<div class="pt10"><span class="f24 l_phone ">热线电话：400-100-1000</span></div>
-		  </div>
-		</div>
-		<div class="clearfix"></div>
-	  </div>
-	  <!--top start-->
-	  <!--nav start-->
-	  <div class="navigation">
-	    <div class="navigation-inner">
-		  <ul>
-		    <li><a href="${contextPath}">首页</a></li>
-			<li><a href="${contextPath}/news">新闻动态</a></li>
-		    <li><a href="${contextPath}/company">美缝公司</a></li>
-		    <li><a href="${contextPath}/worker">施工工人</a></li>
-		    <li><a href="${contextPath}/material">美缝材料</a></li>
-		    <li><a href="${contextPath}/tools">美缝工具</a></li>
-		  </ul>
-		  <div class="clearfix"></div>
-		</div>
-	  </div>
-	  <!--nav end-->
+  <div class="header header-nav">
+  	  <!-- 顶部第一行 -->
+  	  <div class="header-first-box">
+  	  	<div class="header-nav-first">
+            <div class="nav-first-left" style="display: block;">
+                <div id="nowTime"></div>
+            </div>
+            <div class="nav-first-right">
+                <a class="nav-first-login" href="javascript:void(0)"><span class="glyphicon glyphicon-earphone pr5"></span>咨询热线：400-100-1000</a>
+                <div class="division-thread"></div>
+                 <c:choose>
+			  		<c:when test="${sessionScope.userInfo.userName!=null}">
+					<p class="tright mb0">
+						您好：<a class="nav-first-login">${sessionScope.userInfo.userName}</a>
+					</p>
+				  </c:when>
+				  <c:otherwise>
+	   				 <a class="nav-first-reg" href="${contextPath}/register/index" target="_blank" rel="nofollow"><span class="glyphicon glyphicon-log-in pr5"></span>注册</a>
+                	 <div class="division-thread"></div>
+                	 <a class="nav-first-login" id="login" href="javascript:void(0)"><span class="glyphicon glyphicon-user pr5"></span>登录</a>
+				  </c:otherwise>
+				</c:choose>
+        	</div>
+        </div>
+  	  </div>
+  	  <!-- 导航内容 -->
+  	  <div class="header-nav-content">
+  	  	<div class="header-nav-box">
+  	  		<div class="nav-content-left">
+		  		<a href="">
+			    	<span><image src="${contextPath}/style/images/logo.png"/></span>
+			  	</a>
+  	  		</div>
+  	  		<div class="nav-content-right">
+  	  			<ul class="nav-content-list">
+                   <li><a href="${contextPath}">首页</a></li>
+				   <li><a href="${contextPath}/news">新闻动态</a></li>
+				   <li><a href="${contextPath}/company">美缝公司</a></li>
+				   <li><a href="${contextPath}/worker">施工工人</a></li>
+				   <li><a href="${contextPath}/material">美缝材料</a></li>
+				   <li><a href="${contextPath}/tools">美缝工具</a></li>
+                </ul>
+  	  		</div>
+  	  	</div>
+  	  </div>
+  	  
 	</div>
 <!-- 登录窗口 -->
 <div id="loginModal" class="modal fade yh">

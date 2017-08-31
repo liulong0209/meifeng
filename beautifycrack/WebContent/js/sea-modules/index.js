@@ -7,6 +7,31 @@ define(function(require, exports, module) {
 	
 	//初始化幻灯片
 	function initSlide(){
+		execute(contextPath+'/index/slideList',renderSlideImg);
+		
+	}
+	
+	function renderSlideImg(data){
+		if(data.length==0){
+			return;
+		}
+		var $slide='<ul style="overflow: hidden">';
+		
+		$.each(data,function(i,slide){
+			$slide+='<li>';
+			
+			if(slide.linkUrl!='' && slide.linkUrl){
+				$slide+='<a href="${slide.linkUrl}" target="_blank">';
+			}else{
+				$slide+='<a href="javaScript:void("0")">';
+			}		
+			$slide+=	'<img src="'+contextPath+'/file/image/get/'+slide.imgId+'" height="450px" width="100%"></a>';		
+			$slide+='</li>';
+		});
+		$slide+='</ul>';
+		
+		$("#banner").empty().append($slide);
+		
 		require.async('unSlide',function(){
 			$("#banner").unslider({dots: true});
 		});
@@ -25,7 +50,13 @@ define(function(require, exports, module) {
 		var $materiadiv="";
 		$.each(data,function(i,material){
 			$materiadiv+="<div class=\"col-md-3 mb20\">";
-			$materiadiv+=	"<div class=\"border_ddd\">";
+			$materiadiv+=	"<div class=\"border_ddd wow ";
+			if(i==0||i==1){
+				$materiadiv+="bounceInLeft\">";
+			}
+			if(i==2||i==3){
+				$materiadiv+="bounceInRight\">";
+			}
 			$materiadiv+=		"<div class=\"w283 margin-auto ofHidden\">";
 			$materiadiv+=			"<a href=\""+contextPath+"/material/showCompanyMaterial/"+material.providersId+"\" target=\"_blank\"><img src=\""+contextPath+"/file/image/get/"+material.imgId+"\" width=\"283\" height=\"283\"></a>";
 			$materiadiv+=		"</div>";
@@ -55,7 +86,13 @@ define(function(require, exports, module) {
 		var $toolsdiv="";
 		$.each(data,function(i,tools){
 			$toolsdiv+="<div class=\"col-md-3 mb20\">";
-			$toolsdiv+=	"<div class=\"border_ddd\">";
+			$toolsdiv+=	"<div class=\"border_ddd wow ";
+			if(i==0||i==1){
+				$toolsdiv+="bounceInLeft\">";
+			}
+			if(i==2||i==3){
+				$toolsdiv+="bounceInRight\">";
+			}
 			$toolsdiv+=		"<div class=\"w283 margin-auto ofHidden\">";
 			$toolsdiv+=			"<a href=\""+contextPath+"/tools/showCompanyTools/"+tools.providersId+"\" target=\"_blank\"><img src=\""+contextPath+"/file/image/get/"+tools.imgId+"\" width=\"283\" height=\"283\"></a>";
 			$toolsdiv+=		"</div>";
@@ -85,7 +122,14 @@ define(function(require, exports, module) {
 		var $companyli="";
 		$.each(data,function(i,company){
 			$companyli+="<div class=\"col-md-4 mb20\">"
-			$companyli+=	"<div class=\"border_ededed pt15 pr15 pb15 pl15\">"
+			$companyli+=	"<div class=\"border_ededed pt15 pr15 pb15 pl15 wow "
+			if(i==0||i==3){
+				$companyli+="bounceInLeft\">";
+			}else if(i==2){
+				$companyli+="bounceInRight\">";
+			}else{
+				$companyli+="\">";
+			}
 			$companyli+=		"<div class=\"fleft w150\">";
 			$companyli+=			"<a href=\""+contextPath+"/company/showDetail/"+company.providersId+"\" target=\"_blank\"  class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+company.logo+"\" width=\"150\" height=\"150\"></a>";
 			$companyli+=		"</div>";
@@ -115,6 +159,13 @@ define(function(require, exports, module) {
 		var $workerli="";
 		$.each(data,function(i,worker){
 			$workerli+="<div class=\"col-md-6 mb20\">";
+			$workerli+=	"<div class=\"wow "
+				if(i==0||i==2){
+					$workerli+="bounceInLeft\">";
+				}
+				if(i==1||i==3){
+					$workerli+="bounceInRight\">";
+				}
 			$workerli+="	<div class=\"fleft w150\">";
 			$workerli+=			"<a href=\""+contextPath+"/worker/showDetail/"+worker.providersId+"\" target=\"_blank\" class=\"h165\"><img src=\""+contextPath+"/file/image/get/"+worker.logo+"\" width=\"150\" height=\"150\" class=\"radius75\"></a>";
 			$workerli+=		"</div>";
@@ -131,6 +182,7 @@ define(function(require, exports, module) {
 			$workerli+="		<div class=\"pt5\">电话：<span class=\"c80\">"+worker.phoneNo+"</span></div>";
 			$workerli+="	</div>";
 			$workerli+="	<div class=\"clearfix\"></div>";
+			$workerli+="  </div>";
 			$workerli+="</div>";
 		});
 		$("#worker").empty().append($workerli);
@@ -207,6 +259,10 @@ define(function(require, exports, module) {
 		initWorker();
 		//新闻
 		initnews();
+		
+		require.async('wow',function(){
+			new WOW().init();
+		})
 	}
 	
 	exports.init = init;

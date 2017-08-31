@@ -1,29 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="common/header.jsp" %>  
+<link href="${contextPath}/style/css/animate.min.css" type="text/css" rel="stylesheet" />
 	<!--幻灯片-->
-	<div class="banner" id="banner">
-		<ul style="overflow: hidden">
-			<c:forEach var="slide" items="${slideList}">
-				<li>
-					<c:choose>
-						<c:when test="${slide.linkUrl!='' and slide.linkUrl!=null}">
-							<a href="${slide.linkUrl}" target="_blank">
-						</c:when>
-						<c:otherwise>
-							<a href="javaScript:void('0')">
-						</c:otherwise>
-					</c:choose>
-					
-					<img src="${contextPath}/file/image/get/${slide.imgId}" height="450px" width="100%"></a>
-				</li>
-			</c:forEach>			
-		</ul>
-	</div> 
+	<div class="banner" id="banner"></div> 
 
 	<!--美缝材料-->
 	<div class="clearfix ofHidden block yh pt20">
-		<div class="index-title pt20 pb30 tcenter">
+		<div class="index-title pt20 pb30 tcenter wow flipInX" data-wow-duration="0.5s" data-wow-delay="1s">
 			<h1>
 				<span>美缝材料</span>
 			</h1>
@@ -34,7 +18,7 @@
 	
 	<!--美缝工具-->
 	<div class="clearfix ofHidden block yh pt20">
-		<div class="index-title pt20 pb30 tcenter">
+		<div class="index-title pt20 pb30 tcenter wow flipInX">
 			<h1>
 				<span>美缝工具</span>
 			</h1>
@@ -45,7 +29,7 @@
 	
 	<!--新闻动态-->
 	<div class="clearfix ofHidden block yh pt20">
-		<div class="index-title pt20 pb30 tcenter">
+		<div class="index-title pt20 pb30 tcenter wow flipInX">
 			<h1>
 				<span>新闻动态</span>
 			</h1>
@@ -58,7 +42,7 @@
 	
 	<!--美缝公司-->
 	<div class="clearfix ofHidden block yh pt20">
-		<div class="index-title pt20 pb30 tcenter">
+		<div class="index-title pt20 pb30 tcenter wow flipInX">
 			<h1>
 				<span>美缝公司</span>
 			</h1>
@@ -69,7 +53,7 @@
 	
 	<!--施工人员-->
 	<div class="clearfix ofHidden block yh pt20">
-		<div class="index-title pt20 pb30 tcenter">
+		<div class="index-title pt20 pb30 tcenter wow flipInX">
 			<h1>
 				<span>施工人员</span>
 			</h1>
@@ -77,7 +61,6 @@
 		</div>
 		<div id="worker" class="rows clearfix"></div>
 	</div>
-	
 	<%@include file="common/footer.jsp" %>
 	<script type="text/javascript">
 		//加载入口模块

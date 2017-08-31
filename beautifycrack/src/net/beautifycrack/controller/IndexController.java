@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -46,15 +48,22 @@ public class IndexController
     @RequestMapping(value = "/home")
     public ModelAndView indexPage(HttpServletRequest request, HttpServletResponse response)
     {
-        // 查询轮播广告
-        List<Advertisement> slideList = adService.getSlideImg();
-
-        // logger.debug("IndexController->indexPage->slideList size:{}",
-        // slideList.size());
 
         ModelAndView mv = new ModelAndView();
-        mv.getModelMap().put("slideList", slideList);
+
         mv.setViewName("index");
         return mv;
+    }
+
+    /**
+     * 加载轮播图数据
+     */
+    @RequestMapping(value = "/slideList", method = RequestMethod.POST)
+    public @ResponseBody Object slideList()
+    {
+        // 查询轮播广告
+        List<Advertisement> slideList = adService.getSlideImg();
+        logger.debug("IndexController->slideList->slideList size:{}", slideList.size());
+        return slideList;
     }
 }

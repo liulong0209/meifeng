@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 返回顶部 -->
+<div id="shape">
+	<div class="shapeColor">
+		<div class="shapeFly"></div>
+	</div>
+</div>
 <div class="foot clearfix">
 	<div class="rows block clearfix">
 		<div class="col-md-4 tcenter c80 yh">Copyright ©2016-2017</div>
@@ -22,10 +28,12 @@
 		    "kkpager":"3th/kkpager.js", //分页组件
 		    "zoomify": "3th/jquery/plug-in/jquery.zoomify.js",
 		    "bootstrap": "3th/bootstrap.js",
-		    "bootstrapValidator": "3th/bootstrapValidator.js"
+		    "bootstrapValidator": "3th/bootstrapValidator.js",
+		    "wow": "3th/wow.js"
 		  }
 		})
 	//同步菜单样式
-	seajs.use("sea-modules/common",function(module){module.syncMenuClass()})
-	seajs.use("sea-modules/login",function(module){module.init()})
+	seajs.use("sea-modules/common",function(module){module.syncMenuClass();module.showTime();module.backTop()})
+	//登录框
+	seajs.use("sea-modules/login",function(module){module.init()});
 </script>
