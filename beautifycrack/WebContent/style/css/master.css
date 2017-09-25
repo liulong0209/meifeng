@@ -471,6 +471,24 @@ overflow:hidden; }
 }
 
 /*返回顶部*/
+.to-top{
+	background: #3498db; 
+	color: #fff;
+	padding: 15px;
+	border-radius: 5px;
+	font-weight: 500;
+    font-size: 1.4em;
+    font-family: "Microsoft YaHei","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif;
+}
+
+.to-top:hover, .to-top:focus {
+    color: #74777b;
+}
+.to-top:hover{text-decoration: none}
+.to-top:active, .to-top:hover {
+    outline: 0;
+}
+
 #shape{
 	background: url("../images/rocket.png") no-repeat scroll 0 0  transparent;
 	display: block;

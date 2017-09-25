@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 返回顶部 -->
+<a class="to-top">Top &uarr;</a>
+<!-- 火箭样式返回顶部 --
 <div id="shape">
 	<div class="shapeColor">
 		<div class="shapeFly"></div>
 	</div>
 </div>
+-->
 <div class="foot clearfix">
 	<div class="rows block clearfix">
 		<div class="col-md-4 tcenter c80 yh">Copyright ©2016-2017</div>
@@ -30,15 +33,13 @@
 		    "bootstrap": "3th/bootstrap.js",
 		    "bootstrapValidator": "3th/bootstrapValidator.js",
 		    "wow": "3th/wow.js",
-		    "headhesive": "3th/headhesive.js"
+		    "headhesive": "3th/headhesive.js",
+		    "toTop": "3th/jquery/plug-in/jquery.toTop.js"
 		  }
 		})
 	//同步菜单样式
 	seajs.use("sea-modules/common",function(module){
-		module.syncMenuClass();
-		module.showTime();
-		module.backTop();
-		module.headhesive();
+		module.init();
 	})
 	//登录框
 	seajs.use("sea-modules/login",function(module){module.init()});

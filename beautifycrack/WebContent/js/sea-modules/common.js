@@ -127,7 +127,9 @@ define(function(require, exports, module){
 	
 	//返回顶部
 	function backTop(){
-		var x=$(window);
+		
+/*火箭样式返回顶部
+ var x=$(window);
 		var e=$("#shape");
 
 		$("html,body").ready(function(){
@@ -159,16 +161,35 @@ define(function(require, exports, module){
 						$("#shape").css("margin-top","-125px");
 						$(".shapeFly").hide();
 					});
-					
 			})
 
+		})*/
+		
+		require.async('toTop',function(){
+			 $('.to-top').toTop({
+	               //options with default values
+	               autohide: true,  //boolean 'true' or 'false'
+	               offset: 50,     //numeric value (as pixels) for scrolling length from top to hide automatically
+	               speed: 500,      //numeric value (as mili-seconds) for duration
+	               right: 10,       //numeric value (as pixels) for position from right
+	               bottom: 30       //numeric value (as pixels) for position from bottom
+	           });
 		})
+	}
+	
+	//初始化
+	function init(){
+		//展示当前时间
+		showTime();
+		//菜单固定顶部
+		headhesive();
+		//菜单样式同步
+		syncMenuClass();
+		//返回顶部
+		backTop();
 	}
 	
 	
 	exports.loadPager = loadPager;
-	exports.syncMenuClass = syncMenuClass;
-	exports.showTime=showTime;
-	exports.backTop=backTop;
-	exports.headhesive=headhesive;
+	exports.init=init;
 })
